@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hong Kong Urban Planning Case Retrieval</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<!-- Markdown 渲染 -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<!-- ═══════════ 侧边栏 ═══════════ -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="logo">
+      <div class="logo-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="logo-text">UrbanAI</span>
+    </div>
+    <button class="new-chat-btn" onclick="resetChat()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      新对话
+    </button>
+  </div>
+
+  <!-- 工作流进度 -->
+  <div class="workflow-panel" id="workflowPanel" style="display:none;">
+    <div class="panel-title">WORKFLOW</div>
+    <div class="steps-list" id="stepsList"></div>
+  </div>
+
+  <div class="sidebar-footer">
+    <div class="sys-info">
+      <span class="dot"></span>
+      多智能体城市规划分析系统
+    </div>
+  </div>
+</aside>
+
+<!-- ═══════════ 主区域 ═══════════ -->
+<main class="main-area">
+
+  <!-- 顶栏 -->
+  <header class="topbar">
+    <button class="menu-btn" onclick="toggleSidebar()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <div class="topbar-title">Hong Kong Urban Planning Case Retrieval</div>
+    <div class="topbar-badge">Multi-Agent-System</div>
+  </header>
+
+  <!-- 消息区域 -->
+  <div class="chat-container" id="chatContainer">
+
+    <!-- 欢迎页 -->
+    <div class="welcome" id="welcomeScreen">
+      <div class="welcome-glow"></div>
+      <div class="welcome-icon">
+        <svg width="56" height="56" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="url(#g1)" stroke-width="1.2" stroke-linejoin="round"/>
+          <path d="M2 17L12 22L22 17" stroke="url(#g1)" stroke-width="1.2" stroke-linejoin="round"/>
+          <path d="M2 12L12 17L22 12" stroke="url(#g1)" stroke-width="1.2" stroke-linejoin="round"/>
+          <defs><linearGradient id="g1" x1="2" y1="2" x2="22" y2="22"><stop stop-color="#5b6cf0"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs>
+        </svg>
+      </div>
+      <h1 class="welcome-title">城市规划多智能体系统</h1>
+      <p class="welcome-sub">输入你的城市规划问题，系统将自动完成情景解构、全球案例搜索、差异分析与方案生成</p>
+      <div class="welcome-examples">
+        <button class="example-btn" onclick="fillExample(this)">新田科技城城市规划相关案例分析</button>
+        <button class="example-btn" onclick="fillExample(this)">油尖旺区城市更新策略研究</button>
+        <button class="example-btn" onclick="fillExample(this)">洪水桥-厦村城市规划案例分析</button>
+      </div>
+    </div>
+
+    <!-- 消息列表 -->
+    <div class="messages" id="messages"></div>
+
+  </div>
+
+  <!-- 输入区域 -->
+  <div class="input-area">
+    <div class="input-wrapper">
+      <textarea
+        id="queryInput"
+        placeholder="Query Input, e.g., San Tin Science and Technology City Urban Planning Case Analysis"
+        rows="1"
+        onkeydown="handleKeyDown(event)"
+        oninput="autoResize(this)"
+      ></textarea>
+      <button class="send-btn" id="sendBtn" onclick="sendQuery()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+    </div>
+    <div class="input-hint">系统将依次执行 7 个智能体，完整分析约需 10-30 分钟</div>
+  </div>
+
+</main>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

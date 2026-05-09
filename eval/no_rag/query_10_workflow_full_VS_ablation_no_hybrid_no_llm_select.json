@@ -1,0 +1,155 @@
+{
+  "query_id": "Q010",
+  "scores": {
+    "A": {
+      "D1_precision": 3,
+      "D2_scenario": 2,
+      "D3_source": 3,
+      "D4_timeliness": 3,
+      "D5_regulatory": 3,
+      "D6_local": 3,
+      "D7_transfer": 3,
+      "D8_inspiration": 4,
+      "total": 24
+    },
+    "B": {
+      "D1_precision": 2,
+      "D2_scenario": 2,
+      "D3_source": 3,
+      "D4_timeliness": 3,
+      "D5_regulatory": 2,
+      "D6_local": 2,
+      "D7_transfer": 2,
+      "D8_inspiration": 3,
+      "total": 19
+    }
+  },
+  "reasoning_chain": {
+    "A": {
+      "D1": {
+        "evidence": "6 cases: DPSIR brownfield model (Sustainability 2021), 龙港 factory relocation EIA (2024), US refugee housing guide (Switchboard 2023), housing placement RCT (PubMed), Toronto jobs-housing study (Neptis), California jobs-housing policy brief (CARB 2025). Cases address brownfield transformation mechanisms (DPSIR), industrial relocation assessment, temporary housing resettlement, and jobs-housing balance.",
+        "hk_comparison": "Cases collectively cover the three core HSK/HT issues: brownfield transformation (DPSIR model), temporary housing (refugee resettlement framework), and jobs-housing balance (Toronto/California). Geographic context is non-HK (US, Canada, China mainland), but the report explicitly contextualizes each case for HK's institutional environment. The DPSIR case directly addresses brownfield transformation decision factors; the California case (2025) provides the most current jobs-housing fit evidence.",
+        "anchor_match": "Closest to 3分: two axes (use type, planning problem) partially hit, geographic axis offset. The brownfield transformation mechanism is represented (DPSIR model) but from a generic international perspective. The job-housing balance cases provide strong analytical frameworks.",
+        "score_rationale": "三轴中两轴部分命中（棕地转型+职住平衡），地理脉络偏移但报告进行了详尽的本地化桥接。"
+      },
+      "D2": {
+        "evidence": "Case 1 (DPSIR) is global study with no specific site metrics. Case 2 (龙港) covers 6,400m² factory. Case 5 (Toronto) studies 400ha sample areas - closest scale match to HSK/HT. Case 6 (California) is state-level. Report proposes TOD gradient at 6-8x plot ratio in core zone.",
+        "hk_comparison": "HSK/HT planned at 3.5-6.5x plot ratio, ~441ha, near Deep Bay wetland. Most cases are from much lower density contexts (North American suburban, Chinese mainland cities). Toronto's 400ha analysis scale is the closest match. The report's proposed density (6-8x core) aligns with HK standards but the source cases don't provide comparable density parameters.",
+        "anchor_match": "Closest to 2分: density check fails (most cases lower than HK by an order of magnitude), scale partially matches (Toronto 400ha), terrain not comparable.",
+        "score_rationale": "密度量级差异显著，多伦多400公顷尺度部分可比，地形条件不匹配。"
+      },
+      "D3": {
+        "evidence": "Sources: Sustainability (MDPI, peer-reviewed, DOI) → 3; 龙港市政府环评公示 (government statutory report) → 4; Switchboard/IRC practice guide (US government-funded) → 3; PubMed Central academic research → 3; Neptis Foundation research report (professional institution) → 2; CARB government policy brief (2025) → 4.",
+        "hk_comparison": "Mix of peer-reviewed academic sources, government reports, and professional institution studies. Two government sources (龙港 EIA, CARB) at 4 level provide verifiable official documentation. The CARB report is particularly current (2025) and from a statutory body.",
+        "anchor_match": "Average ~3: mix of peer-reviewed (3), government (4), and professional institution (2) sources. No single dominant high-authority statutory document for HK context, but sources are verifiable and diverse.",
+        "score_rationale": "来源多样且可查证，包含政府法定文件和同行评审学术文献，但缺乏香港法定规划文件。"
+      },
+      "D4": {
+        "evidence": "Case dates: 2021, 2024, 2023, unknown, 2001 data, 2025. Four recent cases (post-2021), one very old (Toronto 2001 data), one unknown. Report references Northern Metropolis 2021 strategy, HK2030+, 2024 policy address (片区开发模式), and North Rail Link 2031 timeline.",
+        "hk_comparison": "HK alignment axis: Report explicitly references post-2021 policy framework (Northern Metropolis, HK2030+, 2024 片区开发 pilot). External axis: Toronto case uses 2001 data (dated but principles-level content still relevant). The California 2025 case is the most current jobs-housing evidence available.",
+        "anchor_match": "Closest to 3分: one axis (HK alignment) well-addressed through report contextualization, one axis (external timeliness) mixed with one very old case but others recent.",
+        "score_rationale": "四份案例为近年发布，但多伦多案例基于2001年数据；香港对齐度良好（引用北部都会区、2030+、2024施政报告）。"
+      },
+      "D5": {
+        "evidence": "Core mechanisms from cases: DPSIR analytical framework (transferable as methodology), Chinese EIA process (different from HK dual-track), US refugee housing voucher (analogous but different legal basis), Canadian zoning reform (fundamentally different from HK OZP), California JHF measurement (methodology transferable). Report proposes: '改良安置券' for non-registered squatters, '非就地换地+地上权信托' referencing 景贤里 precedent, OZP amendment with TOD gradient density, '争议快速调解委员会'.",
+        "hk_comparison": "Report identifies HK institutional barriers (dual-track planning+lease modification, tso/tong land requiring unanimous consent, squatter registration 1982/84-85, Cap.131 OZP process) and proposes adaptation paths grounded in existing HK legal precedents. The '非就地换地+地上权信托' explicitly references the 景贤里 precedent where development rights transfer was used for heritage conservation. The '改良安置券' addresses the squatter registration gap without requiring legislative amendment to the registration system itself.",
+        "anchor_match": "Closest to 3分: cases provide principles but mechanisms need moderate adaptation. Report provides detailed adaptation paths referencing HK legal precedents (景贤里) and existing tools (OZP, Cap.131).",
+        "score_rationale": "案例原则可迁移，机制层需中等适配；报告提供了引用香港法定先例（景贤里）的具体制度创新路径。"
+      },
+      "D6": {
+        "evidence": "Required constraint checklist for HSK/HT brownfield/NDA: ①丁屋权益 → Report identifies and proposes '转换选择权' (transfer option for affected ding house rights); ②棕地作业安置 → Report proposes multi-layer approach with 保留升级区/搬迁转化区/生态恢复区 classification and 48.4万m² resettlement floor area (referencing Yuen Long South standard); ③寮屋登记基准 → Report deeply analyzes 1982/84-85 system and proposes '改良安置券' for non-registered residents; ④产权碎片化 → Report identifies 7,300 tso/tong clans with 2,400+ hectares and proposes '地上权信托' solution. Cases provide: resettlement framework (refugee housing HNA tool), jobs-housing analysis (Toronto/California), ecological assessment (DPSIR).",
+        "hk_comparison": "Report checks all 4 required constraints from the HK-specific checklist. Cases provide functional analogies (refugee resettlement → squatter resettlement; jobs-housing fit → employment planning) but don't directly address HK-specific institutional constraints. The report bridges this gap with explicit HK contextualization.",
+        "anchor_match": "Closest to 3分: report identifies all required constraints and proposes HK-specific solutions, but cases themselves only provide partial functional analogies. The gap is bridged by the report's own analysis rather than case evidence.",
+        "score_rationale": "报告完整识别四项必检约束并提供香港特有解决方案，但案例本身仅提供功能性类比而非直接处理经验。"
+      },
+      "D7": {
+        "evidence": "Principle level: DPSIR framework, complete communities concept, jobs-housing fit measurement, phased resettlement → all transferable as analytical frameworks. Mechanism level: '改良安置券' designed specifically for HK squatter registration gap (references US housing voucher but redesigned for HK legal context); '非就地换地+地上权信托' references 景贤里 HK precedent; TOD gradient density model designed for HK OZP system; '人口入住阈值' designed to prevent Tin Shui Wai repeat → mechanisms require moderate adaptation with clear paths. Parameter level: 休憩用地 0.18→2.5m², GIC 0.76→3.5m² (HK2030+ standards), employment ratio 3.8%→22%, residential thresholds tied to infrastructure completion → parameters specific to HK context, not directly from cases.",
+        "hk_comparison": "Three-layer analysis: principles transferable (DPSIR, complete communities), mechanisms need adaptation but paths are clear and reference HK precedents, parameters are HK-specific and derived from local data rather than case parameters. The '人口入住阈值' mechanism (tying residential occupancy to infrastructure completion) is particularly well-designed for HK's development control system.",
+        "anchor_match": "Closest to 3分: principles transferable, mechanisms require moderate adaptation with clear HK-legal paths, parameters are HK-specific and need full recalculation.",
+        "score_rationale": "原则层可迁移（DPSIR、完整社区），机制层需中等适配但路径清晰（引用景贤里先例），数值层为香港特有且需完全重算。"
+      },
+      "D8": {
+        "evidence": "Innovative tools proposed: '改良安置券' (20-year rental voucher for non-registered squatters) → directly addresses HK's squatter registration gap marked as '待研究' in existing HK files; 'TOD梯度密度模型' (three-ring density model with OZP binding) → practical tool for HK planning; '非就地换地+地上权信托' (land swap + trust for tso/tong) → references 景贤里 precedent; '湿地补偿银行' (wetland compensation bank with performance bond) → addresses Deep Bay Ramsar constraint; '人口入住阈值' (population move-in thresholds) → directly prevents Tin Shui Wai 2.0; '就业创造计划书' (employment creation plan as development condition) → innovative for HK.",
+        "hk_comparison": "Multiple tools address real gaps in HK's current planning toolkit. The '改良安置券' specifically fills the gap where non-registered squatters have no legal resettlement path. The '非就地换地+地上权信托' provides a concrete mechanism for the tso/tong land bottleneck that has delayed NDA projects for years. The '人口入住阈值' directly operationalizes the 'avoid Tin Shui Wai' lesson. However, some innovations lack specific numerical parameters from cases (e.g., no cost benchmarks for 安置券).",
+        "anchor_match": "Closest to 4分: fills real HK planning gaps with concrete institutional innovations, but lacks specific numerical parameters from case evidence to support implementation details.",
+        "score_rationale": "填补香港规划文件中多处'待研究'空白（非登记寮屋安置、祖堂地整合），提供具体制度创新路径，但缺乏案例提供的可引用量化参数。"
+      }
+    },
+    "B": {
+      "D1": {
+        "evidence": "6 cases: Yunnan highway resettlement (World Bank), global involuntary resettlement best practices (TSIC 2022), migrant worker job-housing study (Nature 2025), Xiamen housing vacancy study (Land 2020), Shenzhen quarry ecological assessment (2001), Dalian urban resilience (地理学报 2018). Cases address resettlement (1-2), job-housing balance (3-4), ecological assessment (5-6).",
+        "hk_comparison": "Cases address secondary issues (resettlement methods, job-housing analysis, ecological assessment) but miss the core HSK/HT planning mechanism: brownfield transformation with private ownership in a common law system. The resettlement cases (1-2) are about highway/infrastructure land acquisition, not brownfield industry relocation. The job-housing cases (3-4) study migrant workers in mainland China, not NDA employment planning. The ecological cases (5-6) assess quarries and urban resilience, not wetland-adjacent brownfield development.",
+        "anchor_match": "Closest to 2分: only one axis (use type labels - resettlement, ecology) partially hit at surface level. The core planning problem (brownfield transformation with fragmented private ownership) is not addressed by any case.",
+        "score_rationale": "案例仅在用途标签层面部分命中（安置、生态），核心规划问题（分散私人产权下的棕地转型）在机制层面无交集。"
+      },
+      "D2": {
+        "evidence": "Case 1: Yunnan rural highway, 176 mu (11.75ha) → tiny scale. Case 2: Multiple countries, no specific site. Case 3: National study. Case 4: Xiamen new town → Chinese city density. Case 5: Shenzhen quarries, few km² → different land type. Case 6: Dalian whole city → different scale. Report mentions HSK/HT average plot ratio 0.52, planned 3-6x.",
+        "hk_comparison": "HSK/HT: ~441ha, planned 3.5-6.5x, near Deep Bay. All cases from mainland Chinese or international contexts with fundamentally different density regimes. The Xiamen case is the closest spatial match (new town development) but at much lower density than HK standards. No case provides comparable density parameters.",
+        "anchor_match": "Closest to 2分: density check fails (all cases lower density than HK), scale mostly different, terrain partially comparable (Dalian coastal, Shenzhen nearby).",
+        "score_rationale": "密度量级差异显著（全部案例低于香港标准），地块规模不匹配，地形条件部分可比。"
+      },
+      "D3": {
+        "evidence": "Sources: World Bank official report (verifiable) → 4; TSIC consultancy report (no peer review) → 2; Nature Humanities & Social Sciences Communications (peer-reviewed, DOI) → 3; Land journal MDPI (peer-reviewed, DOI) → 3; 华南地理学报 (Chinese academic journal, 2001) → 3; 地理学报 (Chinese academic journal) → 3.",
+        "hk_comparison": "Diverse mix of source types comparable to OPTION_A. World Bank document provides highest authority. However, the TSIC consultancy report is the weakest link (no peer review, commercial consultancy). No HK statutory documents referenced.",
+        "anchor_match": "Average ~3: mix of government (World Bank=4), academic (3), and consultancy (2) sources. Comparable overall reliability to OPTION_A.",
+        "score_rationale": "来源多样，世行文件权威性高，但咨询报告未经同行评审；无香港法定文件。"
+      },
+      "D4": {
+        "evidence": "Case dates: 2014-2017, 2022, 2018/2025, 2020, 2001, 2000-2016. Three recent cases (post-2020), two very old (2001 Shenzhen, 2000-2016 Dalian). Report mentions Northern Metropolis but less specific timeline integration than OPTION_A.",
+        "hk_comparison": "The Shenzhen quarry case (2001) is extremely dated - over 24 years old. The Dalian resilience case uses data from 2000-2016. These are principle-level content that may retain some value, but numerical parameters are certainly outdated. The migrant worker study (2025) and TSIC report (2022) are current.",
+        "anchor_match": "Closest to 3分: mixed timeliness with two very old cases. HK alignment partially addressed through report's general references to Northern Metropolis.",
+        "score_rationale": "两份案例数据极旧（2001年、2000-2016年），三份较新；香港对齐度一般，缺乏具体的政策节点引用。"
+      },
+      "D5": {
+        "evidence": "All cases from mainland China or international contexts. Core mechanisms: Chinese land law land acquisition (government-led, unified ownership), World Bank OP 4.12 resettlement policy, Chinese '产城融合' planning, US VRM ecological assessment system. Report proposes: '成立洪水桥-厦村发展局' (new statutory body), '修订《城市规划条例》', '建立祖堂地及丁屋权益统一处理方案'. These require major legislative changes without clear paths.",
+        "hk_comparison": "Fundamental mismatch: all cases assume government-led land acquisition with unified ownership, which is the opposite of HK's fragmented private land reality (81% private in Yuen Long South, tso/tong requiring unanimous consent). The report's proposed solutions (new development bureau, Cap.131 amendment) are more ambitious than grounded in existing HK legal precedents. No reference to HK legal precedents like 景贤里 land swap or existing mechanisms.",
+        "anchor_match": "Trigger signal A: core mechanisms lack HK legal path, and report's innovations don't reference existing HK precedents. Closest to 2分.",
+        "score_rationale": "核心机制依赖政府统一地主模式，与香港分散私人产权根本不同；报告提出的制度创新缺乏香港法定先例支撑。"
+      },
+      "D6": {
+        "evidence": "Required constraint checklist: ①丁屋权益 → Report mentions but cases don't address, no specific HK-compatible solution proposed; ②棕地作业安置 → Cases 1-2 provide general resettlement principles (World Bank standards) but not HK-specific brownfield operator resettlement; ③寮屋登记基准 → Report mentions 1982 registration, cases don't address; ④产权碎片化 → Cases from government-unified-land contexts, fundamentally mismatched with HK's fragmented ownership.",
+        "hk_comparison": "Cases only match 1 of 4 constraints at a generic level (resettlement principles from World Bank standards). The core HK-specific constraints (tso/tong land, ding house rights, squatter registration cutoff) are not addressed by any case. The resettlement cases assume government can freely acquire land, which is not possible in HK's private land context.",
+        "anchor_match": "Closest to 2分: only 1 of 4 required constraints matched at generic level (resettlement principles). All cases assume conditions opposite to HK's reality.",
+        "score_rationale": "仅匹配1/4必检约束（一般性安置原则），且该匹配基于政府主导征地的制度前提，与香港私人土地主导的现实相反。"
+      },
+      "D7": {
+        "evidence": "Principle level: some principles transferable (phased resettlement, employment accessibility analysis, ecological sensitivity grading). Mechanism level: '垂直产业社区' (vertical industry community) → innovative but no clear HK legal mechanism for implementation; 'TOD功能锚点' → generic concept without specific HK OZP integration; '生态信用交易' → novel but no HK legal basis. Parameter level: most parameters from mainland Chinese contexts (Yunnan compensation standards, CLDS data, Xiamen models) not applicable to HK.",
+        "hk_comparison": "Principles partially transferable. Mechanisms fundamentally mismatched with HK's dual-track development control system (planning permission + lease modification). The '生态信用交易' concept is innovative but would require entirely new legislation in HK, with no clear path. The '垂直产业社区' concept lacks a specific implementation mechanism within HK's OZP/lease control framework.",
+        "anchor_match": "Closest to 2分: principles partially transferable, but mechanisms require overcoming major institutional barriers (new legislation needed, no existing HK tool to adapt).",
+        "score_rationale": "原则层部分可迁移，机制层需克服重大制度障碍（需新立法，无现有香港工具可适配），数值层不可迁移。"
+      },
+      "D8": {
+        "evidence": "Innovations proposed: '垂直产业社区' (vertical industry community for brownfield operators) → somewhat innovative concept; 'TOD功能锚点' (three-anchor binding of employment-housing-transport) → common concept; '蓝绿韧性网络' (blue-green resilience network) → general ecological concept; '生态信用交易' (ecological credit trading) → innovative but not case-evidenced; '数字孪生元朗' (digital twin platform) → generic technology application. Report sets targets: 80% open storage transformation, 25,000 jobs, 100% temporary housing resettlement by 2045.",
+        "hk_comparison": "The '垂直产业社区' concept is a creative response to brownfield operator resettlement, but lacks concrete implementation mechanisms within HK's legal framework. The '生态信用交易' borrows from German Freiburg but the report itself acknowledges it needs '适合本地法律体系的法定生态补偿基金'. The targets are ambitious but the implementation path is less specific than OPTION_A's time-bound milestones tied to HK infrastructure (North Rail Link 2031, HK-Shenzhen Western Railway 2035).",
+        "anchor_match": "Closest to 3分: provides novel perspectives (vertical industry community, ecological credit trading) but application paths are unclear and concepts lack concrete case-evidenced parameters.",
+        "score_rationale": "提供新颖视角（垂直产业社区、生态信用交易），但应用路径不清晰，缺乏案例提供的可操作实施参数。"
+      }
+    }
+  },
+  "overall_preference": "A",
+  "reasoning": {
+    "decisive_factor": "OPTION_A在D5法规适配性和D6本地语境深度上显著优于OPTION_B（各高1分），核心差异在于：OPTION_A引用香港法定先例（景贤里非就地换地）设计制度创新路径，提出了针对香港特有约束的具体解决方案（改良安置券、地上权信托、人口入住阈值）；OPTION_B的案例全部基于政府统一地主的大陆/国际模式，与香港分散私人产权的制度前提根本不同。",
+    "A_strengths": "①案例来源多元化（美国、加拿大、中国、多国），减少了单一制度偏差；②报告深度嵌入香港制度分析（祖堂地7,300宗族、补地价谈判僵局、寮屋登记1982/84-85年基准）；③提出了多项针对香港真实空白的创新工具（改良安置券填补非登记寮屋安置缺口、非就地换地+地上权信托解决祖堂地瓶颈）；④时序安排精确绑定香港基础设施节点（北环线2031、港深西部铁路2035）。",
+    "A_weaknesses": "①场景匹配度较弱（D2=2），大多数案例密度量级远低于香港标准；②多伦多案例使用2001年数据，时效性不足；③案例本身不提供可直接引用的量化参数（如安置券成本、信托份额定价）。",
+    "B_strengths": "①世行文件来源权威性高（云南公路项目安置计划）；②农民工职住平衡研究（Nature 2025）提供了较新的实证数据；③报告框架完整，覆盖棕地转型、职住平衡、生态敏感性三个维度。",
+    "B_weaknesses": "①全部案例基于政府统一地主或大陆制度，与香港分散私人产权根本不兼容（D5=2）；②两份生态案例数据极旧（2001年深圳石场、2000-2016年大连）；③提出的制度创新（成立发展局、修订城规条例）缺乏香港法定先例支撑，实现路径模糊；④缺乏对香港特有约束（丁屋权益、寮屋登记资格切割）的针对性处理方案。"
+  },
+  "hong_kong_specific_flags": [
+    "OPTION_A引用《景贤里》非就地换地先例（Cap.53保育与发展权转移）设计祖堂地整合路径，这是香港规划史上少数成功的发展权转移案例",
+    "OPTION_A的'改良安置券'直接回应香港寮屋登记制度（1982年构筑物登记+1984-85年居民登记）导致非登记居民无公屋安置资格的制度缺口",
+    "OPTION_A的'人口入住阈值'机制（三级污水厂未投产前住宅不超过30%）回应了天水围'悲情城市'的教训——住房建设快于就业和设施导致职住失衡",
+    "OPTION_B的案例假设政府可统一征地（中国土地管理法+世行OP 4.12），与香港《收回土地条例》下须处理分散私人产权（含祖堂地须全体宗族同意）根本不同",
+    "两份报告均正确识别了后海湾零净增污染原则（拉姆萨尔公约+深港专项协议）对洪水桥/厦村开发的刚性约束"
+  ],
+  "failure_mode_flags": [
+    "F2: OPTION_B存在'亚洲高密度城市等同'谬误风险——将中国农民工职住平衡研究直接类比香港新界新发展区规划，忽视了大陆政府统一地主与香港分散私人产权的根本差异",
+    "F3: OPTION_B在D7评估中未充分区分原则层/机制层/数值层——将'垂直产业社区'概念的可迁移性与实际在香港OZP体系下落地的可行性混同",
+    "F5: OPTION_B的深圳石场案例（2001年）和大连韧性案例（2000-2016年数据）存在时效性外观误导——案例标题看似相关（'生态敏感性'、'城市韧性'），但数据已过时15-25年"
+  ],
+  "low_confidence_flags": [
+    "OPTION_A Case 4（住房安置随机试验）的详细信息严重不足——案例附录中大量字段标注'资料不足，待补充'，降低了安置策略的证据强度",
+    "OPTION_A的D2场景匹配度评估受限——DPSIR模型案例为全球性研究，未提供具体场地的密度/规模参数，难以进行精确的三项核查",
+    "OPTION_B的D8启发性价值评估存在不确定性——'生态信用交易'概念新颖但案例中未提供具体的交易机制设计，实际可操作性不明确"
+  ],
+  "d8_note": null
+}

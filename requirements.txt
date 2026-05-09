@@ -1,0 +1,11 @@
+
+# Visualization
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Optional: Map visualization (install manually if needed)
+geopandas>=0.14.0
+contextily>=1.4.0
+
+fastapi>=0.110.0
+uvicorn[standard]>=0.27.0

@@ -1,0 +1,145 @@
+{
+  "query_id": "Q002",
+  "scores": {
+    "A": {
+      "D1_precision": 5,
+      "D2_scenario": 5,
+      "D3_source": 5,
+      "D4_timeliness": 5,
+      "D5_regulatory": 4,
+      "D6_local": 4,
+      "D7_transfer": 4,
+      "D8_inspiration": 4,
+      "total": 36
+    },
+    "B": {
+      "D1_precision": 5,
+      "D2_scenario": 5,
+      "D3_source": 5,
+      "D4_timeliness": 5,
+      "D5_regulatory": 3,
+      "D6_local": 2,
+      "D7_transfer": 3,
+      "D8_inspiration": 3,
+      "total": 31
+    }
+  },
+  "reasoning_chain": {
+    "A": {
+      "D1": {
+        "evidence": "报告针对葵青区公屋主导社区的地积比率'天花板'、产住混杂环境问题、人口老龄化与职住失衡三大核心问题展开，案例选择与问题一一对应",
+        "hk_comparison": "精准命中香港老旧公屋社区更新的核心机制问题，非泛泛'城市更新'概念",
+        "anchor_match": "5分锚点：案例直接回应查询的核心机制问题",
+        "score_rationale": "问题识别精准，案例选择有针对性"
+      },
+      "D2": {
+        "evidence": "描述葵青区地积比率1.35、公屋占比60.9%、年龄中位数48.1岁、职住比仅15.7%等具体数据",
+        "hk_comparison": "数据与香港公屋社区实际情况吻合，密度、人口结构、用地比例符合香港特征",
+        "anchor_match": "5分锚点：物理空间特征高度可比",
+        "score_rationale": "场景数据详实，完全匹配香港现实"
+      },
+      "D3": {
+        "evidence": "引用WEF 2024报告、UC Berkeley 2023研究、EPA资助报告、WHO年龄友好框架等权威来源",
+        "hk_comparison": "来源层级高，均为全球顶尖机构或研究",
+        "anchor_match": "5分锚点：同行评审学术研究或专业机构报告",
+        "score_rationale": "来源权威可靠，无质量疑虑"
+      },
+      "D4": {
+        "external_currency": "案例数据多为2023-2024年，政策和框架现行有效",
+        "hk_alignment": "与香港2030+、北部都会区2021后政策方向对齐，时效性良好",
+        "score_rationale": "外部案例当前有效，与香港政策方向一致"
+      },
+      "D5": {
+        "core_mechanism": "提出'片区地积比率资源库'、'社区增益共享基金'、'棕地作业安置先行'等创新机制",
+        "hk_legal_path": "虽非香港现有法定工具，但可通过OZP修订、土地共享先导计划、地政总署专项安排等现有路径实现，未提出无法落地的制度创新",
+        "veto_check": false,
+        "score_rationale": "创新机制在现有制度框架内有可行性路径"
+      },
+      "D6": {
+        "hk_constraints_checked": ["双重程序约束", "公屋地积比率天花板", "棕地作业安置", "产权整合复杂性", "天水围教训警示"],
+        "analogy_found": "通过差异分析章节系统识别并回应香港特有约束，提出'制度可行性优先'原则",
+        "score_rationale": "深度识别香港特有约束，有针对性的本地化策略"
+      },
+      "D7": {
+        "principle_level": "高可迁移 - 片区整体规划、公共先行撬动私人资本、年龄友好城市框架",
+        "mechanism_level": "需核查 - 地积比率资源库需通过OZP修订实现法定化，社区增益共享需土地共享先导计划延伸",
+        "parameter_level": "不可直接引用 - 密度数值需对照HKPSG，时序安排需考虑香港双轨程序实际周期",
+        "score_rationale": "原则层可迁移，机制层需适配，数值层需本地化"
+      },
+      "D8": {
+        "gap_filled": "填补香港公屋社区更新财务可行性困境的创新解决方案（片区资源库、增益共享模式）",
+        "novelty_assessment": "'安置先行'而非'污染修复优先'的棕地开发逻辑、'片区地积比率资源库'概念具有前瞻性",
+        "score_rationale": "提供香港规划文件中尚未充分发展的创新机制"
+      }
+    },
+    "B": {
+      "D1": {
+        "evidence": "针对相同三大核心问题展开，案例选择与问题对应",
+        "hk_comparison": "精准命中核心机制问题",
+        "anchor_match": "5分锚点：案例直接回应查询的核心机制问题",
+        "score_rationale": "问题识别精准"
+      },
+      "D2": {
+        "evidence": "包含相同的葵青区数据描述",
+        "hk_comparison": "数据与香港实际吻合",
+        "anchor_match": "5分锚点：物理空间特征高度可比",
+        "score_rationale": "场景数据详实"
+      },
+      "D3": {
+        "evidence": "引用相同的权威来源",
+        "hk_comparison": "来源层级高",
+        "anchor_match": "5分锚点：同行评审学术研究或专业机构报告",
+        "score_rationale": "来源权威可靠"
+      },
+      "D4": {
+        "external_currency": "案例数据2023-2024年，现行有效",
+        "hk_alignment": "与香港政策方向对齐",
+        "score_rationale": "外部案例当前有效，政策方向一致"
+      },
+      "D5": {
+        "core_mechanism": "提出相同的创新机制",
+        "hk_legal_path": "因缺少差异分析章节，未明确分析这些机制在香港制度框架下的具体实施路径和调整需求",
+        "veto_check": false,
+        "score_rationale": "机制有价值但缺乏法规适配分析"
+      },
+      "D6": {
+        "hk_constraints_checked": ["仅简要提及双重程序、产权复杂性等约束，缺乏系统对照"],
+        "analogy_found": "缺少专门的差异分析章节，未深入探讨如何将国际经验适配到香港特有语境",
+        "score_rationale": "对香港特有约束识别不足，缺乏深度本地化分析"
+      },
+      "D7": {
+        "principle_level": "高可迁移 - 与A相同的原则",
+        "mechanism_level": "分析不足 - 因缺少差异分析，未明确机制层在港可行性",
+        "parameter_level": "不可直接引用 - 同A",
+        "score_rationale": "原则可迁移，但机制层缺乏可行性分析"
+      },
+      "D8": {
+        "gap_filled": "提出相同的创新机制",
+        "novelty_assessment": "与A相同的概念具有前瞻性",
+        "score_rationale": "有价值但缺乏系统论证其香港适用性"
+      }
+    }
+  },
+  "overall_preference": "A",
+  "reasoning": {
+    "decisive_factor": "差异分析章节（Gap Analysis）对于香港城市规划的外部案例参考具有决定性价值——香港独特的双重程序约束、复杂产权结构、公屋更新财务困境等特有约束，必须通过系统的差异分析才能有效识别适配路径。Option A在第5章提供的前置条件对比表、实施障碍识别和本地化调整策略，是国际经验落地香港的关键方法论组件。缺少此章节的Option B直接从案例跳到方案，导致D5和D6评分显著下降，实质参考价值大打折扣。",
+    "A_strengths": "完整的差异分析框架系统识别香港特有约束；明确的本地化调整策略（'片区地积比率资源库'、'安置先行'）具有创新性和可行性；'制度可行性优先'原则务实准确",
+    "A_weaknesses": "部分创新机制（如地积比率资源库）法定化路径需进一步研究；15年实施时序在双轨程序下可能偏乐观",
+    "B_strengths": "案例研究内容详实，核心问题识别准确；创新机制概念本身有价值",
+    "B_weaknesses": "缺少关键的差异分析环节，未系统识别香港特有约束；直接套用国际经验，存在适配性风险；实施障碍识别不足"
+  },
+  "hong_kong_specific_flags": [
+    "香港城市更新双重程序约束（Cap.131规划程序+地政总署土地行政程序）",
+    "公屋社区地积比率天花板与七年楼龄公式补偿机制",
+    "新界棕地开发的作业安置刚性要求（非单纯土壤修复）",
+    "香港产权结构复杂性（公屋、私宅、祖堂地、丁屋等）",
+    "天水围教训对新界职住平衡规划的警示意义"
+  ],
+  "failure_mode_flags": [
+    "F4: Option B存在'缺失约束视而不见'谬误，未对香港特有约束进行系统核查"
+  ],
+  "low_confidence_flags": [
+    "Option B的D5和D6评分因缺乏差异分析支撑，置信度较低"
+  ],
+  "d8_note": null
+}

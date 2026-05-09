@@ -1,0 +1,151 @@
+{
+  "query_id": "Q006",
+  "scores": {
+    "A": {
+      "D1_precision": 3,
+      "D2_scenario": 2,
+      "D3_source": 3,
+      "D4_timeliness": 4,
+      "D5_regulatory": 3,
+      "D6_local": 4,
+      "D7_transfer": 3,
+      "D8_inspiration": 4,
+      "total": 26
+    },
+    "B": {
+      "D1_precision": 3,
+      "D2_scenario": 2,
+      "D3_source": 3,
+      "D4_timeliness": 4,
+      "D5_regulatory": 2,
+      "D6_local": 3,
+      "D7_transfer": 2,
+      "D8_inspiration": 4,
+      "total": 23
+    }
+  },
+  "reasoning_chain": {
+    "A": {
+      "D1": {
+        "evidence": "Option A identifies 3 core Tuen Mun problems from local data (31 sub-district demographics): (1) traffic infrastructure capacity imbalance, (2) community facility lag, (3) public participation deficit. Cases are mapped 2-to-1 to each problem: Redcliff/SMEC for traffic, Beijing/Shanghai for facilities, US meta-analysis/Germany BMV for participation.",
+        "hk_comparison": "Cases address planning mechanisms relevant to Tuen Mun's identified challenges but miss the core 'urban renewal' mechanism — none of the 6 cases directly deals with aging building replacement, fragmented property rights integration, or URA-style redevelopment. Redcliff is about greenfield infrastructure cost-sharing; SMEC about infrastructure capacity modeling; Beijing about approval process reform; Shanghai about new town planning from scratch.",
+        "anchor_match": "3分 — Two axes partially hit (planning problems of traffic/facilities/participation are genuine Tuen Mun issues), but geographic axis deviates significantly (most cases from low-density Western/PRC contexts). Core urban renewal mechanism is not directly addressed by any case.",
+        "score_rationale": "问题识别精准但案例未命中城市更新核心机制，属'相关议题覆盖而非核心命中'。"
+      },
+      "D2": {
+        "evidence": "Tuen Mun: plot ratio 1.77 average (public housing areas higher), 31 sub-districts, mountain+coastal terrain. Redcliff: small Canadian town, density <1.5x, flat. SMEC: Australian projects, generally lower density. Beijing: high density core but different urban structure. Shanghai Fengxian: new town 850k planned population, moderate-high density.",
+        "hk_comparison": "Density: Only Shanghai Fengxian approaches HK new town density range (2.5-4x). Redcliff and SMEC are far below HK residential density. Scale: Shanghai Fengxian is comparable as a planned new town. Terrain: No case includes mountain+coastal二元结构.",
+        "anchor_match": "2分 — 三项核查中密度项多数不匹配(Redcliff/SMEC密度低于1.5x门槛)，地块规模上海奉贤可比，地形条件全部不匹配山地+滨海结构。",
+        "score_rationale": "仅上海奉贤在规模和密度上部分可比，其余案例密度量级和地形条件与屯门差异显著。"
+      },
+      "D3": {
+        "evidence": "6 sources: (1) LinkedIn个人动态(Redcliff) → 社交媒体帖子; (2) SMEC公司Insights专栏 → 行业咨询报告; (3) 北京市规自委官方发布 → 政府法定文件; (4) 上海市规资局官方发布 → 政府法定文件; (5) Resources for the Future (美国智库) → 智库研究报告; (6) 德国BMVBS联邦部 → 政府指南.",
+        "hk_comparison": "Source quality ranges from 1分(LinkedIn) to 4分(北京/上海政府文件、德国联邦部). The Beijing and Shanghai sources are government-issued policy documents with official publication numbers. The German BMVBS manual is a federal ministry publication. However, Redcliff sourced from LinkedIn is 1分.",
+        "anchor_match": "3分 — 整体来源质量参差：有4分官方法定文件(北京/上海/德国)，也有1分社交媒体(LinkedIn)。中间值落在同行评审/政府研究报告档次。",
+        "score_rationale": "来源跨度从1分到4分，存在高权威政府文件但Redcliff LinkedIn来源拉低整体。"
+      },
+      "D4": {
+        "external_currency": "Beijing 2024 reform → 最新; Shanghai Fengxian 十四五 → 近期; SMEC/Germany BMVBS → 近5年内; US meta-analysis covering 1970-2000 → 较旧但属原则类内容(过程质量>背景质量)，衰减慢; Redcliff → 近期但LinkedIn时效不确定。内容类型以'机制类'为主(Beijing审批改革, Redcliff成本分摊)，需要核查现行版本。",
+        "hk_alignment": "报告引用2023年Cap.131修订(S.12A审限缩短、受管制地区制度)、2021年北部都会区策略、海珠路改划事件(近年)，显示对香港最新政策框架有良好对齐。策略设计考虑了2023年后的城规会程序变化。",
+        "score_rationale": "多数案例2019年后发布，香港政策对齐度高(引用2023年Cap.131修订)，原则类旧案例(美国元分析)仍有效。"
+      },
+      "D5": {
+        "core_mechanism": "6项核心机制: (1)交通承载力触发评估→可通过OZP注释或行政指引实施，无需立法; (2)增长协作契约→行政备忘录形式，无法定约束力但有政治承诺; (3)容量释放费→须修订Cap.28，立法路径明确但周期长; (4)分区占用许可证→可通过屋宇署实务守则(PNAP)在Cap.123框架下实施; (5)OZP设施最低比例→通过S.12A修订OZP注释，有法定路径; (6)早期社区参与→行政措施，无需立法。",
+        "hk_legal_path": "报告对每项机制均说明了香港法律适应路径：Cap.131(OZP修订)、Cap.123(占用许可证)、Cap.28(容量释放费)、地契条款(配套建设盟约)、行政备忘录(增长契约)。法律障碍识别具体(双轨制割裂、补地价不确定性、城规会准司法地位)，适应路径清晰。",
+        "veto_check": false,
+        "score_rationale": "核心机制多可通过现有法定工具适应(4项/6项无需立法)，但容量释放费和增长契约需制度创新。适应路径描述完整。"
+      },
+      "D6": {
+        "hk_constraints_checked": ["⑨铁路容量作为人口规模硬上限(West Rail V/C比率)", "⑩URA双重角色(部分涉及—公屋重建策略)", "双轨制(规划许可+地契修订)独立运作", "补地价谈判不确定性", "城规会准司法地位与公众申述程序(S.5/S.6)", "土地财政结构张力", "祖堂地/丁屋(设施用地选址约束)", "寮屋登记基准(部分提及)"],
+        "analogy_found": "海珠路事件作为本地案例精确展示了城规会'九成反对仍被否决'的制度缺陷。31个分区人口/收入/就业/建筑数据提供了深入的地方情境。报告准确识别了'双轨制'导致的基建-开发时序脱节、补地价谈判的不确定性、以及运输物流产业的'低水平均衡'锁定效应。",
+        "score_rationale": "对香港规划法定程序理解深入(Cap.131/OZP/城规会)，本地数据分析细致(31分区)，但URA财务可行性(RDR门槛)未深入讨论。"
+      },
+      "D7": {
+        "principle_level": "三项原则均可迁移: (1)基建先行于开发→香港2030+已有'基建先行'政策方向; (2)设施同步交付→天水围教训已证明必要性; (3)参与质量优先于程序形式→香港学界已有共识。",
+        "mechanism_level": "部分机制有香港法定工具对应: OZP注释(设施比例)、Cap.123实务守则(分期验收)、行政指引(容量评估)。增长协作契约和容量释放费无法定对应工具，需制度创新。报告标注了每项机制的法律前提和适应路径。",
+        "parameter_level": "V/C比率>1.05触发门槛、GIC≥10%用地比例、人均休憩用地≥2.5㎡等参数与HKPSG标准对齐。容量释放费$50/PCU/年需本地化校准。规划申述采纳率≥40%目标缺乏国际基准支撑。",
+        "score_rationale": "原则层完全可迁移，机制层部分有法定对应(4/6项)，数值层需校准但与HKPSG方向一致。"
+      },
+      "D8": {
+        "gap_filled": "填补3项香港规划空白: (1)'增长协作契约'—跨部门基础设施投资协调的制度化工具(香港当前无类似机制); (2)'分区占用许可证'—破解'配套设施拖延'难题的行政创新(当前Cap.123无分期验收路径); (3)'早期社区参与+透明反馈'机制—弥补城规会法定参与'走过场'的制度缺陷。",
+        "novelty_assessment": "'容量释放费'概念具有独创性—不向新增发展收费而向低效存量占用收费，在香港土地财政结构下提供了改革物流产业用地的新思路。'香港版参与手册'参考德国BMVBS但增加了审计问责机制(申诉专员公署抽样审计)，是对自愿性指南的适应性增强。",
+        "score_rationale": "提出多项填补香港空白的制度创新，机制描述清晰，部分有可操作的法定适应路径。"
+      }
+    },
+    "B": {
+      "D1": {
+        "evidence": "Option B identifies 3 core challenges: (1) high density livability vs capacity, (2) traffic/job-housing bottleneck, (3) aging community renewal. Cases: Shenzhen(compact design), Bonaire(carrying capacity), Boston(job-housing), Southern California(transport critique), Tokyo Kyōjima(disaster prevention renewal), IFC(resettlement framework).",
+        "hk_comparison": "Tokyo Kyōjima directly addresses old community renewal with property rights complexity (定期租地权 innovation, land readjustment), which is the core urban renewal mechanism. Shenzhen addresses high-density spatial transformation. However, Bonaire (small Caribbean island, 24k population) is a significant mismatch — Tuen Mun's challenges are fundamentally different from a tourism-dependent island.",
+        "anchor_match": "3分 — 东京和深圳案例命中城市更新核心机制，但博奈尔岛案例偏离(规模差2个数量级)，南加州案例属批判性视角而非建设性方案。两轴命中(规划问题+地理脉络部分)，一轴偏题。",
+        "score_rationale": "东京京岛案例直接命中老旧社区更新核心机制，深圳命中高密度转型，但案例选择整体均衡性不足。"
+      },
+      "D2": {
+        "evidence": "Shenzhen: ultra-high density (4-6x plot ratio), comparable Asian megacity → density check passes. Bonaire: tiny island (24,090 population, tourism-dependent) → fails all three checks. Boston: medium density US city → density below HK range. Southern California: low density, car-dependent → fails. Tokyo Kyōjima: 25 hectares, extremely dense low-rise (1-2 story wooden houses) → density high but building type different. IFC: generic framework → N/A.",
+        "hk_comparison": "Shenzhen matches HK's density range (plot ratio 3.5-6x within ±50% of HK 3.0-6.5x). Tokyo Kyōjima has comparable density but completely different building typology (low-rise wooden vs HK high-rise concrete). Bonaire fails spectacularly (population 24k vs Tuen Mun ~500k, density <1x). No case matches mountain+coastal terrain.",
+        "anchor_match": "2分 — 深圳通过密度核查，东京部分通过，但博奈尔和南加州完全不匹配。地形条件全部未覆盖山地+滨海结构。",
+        "score_rationale": "深圳是唯一密度量级可比案例，但博奈尔(2.4万人口海岛)严重拉低整体可比性。"
+      },
+      "D3": {
+        "evidence": "6 sources: (1)《国际城市规划》期刊(深圳) → 中文学术期刊; (2) 世界银行公开报告(Bonaire) → 国际组织报告; (3) Sustainability MDPI期刊(Boston) → SSCI期刊; (4) Academia.edu(Giuliano 1991论文) → 学术论文(旧); (5)《国际城市规划》期刊(东京) → 中文学术期刊; (6) IFC操作手册 → 国际金融机构操作手册.",
+        "hk_comparison": "Sources range from 2分(1991旧论文hosted on Academia.edu) to 4分(IFC operations manual, World Bank report). Consistent academic/institutional quality but no 5分 statutory government documents. MDPI Sustainability is a legitimate peer-reviewed journal but has faced quality controversies.",
+        "anchor_match": "3分 — 整体来源为同行评审学术文献和国际组织报告，质量一致但无官方法定文件。Giuliano 1991论文较旧降低时效价值。",
+        "score_rationale": "来源类型以学术期刊和国际组织报告为主，质量一致在3分档次，但缺少高权威官方法定文件。"
+      },
+      "D4": {
+        "external_currency": "Shenzhen 2012-2026 → 跨度大但近期内容有效; Bonaire 2023 → 最新; Boston/Sustainability 2023 → 最新; Southern California 1991 → 35年前，机制类内容但已多次被后续研究修正; Tokyo 1974-2025 → 长跨度; IFC 2023 → 最新。",
+        "hk_alignment": "报告引用香港2030+和北部都会区策略，对齐度合理。但缺少2023年Cap.131修订的具体引用。Giuliano 1991年论文的核心论点(直接交通政策优于职住平衡)虽然原则仍然成立，但其基于南加州低密度蔓延的数据，在香港高密度公交主导情境下的适用性需要额外论证。",
+        "score_rationale": "多数案例近期发布(2023年)，但1991年南加州论文时效性存疑。香港政策对齐合理但不如Option A精确。"
+      },
+      "D5": {
+        "core_mechanism": "核心机制: (1)'三区三级'密度管控→可通过OZP修订实施，但多层级密度体系比香港现行地带分类更复杂; (2)'承载力影响费'→香港无法定工具，需新立法或创造性地使用地契条款(信号A'); (3)'拥堵收费'→香港研究数十年未实施，面临重大立法和政治障碍; (4)'片区开发'→报告承认需'启动立法'，但香港大规模土地处置模式提供了先例; (5)'祖堂地发展权信托'→完全创新，无任何香港法律基础(信号A); (6)'社区规划支持平台'→可行政设立。",
+        "hk_legal_path": "报告在差异分析表中识别了制度/经济/产权/技术四维差异，但对适应路径的描述偏向'需要什么'而非'如何通过现有法律框架实现'。例如'制定专项条例'、'成立跨部门统筹机构'的表述缺乏具体的立法程序分析。相比Option A，缺少对Cap.131 S.12A/S.16、Cap.123 PNAP、地契条款等具体法律工具的引用。",
+        "veto_check": false,
+        "score_rationale": "多项核心机制(拥堵收费、发展权信托)在香港无明确法定路径，报告识别差异但适应路径描述不够具体。"
+      },
+      "D6": {
+        "hk_constraints_checked": ["双轨制(规划+地契)差异(比较表提及)", "补地价不确定性(比较表提及)", "祖堂地/丁屋/寮屋(提及但未深入)", "土地财政结构张力(提及)", "URA财务可行性(未涉及RDR门槛)", "城规会法定程序(提及但不如Option A具体)"],
+        "analogy_found": "报告在差异分析中识别了四大实施障碍(产权整合、财务平衡、跨部门协同、社会接受度)，与香港现实相符。东京京岛案例的'定期租地权'与香港的'祖堂地'有类比价值(均为复杂集体产权)，但制度基础完全不同(日本私有制下的物权创新 vs 香港政府批租制下的特殊权益)。对URA/市建局的角色和财务可行性讨论不足。",
+        "score_rationale": "差异分析框架合理但香港法规深度不足，缺少Cap.131/OZP/城规会程序的具体讨论，URA约束未涉及。"
+      },
+      "D7": {
+        "principle_level": "三项原则可迁移: (1)结构化增容(密度分层管理)→香港有密度分区概念; (2)需求管理(交通+产业)→方向与香港政策一致; (3)社区共治→香港学界和政策界讨论方向。",
+        "mechanism_level": "多项核心机制在香港无法定对应工具: '拥堵收费'需要重大立法突破; '祖堂地发展权信托'是全新法律概念; '片区开发'虽有大规模土地处置先例但模式不同; '承载力影响费'缺乏征收法律基础。仅'社区规划支持平台'(行政设立)和部分密度管控(OZP修订)有相对清晰的路径。",
+        "parameter_level": "深圳'大疏大密'的容积率数值(4-6x)可直接参考但需OZP修订。博奈尔的承载力指标体系需要完全重构(海岛旅游经济 vs 香港新市镇)。职住比30%目标有参考价值但需本地校准。新增3-4万住宅单位、2.5-3万就业岗位等数值需经香港基础设施容量验证。",
+        "score_rationale": "原则层可迁移，但机制层多数无法定对应(拥堵收费/发展权信托/影响费)，数值层需大幅重构。"
+      },
+      "D8": {
+        "gap_filled": "填补的空白: (1)'三区三级'密度管控框架—比香港现行OZP地带分类更精细的密度管理思路; (2)'祖堂地发展权信托'—针对香港新界土地整合中最棘手的集体产权问题提出创新方案; (3)综合东京'针灸式更新'+IFC生计恢复框架的组合工具—比香港现行URA模式更关注社区网络维系; (4)'数字孪生平台'用于承载力监测—香港尚无成熟实践。",
+        "novelty_assessment": "'祖堂地发展权信托'概念高度创新，针对香港独特且长期未解的产权僵局。东京京岛的'定期租地权'产权重组逻辑为香港分散业权更新提供了新思路。'片区开发+可负担商业空间'的组合模式在香港当前发展框架中尚无先例。整体方案视野宏大，但部分创新的法律可行性是关键制约。",
+        "score_rationale": "多项创新概念填补香港空白(祖堂地信托、综合更新工具包)，视野前瞻，但法律落地路径模糊。"
+      }
+    }
+  },
+  "overall_preference": "A",
+  "reasoning": {
+    "decisive_factor": "Option A在D5(法规适配性)和D6(本地语境深度)上明显优于Option B。Option A对香港规划法定程序(Cap.131 S.5/S.6/S.12A/S.16、OZP注释体系、城规会准司法地位)的理解深入，对每项策略均提供了具体的法律适应路径。Option B虽提出更宏大的创新框架(祖堂地发展权信托、拥堵收费)，但多项核心机制在香港法律体系下缺乏明确的落地路径。在'外部案例经过合理调整后对香港规划从业者有多大实质参考价值'这一核心评审标准下，Option A的可操作性显著更高。",
+    "A_strengths": "(1)对香港规划法规的理解深度突出(Cap.131/OZP/城规会程序/地契条款); (2)本地数据分析细致(31分区人口/收入/就业/建筑数据); (3)策略的法律适应路径具体可行(4/6项核心机制无需立法); (4)风险评估含具体HK法律障碍和应对方案; (5)海珠路事件作为本地参照精准识别了制度缺陷。",
+    "A_weaknesses": "(1)案例选择未直接命中城市更新核心机制(无老旧社区更新/产权整合案例); (2)Redcliff来源为LinkedIn帖子(来源可靠性低); (3)部分案例密度量级与香港差距大(Redcliff/SMEC); (4)URA财务可行性(RDR门槛)未深入讨论。",
+    "B_strengths": "(1)东京京岛案例直接命中老旧社区更新核心机制(产权重组+防灾更新); (2)深圳案例在高密度城市转型方面有直接参考价值; (3)提出'祖堂地发展权信托'等高度创新概念; (4)案例来源质量一致(学术期刊+国际组织); (5)IFC框架为安置补偿提供了更高标准的参考。",
+    "B_weaknesses": "(1)博奈尔(2.4万人口海岛)案例与屯门(约50万人口新市镇)规模差两个数量级，可比性极低; (2)多项核心机制(拥堵收费、发展权信托)在香港无明确法定路径; (3)差异分析偏向'识别差距'而非'提供适应路径'; (4)1991年南加州论文时效性存疑且基于低密度蔓延城市; (5)对香港具体法规(Cap.131程序、OZP注释、补地价机制)的讨论深度不足。"
+  },
+  "hong_kong_specific_flags": [
+    "Cap.131城市规划条例：Option A准确引用S.5/S.6公众申述程序、S.12A修订图则、S.16规划许可，并识别了2023年修订后审限缩短(2个月)和新增受管制地区制度的影响；Option B对Cap.131程序的引用较为泛化",
+    "OZP注释体系：Option A提出通过OZP注释设定设施最低用地比例(GIC≥10%、休憩≥8%)，这是在现行OZP框架内可操作的法律工具；Option B的'三区三级'密度管控框架与香港现行地带分类体系存在概念错位",
+    "双轨制(规划许可+地契修订)：Option A明确识别了这一香港特有制度安排导致的'基建-开发时序脱节'问题，并设计了'跨部门备忘录'作为适应方案；Option B在差异分析表中提及但未深入分析其具体影响",
+    "城规会准司法地位：Option A识别了城规会'九成反对仍被否决'的制度成因(成员由特首委任、无向公众反馈法定义务)，并设计'早期参与+透明反馈'机制在城规会法定框架内增加影响力；Option B对此讨论较少",
+    "补地价机制：Option A讨论了补地价谈判的不确定性对增长协作契约的制约，并建议'容量评估结果共享备忘录'；Option B提及'创新补地价机制'但未具体说明如何在香港现行地政总署估价框架下操作",
+    "URA/市建局：两份报告均未深入讨论URA的'七年楼龄换算公式'补偿机制和重建比率(RDR≥1.5)财务门槛，这是评估老旧社区更新经济可行性的关键参数"
+  ],
+  "failure_mode_flags": [
+    "F4: Option B对URA双重角色与RDR财务门槛这一城市更新核心约束未提供可类比处理经验。东京京岛案例虽涉及产权重组但其制度前提(日本私有制+定期租地权)与香港URA框架根本不同，'可类比性'需要额外论证",
+    "F6: Option B的D8=4(高启发性)但D5=2(低法规适配性)，存在'启发性替代适配性'风险。'祖堂地发展权信托'和'拥堵收费'概念虽创新，但在香港法律体系下无法在可预见的将来落地，仅供概念参考",
+    "F2: Option B的深圳案例虽同为亚洲高密度城市，但其制度前提(政府统一土地控制权、《基本生态控制线》法规)与香港(OZP+城规会+地政总署三权分立)根本不同，'高密度表象相似'不等于制度可类比"
+  ],
+  "low_confidence_flags": [
+    "Option A的容量释放费($50/PCU/年)费率设定缺乏国际参照基准，实际可行性取决于物流企业的成本承受能力和法律挑战风险",
+    "Option B的博奈尔承载力评估框架用于屯门的适用性高度不确定——博奈尔是2.4万人口的旅游海岛，屯门是约50万人口的工业新市镇，经济结构、人口规模、基础设施复杂度完全不同",
+    "Option B的'祖堂地发展权信托'概念在香港普通法框架下的法律可行性未经论证——信托法与土地法交叉领域的创新需要律政司详细法律意见",
+    "两份报告的URA财务可行性评估均不充分——香港老旧楼宇重建因1950-60年代地积比率比现行宽松导致'负增益'，这一关键约束未被充分纳入更新策略设计"
+  ],
+  "d8_note": "Option B的D8=4(祖堂地发展权信托、综合更新工具包等创新概念)但D5=2(多项核心机制无香港法定路径)，属于'高启发性但低适配性'案例。其创新概念仅供概念参考，不可直接引用具体参数或机制设计。香港规划从业者应将这些创新视为'方向性启发'而非'可操作方案'。"
+}
