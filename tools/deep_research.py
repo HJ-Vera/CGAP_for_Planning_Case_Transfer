@@ -1,12 +1,14 @@
 """
-深度案例研究模块 — Gap-Driven Tree Search + 渐进式摘要
+深度案例研究模块 — Gap-Driven Tree Search + 渐进式摘要 (异步版)
 """
 
+import asyncio
 import json
 import re
 from typing import List, Dict, Any, Tuple
 
 from langchain_core.messages import SystemMessage, HumanMessage
+from langsmith import traceable
 
 
 def extract_content(response):
@@ -129,7 +131,8 @@ def _parse_json(text: str, fallback: dict) -> dict:
 
 # ====================== LLM调用函数 ======================
 
-def _llm_extract(llm, title: str, content: str) -> dict:
+@traceable(name="llm_extract", run_type="chain")
+async def _llm_extract(llm, title: str, content: str) -> dict:
     """初步提取：从网页原文提取7个字段"""
     prompt = f"""你是城市规划专家。请从以下案例原文中提取信息。
 
@@ -150,7 +153,7 @@ def _llm_extract(llm, title: str, content: str) -> dict:
 ```"""
     fallback = {k: "" for k in SEVEN_FIELDS}
     try:
-        resp = llm.invoke([
+        resp = await llm.ainvoke([
             SystemMessage(content="你是信息提取专家，只输出JSON，不输出其他内容"),
             HumanMessage(content=prompt)
         ])
@@ -163,7 +166,8 @@ def _llm_extract(llm, title: str, content: str) -> dict:
         return fallback
 
 
-def _llm_check_missing(llm, title: str, content: str, ext: dict) -> Tuple[list, list]:
+@traceable(name="llm_check_missing", run_type="chain")
+async def _llm_check_missing(llm, title: str, content: str, ext: dict) -> Tuple[list, list]:
     """
     改进3: LLM审查缺失字段，返回标准化的英文key列表。
     将 missing 和 unobtainable 严格分开，不再合并。
@@ -205,7 +209,7 @@ def _llm_check_missing(llm, title: str, content: str, ext: dict) -> Tuple[list, 
 
     fallback_missing = _get_missing_fields(ext)
     try:
-        resp = llm.invoke([
+        resp = await llm.ainvoke([
             SystemMessage(content="你是案例信息审查专家，只输出JSON，不输出其他内容"),
             HumanMessage(content=prompt)
         ])
@@ -245,7 +249,8 @@ def _llm_check_missing(llm, title: str, content: str, ext: dict) -> Tuple[list, 
         return fallback_missing, []
 
 
-def _llm_summary(llm, extraction: dict, round_raw: str) -> dict:
+@traceable(name="llm_summary", run_type="chain")
+async def _llm_summary(llm, extraction: dict, round_raw: str) -> dict:
     """渐进式摘要：合并已有摘要和本轮新内容"""
     prompt = f"""你是城市规划专家。请根据【新增内容】补充完善【当前案例摘要】。
 
@@ -275,7 +280,7 @@ def _llm_summary(llm, extraction: dict, round_raw: str) -> dict:
 ```"""
     fallback = {**extraction, "is_complete": False}
     try:
-        resp = llm.invoke([
+        resp = await llm.ainvoke([
             SystemMessage(content="你是信息整合专家，只输出JSON，不输出其他内容"),
             HumanMessage(content=prompt)
         ])
@@ -294,7 +299,8 @@ def _llm_summary(llm, extraction: dict, round_raw: str) -> dict:
         return fallback
 
 
-def _llm_decide(llm, title: str, extraction: dict,
+@traceable(name="llm_decide", run_type="chain")
+async def _llm_decide(llm, title: str, extraction: dict,
                 search_log: list, round_raw: str = "") -> dict:
     """搜索决策：LLM决定是否继续以及搜什么"""
     history_str = "\n".join([
@@ -351,7 +357,7 @@ def _llm_decide(llm, title: str, extraction: dict,
                 "next_queries": [],
                 "stop_reason": "决策LLM解析失败，默认终止"}
     try:
-        resp = llm.invoke([
+        resp = await llm.ainvoke([
             SystemMessage(content="你是搜索策略专家，只输出JSON，不输出其他内容"),
             HumanMessage(content=prompt)
         ])
@@ -367,17 +373,18 @@ def _llm_decide(llm, title: str, extraction: dict,
 
 # ====================== 核心函数 ======================
 
-def deep_case_research(
+@traceable(name="deep_case_research", run_type="chain")
+async def deep_case_research(
     case: dict,
     initial_content: str,
     llm,
     chat,
-    search_serper,
-    fetch_webpage_content,
+    search_serper=None,
+    fetch_webpage_content=None,
     max_loops: int = 5
 ) -> dict:
     """
-    LLM决策驱动的深度补全（改进版）。
+    LLM决策驱动的深度补全（异步改进版）。
 
     关键改进:
     1. _is_empty 按字段使用不同阈值，不再误判短值
@@ -386,7 +393,11 @@ def deep_case_research(
     4. is_complete 计算时排除 unobtainable
     5. 交叉验证: LLM判断 + 程序判断互相校验
     6. 摘要更新时防止已有信息被覆盖
+    7. 异步 LLM 调用 + 异步搜索/抓取
     """
+    from services.search_service import SearchService
+    from services.fetch_service import async_fetch_webpage_content
+
     title = case.get("title", "未知案例")
     print(f"🚀 LLM决策深度研究: {title}")
 
@@ -395,10 +406,10 @@ def deep_case_research(
 
     if initial_content and len(initial_content) >= 2000:
         print("    🔍 初步信息提取（7字段）...")
-        extraction = _llm_extract(llm, title, initial_content)
+        extraction = await _llm_extract(llm, title, initial_content)
 
         print("    🔎 LLM审查缺失字段...")
-        missing, unobtainable = _llm_check_missing(
+        missing, unobtainable = await _llm_check_missing(
             chat, title, initial_content, extraction
         )
         extraction["missing_aspects"]     = missing
@@ -423,7 +434,7 @@ def deep_case_research(
         print("    ✅ 初步提取已完整（或剩余字段均不可得），跳过补全搜索")
     else:
         print(f"\n    🤔 LLM决策初始搜索方向...")
-        first_decision = _llm_decide(chat, title, extraction, search_log)
+        first_decision = await _llm_decide(chat, title, extraction, search_log)
 
         if not first_decision["should_continue"]:
             print(f"    🛑 LLM判断无需补充搜索: {first_decision['stop_reason']}")
@@ -436,17 +447,19 @@ def deep_case_research(
                 print(f"\n    🔎 第{loop_count}/{max_loops}轮")
                 print(f"       查询: {current_queries}")
 
-                # ── 搜索 + 抓取 ──────────────────────────────────
+                # ── 搜索 + 抓取（同轮内多查询并发）────────────────
                 round_raw = ""
                 for query in current_queries:
-                    results = search_serper(query, max_results=4) or []
-                    for res in results[:3]:
-                        try:
-                            content = fetch_webpage_content(res["url"])
-                            snippet = content[:10000]
-                        except Exception:
-                            snippet = res.get("snippet", "")
-                        round_raw += f"\n---来源: {res.get('title','')}\n{snippet}\n"
+                    results = await SearchService.search_serper(query, max_results=4) or []
+                    fetch_tasks = [
+                        async_fetch_webpage_content(res["url"])
+                        for res in results[:3]
+                    ]
+                    snippets = await asyncio.gather(*fetch_tasks, return_exceptions=True)
+                    for i, snippet in enumerate(snippets):
+                        if isinstance(snippet, Exception):
+                            snippet = results[i].get("snippet", "") if i < len(results) else ""
+                        round_raw += f"\n---来源: {results[i].get('title','') if i < len(results) else ''}\n{snippet[:10000]}\n"
 
                 print(f"       抓取完成: {len(round_raw)} 字符")
 
@@ -454,12 +467,12 @@ def deep_case_research(
                 print("    📝 渐进式摘要更新...")
                 prev_missing = set(extraction.get("missing_aspects", []))
 
-                updated = _llm_summary(llm, extraction, round_raw)
+                updated = await _llm_summary(llm, extraction, round_raw)
                 extraction.update(updated)
 
                 # LLM重新审查（同时传入round_raw和当前extraction）
                 print("    🔎 LLM重新审查缺失字段...")
-                missing, unobtainable = _llm_check_missing(
+                missing, unobtainable = await _llm_check_missing(
                     chat, title, round_raw, extraction
                 )
                 extraction["missing_aspects"]     = missing
@@ -489,7 +502,7 @@ def deep_case_research(
 
                 if loop_count < max_loops:
                     print("    🤔 LLM决策下一轮...")
-                    decision = _llm_decide(
+                    decision = await _llm_decide(
                         chat, title, extraction, search_log, round_raw
                     )
                     if not decision["should_continue"]:
@@ -572,10 +585,11 @@ def deep_case_research(
     请直接输出最终报告内容，不要包含任何解释或前置文本。"""
 
     try:
-        final_report = llm.invoke([
+        resp = await llm.ainvoke([
             SystemMessage(content="你是资深城市规划报告专家"),
             HumanMessage(content=report_prompt)
-        ]).content
+        ])
+        final_report = resp.content
     except Exception as e:
         final_report = f"报告生成失败: {str(e)}"
 

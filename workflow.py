@@ -1,5 +1,5 @@
 """
-工作流构建 — 使用 LangGraph 构建多智能体工作流
+工作流构建 — 使用 LangGraph 构建多智能体工作流 (异步版)
 三个 case_query 节点现在并行执行（Fan-out → Fan-in）
 """
 
@@ -16,21 +16,20 @@ from router import should_continue
 
 from checkpoint import CheckpointManager
 
-# 模块级变量，运行时由 main.py 注入
-_ckpt_manager: CheckpointManager = None
+_module_ckpt_manager: CheckpointManager = None
 
 
 def set_checkpoint_manager(mgr: CheckpointManager):
-    global _ckpt_manager
-    _ckpt_manager = mgr
+    global _module_ckpt_manager
+    _module_ckpt_manager = mgr
 
 
 def _wrap_with_checkpoint(step_name: str, fn):
-    """包装 agent 函数，执行后自动保存 checkpoint"""
-    def wrapped(state):
-        result = fn(state)
-        if _ckpt_manager:
-            _ckpt_manager.save(result, step_name)
+    """包装 agent 函数，执行后自动保存 checkpoint（支持 sync/async）"""
+    async def wrapped(state):
+        result = await fn(state)
+        if _module_ckpt_manager:
+            _module_ckpt_manager.save(result, step_name)
         return result
     return wrapped
 
@@ -40,10 +39,10 @@ def build_workflow(ckpt: CheckpointManager = None):
     构建 LangGraph 工作流。
 
     案例查询阶段采用 Fan-out / Fan-in 并行模式：
-      scenario_deconstruction
-           ├─▶ case_query_1 ─┐
-           ├─▶ case_query_2 ─┼─▶ gap_analysis ─▶ ...
-           └─▶ case_query_3 ─┘
+       scenario_deconstruction
+            ├─▶ case_query_1 ─┐
+            ├─▶ case_query_2 ─┼─▶ gap_analysis ─▶ ...
+            └─▶ case_query_3 ─┘
 
     三个节点各自只返回局部状态 {"case_results": {"problem_N": [...]}}，
     由 state.py 中的 _merge_case_results reducer 自动合并。
@@ -54,35 +53,34 @@ def build_workflow(ckpt: CheckpointManager = None):
 
     workflow = StateGraph(AgentState)
 
-    # ── 节点注册 ────────────────────────────────────────────────────
+    async def _cq1(s):
+        cases = await case_query_agent(s, 0)
+        return {"case_results": {"problem_1": cases}}
+
+    async def _cq2(s):
+        cases = await case_query_agent(s, 1)
+        return {"case_results": {"problem_2": cases}}
+
+    async def _cq3(s):
+        cases = await case_query_agent(s, 2)
+        return {"case_results": {"problem_3": cases}}
 
     workflow.add_node(
         "scenario_deconstruction",
         _wrap_with_checkpoint("scenario_deconstruction", scenario_deconstruction_agent),
     )
 
-    # 每个 case_query 节点只返回自己负责的 case_results 片段
-    # （不再返回完整 state），reducer 负责合并
     workflow.add_node(
         "case_query_1",
-        _wrap_with_checkpoint(
-            "case_query_1",
-            lambda s: {"case_results": {"problem_1": case_query_agent(s, 0)}},
-        ),
+        _wrap_with_checkpoint("case_query_1", _cq1),
     )
     workflow.add_node(
         "case_query_2",
-        _wrap_with_checkpoint(
-            "case_query_2",
-            lambda s: {"case_results": {"problem_2": case_query_agent(s, 1)}},
-        ),
+        _wrap_with_checkpoint("case_query_2", _cq2),
     )
     workflow.add_node(
         "case_query_3",
-        _wrap_with_checkpoint(
-            "case_query_3",
-            lambda s: {"case_results": {"problem_3": case_query_agent(s, 2)}},
-        ),
+        _wrap_with_checkpoint("case_query_3", _cq3),
     )
 
     workflow.add_node(
@@ -102,17 +100,12 @@ def build_workflow(ckpt: CheckpointManager = None):
         _wrap_with_checkpoint("generate_report", generate_final_report),
     )
 
-    # ── 流程定义 ─────────────────────────────────────────────────────
-
     workflow.set_entry_point("scenario_deconstruction")
 
-    # Fan-out：情景解构完成后同时触发三个案例查询
     workflow.add_edge("scenario_deconstruction", "case_query_1")
     workflow.add_edge("scenario_deconstruction", "case_query_2")
     workflow.add_edge("scenario_deconstruction", "case_query_3")
 
-    # Fan-in：三个分支全部完成后汇入差异分析
-    # LangGraph 会自动等待所有入边的节点都执行完毕
     workflow.add_edge("case_query_1", "gap_analysis")
     workflow.add_edge("case_query_2", "gap_analysis")
     workflow.add_edge("case_query_3", "gap_analysis")

@@ -40,7 +40,7 @@ def extract_content(response):
         return str(content)
 
 
-def generate_final_report(state: AgentState) -> AgentState:
+async def generate_final_report(state: AgentState) -> AgentState:
     """生成最终报告（整合所有案例分析）"""
     print("\n" + "="*60)
     print("📄 生成最终报告 - 整合所有案例分析")
@@ -396,7 +396,7 @@ def generate_final_report(state: AgentState) -> AgentState:
             HumanMessage(content=prompt)
         ]
 
-        response = llm.invoke(messages)
+        response = await llm.ainvoke(messages)
 
         if response and extract_content(response):
             state["final_report"] = extract_content(response)

@@ -1,10 +1,11 @@
 """
-智能体 2: 案例查询智能体
+智能体 2: 案例查询智能体 (异步版)
 - BM25 + Sentence-BERT 混合检索
 - 去重、语言感知分词
 - 深度信息提取：Gap-Driven Tree Search + 渐进式摘要
 """
 
+import asyncio
 import os
 import re
 import time
@@ -19,11 +20,12 @@ from config import (
     SKIP_SEMANTIC_SCHOLAR,
 )
 from llm import get_llm
-from tools.search import search_serper, search_academic_sources
-from tools.web_fetcher import fetch_webpage_content, fetch_webpage_content_alternative
 from tools.retrieval import HybridRetriever, _deduplicate
-from tools.deep_research import deep_case_research
 from tools.retrieval import BM25Scorer
+from tools.deep_research import deep_case_research
+from services.search_service import SearchService
+from services.fetch_service import async_fetch_webpage_content, async_fetch_webpage_content_alternative
+from services.llm_service import LLMService
 
 def extract_content(response):
     """Extract text from LangChain AIMessage response, handling both string and list content."""
@@ -47,9 +49,9 @@ def extract_content(response):
 # case_query_agent —— 主函数（修复 + 混合检索版 + deep_case_research整合）
 # ==============================================================
 
-def case_query_agent(state, problem_index: int) -> List[Dict]:
+async def case_query_agent(state, problem_index: int) -> List[Dict]:
     """
-    案例查询智能体 v3
+    案例查询智能体 v3 (异步版)
       - BM25 bug 修复
       - 集成 Sentence-BERT 混合检索
       - 去重、语言感知分词、短内容兜底
@@ -62,9 +64,6 @@ def case_query_agent(state, problem_index: int) -> List[Dict]:
     problem_cn = state["rewritten_problems"][problem_index]
     print(f"📌 中文问题: {problem_cn}")
 
-    llm = get_llm(max_tokens=TOKEN_LIMITS["case_query_agent"])
-
-    chat = get_llm(type="chat", max_tokens=4500)
     user_query = state["user_query"]
     target_city = state["target_city"]
     matched_area = state["local_context"]["matched_area"]
@@ -84,37 +83,33 @@ def case_query_agent(state, problem_index: int) -> List[Dict]:
         SystemMessage(content="你是专业翻译专家"),
         HumanMessage(content=translation_prompt)
     ]
-    response = chat.invoke(messages)
-    problem_en = extract_content(response).strip()
+    problem_en = await LLMService.ainvoke("chat", max_tokens=4500, messages=messages)
+    problem_en = problem_en.strip()
     print(f"✅ 英文问题: {problem_en}")
 
-    # ========== 第二步: 多语言全球搜索 ==========
+    # ========== 第二步: 多语言全球搜索（并发） ==========
     print("\n🔍 步骤 2: 全球案例搜索...")
 
-    # 2.1 英文搜索
-    print("  🌐 英文搜索 (Serper)...")
     en_queries = [
         f"{problem_en} case study",
         f"{problem_en} international best practices",
     ]
+
+    # 所有搜索并发
+    search_tasks = [
+        SearchService.search_serper(en_queries[0], max_results=50),
+        SearchService.search_serper(en_queries[1], max_results=50),
+        SearchService.search_academic_sources(problem_en, limit=50, skip_semantic_scholar=SKIP_SEMANTIC_SCHOLAR),
+        SearchService.search_serper(f"{problem_cn} 案例", max_results=50),
+    ]
+    en_result1, en_result2, ss_results, cn_results = await asyncio.gather(*search_tasks)
+
     serper_results = []
-    for query in en_queries:
-        results = search_serper(query, max_results=50)
-        serper_results.extend(results)
-        print(f"    找到 {len(results)} 个结果")
-
-    # 2.2 学术搜索
-    print("  📚 学术文献搜索...")
-    ss_results = search_academic_sources(
-        problem_en,
-        limit=50,
-        skip_semantic_scholar=SKIP_SEMANTIC_SCHOLAR
-    )
-
-    # 2.3 中文搜索
-    print("  🇨🇳 中文案例搜索...")
-    cn_results = search_serper(f"{problem_cn} 案例", max_results=50)
-    print(f"    找到 {len(cn_results)} 个中文案例")
+    serper_results.extend(en_result1 or [])
+    print(f"    找到 {len(en_result1 or [])} 个结果 (英文查询1)")
+    serper_results.extend(en_result2 or [])
+    print(f"    找到 {len(en_result2 or [])} 个结果 (英文查询2)")
+    print(f"    找到 {len(cn_results or [])} 个中文案例")
 
     # --- 合并 + 去重 ---
     all_results = []
@@ -284,9 +279,9 @@ def case_query_agent(state, problem_index: int) -> List[Dict]:
              SystemMessage(content="你是国际城市规划专家，请综合考虑检索分数和案例质量"),
              HumanMessage(content=selection_prompt)
         ]
-        response = llm.invoke(messages)
+        response = await LLMService.ainvoke("default", max_tokens=TOKEN_LIMITS["case_query_agent"], messages=messages)
 
-        numbers = re.findall(r'\d+', extract_content(response))
+        numbers = re.findall(r'\d+', response)
         top_indices = [int(n) - 1 for n in numbers[:FINAL_CASE_COUNT]]
         if not top_indices:
              print("  ⚠️ LLM 未输出有效选择，使用混合检索前 N 名")
@@ -365,15 +360,15 @@ def case_query_agent(state, problem_index: int) -> List[Dict]:
 
         print(f"\n  📄 处理案例 {len(structured_cases)+1}/{SELECTED_CASE_COUNT}: {case['title']}")
 
-        # ── 5.1 抓取网页内容（逻辑不变）──────────────────────────────
+        # ── 5.1 抓取网页内容（异步）──────────────────────────────
         initial_content = ""
         if case.get("url"):
             try:
-                initial_content = fetch_webpage_content(case["url"], max_length=30000)
+                initial_content = await async_fetch_webpage_content(case["url"], max_length=30000)
 
                 if "内容解析失败" in initial_content or len(initial_content) < 100:
                     print(f"    ⚠️ 主方法效果不佳，尝试备用方法...")
-                    initial_content = fetch_webpage_content_alternative(case["url"], max_length=30000)
+                    initial_content = await async_fetch_webpage_content_alternative(case["url"], max_length=30000)
 
                 if initial_content and not initial_content.startswith("网页访问"):
                     print(f"    ✅ 抓取网页内容: {len(initial_content)} 字符")
@@ -464,12 +459,12 @@ def case_query_agent(state, problem_index: int) -> List[Dict]:
 """
 
             
-            comprehensive_response = llm.invoke([
+            comprehensive_response = await LLMService.ainvoke_raw("default", max_tokens=TOKEN_LIMITS["case_query_agent"], messages=[
                 SystemMessage(content="你是国际城市规划案例分析专家"),
                 HumanMessage(content=comprehensive_prompt)
                 ])
 
-            comprehensive_analysis = extract_content(comprehensive_response).strip()
+            comprehensive_analysis = extract_content(comprehensive_response).strip() if comprehensive_response else ""
             print(f"    ✅ 综合分析完成: {len(comprehensive_analysis)} 字符")
             # print(f"\n💡 案例综合分析: {comprehensive_analysis}")
 
@@ -502,15 +497,12 @@ def case_query_agent(state, problem_index: int) -> List[Dict]:
 
         # ── 原来的 deep_case_research 调用代码继续 ──
 
-        research_result = deep_case_research(
+        research_result = await deep_case_research(
             case=case,
             initial_content=initial_content,
-            llm=llm,
-            chat=chat,
-            search_serper=search_serper,
-            fetch_webpage_content=fetch_webpage_content,
+            llm=get_llm(max_tokens=TOKEN_LIMITS["case_query_agent"]),
+            chat=get_llm(type="chat", max_tokens=4500),
             max_loops=3
-
         )
 
         extraction     = research_result["extraction"]       # 结构化dict，含7个字段
@@ -594,9 +586,9 @@ def case_query_agent(state, problem_index: int) -> List[Dict]:
 **收集的案例**:
 {cases_summary_input}
 
-请撰写一份内容详细且逻辑清晰的总结报告:
+请撰写一份内容详细且逻辑清晰的总结报告（以下要点为一级标题）:
 1. 全球范围内解决该问题的主要趋势
-2. 不同国家/地区的代表性做法和主要案例（分小节罗列案例的详细信息）
+2. 不同国家/地区的代表性做法和主要案例（分小节罗列案例的详细信息，二级标题）
 3. 共同的成功要素
 4. 主要的前置条件
 5. 常见的代价和挑战
@@ -604,11 +596,11 @@ def case_query_agent(state, problem_index: int) -> List[Dict]:
 直接输出中文报告（Markdown 格式）。
 """
     try:
-        summary_response = llm.invoke([
+        summary_response = await LLMService.ainvoke("default", max_tokens=TOKEN_LIMITS["case_query_agent"], messages=[
             SystemMessage(content="你是国际城市规划研究专家"),
             HumanMessage(content=summary_prompt)
         ])
-        global_summary = extract_content(summary_response).strip()
+        global_summary = summary_response.strip()
         print(f"✅ 全球案例总结完成")
     except Exception as e:
         print(f"⚠️ 总结生成失败: {e}")
@@ -644,7 +636,7 @@ def case_query_agent(state, problem_index: int) -> List[Dict]:
     print(f"🌍 英文案例: {sum(1 for c in structured_cases if c.get('language') == 'en')} 个")
     print(f"🇨🇳 中文案例: {sum(1 for c in structured_cases if c.get('language') == 'zh')} 个")
     print(f"🔍 补充搜索: {sum(1 for c in structured_cases if c.get('has_supplement'))} 个")
-    print(global_summary[:500] + "...")
+    print(f"📊 global_summary 长度: {len(global_summary)} 字符（Markdown 结果将通过独立气泡渲染）")
 
     safe_name = re.sub(r'[\\/:*?"<>|\s]', '_', str(problem_cn))
     os.makedirs(OUTPUT_DIR, exist_ok=True)

@@ -33,7 +33,7 @@ def extract_content(response):
         return str(content)
 
 
-def evaluation_agent(state: AgentState) -> AgentState:
+async def evaluation_agent(state: AgentState) -> AgentState:
     """
     评审智能体
     - 评估方案质量
@@ -102,7 +102,7 @@ def evaluation_agent(state: AgentState) -> AgentState:
 """
 
     messages = [SystemMessage(content="你是评审专家"), HumanMessage(content=prompt)]
-    response = llm.invoke(messages)
+    response = await llm.ainvoke(messages)
 
     response_text = extract_content(response).strip()
     print(f"\n评审结果:\n{response_text}\n")

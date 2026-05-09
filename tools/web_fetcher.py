@@ -9,6 +9,7 @@ from typing import Tuple
 
 import requests
 from bs4 import BeautifulSoup
+from langsmith import traceable
 
 logger = logging.getLogger(__name__)
 
@@ -156,6 +157,7 @@ def _clean_and_truncate(text: str, max_length: int) -> str:
     return text
 
 
+@traceable(name="extract_pdf_text", run_type="tool")
 def extract_pdf_text(pdf_bytes: bytes, max_length: int = 20000) -> str:
     """PDF文本提取主入口（多层回退策略）"""
     if not pdf_bytes or pdf_bytes[:4] != b"%PDF":
@@ -194,6 +196,7 @@ def extract_pdf_text(pdf_bytes: bytes, max_length: int = 20000) -> str:
 
 # ==================== 网页内容抓取 ====================
 
+@traceable(name="fetch_webpage", run_type="tool")
 def fetch_webpage_content(url: str, max_length: int = 20000) -> str:
     """
     抓取网页内容（增强编码处理）。

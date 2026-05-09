@@ -8,6 +8,7 @@ from collections import Counter, defaultdict
 from typing import List, Dict, Tuple, Optional
 
 import numpy as np
+from langsmith import traceable
 
 from config import BM25_CANDIDATE_K, SBERT_MODEL_NAME
 
@@ -214,6 +215,7 @@ class HybridRetriever:
         self._sbert_doc_vecs = self.sbert.encode(doc_texts)
         print(f"    ✅ 编码完成: {self._sbert_doc_vecs.shape}")
 
+    @traceable(name="hybrid_retrieval", run_type="retriever")
     def retrieve(
         self,
         queries: Dict[str, str],

@@ -208,6 +208,13 @@ function connectSSE(taskId) {
       return;
     }
 
+    // Agent intermediate markdown result
+    if (data.type === "agent_result") {
+      removeThinking();
+      addMarkdownResult(data.step_id, data.title, data.markdown);
+      return;
+    }
+
     // Regular log line — route to the correct step bubble via step_id
     if (data.type === "log" && data.text) {
       const c = data.step_id
@@ -348,6 +355,34 @@ function toggleLog(btn, logId) {
   const hidden = log.style.display === "none";
   log.style.display = hidden ? "block" : "none";
   btn.textContent = hidden ? "▼ 收起日志" : "▶ 展开日志";
+}
+
+function addMarkdownResult(stepId, title, markdown) {
+  if (!markdown) return;
+  const meta = AGENT_META[stepId] || { icon: "🤖", name: stepId };
+
+  let html = "";
+  try {
+    html = marked.parse(markdown);
+  } catch (e) {
+    console.error("[addMarkdownResult] marked.parse 失败:", {stepId, title, error: e, markdownLen: markdown.length, markdownPreview: markdown.slice(0,200)});
+    html = `<pre>${escapeHtml(markdown)}</pre>`;
+  }
+
+  const el = document.createElement("div");
+  el.className = "message agent";
+  el.innerHTML = `
+    <div style="max-width:820px;margin:0 auto;">
+      <div class="msg-agent-header">
+        <div class="agent-avatar">${meta.icon}</div>
+        <span class="agent-name">${escapeHtml(title)}</span>
+        <span class="agent-time">${formatTime()}</span>
+      </div>
+      <div class="report-content">${html}</div>
+    </div>`;
+
+  $("#messages").appendChild(el);
+  scrollToBottom();
 }
 
 function addReportMessage(markdown) {

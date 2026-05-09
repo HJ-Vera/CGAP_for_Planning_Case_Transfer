@@ -16,7 +16,7 @@ from tools.data_loader import read_md_file
 import experiments.exp_flags as flags
 
 
-def gap_analysis_agent(state: AgentState) -> AgentState:
+async def gap_analysis_agent(state: AgentState) -> AgentState:
     """
     差异分析与改造智能体
     - 对比案例与本地情境
@@ -95,13 +95,13 @@ def gap_analysis_agent(state: AgentState) -> AgentState:
 """
 
         messages = [SystemMessage(content="你是国际城市规划专家"), HumanMessage(content=prompt)]
-        response = llm.invoke(messages)
+        response = await llm.ainvoke(messages)
 
         analysis_text = response.content.strip()
 
         import os
         os.makedirs(OUTPUT_DIR, exist_ok=True)
-        with open(os.path.join(OUTPUT_DIR, "analysis_text.md"), "w", encoding="utf-8") as f:
+        with open(os.path.join(OUTPUT_DIR, f"analysis_text_problem_{i+1}.md"), "w", encoding="utf-8") as f:
             f.write(analysis_text)
 
         gap_analysis_results[f"problem_{i+1}"] = {
@@ -161,14 +161,13 @@ def gap_analysis_agent(state: AgentState) -> AgentState:
 """
 
     messages = [SystemMessage(content="你是国际城市规划专家"), HumanMessage(content=integration_prompt)]
-    integration_response = llm.invoke(messages)
+    integration_response = await llm.ainvoke(messages)
 
     state["gap_analysis"] = gap_analysis_results
     state["adaptation_plan"] = integration_response.content.strip()
 
     print("\n✅ 差异分析完成")
-    print(f"📄 规划方案: {state['adaptation_plan'][:500]}...")
-    print(state["adaptation_plan"][:500] + "...")
+    print(f"📄 规划方案长度: {len(state['adaptation_plan'])} 字符（Markdown 结果将通过独立气泡渲染）")
 
     # 保存总结
     import os

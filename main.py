@@ -17,6 +17,7 @@
 
 import os
 import sys
+import asyncio
 
 # ══════════════════════════════════════════════════════════════
 # CRITICAL: Force non-GUI matplotlib backend BEFORE any other
@@ -44,6 +45,8 @@ from tools.search import (
     search_google_scholar_alternative,
     search_arxiv,
 )
+
+import langsmith
 
 
 def test_academic_search():
@@ -114,7 +117,7 @@ def test_academic_search():
     print()
 
 
-def main(user_query: str, resume_run_id: str = None):
+async def main(user_query: str, resume_run_id: str = None):
     """主函数，支持断点恢复"""
     os.makedirs(config.OUTPUT_DIR, exist_ok=True)
 
@@ -162,63 +165,120 @@ def main(user_query: str, resume_run_id: str = None):
     app = build_workflow(ckpt=ckpt)
     visualize_workflow(app)
 
-    try:
-        result = app.invoke(initial_state)
+    with langsmith.trace(
+        name="urban_planning_analysis",
+        run_type="chain",
+        metadata={
+            "user_query": user_query,
+            "target_city": "香港",
+            "entry_point": "cli",
+            "checkpoint_run_id": ckpt.run_id,
+            "resume": resume_run_id is not None,
+        },
+        tags=["urban-planning", "cli"],
+    ):
+        try:
+            result = await app.ainvoke(initial_state)
 
-        print("\n" + "=" * 60)
-        print("📊 最终报告")
-        print("=" * 60 + "\n")
-        print(result["final_report"])
+            print("\n" + "=" * 60)
+            print("📊 最终报告")
+            print("=" * 60 + "\n")
+            print(result["final_report"])
 
-        report_path = os.path.join(config.OUTPUT_DIR, "planning_report.md")
-        with open(report_path, "w", encoding="utf-8") as f:
-            f.write(result["final_report"])
-        print(f"\n💾 报告已保存至: {report_path}")
+            report_path = os.path.join(config.OUTPUT_DIR, "planning_report.md")
+            with open(report_path, "w", encoding="utf-8") as f:
+                f.write(result["final_report"])
+            print(f"\n💾 报告已保存至: {report_path}")
 
-        return result
+            return result
 
-    except Exception as e:
-        print(f"\n❌ 系统错误: {e}")
-        print(f"💡 可以用以下命令从断点恢复:")
-        print(f"   python main.py --resume {ckpt.run_id}")
-        traceback.print_exc()
-        return None
+        except Exception as e:
+            print(f"\n❌ 系统错误: {e}")
+            print(f"💡 可以用以下命令从断点恢复:")
+            print(f"   python main.py --resume {ckpt.run_id}")
+            traceback.print_exc()
+            return None
 
 
-def _resume_from_checkpoint(saved_state: dict, last_step: str, ckpt):
-    """从 checkpoint 恢复执行"""
-    # 定义步骤顺序
-    STEP_ORDER = [
-        "scenario_deconstruction",
-        "case_query_1", "case_query_2", "case_query_3",
-        "gap_analysis", "evaluation",
-        "generate_report",
-    ]
+async def _resume_from_checkpoint(saved_state: dict, last_step: str, ckpt):
+    """从 checkpoint 恢复执行 — 直接调用 agent 函数，跳过已完成步骤"""
+    from agents.scenario_agent import scenario_deconstruction_agent
+    from agents.case_query_agent import case_query_agent
+    from agents.gap_analysis_agent import gap_analysis_agent
+    from agents.evaluation_agent import evaluation_agent
+    from agents.feedback import feedback_loop
+    from agents.report_generator import generate_final_report
+    from router import should_continue
 
-    if last_step not in STEP_ORDER:
-        print(f"⚠️ 未知步骤 {last_step}，从头开始")
-        return None
+    completed_steps = set(ckpt.get_completed_steps())
 
-    last_idx = STEP_ORDER.index(last_step)
-    remaining = STEP_ORDER[last_idx + 1:]
-
-    if not remaining:
+    if "generate_report" in completed_steps:
         print("✅ 上次已经完成了所有步骤")
         return saved_state
 
-    print(f"⏭️ 跳过已完成步骤: {STEP_ORDER[:last_idx + 1]}")
-    print(f"▶️ 将从 {remaining[0]} 继续执行")
-
-    # 重新构建工作流并从断点状态运行
-    app = build_workflow(ckpt=ckpt)
+    state = saved_state
+    print(f"⏭️ 跳过已完成步骤: {sorted(completed_steps)}")
 
     try:
-        result = app.invoke(saved_state)
+        # ── Step 1: 情景解构 ──
+        if "scenario_deconstruction" not in completed_steps:
+            print("\n▶️ 执行: scenario_deconstruction")
+            state = await scenario_deconstruction_agent(state)
+            ckpt.save(state, "scenario_deconstruction")
+
+        # ── Step 2: 案例查询（只跑缺失的） ──
+        pending = [i for i in range(3) if f"case_query_{i + 1}" not in completed_steps]
+        if pending:
+            print(f"\n▶️ 执行案例查询: {[f'case_query_{i+1}' for i in pending]}")
+            state_snapshot = dict(state)
+
+            async def _run_case(idx):
+                cases = await case_query_agent(state_snapshot, idx)
+                return idx, {f"problem_{idx + 1}": cases}
+
+            tasks = [_run_case(i) for i in pending]
+            results_list = await asyncio.gather(*tasks)
+            for idx, partial in results_list:
+                state["case_results"] = {**state.get("case_results", {}), **partial}
+                step_id = f"case_query_{idx + 1}"
+                ckpt.save(state, step_id)
+                print(f"  ✅ {step_id} 完成")
+
+        # ── Step 3: 差异分析 ──
+        if "gap_analysis" not in completed_steps:
+            print("\n▶️ 执行: gap_analysis")
+            state = await gap_analysis_agent(state)
+            ckpt.save(state, "gap_analysis")
+
+        # ── Step 4: 评审循环 ──
+        for iteration in range(3):
+            print(f"\n▶️ 执行: evaluation (第 {iteration + 1} 轮)")
+            state = await evaluation_agent(state)
+            ckpt.save(state, "evaluation")
+
+            if should_continue(state) == "generate_report":
+                break
+            print("  🔄 方案需要改进，启动反馈...")
+            state = await feedback_loop(state)
+            ckpt.save(state, "feedback_loop")
+
+        # ── Step 5: 生成报告 ──
+        print("\n▶️ 执行: generate_report")
+        state = await generate_final_report(state)
+        ckpt.save(state, "generate_report")
+
         print("\n" + "=" * 60)
         print("📊 最终报告")
         print("=" * 60 + "\n")
-        print(result["final_report"])
-        return result
+        print(state.get("final_report", ""))
+
+        report_path = os.path.join(config.OUTPUT_DIR, "planning_report.md")
+        with open(report_path, "w", encoding="utf-8") as f:
+            f.write(state.get("final_report", ""))
+        print(f"\n💾 报告已保存至: {report_path}")
+
+        return state
+
     except Exception as e:
         print(f"\n❌ 恢复执行失败: {e}")
         print(f"💡 再次恢复: python main.py --resume {ckpt.run_id}")
@@ -269,4 +329,4 @@ if __name__ == "__main__":
         else:
             print("没有可恢复的运行")
     else:
-        result = main(args.query, resume_run_id=args.resume)
+        result = asyncio.run(main(args.query, resume_run_id=args.resume))

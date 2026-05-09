@@ -7,7 +7,7 @@ from langchain_core.messages import SystemMessage, HumanMessage
 from llm import get_llm
 import json
 
-def feedback_loop(state: AgentState) -> AgentState:
+async def feedback_loop(state: AgentState) -> AgentState:
     """
     根据评审反馈:
       1. LLM 分析不足之处，生成新的搜索关键词
@@ -46,7 +46,7 @@ def feedback_loop(state: AgentState) -> AgentState:
 问题3新关键词: xxx
 """
 
-    response = llm.invoke([
+    response = await llm.invoke([
         SystemMessage(content="你是搜索策略优化专家"),
         HumanMessage(content=prompt),
     ])

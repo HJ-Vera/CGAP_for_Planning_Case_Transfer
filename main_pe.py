@@ -10,6 +10,7 @@ Plan-Execute 模式 — 主入口
 
 import os
 import sys
+import asyncio
 import warnings
 import logging
 import traceback
@@ -26,7 +27,7 @@ import config
 from plan_execute.pe_workflow import build_plan_execute_workflow, visualize_pe_workflow
 
 
-def main(user_query: str):
+async def main(user_query: str):
     """运行 Plan-Execute 模式"""
     os.makedirs(config.OUTPUT_DIR, exist_ok=True)
 
@@ -61,7 +62,7 @@ def main(user_query: str):
     visualize_pe_workflow(app)
 
     try:
-        result = app.invoke(initial_state)
+        result = await app.ainvoke(initial_state)
 
         # 输出最终报告
         print("\n" + "=" * 60)
@@ -109,4 +110,4 @@ if __name__ == "__main__":
     print("共享组件: tools/, config.py, llm.py")
     print("=" * 60 + "\n")
 
-    result = main(args.query)
+    result = asyncio.run(main(args.query))

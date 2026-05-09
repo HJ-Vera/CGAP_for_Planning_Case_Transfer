@@ -10,10 +10,12 @@ from typing import List, Dict
 from xml.etree import ElementTree as ET
 
 import requests
+from langsmith import traceable
 
 from config import SERPER_API_KEY
 
 
+@traceable(name="search_serper", run_type="tool")
 def search_serper(query: str, max_results: int = 50) -> List[Dict]:
     """
     使用 Serper API 进行网页搜索
@@ -116,6 +118,7 @@ class RateLimiter:
 _semantic_scholar_limiter = RateLimiter(min_interval=3.5)
 
 
+@traceable(name="search_semantic_scholar", run_type="tool")
 def search_semantic_scholar(
     query: str,
     limit: int = 50,
@@ -248,6 +251,7 @@ def search_semantic_scholar(
     return []
 
 
+@traceable(name="search_google_scholar", run_type="tool")
 def search_google_scholar_alternative(query: str, max_results: int = 50) -> List[Dict]:
     """
     备用学术搜索：使用 Serper API 搜索 Google Scholar
@@ -318,6 +322,7 @@ def search_google_scholar_alternative(query: str, max_results: int = 50) -> List
         return all_results
 
 
+@traceable(name="search_arxiv", run_type="tool")
 def search_arxiv(query: str, max_results: int = 50) -> List[Dict]:
     """
     备用学术搜索：ArXiv API
@@ -379,6 +384,7 @@ def search_arxiv(query: str, max_results: int = 50) -> List[Dict]:
         return []
 
 
+@traceable(name="search_academic_sources", run_type="tool")
 def search_academic_sources(query: str, limit: int = 50, skip_semantic_scholar: bool = False) -> List[Dict]:
     """
     综合学术搜索：依次尝试多个学术数据库

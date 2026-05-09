@@ -1,11 +1,12 @@
 """
-智能体 1: 情景解构智能体
+智能体 1: 情景解构智能体 (异步版)
 - 智能理解数据表结构
 - 智能匹配区域
 - 深度分析本地情境
 - 重写问题
 """
 
+import asyncio
 import json
 import numpy as np
 
@@ -15,12 +16,13 @@ from state import AgentState
 from config import TOKEN_LIMITS, KNOWLEDGE_BASE_MD, HONGKONG_DATA_FILE
 from llm import get_llm
 from tools.data_loader import load_hongkong_data, read_md_file
-from tools.search import search_serper
 from tools.data_analysis import analyze_regional_data
+from services.search_service import SearchService
+from services.llm_service import LLMService
 from .case_query_agent import extract_content
 
 
-def scenario_deconstruction_agent(state: AgentState) -> AgentState:
+async def scenario_deconstruction_agent(state: AgentState) -> AgentState:
     """
     情景解构智能体
     - 智能理解数据表结构
@@ -55,8 +57,6 @@ def scenario_deconstruction_agent(state: AgentState) -> AgentState:
 
     # ========== 第二步: 让 LLM 理解数据表 ==========
     print("\n🧠 步骤 2: AI 理解数据表含义...")
-    llm = get_llm(max_tokens=TOKEN_LIMITS["scenario_agent"])
-    chat = get_llm(type="chat", max_tokens=4500)
 
     table_understanding_prompt = f"""
 你是一位数据分析专家。请仔细分析以下数据表:
@@ -78,10 +78,7 @@ def scenario_deconstruction_agent(state: AgentState) -> AgentState:
         SystemMessage(content="你是数据分析专家"),
         HumanMessage(content=table_understanding_prompt)
     ]
-    response = chat.invoke(messages)
-
-    # 解析响应（更灵活）
-    response_text = extract_content(response)
+    response_text = await LLMService.ainvoke("chat", max_tokens=4500, messages=messages)
     print(f"  AI理解: {response_text}")
 
     # 智能提取区域列名
@@ -130,10 +127,8 @@ def scenario_deconstruction_agent(state: AgentState) -> AgentState:
         SystemMessage(content="你是一位香港选区地名匹配专家，熟悉香港所有行政区划及地理常识。"),
         HumanMessage(content=area_matching_prompt)
     ]
-    response = llm.invoke(messages)
-
-    # 从响应中提取区域名
-    response_text = extract_content(response).strip()
+    response_text = await LLMService.ainvoke("default", max_tokens=TOKEN_LIMITS["scenario_agent"], messages=messages)
+    response_text = response_text.strip()
     print(f"  AI回应: {response_text}")
 
     # 尝试在响应中找到匹配的区域（可能多个）
@@ -248,9 +243,27 @@ def scenario_deconstruction_agent(state: AgentState) -> AgentState:
         print(f"\n⏭️ 步骤 5: 跳过本地数据分析（消融模式）")
         result_text = f"（消融实验：跳过本地数据分析。匹配区域: {matched_area}）"
 
-    # 或者保存到文件
-    # with open('分析结果.txt', 'w', encoding='utf-8') as f:
-         # f.write(result_text)
+    # ========== 第六步: 搜索网络信息 ==========
+    try:
+        from experiments.exp_flags import USE_WEB_SEARCH
+    except ImportError:
+        USE_WEB_SEARCH = True
+
+    if USE_WEB_SEARCH:
+        print("\n🌐 步骤 6: 搜索网络舆论和相关信息 (Serper API)")
+        public_opinion_query = f"{target_city} {original_matched_area} 土地权属 城市规划争议 利益相关方 空间问题"
+        opinion_results = await SearchService.search_serper(public_opinion_query, max_results=10)
+        opinion_summary = "\n".join([
+            f"- {r['title']}: {r['snippet']}"
+            for r in opinion_results[:15]
+        ])
+        print(f"  ✅ 找到 {len(opinion_results)} 条相关信息")
+    else:
+        print("\n⏭️ 步骤 6: 跳过网络信息搜索（消融模式）")
+        opinion_summary = "（消融实验：跳过网络信息搜索）"
+
+    # ========== 第五/六步的 LLM 分析并发 ==========
+    print("\n🧠 步骤 5-6: 并行分析本地数据与网络信息...")
 
     data_analysis_prompt = f"""
 作为城市规划数据分析专家,请分析以下区域数据:
@@ -269,35 +282,6 @@ def scenario_deconstruction_agent(state: AgentState) -> AgentState:
 请用分要点回答，结构清晰（800字以内，不要MD格式）。
 """
 
-    messages = [
-        SystemMessage(content="你是城市规划数据分析专家"),
-        HumanMessage(content=data_analysis_prompt)
-    ]
-    response = llm.invoke(messages)
-
-    data_analysis_text = response.content.strip()
-    print(f"  ✅ 数据分析: {data_analysis_text}")
-
-    # ========== 第六步: 搜索网络信息导向 ==========
-    try:
-        from experiments.exp_flags import USE_WEB_SEARCH
-    except ImportError:
-        USE_WEB_SEARCH = True
-
-    if USE_WEB_SEARCH:
-        print("\n🌐 步骤 6: 搜索网络舆论和相关信息 (Serper API)")
-        public_opinion_query = f"{target_city} {original_matched_area} 土地权属 城市规划争议 利益相关方 空间问题"
-        opinion_results = search_serper(public_opinion_query, max_results=10)
-        opinion_summary = "\n".join([
-            f"- {r['title']}: {r['snippet']}"
-            for r in opinion_results[:15]
-        ])
-        print(f"  ✅ 找到 {len(opinion_results)} 条相关信息")
-    else:
-        print("\n⏭️ 步骤 6: 跳过网络信息搜索（消融模式）")
-        opinion_summary = "（消融实验：跳过网络信息搜索）"
-
-
     network_analysis_prompt = f"""
 作为城市规划网络信息分析专家,请分析以下区域{matched_area}的网络信息:
 
@@ -313,13 +297,21 @@ def scenario_deconstruction_agent(state: AgentState) -> AgentState:
 请用抓住要点和主要矛盾，简要回答。
 """
 
-    messages = [
-        SystemMessage(content="你是网络信息分析专家"),
-        HumanMessage(content=network_analysis_prompt)
-    ]
-    response = chat.invoke(messages)
+    data_analysis_text, opinion_summary = await asyncio.gather(
+        LLMService.ainvoke("default", max_tokens=TOKEN_LIMITS["scenario_agent"], messages=[
+            SystemMessage(content="你是城市规划数据分析专家"),
+            HumanMessage(content=data_analysis_prompt)
+        ]),
+        LLMService.ainvoke("chat", max_tokens=4500, messages=[
+            SystemMessage(content="你是网络信息分析专家"),
+            HumanMessage(content=network_analysis_prompt)
+        ])
+    )
+    data_analysis_text = data_analysis_text.strip()
+    opinion_summary = opinion_summary.strip()
 
-    opinion_summary = response.content.strip()
+    print(f"  ✅ 数据分析: {data_analysis_text}")
+    print(f"  ✅ 网络分析: {opinion_summary}")
 
     # ========== 第七步: 综合分析并重写问题 ==========
     print("\n✍️ 步骤 7: 综合分析并重写核心问题...")
@@ -349,19 +341,26 @@ def scenario_deconstruction_agent(state: AgentState) -> AgentState:
 2. 具体写出每个问题，每个问题500字以内，以网络搜集的信息为主，需要包括上位规划和相关政策，区域现状，关键争议与问题，人口和经济状况，未来战略方向。
 3. 将每个问题结合本地数据和网络信息进行情景化重写（严格遵循以下输出标准）
 
-请按以下格式输出（不要用JSON，直接文本）:
+请按以下格式输出（不要用JSON，直接markdown格式）:
 
-【核心问题】
+# 【情景分析】
+1.宏观政策和上位规划
+2.空间特征
+3.社会经济状况
+4.土地权属和征地情况
+5.利益相关方和主要立场
+
+# 【核心问题】
 1. 问题1
 2. 问题2
 3. 问题3
 
-【情景化重写】
+# 【情景化重写】
 1. 重写后的问题1（只输出主要4个城市规划专业关键字，20字以内，尽量不要包含意思相似的关键词，不包含地名）
 2. 重写后的问题2（只输出主要4个城市规划专业关键字，20字以内，尽量不要包含意思相似的关键词，不包含地名）
 3. 重写后的问题3（只输出主要4个城市规划专业关键字，20字以内，尽量不要包含意思相似的关键词，不包含地名）
 
-【情境总结】
+# 【情境总结】
 一段话总结本地情境（500字）
 """
 
@@ -369,10 +368,10 @@ def scenario_deconstruction_agent(state: AgentState) -> AgentState:
         SystemMessage(content="你是城市规划专家"),
         HumanMessage(content=problem_rewriting_prompt)
     ]
-    response = llm.invoke(messages)
-
-    response_text = response.content.strip()
-    print(f"\n{response_text}\n")
+    response_text = await LLMService.ainvoke("default", max_tokens=TOKEN_LIMITS["scenario_agent"], messages=messages)
+    response_text = response_text.strip()
+    
+    print(f"\n✅ LLM 情景分析完成，响应长度: {len(response_text)} 字符（Markdown 结果将通过独立气泡渲染）\n")
 
     # 灵活解析响应
     core_problems = []
@@ -456,5 +455,10 @@ def scenario_deconstruction_agent(state: AgentState) -> AgentState:
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     with open(os.path.join(OUTPUT_DIR, "context_analysis.json"), "w", encoding="utf-8") as f:
             f.write(json.dumps(state, indent=2, ensure_ascii=False))
+    
+    import os
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    with open(os.path.join(OUTPUT_DIR, "context_analysis.md"), "w", encoding="utf-8") as f:
+        f.write(response_text)
 
     return state

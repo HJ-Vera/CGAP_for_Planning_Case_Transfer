@@ -1,43 +1,22 @@
 """
-FastAPI 服务端 — 多智能体城市规划系统 Web 界面
+FastAPI 服务端 — 多智能体城市规划系统 Web 界面 (异步版)
 
 功能:
   - SSE (Server-Sent Events) 实时流式输出各智能体的运行日志
   - 异步执行工作流，前端实时显示进度
   - 最终报告 Markdown 渲染
-
-并行改动说明:
-  - _ThreadRoutedStdout：全局 sys.stdout 替换，通过 threading.local 将
-    print() 输出路由到当前线程自己的 _StreamCapture，解决并行时 stdout 竞争。
-  - _run_workflow 中三个 case_query 步骤改为 ThreadPoolExecutor 并行执行。
 """
 
 import os
 import sys
-
-# ══════════════════════════════════════════════════════════════
-# CRITICAL: Force non-GUI matplotlib backend BEFORE any other
-# import that might trigger matplotlib's backend auto-detection.
-# On Windows the default is TkAgg which uses tkinter — tkinter
-# is not thread-safe and will crash when worker threads try to
-# garbage-collect its objects ("main thread is not in main loop").
-# Setting the env var here ensures every subsequent import of
-# matplotlib (including transitive ones inside agents/tools)
-# sees the override before the backend is locked in.
-# ══════════════════════════════════════════════════════════════
-os.environ["MPLBACKEND"] = "Agg"          # env var: catches transitive imports
-import matplotlib                          # noqa: E402
-matplotlib.use("Agg")                     # explicit call: belt-and-suspenders
-
-import json
 import asyncio
+import json
 import queue
-import threading
 import time
 import warnings
 import logging
 import io
-from concurrent.futures import ThreadPoolExecutor, as_completed
+import contextvars
 
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse, StreamingResponse, JSONResponse
@@ -46,13 +25,17 @@ from fastapi.staticfiles import StaticFiles
 import config
 from state import AgentState
 
-# ── 抑制第三方库噪音 ──────────────────────────────────────────
+import langsmith
+
+os.environ["MPLBACKEND"] = "Agg"
+import matplotlib                          # noqa: E402
+matplotlib.use("Agg")
+
 warnings.filterwarnings("ignore", category=UserWarning, module="bs4")
 logging.getLogger("bs4.dammit").setLevel(logging.ERROR)
 
 app = FastAPI(title="Urban Planning Multi-Agent System")
 
-# 静态文件
 app.mount(
     "/static",
     StaticFiles(directory=os.path.join(os.path.dirname(__file__), "web", "static")),
@@ -61,64 +44,13 @@ app.mount(
 os.makedirs(config.OUTPUT_DIR, exist_ok=True)
 app.mount("/outputs", StaticFiles(directory=config.OUTPUT_DIR), name="outputs")
 
-# ── 全局任务管理 ─────────────────────────────────────────────
-_tasks: dict = {}        # task_id -> { "queue": Queue, "result": dict|None, "status": str }
-_cancel_events: dict = {}  # task_id -> threading.Event
-
-
-# ══════════════════════════════════════════════════════════════
-# 线程安全的 stdout 路由
-# ══════════════════════════════════════════════════════════════
-
-_tls = threading.local()   # 每个线程独立的 active_capture 槽位
-_real_stdout = sys.stdout  # 保存真实 stdout（模块加载时）
-
-
-class _ThreadRoutedStdout(io.TextIOBase):
-    """
-    替换 sys.stdout 的全局对象。
-    每次 write() 时查看当前线程的 _tls.active_capture：
-      - 若已注册 → 交给该线程的 _StreamCapture 处理（发送到 SSE 队列）
-      - 否则 → 写入原始 stdout（正常终端输出）
-
-    这样三个并行 case_query 线程各自持有独立的 capture，互不干扰。
-    """
-
-    def __init__(self, fallback: io.TextIOBase):
-        self._fallback = fallback
-
-    def write(self, text: str) -> int:
-        cap = getattr(_tls, "active_capture", None)
-        if cap is not None:
-            return cap.receive(text)
-        return self._fallback.write(text)
-
-    def flush(self):
-        cap = getattr(_tls, "active_capture", None)
-        if cap is not None:
-            cap.flush()
-        else:
-            self._fallback.flush()
-
-    # 让 logging 等库能正常判断
-    @property
-    def encoding(self):
-        return getattr(self._fallback, "encoding", "utf-8")
-
-    def fileno(self):
-        return self._fallback.fileno()
-
-
-# 安装全局路由（模块加载时执行一次）
-sys.stdout = _ThreadRoutedStdout(_real_stdout)
+_tasks: dict = {}
+_cancel_events: dict = {}
+_active_captures: contextvars.ContextVar = contextvars.ContextVar("active_capture", default=None)
 
 
 class _StreamCapture:
-    """
-    线程级 stdout 捕获器。
-    通过 _tls.active_capture 注册到当前线程后，该线程的所有 print() 输出
-    都会经由 _ThreadRoutedStdout.write() → self.receive() 进入 SSE 队列。
-    """
+    """异步 stdout 捕获器，通过 contextvars 路由 print 输出到 SSE 队列"""
 
     def __init__(self, msg_queue: queue.Queue, step_id: str, cancel_event=None):
         self._queue = msg_queue
@@ -127,7 +59,6 @@ class _StreamCapture:
         self._cancel = cancel_event
 
     def receive(self, text: str) -> int:
-        """由 _ThreadRoutedStdout 调用，处理原始 print 输出"""
         if not text:
             return 0
         if self._cancel and self._cancel.is_set():
@@ -154,9 +85,36 @@ class _StreamCapture:
             self._buffer = ""
 
 
-# ══════════════════════════════════════════════════════════════
-# 路由
-# ══════════════════════════════════════════════════════════════
+class _RoutedStdout(io.TextIOBase):
+    """全局 sys.stdout 替换，通过 contextvars 路由到当前任务捕获器"""
+
+    def __init__(self, fallback: io.TextIOBase):
+        self._fallback = fallback
+
+    def write(self, text: str) -> int:
+        cap = _active_captures.get(None)
+        if cap is not None:
+            return cap.receive(text)
+        return self._fallback.write(text)
+
+    def flush(self):
+        cap = _active_captures.get(None)
+        if cap is not None:
+            cap.flush()
+        else:
+            self._fallback.flush()
+
+    @property
+    def encoding(self):
+        return getattr(self._fallback, "encoding", "utf-8")
+
+    def fileno(self):
+        return self._fallback.fileno()
+
+
+_real_stdout = sys.stdout
+sys.stdout = _RoutedStdout(_real_stdout)
+
 
 @app.get("/", response_class=HTMLResponse)
 async def index():
@@ -173,7 +131,7 @@ async def cancel_task(task_id: str):
         _cancel_events[task_id].set()
     task = _tasks[task_id]
     task["status"] = "cancelled"
-    task["queue"].put({"type": "status", "agent": "system", "text": "⏹️ 用户已终止分析流程"})
+    task["queue"].put({"type": "status", "agent": "system", "text": "\u23f9\ufe0f \u7528\u6237\u5df2\u7ec8\u6b62\u5206\u6790\u6d41\u7a0b"})
     return JSONResponse({"status": "cancelled"})
 
 
@@ -182,7 +140,7 @@ async def start_run(request: Request):
     body = await request.json()
     user_query = body.get("query", "").strip()
     if not user_query:
-        return JSONResponse({"error": "query 不能为空"}, status_code=400)
+        return JSONResponse({"error": "query \u4e0d\u80fd\u4e3a\u7a7a"}, status_code=400)
 
     task_id = f"task_{int(time.time()*1000)}"
     msg_queue: queue.Queue = queue.Queue()
@@ -193,10 +151,7 @@ async def start_run(request: Request):
         "status": "running",
     }
 
-    t = threading.Thread(
-        target=_run_workflow, args=(task_id, user_query, msg_queue), daemon=True
-    )
-    t.start()
+    asyncio.create_task(_run_workflow(task_id, user_query, msg_queue))
 
     return JSONResponse({"task_id": task_id})
 
@@ -218,10 +173,6 @@ async def status(task_id: str):
         resp["result"] = task["result"]
     return JSONResponse(resp)
 
-
-# ══════════════════════════════════════════════════════════════
-# SSE 生成器
-# ══════════════════════════════════════════════════════════════
 
 async def _sse_generator(task_id: str):
     task = _tasks[task_id]
@@ -250,38 +201,56 @@ def _sse_data(event: str, data) -> str:
     return f"event: {event}\ndata: {payload}\n\n"
 
 
-# ══════════════════════════════════════════════════════════════
-# 工作流步骤定义
-# ══════════════════════════════════════════════════════════════
+def _send_agent_result(msg_queue: queue.Queue, step_id: str, title: str, markdown: str):
+    """向 SSE 队列推送智能体的 markdown 中间结果"""
+    if not markdown:
+        print(f"⚠️ [server] _send_agent_result: '{title}' (step={step_id}) 内容为空，跳过渲染")
+        return
+    msg_queue.put({
+        "type": "agent_result",
+        "step_id": step_id,
+        "title": title,
+        "markdown": markdown,
+    })
+
 
 WORKFLOW_STEPS = [
-    ("scenario_deconstruction", "情景解构",     "分析本地数据与情境"),
-    ("case_query_1",            "案例查询 #1",  "搜索第一个核心问题的全球案例"),
-    ("case_query_2",            "案例查询 #2",  "搜索第二个核心问题的全球案例"),
-    ("case_query_3",            "案例查询 #3",  "搜索第三个核心问题的全球案例"),
-    ("gap_analysis",            "差异分析",     "对比全球经验与本地情境"),
-    ("evaluation",              "方案评审",     "评估规划方案质量"),
-    ("generate_report",         "生成报告",     "撰写最终规划方案"),
+    ("scenario_deconstruction", "\u60c5\u666f\u89e3\u6784",     "\u5206\u6790\u672c\u5730\u6570\u636e\u4e0e\u60c5\u5883"),
+    ("case_query_1",            "\u6848\u4f8b\u67e5\u8be2 #1",  "\u641c\u7d22\u7b2c\u4e00\u4e2a\u6838\u5fc3\u95ee\u9898\u7684\u5168\u7403\u6848\u4f8b"),
+    ("case_query_2",            "\u6848\u4f8b\u67e5\u8be2 #2",  "\u641c\u7d22\u7b2c\u4e8c\u4e2a\u6838\u5fc3\u95ee\u9898\u7684\u5168\u7403\u6848\u4f8b"),
+    ("case_query_3",            "\u6848\u4f8b\u67e5\u8be2 #3",  "\u641c\u7d22\u7b2c\u4e09\u4e2a\u6838\u5fc3\u95ee\u9898\u7684\u5168\u7403\u6848\u4f8b"),
+    ("gap_analysis",            "\u5dee\u5f02\u5206\u6790",     "\u5bf9\u6bd4\u5168\u7403\u7ecf\u9a8c\u4e0e\u672c\u5730\u60c5\u5883"),
+    ("evaluation",              "\u65b9\u6848\u8bc4\u5ba1",     "\u8bc4\u4f30\u89c4\u5212\u65b9\u6848\u8d28\u91cf"),
+    ("generate_report",         "\u751f\u6210\u62a5\u544a",     "\u64b0\u5199\u6700\u7ec8\u89c4\u5212\u65b9\u6848"),
 ]
 
 
-# ══════════════════════════════════════════════════════════════
-# 工作流执行（后台线程）
-# ══════════════════════════════════════════════════════════════
-
-def _run_workflow(task_id: str, user_query: str, msg_queue: queue.Queue):
-    """在线程中执行工作流，支持取消 + checkpoint + 并行 case_query"""
+async def _run_workflow(task_id: str, user_query: str, msg_queue: queue.Queue):
     task = _tasks[task_id]
-    cancel_event = threading.Event()
+    cancel_event = asyncio.Event()
     _cancel_events[task_id] = cancel_event
 
-    def _check_cancelled():
+    async def _check_cancelled():
         if cancel_event.is_set():
-            raise InterruptedError("用户取消")
+            raise InterruptedError("\u7528\u6237\u53d6\u6d88")
 
+    with langsmith.trace(
+        name="urban_planning_analysis",
+        run_type="chain",
+        metadata={
+            "user_query": user_query,
+            "task_id": task_id,
+            "entry_point": "web",
+        },
+        tags=["urban-planning", "web"],
+    ):
+        await _run_workflow_inner(task_id, user_query, msg_queue, task, cancel_event, _check_cancelled)
+
+
+async def _run_workflow_inner(task_id, user_query, msg_queue, task, cancel_event, _check_cancelled):
     try:
         msg_queue.put({"type": "status", "agent": "system",
-                       "text": f"🚀 系统启动，开始分析: {user_query}"})
+                       "text": f"\U0001f680 \u7cfb\u7edf\u542f\u52a8\uff0c\u5f00\u59cb\u5206\u6790: {user_query}"})
         msg_queue.put({"type": "steps", "steps": [
             {"id": s[0], "label": s[1], "desc": s[2], "status": "pending"}
             for s in WORKFLOW_STEPS
@@ -296,13 +265,12 @@ def _run_workflow(task_id: str, user_query: str, msg_queue: queue.Queue):
         from router import should_continue
         from checkpoint import CheckpointManager
 
-        # ── Checkpoint 恢复检测 ─────────────────────────────────────
         completed_steps: set = set()
 
         def _fresh_state():
             return {
                 "user_query": user_query,
-                "target_city": "香港",
+                "target_city": "\u9999\u6e2f",
                 "local_context": {},
                 "core_problems": [],
                 "rewritten_problems": [],
@@ -325,8 +293,8 @@ def _run_workflow(task_id: str, user_query: str, msg_queue: queue.Queue):
                 completed_steps = set(done)
                 ckpt = existing
                 msg_queue.put({"type": "status", "agent": "system",
-                               "text": f"🔄 从断点恢复 run_id={ckpt.run_id}，"
-                                       f"跳过: {sorted(completed_steps)}"})
+                               "text": f"\U0001f504 \u4ece\u65ad\u70b9\u6062\u590d run_id={ckpt.run_id}\uff0c"
+                                       f"\u8df3\u8fc7: {sorted(completed_steps)}"})
             else:
                 ckpt = CheckpointManager()
                 state = _fresh_state()
@@ -335,103 +303,103 @@ def _run_workflow(task_id: str, user_query: str, msg_queue: queue.Queue):
             state = _fresh_state()
 
         msg_queue.put({"type": "status", "agent": "system",
-                       "text": f"📁 Run ID: {ckpt.run_id}"})
+                       "text": f"\U0001f4c1 Run ID: {ckpt.run_id}"})
 
-        # ── Step 1: 情景解构 ──────────────────────────────────────
-        _check_cancelled()
+        await _check_cancelled()
         if "scenario_deconstruction" not in completed_steps:
-            state = _run_step(task_id, msg_queue, "scenario_deconstruction",
-                              lambda: scenario_deconstruction_agent(state), cancel_event)
+            state = await _run_step_async(
+                task_id, msg_queue, "scenario_deconstruction",
+                lambda: scenario_deconstruction_agent(state), cancel_event,
+                on_done=lambda s: _send_agent_result(
+                    msg_queue, "scenario_deconstruction", "情景解构分析",
+                    s.get("local_context", {}).get("full_response", "")))
             ckpt.save(state, "scenario_deconstruction")
         else:
             msg_queue.put({"type": "step_done", "step_id": "scenario_deconstruction"})
             msg_queue.put({"type": "status", "agent": "scenario_deconstruction",
-                           "text": "⏩ 情景解构已完成，跳过"})
+                           "text": "\u23e9 \u60c5\u666f\u89e3\u6784\u5df2\u5b8c\u6210\uff0c\u8df3\u8fc7"})
 
-        # ── Step 2: 三个案例查询并行执行 ─────────────────────────
-        _check_cancelled()
+        await _check_cancelled()
         pending_indices = [i for i in range(3)
                            if f"case_query_{i + 1}" not in completed_steps]
 
         if pending_indices:
             msg_queue.put({"type": "status", "agent": "case_query",
-                           "text": f"🚀 并行启动 {len(pending_indices)} 个案例查询智能体..."})
+                           "text": f"\U0001f680 \u5e76\u884c\u542f\u52a8 {len(pending_indices)} \u4e2a\u6848\u4f8b\u67e5\u8be2\u667a\u80fd\u4f53..."})
 
-            # 每个任务拍一份 state 快照（只读），避免并发修改同一对象
             state_snapshot = dict(state)
 
-            def _make_case_task(idx: int):
-                """返回一个可供 executor.submit 调用的函数"""
+            async def _make_case_task(idx: int):
                 step_id = f"case_query_{idx + 1}"
 
-                def _fn():
-                    """在 worker 线程中运行，返回局部 case_results"""
-                    cases = case_query_agent(state_snapshot, idx)
+                async def _fn():
+                    cases = await case_query_agent(state_snapshot, idx)
                     return {f"problem_{idx + 1}": cases}
 
-                def _task():
-                    result = _run_step(task_id, msg_queue, step_id, _fn, cancel_event)
-                    return step_id, result   # result = {"problem_N": [...]}
+                def _on_case_done(r):
+                    cl = r.get(f"problem_{idx + 1}", [])
+                    if cl and cl[0].get("global_summary"):
+                        _send_agent_result(msg_queue, step_id,
+                                           f"案例查询 #{idx + 1} — 全球案例总结",
+                                           cl[0]["global_summary"])
 
-                return _task
+                result = await _run_step_async(task_id, msg_queue, step_id, _fn, cancel_event,
+                                                on_done=_on_case_done)
+                return step_id, result
 
-            with ThreadPoolExecutor(max_workers=3, thread_name_prefix="case_query") as executor:
-                futures = {
-                    executor.submit(_make_case_task(i)): i
-                    for i in pending_indices
+            tasks_results = await asyncio.gather(
+                *[_make_case_task(i) for i in pending_indices]
+            )
+            for step_id, partial_results in tasks_results:
+                state["case_results"] = {
+                    **state.get("case_results", {}),
+                    **partial_results,
                 }
-                for future in as_completed(futures):
-                    _check_cancelled()
-                    step_id, partial_results = future.result()  # 若有异常会在此抛出
-                    # 合并局部结果到 state
-                    state["case_results"] = {
-                        **state.get("case_results", {}),
-                        **partial_results,
-                    }
-                    ckpt.save(state, step_id)
+                ckpt.save(state, step_id)
         else:
             for i in range(1, 4):
                 msg_queue.put({"type": "step_done", "step_id": f"case_query_{i}"})
             msg_queue.put({"type": "status", "agent": "case_query",
-                           "text": "⏩ 所有案例查询已完成，跳过"})
+                           "text": "\u23e9 \u6240\u6709\u6848\u4f8b\u67e5\u8be2\u5df2\u5b8c\u6210\uff0c\u8df3\u8fc7"})
 
         msg_queue.put({"type": "status", "agent": "case_query",
-                       "text": f"✅ 案例查询阶段完成，共收集 "
-                               f"{sum(len(v) for v in state.get('case_results', {}).values())} 个案例"})
+                       "text": f"\u2705 \u6848\u4f8b\u67e5\u8be2\u9636\u6bb5\u5b8c\u6210\uff0c\u5171\u6536\u96c6 "
+                               f"{sum(len(v) for v in state.get('case_results', {}).values())} \u4e2a\u6848\u4f8b"})
 
-        # ── Step 3: 差异分析 ─────────────────────────────────────
-        _check_cancelled()
+        await _check_cancelled()
         if "gap_analysis" not in completed_steps:
-            state = _run_step(task_id, msg_queue, "gap_analysis",
-                              lambda: gap_analysis_agent(state), cancel_event)
+            state = await _run_step_async(
+                task_id, msg_queue, "gap_analysis",
+                lambda: gap_analysis_agent(state), cancel_event,
+                on_done=lambda s: _send_agent_result(
+                    msg_queue, "gap_analysis", "差异分析 — 适应方案",
+                    s.get("adaptation_plan", "")))
             ckpt.save(state, "gap_analysis")
         else:
             msg_queue.put({"type": "step_done", "step_id": "gap_analysis"})
             msg_queue.put({"type": "status", "agent": "gap_analysis",
-                           "text": "⏩ 差异分析已完成，跳过"})
+                           "text": "\u23e9 \u5dee\u5f02\u5206\u6790\u5df2\u5b8c\u6210\uff0c\u8df3\u8fc7"})
 
-        # ── Step 4: 评审循环 ─────────────────────────────────────
         max_iterations = 3
         for iteration in range(max_iterations):
-            _check_cancelled()
-            state = _run_step(task_id, msg_queue, "evaluation",
-                              lambda: evaluation_agent(state), cancel_event)
+            await _check_cancelled()
+            state = await _run_step_async(task_id, msg_queue, "evaluation",
+                                          lambda: evaluation_agent(state), cancel_event)
             ckpt.save(state, "evaluation")
 
             decision = should_continue(state)
             if decision == "generate_report":
                 break
             msg_queue.put({"type": "status", "agent": "evaluation",
-                           "text": f"🔄 方案需要改进，启动第 {iteration + 1} 轮反馈..."})
-            _check_cancelled()
-            state = _run_step(task_id, msg_queue, "feedback_loop",
-                              lambda: feedback_loop(state), cancel_event)
+                           "text": f"\U0001f504 \u65b9\u6848\u9700\u8981\u6539\u8fdb\uff0c\u542f\u52a8\u7b2c {iteration + 1} \u8f6e\u53cd\u9988..."})
+            await _check_cancelled()
+            state = await _run_step_async(task_id, msg_queue, "feedback_loop",
+                                          lambda: feedback_loop(state), cancel_event)
             ckpt.save(state, "feedback_loop")
 
-        # ── Step 5: 生成报告 ─────────────────────────────────────
-        _check_cancelled()
-        state = _run_step(task_id, msg_queue, "generate_report",
-                          lambda: generate_final_report(state), cancel_event)
+        await _check_cancelled()
+        state = await _run_step_async(task_id, msg_queue, "generate_report",
+                                      lambda: generate_final_report(state), cancel_event)
         ckpt.save(state, "generate_report")
 
         task["result"] = {
@@ -442,17 +410,17 @@ def _run_workflow(task_id: str, user_query: str, msg_queue: queue.Queue):
             "adaptation_plan":   state.get("adaptation_plan", ""),
         }
         task["status"] = "done"
-        msg_queue.put({"type": "status", "agent": "system", "text": "✅ 分析完成！"})
+        msg_queue.put({"type": "status", "agent": "system", "text": "\u2705 \u5206\u6790\u5b8c\u6210\uff01"})
 
     except InterruptedError:
         task["status"] = "cancelled"
-        msg_queue.put({"type": "status", "agent": "system", "text": "⏹️ 分析已终止"})
+        msg_queue.put({"type": "status", "agent": "system", "text": "\u23f9\ufe0f \u5206\u6790\u5df2\u7ec8\u6b62"})
 
     except Exception as e:
         import traceback
         error_msg = traceback.format_exc()
         msg_queue.put({"type": "error", "agent": "system",
-                       "text": f"❌ 错误: {str(e)}\n{error_msg}"})
+                       "text": f"\u274c \u9519\u8bef: {str(e)}\n{error_msg}"})
         task["status"] = "error"
         task["result"] = {"error": str(e)}
 
@@ -460,70 +428,30 @@ def _run_workflow(task_id: str, user_query: str, msg_queue: queue.Queue):
         _cancel_events.pop(task_id, None)
 
 
-# ══════════════════════════════════════════════════════════════
-# 步骤执行器（线程安全版）
-# ══════════════════════════════════════════════════════════════
-
-def _run_step(
-    task_id: str,
-    msg_queue: queue.Queue,
-    step_id: str,
-    fn,
-    cancel_event=None,
-):
-    """
-    执行单个步骤。
-
-    线程安全改动：
-      不再直接替换 sys.stdout（全局操作，并行时会互相覆盖）。
-      改为在 worker 线程内部通过 _tls.active_capture 注册捕获器，
-      由模块级 _ThreadRoutedStdout 负责路由 print() 输出。
-    """
+async def _run_step_async(task_id: str, msg_queue: queue.Queue, step_id: str, fn, cancel_event=None, on_done=None):
+    """异步执行单个步骤，通过 contextvars 路由 print 输出到 SSE 队列"""
     if cancel_event and cancel_event.is_set():
-        raise InterruptedError("用户取消")
+        raise InterruptedError("\u7528\u6237\u53d6\u6d88")
 
     msg_queue.put({"type": "step_start", "step_id": step_id})
 
     capture = _StreamCapture(msg_queue, step_id, cancel_event)
-    result_container = [None]
-    error_container = [None]
+    token = _active_captures.set(capture)
+    try:
+        result = await fn()
+    finally:
+        _active_captures.reset(token)
+        capture.flush()
 
-    def _target():
-        # 在 worker 线程中注册捕获器，_ThreadRoutedStdout 会将
-        # 该线程的所有 print() 路由到此 capture
-        _tls.active_capture = capture
-        try:
-            result_container[0] = fn()
-        except Exception as e:
-            error_container[0] = e
-        finally:
-            _tls.active_capture = None   # 取消注册，恢复正常输出
-            capture.flush()              # 冲刷剩余缓冲
-
-    worker = threading.Thread(target=_target, daemon=True)
-    worker.start()
-
-    # 主调线程轮询取消事件，每 0.5s 一次
-    while worker.is_alive():
-        if cancel_event and cancel_event.is_set():
-            msg_queue.put({"type": "step_error", "step_id": step_id, "text": "已终止"})
-            raise InterruptedError("用户取消")
-        worker.join(timeout=0.5)
-
-    if error_container[0] is not None:
-        msg_queue.put({"type": "step_error", "step_id": step_id,
-                       "text": str(error_container[0])})
-        raise error_container[0]
+    # 在 step_done 之前推送中间结果，确保前端在步骤切换前看到 markdown
+    if on_done:
+        on_done(result)
 
     msg_queue.put({"type": "step_done", "step_id": step_id})
-    return result_container[0]
+    return result
 
-
-# ══════════════════════════════════════════════════════════════
-# 启动
-# ══════════════════════════════════════════════════════════════
 
 if __name__ == "__main__":
     import uvicorn
-    print("🌐 启动 Web 界面: http://localhost:8000")
+    print("\U0001f310 \u542f\u52a8 Web \u754c\u9762: http://localhost:8000")
     uvicorn.run(app, host="0.0.0.0", port=8000)

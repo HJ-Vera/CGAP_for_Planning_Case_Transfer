@@ -46,14 +46,14 @@ HYBRID_ALPHA = 0.5         # 混合权重: alpha*BM25 + (1-alpha)*SBERT
 SBERT_MODEL_NAME = "paraphrase-multilingual-MiniLM-L12-v2"
 
 # ========================== 搜索参数 ==========================
-SKIP_SEMANTIC_SCHOLAR = False  # 设为 True 可跳过 Semantic Scholar
+SKIP_SEMANTIC_SCHOLAR = True  # 设为 True 可跳过 Semantic Scholar
 
 SEARCH_MAX_RESULTS = 50     # 每次搜索返回的最大结果数
 ACADEMIC_SEARCH_LIMIT = 50  # 学术搜索返回的最大结果数
 
 # ========================== 文件路径 ==========================
 DATA_DIR = "./data"
-OUTPUT_DIR = "./outputtt"
+OUTPUT_DIR = "./output"
 HONGKONG_DATA_FILE = f"{DATA_DIR}/hongkong_llm_data.xlsx"
 KNOWLEDGE_BASE_MD = f"{DATA_DIR}/香港规划情景知识库.md"
 PLANNING_KNOWLEDGE_MD = f"{DATA_DIR}/HK_Planning_Knowledge.md"
