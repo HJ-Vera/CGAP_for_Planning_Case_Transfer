@@ -37,7 +37,7 @@ CGAP 尝试通过 Structured Intermediate States 与 Multi-Stage Reasoning Workf
 
 ---
 <div align="center"> 
-<img width="915" height="492" alt="image" src="https://github.com/user-attachments/assets/05b0b62b-7ecb-4b87-91d6-b238dbda3c13" />
+<img width="800" height="492" alt="image" src="https://github.com/user-attachments/assets/05b0b62b-7ecb-4b87-91d6-b238dbda3c13" />
 </div>   
 
 ---
@@ -48,8 +48,11 @@ CGAP 尝试通过 Structured Intermediate States 与 Multi-Stage Reasoning Workf
 ## Demo
 
 ---
-
-[![观看视频](images/CGAP-封面.jpg)](https://player.bilibili.com/player.html?aid=116551135007854&bvid=BV1Hp5J6FEeT&cid=38242814648&p=1)
+<div align="center">
+<a href="https://player.bilibili.com/player.html?aid=116551135007854&bvid=BV1Hp5J6FEeT&cid=38242814648&p=1">
+  <img src="images/CGAP-封面.jpg" alt="观看视频" width="800">
+</a>
+</div> 
 
 ---
 
@@ -137,15 +140,21 @@ CGAP 将城市规划案例迁移拆解为多个显式推理阶段，通过中间
 
 系统可信度的核心来源。大多数 Agent 项目只有 demo，CGAP 提供了完整的实验与评估体系：
 
-- **Ablation Framework**（`experiments/`）：通过 Feature Flags 控制各组件开关（本地分析 / 网页搜索 / 混合检索 / LLM 筛选 / 深度研究 / 差异分析），支持批量运行和结果收集。
+- **Ablation Framework**（`experiments/`）：通过 Feature Flags 控制各组件开关（本地分析 / 网页搜索 / 混合检索 / 差异分析），支持批量运行和结果收集。
 - **Automated Evaluation**（`eval/`）：LLM-as-a-Judge 机制，对比 Workflow 输出与单 LLM 基线，支持成对比较和多维度评分，评估结果按消融维度分目录存储。
 
 <br> 
 
 ### Knowledge & Runtime Layer
 
-- **Knowledge Base**（`data/`）：香港区域数据表、规划情景知识库、规划法规知识库和 GeoJSON 地图文件，作为本地知识源。
+- **Knowledge Base**（`data/`）：香港区域数据表、规划情景知识库和 GeoJSON 地图文件，作为本地知识源。
 - **Runtime Output**（`output/`）：运行时生成，包含断点快照、规划报告、案例摘要和综合分析报告。
 - **Model Cache**（`models/`）：本地缓存的 Sentence-BERT 嵌入模型，用于混合检索的语义编码。
+
+
+## 研究状态
+
+本仓库目前包含一项正在进行中的研究项目的实现框架及部分实验组件。
+考虑到学校的相关规定，完整论文和全部实验结果将在论文提交后公开发布。
 
 
