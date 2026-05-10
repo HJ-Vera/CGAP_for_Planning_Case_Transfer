@@ -1,0 +1,53 @@
+name: subjective
+description: 主观维度评审 — 评估外部案例在法规适配性、本地语境深度、可迁移性、启发性价值四个主观维度的表现，含D5一票否决规则
+type: subjective
+dimensions:
+  - id: D5
+    key: D5_regulatory
+    label: 法规适配性
+    label_en: Regulatory Adaptability
+    definition: 外部案例的核心规划手法转换至香港法规框架后，所需调整的程度及调整后核心价值存留率
+    reasoning_fields: '"core_mechanism": "string", "hk_legal_path": "string", "veto_check": "boolean", "score_rationale": "string"'
+    veto: true
+    veto_condition: "scores.X.D5_regulatory <= 2"
+  - id: D6
+    key: D6_local
+    label: 本地语境深度
+    label_en: Local Context Depth
+    definition: 外部案例的分析框架能在多大程度上识别并有效回应香港特有的规划约束
+    reasoning_fields: '"hk_constraints_checked": ["string"], "analogy_found": "string", "score_rationale": "string"'
+  - id: D7
+    key: D7_transfer
+    label: 可迁移性
+    label_en: Transferability
+    definition: 外部案例核心规划策略在香港的实际可操作程度，须逐层分析原则层/机制层/数值层
+    reasoning_fields: '"principle_level": "string", "mechanism_level": "string", "parameter_level": "string", "score_rationale": "string"'
+  - id: D8
+    key: D8_inspiration
+    label: 启发性价值
+    label_en: Inspirational Value
+    definition: 外部案例是否提供超越现有香港规划经验的新视角
+    reasoning_fields: '"gap_filled": "string", "novelty_assessment": "string", "score_rationale": "string"'
+    d8_note_condition: "scores.X.D8_inspiration >= 4 AND scores.X.D5_regulatory <= 2"
+score_range:
+  min: 1
+  max: 5
+  total_min: 4
+  total_max: 20
+veto_rules:
+  - rule: D5_one_vote_veto
+    description: 若一方D5≤2且另一方D5>3，则overall_preference必须选择D5高分方
+    condition: "scores.A.D5_regulatory <= 2 AND scores.B.D5_regulatory > 3"
+    forced_preference: "B"
+  - rule: D8_no_override_D5
+    description: 若D8≥4且D5≤2，须添加d8_note，且overall_preference不得选择该方案（除非对方D5同样≤2）
+    condition: "scores.X.D8_inspiration >= 4 AND scores.X.D5_regulatory <= 2"
+priority_chain:
+  - D5
+  - D6
+  - D7
+  - D8
+  - D1
+  - D2
+  - D3
+  - D4

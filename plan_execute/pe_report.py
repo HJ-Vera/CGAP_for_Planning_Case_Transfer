@@ -10,6 +10,7 @@ from langchain_core.messages import SystemMessage, HumanMessage
 
 from llm import get_llm
 from config import OUTPUT_DIR, PLANNING_KNOWLEDGE_MD
+from prompts import load_prompt
 from tools.data_loader import read_md_file
 from plan_execute.pe_state import PlanExecuteState
 
@@ -88,50 +89,19 @@ def generate_report(state: PlanExecuteState) -> PlanExecuteState:
     md_content = read_md_file(PLANNING_KNOWLEDGE_MD)
 
     # ── 告诉 LLM 附录由系统自动生成，不需要它写 ──
-    prompt = f"""请基于以下研究成果，撰写一份完整的城市规划案例分析报告。
-
-# 项目信息
-- **研究问题**: {state['user_query']}
-- **目标城市**: {state['target_city']}
-- **分析区域**: {state.get('matched_area', '未确定')}
-- **核心问题**: {local_context.get('core_problems', [])}
-- **计划版本**: v{state.get('plan_version', 1)}
-- **相关政策法规**: {md_content}
-
-# 研究成果（各子任务执行结果）
-
-{chr(10).join(results_sections)}
-
-# 评估结果
-- 评分: {evaluation.get('score', 'N/A')}/100
-- 优势: {evaluation.get('strengths', [])}
-- 不足: {evaluation.get('weaknesses', [])}
-
-# 报告要求
-
-请按以下结构撰写（中文，Markdown 格式）:
-
-1. **执行摘要**
-2. **项目背景与本地情境分析**
-3. **核心问题识别**
-4. **全球案例研究**
-   - 国际最佳实践（引用具体案例）
-   - 关键成功要素
-   - 学术文献综述
-5. **差异分析与适应性改造**
-6. **综合规划方案**
-   - 总体目标与定位
-   - 核心策略
-   - 实施路径（短期/中期/长期）
-7. **风险评估与应对**
-8. **预期成果**
-9. **实施建议**
-
-注意:
-- 不要写附录部分，附录由系统自动附加
-- 引用具体案例和数据支撑
-- 确保内容来自实际研究结果，不要编造信息
-"""
+    prompt = load_prompt(
+        "plan_execute/pe_report", "01_report_prompt",
+        user_query=state["user_query"],
+        target_city=state["target_city"],
+        matched_area=str(state.get("matched_area", "未确定")),
+        core_problems=str(local_context.get("core_problems", [])),
+        plan_version=str(state.get("plan_version", 1)),
+        md_content=md_content,
+        results_sections=chr(10).join(results_sections),
+        evaluation_score=str(evaluation.get("score", "N/A")),
+        strengths=str(evaluation.get("strengths", [])),
+        weaknesses=str(evaluation.get("weaknesses", [])),
+    )
 
     try:
         response = llm.invoke([

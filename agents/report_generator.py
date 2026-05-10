@@ -11,6 +11,7 @@ from langchain_core.messages import SystemMessage, HumanMessage
 from state import AgentState
 from config import PLANNING_KNOWLEDGE_MD, OUTPUT_DIR
 from llm import get_llm
+from prompts import load_prompt
 from tools.data_loader import read_md_file
 
 import experiments.exp_flags as flags
@@ -143,224 +144,77 @@ async def generate_final_report(state: AgentState) -> AgentState:
     md_content = read_md_file(PLANNING_KNOWLEDGE_MD)
     prompt = ""
     # 构建完整的提示词
-    prompta = f"""
-请基于以下内容生成一份完整的国际化城市规划方案报告:
-
-# 一、项目概况
-**原始问题**: {state['user_query']}
-**目标区域**: {state['local_context'].get('matched_area', 'Unknown')}
-**本地数据**: {state['local_context'].get('data_analysis', '')}
-**本地情境**: {state['local_context'].get('context_summary', '')}
-**本地存在问题**: {state['local_context'].get('full_response', '')}
-**相关政策法规**: {md_content}
-
-# 二、核心问题识别
-{chr(10).join([f"{i+1}. {p}" for i, p in enumerate(state['core_problems'])])}
-
-# 三、全球案例研究概况
-共收集 {case_stats['total']} 个相关案例，其中：
-- 国际案例: {case_stats['global']} 个
-- 本地案例: {case_stats['local']} 个
-
-{problem_case_mapping}
-
-# 四、详细案例分析
-以下是每个问题对应的详细案例分析，请仔细参考这些案例内容：
-
-## 问题1: {state["core_problems"][0] if len(state["core_problems"]) > 0 else "未知"}
-{problem_case_analyses.get(1, "暂无案例分析")}
-
-## 问题2: {state["core_problems"][1] if len(state["core_problems"]) > 1 else "未知"}
-{problem_case_analyses.get(2, "暂无案例分析")}
-
-## 问题3: {state["core_problems"][2] if len(state["core_problems"]) > 2 else "未知"}
-{problem_case_analyses.get(3, "暂无案例分析")}
-
-# 五、差异分析
-{chr(10).join([f"方向{i+1}: {v.get('problem', '')}\n{v.get('analysis', '')}" for i, v in enumerate(state['gap_analysis'].values())])}
-
-# 六、综合规划方案
-{state['adaptation_plan']}
-
-# 七、评估结果
-总分: {state['evaluation_scores'].get('total_score', 'N/A')}/400
-{chr(10).join([f"- {k}: {v}/100" for k, v in state['evaluation_scores'].get('scores', {}).items()])}
-
-# 八、报告撰写要求
-请基于以上所有信息，生成一份详细、专业的 Markdown 格式城市规划方案报告。
-
-## 报告结构要求：
-1. **执行摘要** - 简要概括报告核心内容
-2. **项目背景与本地情境分析** - 详细分析目标区域的现状
-3. **核心问题识别** - 重述并分析三个核心问题
-4. **全球案例研究**
-   - 4.1 {state["rewritten_problems"][0]}案例分析（重点参考问题1的案例）
-   - 4.2 {state["rewritten_problems"][1]}案例分析（重点参考问题2的案例）
-   - 4.3 {state["rewritten_problems"][2]}案例分析（重点参考问题3的案例）
-   - 4.4 关键成功要素总结
-5. **差异分析与适应性改造**
-   - 5.1 前置条件对比分析
-   - 5.2 实施障碍识别
-   - 5.3 本地化调整策略
-6. **综合规划方案**
-   - 6.1 总体定位与目标
-   - 6.2 三大核心策略（对应三个问题）
-   - 6.3 实施路径与时序安排
-7. **风险评估与应对**
-   - 7.1 潜在代价分析
-   - 7.2 负面影响预警
-   - 7.3 风险管控措施
-8. **预期成果与评估**
-9. **实施建议与下一步行动**
-10. **附录：详细案例清单**
-
-## 撰写注意事项：
-1. **充分利用案例分析**：报告中必须引用具体案例，说明哪些国际/本地经验可借鉴
-2. **保持专业性和逻辑性**：报告应具有学术和实践价值
-3. **突出本地适应性**：强调如何将国际经验本地化
-4. **数据可视化建议**：在适当位置建议添加表格、图表等可视化元素
-5. **语言风格**：专业但不晦涩，适合决策者阅读
-6. **内容详实**：每个部分都要有充分的分析和细节支持
-7.**不能编造内容或者案例**：所有内容必须基于提供的信息和分析结果，不能凭空捏造数据或案例。
-8. 每个策略部分都要有案例支撑,保持报告的专业性和可操作性
-9. 报告总篇幅不少于15000字，请确保内容详实、分析深入、细节充分。
-
-请开始撰写完整报告（使用中文，Markdown格式）。
-"""
-    promptb = f"""
-请基于以下内容生成一份完整的国际化城市规划方案报告:
-
-# 一、项目概况
-**原始问题**: {state['user_query']}
-**目标区域**: {state['local_context'].get('matched_area', 'Unknown')}
-
-# 二、全球案例研究概况
-共收集 {case_stats['total']} 个相关案例，其中：
-- 国际案例: {case_stats['global']} 个
-- 本地案例: {case_stats['local']} 个
-
-# 三、详细案例分析
-以下是每个问题对应的详细案例分析，请仔细参考这些案例内容：
-
-## 问题1: {state["core_problems"][0] if len(state["core_problems"]) > 0 else "未知"}
-{problem_case_analyses.get(1, "暂无案例分析")}
-
-## 问题2: {state["core_problems"][1] if len(state["core_problems"]) > 1 else "未知"}
-{problem_case_analyses.get(2, "暂无案例分析")}
-
-## 问题3: {state["core_problems"][2] if len(state["core_problems"]) > 2 else "未知"}
-{problem_case_analyses.get(3, "暂无案例分析")}
-
-# 五、差异分析
-{chr(10).join([f"方向{i+1}: {v.get('problem', '')}\n{v.get('analysis', '')}" for i, v in enumerate(state['gap_analysis'].values())])}
-
-# 六、综合规划方案
-{state['adaptation_plan']}
-
-# 七、评估结果
-总分: {state['evaluation_scores'].get('total_score', 'N/A')}/400
-{chr(10).join([f"- {k}: {v}/100" for k, v in state['evaluation_scores'].get('scores', {}).items()])}
-
-# 八、报告撰写要求
-请基于以上所有信息，生成一份详细、专业的 Markdown 格式城市规划方案报告。
-
-## 报告结构要求：
-1. **执行摘要** - 简要概括报告核心内容，不要对查询区域做出深入分析，聚焦案例总结
-2. **全球案例研究**
-   - 2.1 {state["rewritten_problems"][0]}案例分析（重点参考问题1的案例）
-   - 2.2 {state["rewritten_problems"][1]}案例分析（重点参考问题2的案例）
-   - 2.3 {state["rewritten_problems"][2]}案例分析（重点参考问题3的案例）
-   - 2.4 关键成功要素总结
-3. **差异分析与适应性改造**
-   - 3.1 前置条件对比分析
-   - 3.2 实施障碍识别
-   - 3.3 本地化调整策略
-4. **综合规划方案**
-   - 4.1 总体定位与目标
-   - 4.2 核心策略
-   - 4.3 实施路径与时序安排
-5. **风险评估与应对**
-   - 5.1 潜在代价分析
-   - 5.2 负面影响预警
-   - 5.3 风险管控措施
-6. **预期成果与评估**
-7. **实施建议与下一步行动**
-8. **附录：详细案例清单**
-
-## 撰写注意事项：
-1. **充分利用案例分析**：报告中必须引用具体案例，说明哪些国际/本地经验可借鉴
-2. **保持专业性和逻辑性**：报告应具有学术和实践价值
-3. **突出本地适应性**：强调如何将国际经验本地化
-4. **数据可视化建议**：在适当位置建议添加表格、图表等可视化元素
-5. **语言风格**：专业但不晦涩，适合决策者阅读
-6. **内容详实**：每个部分都要有充分的分析和细节支持
-7.**不能编造内容或者案例**：所有内容必须基于提供的信息和分析结果，不能凭空捏造数据或案例。
-8. 每个策略部分都要有案例支撑,保持报告的专业性和可操作性
-9. 报告总篇幅不少于15000字，请确保内容详实、分析深入、细节充分。
-9. 严格按照目录组织内容，不能新增或删除章节标题，确保内容完整覆盖每个部分要求。
-
-请开始撰写完整报告（使用中文，Markdown格式）。
-"""
-    promptc = f"""
-请基于以下内容生成一份完整的国际化城市规划方案报告:
-
-# 一、项目概况
-**原始问题**: {state['user_query']}
-**目标区域**: {state['local_context'].get('matched_area', 'Unknown')}
-**本地数据**: {state['local_context'].get('data_analysis', '')}
-**本地情境**: {state['local_context'].get('context_summary', '')}
-**本地存在问题**: {state['local_context'].get('full_response', '')}
-**相关政策法规**: {md_content}
-
-# 二、核心问题识别
-{chr(10).join([f"{i+1}. {p}" for i, p in enumerate(state['core_problems'])])}
-
-# 三、全球案例研究概况
-共收集 {case_stats['total']} 个相关案例，其中：
-- 国际案例: {case_stats['global']} 个
-- 本地案例: {case_stats['local']} 个
-
-{problem_case_mapping}
-
-# 四、详细案例分析
-以下是每个问题对应的详细案例分析，请仔细参考这些案例内容：
-
-## 问题1: {state["core_problems"][0] if len(state["core_problems"]) > 0 else "未知"}
-{problem_case_analyses.get(1, "暂无案例分析")}
-
-## 问题2: {state["core_problems"][1] if len(state["core_problems"]) > 1 else "未知"}
-{problem_case_analyses.get(2, "暂无案例分析")}
-
-## 问题3: {state["core_problems"][2] if len(state["core_problems"]) > 2 else "未知"}
-{problem_case_analyses.get(3, "暂无案例分析")}
-
-# 五、报告撰写要求
-请基于以上所有信息，生成一份详细、专业的 Markdown 格式城市规划方案报告。
-
-## 报告结构要求：
-1. **执行摘要** - 简要概括报告核心内容
-2. **项目背景与本地情境分析** - 详细分析目标区域的现状
-3. **核心问题识别** - 重述并分析三个核心问题
-4. **全球案例研究**
-   - 4.1 {state["rewritten_problems"][0]}案例分析（重点参考问题1的案例）
-   - 4.2 {state["rewritten_problems"][1]}案例分析（重点参考问题2的案例）
-   - 4.3 {state["rewritten_problems"][2]}案例分析（重点参考问题3的案例）
-   - 4.4 关键成功要素总结
-5. **附录：详细案例清单**
-
-## 撰写注意事项：
-1. **充分利用案例分析**：报告中必须引用具体案例，说明哪些国际/本地经验可借鉴
-2. **保持专业性和逻辑性**：报告应具有学术和实践价值
-3. **数据可视化建议**：在适当位置建议添加表格、图表等可视化元素
-4. **语言风格**：专业但不晦涩，适合决策者阅读
-5. **内容详实**：每个部分都要有充分的分析和细节支持
-6.**不能编造内容或者案例**：所有内容必须基于提供的信息和分析结果，不能凭空捏造数据或案例。
-7. 每个策略部分都要有案例支撑,保持报告的专业性和可操作性
-8. 报告总篇幅不少于15000字，请确保内容详实、分析深入、细节充分。
-9. 严格按照目录组织内容，不能新增或删除章节标题，确保内容完整覆盖每个部分要求。
-
-请开始撰写完整报告（使用中文，Markdown格式）。
-"""
+    prompta = load_prompt(
+        "agents/report_generator", "01_prompta_full",
+        user_query=state['user_query'],
+        matched_area=state['local_context'].get('matched_area', 'Unknown'),
+        data_analysis=state['local_context'].get('data_analysis', ''),
+        context_summary=state['local_context'].get('context_summary', ''),
+        full_response=state['local_context'].get('full_response', ''),
+        md_content=md_content,
+        core_problems_list=chr(10).join([f"{i+1}. {p}" for i, p in enumerate(state['core_problems'])]),
+        case_stats_total=str(case_stats['total']),
+        case_stats_global=str(case_stats['global']),
+        case_stats_local=str(case_stats['local']),
+        problem_case_mapping=problem_case_mapping,
+        core_problem_1=state["core_problems"][0] if len(state["core_problems"]) > 0 else "未知",
+        core_problem_2=state["core_problems"][1] if len(state["core_problems"]) > 1 else "未知",
+        core_problem_3=state["core_problems"][2] if len(state["core_problems"]) > 2 else "未知",
+        problem_1_case_analyses=problem_case_analyses.get(1, "暂无案例分析"),
+        problem_2_case_analyses=problem_case_analyses.get(2, "暂无案例分析"),
+        problem_3_case_analyses=problem_case_analyses.get(3, "暂无案例分析"),
+        gap_analysis_directions=chr(10).join([f"方向{i+1}: {v.get('problem', '')}\n{v.get('analysis', '')}" for i, v in enumerate(state['gap_analysis'].values())]),
+        adaptation_plan=state['adaptation_plan'],
+        total_score=str(state['evaluation_scores'].get('total_score', 'N/A')),
+        scores_detail=chr(10).join([f"- {k}: {v}/100" for k, v in state['evaluation_scores'].get('scores', {}).items()]),
+        rewritten_problem_1=state["rewritten_problems"][0] if len(state["rewritten_problems"]) > 0 else "",
+        rewritten_problem_2=state["rewritten_problems"][1] if len(state["rewritten_problems"]) > 1 else "",
+        rewritten_problem_3=state["rewritten_problems"][2] if len(state["rewritten_problems"]) > 2 else "",
+    )
+    promptb = load_prompt(
+        "agents/report_generator", "02_promptb_no_local",
+        user_query=state['user_query'],
+        matched_area=state['local_context'].get('matched_area', 'Unknown'),
+        case_stats_total=str(case_stats['total']),
+        case_stats_global=str(case_stats['global']),
+        case_stats_local=str(case_stats['local']),
+        core_problem_1=state["core_problems"][0] if len(state["core_problems"]) > 0 else "未知",
+        core_problem_2=state["core_problems"][1] if len(state["core_problems"]) > 1 else "未知",
+        core_problem_3=state["core_problems"][2] if len(state["core_problems"]) > 2 else "未知",
+        problem_1_case_analyses=problem_case_analyses.get(1, "暂无案例分析"),
+        problem_2_case_analyses=problem_case_analyses.get(2, "暂无案例分析"),
+        problem_3_case_analyses=problem_case_analyses.get(3, "暂无案例分析"),
+        gap_analysis_directions=chr(10).join([f"方向{i+1}: {v.get('problem', '')}\n{v.get('analysis', '')}" for i, v in enumerate(state['gap_analysis'].values())]),
+        adaptation_plan=state['adaptation_plan'],
+        total_score=str(state['evaluation_scores'].get('total_score', 'N/A')),
+        scores_detail=chr(10).join([f"- {k}: {v}/100" for k, v in state['evaluation_scores'].get('scores', {}).items()]),
+        rewritten_problem_1=state["rewritten_problems"][0] if len(state["rewritten_problems"]) > 0 else "",
+        rewritten_problem_2=state["rewritten_problems"][1] if len(state["rewritten_problems"]) > 1 else "",
+        rewritten_problem_3=state["rewritten_problems"][2] if len(state["rewritten_problems"]) > 2 else "",
+    )
+    promptc = load_prompt(
+        "agents/report_generator", "03_promptc_no_gap",
+        user_query=state['user_query'],
+        matched_area=state['local_context'].get('matched_area', 'Unknown'),
+        data_analysis=state['local_context'].get('data_analysis', ''),
+        context_summary=state['local_context'].get('context_summary', ''),
+        full_response=state['local_context'].get('full_response', ''),
+        md_content=md_content,
+        core_problems_list=chr(10).join([f"{i+1}. {p}" for i, p in enumerate(state['core_problems'])]),
+        case_stats_total=str(case_stats['total']),
+        case_stats_global=str(case_stats['global']),
+        case_stats_local=str(case_stats['local']),
+        problem_case_mapping=problem_case_mapping,
+        core_problem_1=state["core_problems"][0] if len(state["core_problems"]) > 0 else "未知",
+        core_problem_2=state["core_problems"][1] if len(state["core_problems"]) > 1 else "未知",
+        core_problem_3=state["core_problems"][2] if len(state["core_problems"]) > 2 else "未知",
+        problem_1_case_analyses=problem_case_analyses.get(1, "暂无案例分析"),
+        problem_2_case_analyses=problem_case_analyses.get(2, "暂无案例分析"),
+        problem_3_case_analyses=problem_case_analyses.get(3, "暂无案例分析"),
+        rewritten_problem_1=state["rewritten_problems"][0] if len(state["rewritten_problems"]) > 0 else "",
+        rewritten_problem_2=state["rewritten_problems"][1] if len(state["rewritten_problems"]) > 1 else "",
+        rewritten_problem_3=state["rewritten_problems"][2] if len(state["rewritten_problems"]) > 2 else "",
+    )
     try:
         from experiments.exp_flags import USE_LOCAL_ANALYSIS
     except ImportError:

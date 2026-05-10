@@ -20,6 +20,7 @@ from config import (
     SKIP_SEMANTIC_SCHOLAR,
 )
 from llm import get_llm
+from prompts import load_prompt
 from tools.retrieval import HybridRetriever, _deduplicate
 from tools.retrieval import BM25Scorer
 from tools.deep_research import deep_case_research
@@ -71,14 +72,10 @@ async def case_query_agent(state, problem_index: int) -> List[Dict]:
     # ========== 第一步: 翻译问题为英文 ==========
     print("\n🌐 步骤 1: 翻译问题为英文...")
 
-    translation_prompt = f"""
-请将以下中文城市规划问题翻译成英文，用于国际案例搜索。
-翻译时要保留关键概念，使其适合在国际学术和实践案例中搜索。
-
-**中文问题**: {problem_cn}
-
-请只输出英文翻译，不需要其他解释。
-"""
+    translation_prompt = load_prompt(
+        "agents/case_query_agent", "01_translation_prompt",
+        problem_cn=problem_cn,
+    )
     messages = [
         SystemMessage(content="你是专业翻译专家"),
         HumanMessage(content=translation_prompt)
@@ -249,31 +246,17 @@ async def case_query_agent(state, problem_index: int) -> List[Dict]:
         print(f"\n🤖 步骤 4: LLM 智能选择最终案例...")
 
         # ... 原来的 LLM 选择代码保持不动 ...
-        selection_prompt = f"""
-基于 RRF (Reciprocal Rank Fusion) 检索算法已经筛选出以下 {BM25_CANDIDATE_K} 个候选案例。
-分数说明: RRF(融合分数) = 1/(k+BM25排名) + 1/(k+SBERT排名)，排名越小越相关
-
-**中文问题**: {problem_cn}
-**英文问题**: {problem_en}
-**用户输入**： {user_query}
-**目标城市**： {target_city}
-**匹配区域**： {matched_area}
-
-**候选案例 (已按混合检索算法预排序)**:
-{results_input}
-
-你是一个顶尖城市规划案例专家，分析请从这些案例中选出和问题，用户输入，以及目标城市最相关的 {FINAL_CASE_COUNT} 个案例（需要全球视野，注重地区适配性）。
-
-要求:
-1. 参考混合检索分数，但也要考虑案例质量和多元性.不要香港本地的。
-2. 优先考虑和目标城市背景相似，具有适配性的案例
-3. 优先权威来源的案例（如知名学术期刊、政府报告，国际组织报告、顶尖机构和主流媒体等）
-4. 平衡学术研究和实践案例
-5. 注意案例的时效性
-6. 尽量选外国的案例，不要中国的案例，除非它们非常突出且相关
-
-只需输出 {FINAL_CASE_COUNT} 个序号（对应上面的编号），用逗号分隔:
-"""
+        selection_prompt = load_prompt(
+            "agents/case_query_agent", "02_selection_prompt",
+            BM25_CANDIDATE_K=str(BM25_CANDIDATE_K),
+            problem_cn=problem_cn,
+            problem_en=problem_en,
+            user_query=user_query,
+            target_city=target_city,
+            matched_area=matched_area,
+            results_input=results_input,
+            FINAL_CASE_COUNT=str(FINAL_CASE_COUNT),
+        )
 
         messages = [
              SystemMessage(content="你是国际城市规划专家，请综合考虑检索分数和案例质量"),
@@ -402,61 +385,12 @@ async def case_query_agent(state, problem_index: int) -> List[Dict]:
             print(f"    ⏭️ 跳过深度研究（消融模式），只用初步抓取内容")
             print(f"    🧠 综合分析...")
 
-            comprehensive_prompt = f"""
-作为国际城市规划专家，请对以下案例进行综合分析（用中文输出）:
-
-**案例标题**: {case['title']}
-
-**提取信息**:
-{initial_content[:30000]}
-
-请按以下结构分析（不需要JSON，直接markdown格式，缺失信息请标注，不要直接推测，特别注意：直接输出报告内容，不要包含任何解释或前置文本，比如，好的，作为资深城市规划报告撰写专家，我将基于您提供的全部信息，为您生成一份专业、全面的报告。）：
-    
-【案例来源】
-网址链接：{case.get('url', '未知')}
-案例标题: {case['title']}
-案例来源：（从初步的提取信息中判断，从以下类型中选择，或标注"未知"）
-            1. 外国政府官方规划文件（法定图则、政策白皮书、议会报告或者具体部门研究）
-            2. 政府委托公开研究报告（标注发布机构）
-            3. 学术研究（标注期刊名字）
-            4. 专业机构报告（ULI、RICS、ISOCARP 等）
-            5. 行业咨询报告（Savills、CBRE 等市场研究）
-            6. 新闻报道、项目宣传材料、无法核查来源
-    
-【基本信息】
-城市/国家:
-时间:
-背景:
-
-【核心问题】
-问题描述:
-
-【解决方案】
-具体措施:
-关键技术/政策工具:
-
-【实施成果】
-定量成果:
-定性影响:
-
-【前置条件】
-制度条件:
-经济条件:
-技术条件:
-社会条件:
-
-【潜在代价/负面影响】
-经济代价:
-社会影响:
-实施风险:
-长期挑战:
-
-【可借鉴性评估】
-适用情境:
-迁移难度:
-
-请尽可能详细，如果某些信息缺失请明确说明。
-"""
+            comprehensive_prompt = load_prompt(
+                "agents/case_query_agent", "03_comprehensive_prompt",
+                case_title=case['title'],
+                initial_content=initial_content[:30000],
+                case_url=str(case.get('url', '未知')),
+            )
 
             
             comprehensive_response = await LLMService.ainvoke_raw("default", max_tokens=TOKEN_LIMITS["case_query_agent"], messages=[
@@ -578,23 +512,11 @@ async def case_query_agent(state, problem_index: int) -> List[Dict]:
         for c in structured_cases
     ])
 
-    summary_prompt = f"""
-请对以下全球案例进行总结（中文输出）:
-
-**目标问题**: {problem_cn}
-
-**收集的案例**:
-{cases_summary_input}
-
-请撰写一份内容详细且逻辑清晰的总结报告（以下要点为一级标题）:
-1. 全球范围内解决该问题的主要趋势
-2. 不同国家/地区的代表性做法和主要案例（分小节罗列案例的详细信息，二级标题）
-3. 共同的成功要素
-4. 主要的前置条件
-5. 常见的代价和挑战
-
-直接输出中文报告（Markdown 格式）。
-"""
+    summary_prompt = load_prompt(
+        "agents/case_query_agent", "04_summary_prompt",
+        problem_cn=problem_cn,
+        cases_summary_input=cases_summary_input,
+    )
     try:
         summary_response = await LLMService.ainvoke("default", max_tokens=TOKEN_LIMITS["case_query_agent"], messages=[
             SystemMessage(content="你是国际城市规划研究专家"),

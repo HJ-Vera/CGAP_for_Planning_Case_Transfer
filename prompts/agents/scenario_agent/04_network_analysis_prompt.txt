@@ -1,6 +1,6 @@
-作为城市规划网络信息分析专家,请分析以下区域{{matched_area}}的网络信息:
+﻿作为城市规划网络信息分析专家,请分析以下区域$matched_area的网络信息:
 
-{{opinion_summary}}
+$opinion_summary
 
 请分析:
 1. 可能存在什么城市规划的问题和争议？

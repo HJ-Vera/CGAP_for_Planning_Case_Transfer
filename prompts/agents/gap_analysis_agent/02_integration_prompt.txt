@@ -1,12 +1,12 @@
-请将以下三个方向的全球经验分析整合成一个连贯的城市规划方案:
+﻿请将以下三个方向的全球经验分析整合成一个连贯的城市规划方案:
 
-**区域**: {{matched_area}}
-**本地数据**: {{local_data_analysis_json}}
-**本地分析**: {{context_summary_json}}
-**本地存在问题**: {{full_response_json}}
-**本地相关法规与政策**: {{md_content}}
+**区域**: $matched_area
+**本地数据**: $local_data_analysis_json
+**本地分析**: $context_summary_json
+**本地存在问题**: $full_response_json
+**本地相关法规与政策**: $md_content
 
-{{gap_analysis_directions}}
+$gap_analysis_directions
 
 请撰写一份综合规划方案，内容详实，细节充分，分析深入，内容包括:
 

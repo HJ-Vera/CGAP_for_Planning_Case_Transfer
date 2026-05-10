@@ -9,6 +9,7 @@ from typing import List, Dict, Any, Tuple
 
 from langchain_core.messages import SystemMessage, HumanMessage
 from langsmith import traceable
+from prompts import load_prompt
 
 
 def extract_content(response):
@@ -134,23 +135,11 @@ def _parse_json(text: str, fallback: dict) -> dict:
 @traceable(name="llm_extract", run_type="chain")
 async def _llm_extract(llm, title: str, content: str) -> dict:
     """初步提取：从网页原文提取7个字段"""
-    prompt = f"""你是城市规划专家。请从以下案例原文中提取信息。
-
-**标题**: {title}
-**内容**: {content[:30000]}
-
-请严格按以下JSON格式输出，不要输出其他内容：
-```json
-{{
-  "city_country": "城市/国家，不确定则留空字符串",
-  "time": "时间，不确定则留空字符串",
-  "core_problem": "核心问题，不确定则留空字符串",
-  "solution": "解决方案，不确定则留空字符串",
-  "key_results": "关键数据/成果，不确定则留空字符串",
-  "preconditions": "前置条件（制度/经济/技术/社会），不确定则留空字符串",
-  "downsides": "潜在代价/负面影响，不确定则留空字符串"
-}}
-```"""
+    prompt = load_prompt(
+        "tools/deep_research", "01_llm_extract_prompt",
+        title=title,
+        content=content[:30000],
+    )
     fallback = {k: "" for k in SEVEN_FIELDS}
     try:
         resp = await llm.ainvoke([
@@ -172,40 +161,12 @@ async def _llm_check_missing(llm, title: str, content: str, ext: dict) -> Tuple[
     改进3: LLM审查缺失字段，返回标准化的英文key列表。
     将 missing 和 unobtainable 严格分开，不再合并。
     """
-    prompt = f"""你是城市规划案例审查专家。请判断以下案例哪些字段信息缺失或不足。
-
-【案例标题】{title}
-
-【参考内容节选】
-{content[:30000] if content else "（无内容）"}
-
-【当前已提取信息】
-{_format_extraction(ext)}
-
-请审查以上所有内容，判断以下7个字段是否有实质内容：
-1. 城市/国家 (city_country)
-2. 时间 (time)
-3. 核心问题 (core_problem)
-4. 解决方案 (solution)
-5. 关键数据/成果 (key_results)
-6. 前置条件 (preconditions)
-7. 潜在代价/负面影响 (downsides)
-
-判断标准：
-- 在参考内容或已提取信息中有具体、实质描述 → 视为"已有"，不列入缺失
-- 仅有模糊提及或完全没有 → 视为"缺失"，列入 missing
-- 该信息在此类官方资料中本就不会公开（谨慎判断）→ 列入 unobtainable
-
-**重要**: 请在返回的字段名中使用括号内的英文key，例如 "city_country" 而非 "城市/国家"。
-
-请严格按以下JSON格式输出，不要输出其他内容：
-```json
-{{
-  "missing": ["english_key_1", "english_key_2"],
-  "unobtainable": ["english_key_1"],
-  "notes": "简短说明"
-}}
-```"""
+    prompt = load_prompt(
+        "tools/deep_research", "02_llm_check_missing_prompt",
+        title=title,
+        content=content[:30000] if content else "（无内容）",
+        formatted_extraction=_format_extraction(ext),
+    )
 
     fallback_missing = _get_missing_fields(ext)
     try:
@@ -252,32 +213,11 @@ async def _llm_check_missing(llm, title: str, content: str, ext: dict) -> Tuple[
 @traceable(name="llm_summary", run_type="chain")
 async def _llm_summary(llm, extraction: dict, round_raw: str) -> dict:
     """渐进式摘要：合并已有摘要和本轮新内容"""
-    prompt = f"""你是城市规划专家。请根据【新增内容】补充完善【当前案例摘要】。
-
-【当前案例摘要】（已有信息，请保留并补充）：
-{_format_extraction(extraction)}
-
-【本轮新增内容】：
-{round_raw[:30000]}
-
-规则：
-- 已有实质内容的字段请完整保留，可在末尾追加新信息
-- 空白字段尽量从新增内容中填写；若新增内容中确实没有该信息，保持空字符串
-- is_complete：当7个字段均有实质内容时为true
-
-请严格按以下JSON格式输出，不要输出其他内容：
-```json
-{{
-  "city_country": "...",
-  "time": "...",
-  "core_problem": "...",
-  "solution": "...",
-  "key_results": "...",
-  "preconditions": "...",
-  "downsides": "...",
-  "is_complete": true或false
-}}
-```"""
+    prompt = load_prompt(
+        "tools/deep_research", "03_llm_summary_prompt",
+        formatted_extraction=_format_extraction(extraction),
+        round_raw=round_raw[:30000],
+    )
     fallback = {**extraction, "is_complete": False}
     try:
         resp = await llm.ainvoke([
@@ -325,33 +265,15 @@ async def _llm_decide(llm, title: str, extraction: dict,
         if f not in unobtainable
     ]
 
-    prompt = f"""你是城市规划案例研究专家。请决定是否继续补充搜索。
-
-【案例标题】{title}
-
-【当前已有信息】
-{_format_extraction(extraction)}
-
-【仍需搜索的缺失字段】{searchable_missing}{unobtainable_block}
-
-【历史搜索记录】
-{history_str}
-{new_content_block}
-
-【决策思路】
-1. 若"仍需搜索的缺失字段"为空列表 → 应终止
-2. 缺失字段是否可能在公开资料中找到？
-3. 连续2轮收获为"无新增字段"则应终止
-4. 若继续，下一轮应换什么搜索角度（与历史查询明显不同）
-
-请严格按以下JSON格式输出，不要输出其他内容：
-```json
-{{
-  "should_continue": true或false,
-  "next_queries": ["搜索词1", "搜索词2"],
-  "stop_reason": "若终止则填写原因，否则留空字符串"
-}}
-```"""
+    prompt = load_prompt(
+        "tools/deep_research", "04_llm_decide_prompt",
+        title=title,
+        formatted_extraction=_format_extraction(extraction),
+        searchable_missing=str(searchable_missing),
+        unobtainable_block=unobtainable_block,
+        history_str=history_str,
+        new_content_block=new_content_block,
+    )
 
     fallback = {"should_continue": False,
                 "next_queries": [],
@@ -516,73 +438,18 @@ async def deep_case_research(
     # ── 第3步：最终报告 ──────────────────────────────────────────
     print("\n📝 生成最终案例报告...")
 
-    report_prompt = f"""请对以下案例进行综合分析（用中文输出）：
-    **案例标题**: {case['title']}
-    **初步提取信息**:{initial_content}
-    **后续完整信息**: {_format_extraction(extraction)}
-
-    仍缺失信息: {extraction.get('missing_aspects', [])}
-    不可得信息: {extraction.get('unobtainable_fields', [])}
-    注：- 标注"不可得"的字段在公开资料中不存在，请在报告中说明而非留空。
-        - 不需要JSON，直接markdown格式
-        - 缺失信息请标注，不要直接推测。
-        - 直接输出报告内容，不要包含任何解释或前置文本，比如，好的，作为资深城市规划报告撰写专家，我将基于您提供的全部信息，为您生成一份专业、全面的报告。
-    
-    报告结构要求：
-
-    1. **案例来源**
-       - 1.1 网址链接：{case.get('url', '未知')}
-       - 1.2 案例标题: {case['title']}
-       - 1.3 案例来源：（从初步的提取信息中判断，从以下类型中选择，或标注"未知"）
-            a. 外国政府官方规划文件（法定图则、政策白皮书、议会报告或者具体部门研究）
-            b. 政府委托公开研究报告（标注发布机构）
-            c. 学术研究（标注期刊名字）
-            d. 专业机构报告（ULI、RICS、ISOCARP 等）
-            e. 行业咨询报告（Savills、CBRE 等市场研究）
-            f. 新闻报道、项目宣传材料、无法核查来源
-    
-    2. **基本信息**
-       - 2.1 城市/国家: {extraction.get('city', '未知')}
-       - 2.2 时间: {extraction.get('time', '未知')}
-       - 2.3 背景: {extraction.get('background', '未知')}
-
-    3. **核心问题**
-       - 3.1 问题描述
-       - 3.2 项目难点/限制
-
-    4. **解决方案**
-       - 4.1 具体措施
-       - 4.2 关键技术/政策工具
-
-    5. **实施成果**
-       - 5.1 定量成果
-       - 5.2 定性影响
-
-    6. **前置条件**
-       - 6.1 制度条件
-       - 6.2 经济条件
-       - 6.3 技术条件
-       - 6.4 社会条件
-
-    7. **潜在代价/负面影响**
-       - 7.1 经济代价
-       - 7.2 社会影响
-       - 7.3 实施风险
-       - 7.4 长期挑战
-
-    8. **可借鉴性评估**
-       - 8.1 适用情境
-       - 8.2 迁移难度
-
-    ## 撰写注意事项：
-    1. 按以上结构分节撰写
-    2. 对缺失信息注明"资料不足，待补充"，对不可得信息注明"公开资料不涉及"
-    3. 风格：专业、客观、中文，信息尽量详细完整。
-    4. 输出必须严谨，不能编造或者自行推测不存在的信息,所有内容必须基于提供的信息和分析结果，不能凭空捏造数据或案例。
-    5. 结构清晰，层次分明，使用适当的标题和小标题，便于阅读和理解。
-    6. 内容详实：每个部分都要有充分的分析和细节支持
-
-    请直接输出最终报告内容，不要包含任何解释或前置文本。"""
+    report_prompt = load_prompt(
+        "tools/deep_research", "05_report_prompt",
+        case_title=case['title'],
+        initial_content=initial_content,
+        formatted_extraction=_format_extraction(extraction),
+        missing_aspects=str(extraction.get('missing_aspects', [])),
+        unobtainable_fields=str(extraction.get('unobtainable_fields', [])),
+        case_url=str(case.get('url', '未知')),
+        city=str(extraction.get('city', '未知')),
+        time=str(extraction.get('time', '未知')),
+        background=str(extraction.get('background', '未知')),
+    )
 
     try:
         resp = await llm.ainvoke([

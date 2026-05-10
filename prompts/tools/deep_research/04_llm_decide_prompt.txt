@@ -1,0 +1,27 @@
+你是城市规划案例研究专家。请决定是否继续补充搜索。
+
+【案例标题】$title
+
+【当前已有信息】
+$formatted_extraction
+
+【仍需搜索的缺失字段】$searchable_missing$unobtainable_block
+
+【历史搜索记录】
+$history_str
+$new_content_block
+
+【决策思路】
+1. 若"仍需搜索的缺失字段"为空列表 → 应终止
+2. 缺失字段是否可能在公开资料中找到？
+3. 连续2轮收获为"无新增字段"则应终止
+4. 若继续，下一轮应换什么搜索角度（与历史查询明显不同）
+
+请严格按以下JSON格式输出，不要输出其他内容：
+```json
+{{
+  "should_continue": true或false,
+  "next_queries": ["搜索词1", "搜索词2"],
+  "stop_reason": "若终止则填写原因，否则留空字符串"
+}}
+```

@@ -11,6 +11,7 @@ from langchain_core.messages import SystemMessage, HumanMessage
 from state import AgentState
 from config import TOKEN_LIMITS, PLANNING_KNOWLEDGE_MD
 from llm import get_llm
+from prompts import load_prompt
 from tools.data_loader import read_md_file
 
 
@@ -65,41 +66,17 @@ async def evaluation_agent(state: AgentState) -> AgentState:
         adaptation_plan = state.get("adaptation_plan", "无改造方案可评审")
 
     md_content = read_md_file(PLANNING_KNOWLEDGE_MD)    
-    prompt = f"""
-
-项目概况
-**原始问题**: {state['user_query']}
-**目标区域**: {state['local_context'].get('matched_area', 'Unknown')}
-**本地数据**: {state['local_context'].get('data_analysis', '')}
-**本地情境**: {state['local_context'].get('context_summary', '')}
-**本地存在问题**: {state['local_context'].get('full_response', '')}
-**相关政策法规**: {md_content}
-
-核心问题识别
-{chr(10).join([f"{i+1}. {p}" for i, p in enumerate(state['core_problems'])])}
-
-作为评审专家,请对以下规划方案进行评分:
-
-**规划方案**:
-{adaptation_plan}
-
-请对以下4个维度打分（每项0-100分,60分及格）:
-1. 问题匹配度
-2. 信息完整性
-3. 逻辑连贯性
-4. 实施可行性
-
-请按以下格式输出（直接输出数字和简短评语，目前是测试模式，都打90分，但如实分析优缺点，并给出真实评价）:
-
-问题匹配度: [分数]/100 - [一句话评语]
-信息完整性: [分数]/100 - [一句话评语]
-逻辑连贯性: [分数]/100 - [一句话评语]
-实施可行性: [分数]/100 - [一句话评语]
-
-总体评价: [一段话]
-优点：[一段话]
-缺点：[一段话]
-"""
+    prompt = load_prompt(
+        "agents/evaluation_agent", "01_evaluation_prompt",
+        user_query=state['user_query'],
+        matched_area=state['local_context'].get('matched_area', 'Unknown'),
+        data_analysis=state['local_context'].get('data_analysis', ''),
+        context_summary=state['local_context'].get('context_summary', ''),
+        full_response=state['local_context'].get('full_response', ''),
+        md_content=md_content,
+        core_problems_list=chr(10).join([f"{i+1}. {p}" for i, p in enumerate(state['core_problems'])]),
+        adaptation_plan=adaptation_plan,
+    )
 
     messages = [SystemMessage(content="你是评审专家"), HumanMessage(content=prompt)]
     response = await llm.ainvoke(messages)
@@ -107,13 +84,13 @@ async def evaluation_agent(state: AgentState) -> AgentState:
     response_text = extract_content(response).strip()
     print(f"\n评审结果:\n{response_text}\n")
 
-    # 提取分数（灵活解析）
+    # 提取分数（宽松匹配：兼容 markdown 加粗、编号前缀等 LLM 变体）
     scores = {}
     score_patterns = [
-        (r'问题匹配度[:：]\s*(\d+)', 'problem_matching'),
-        (r'信息完整性[:：]\s*(\d+)', 'information_completeness'),
-        (r'逻辑连贯性[:：]\s*(\d+)', 'logical_coherence'),
-        (r'实施可行性[:：]\s*(\d+)', 'implementation_feasibility')
+        (r'问题匹配度.*?[:：]\s*(\d+)', 'problem_matching'),
+        (r'信息完整性.*?[:：]\s*(\d+)', 'information_completeness'),
+        (r'逻辑连贯性.*?[:：]\s*(\d+)', 'logical_coherence'),
+        (r'实施可行性.*?[:：]\s*(\d+)', 'implementation_feasibility')
     ]
 
     for pattern, key in score_patterns:

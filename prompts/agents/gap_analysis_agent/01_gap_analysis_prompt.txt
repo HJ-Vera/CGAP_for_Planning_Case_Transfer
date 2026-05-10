@@ -1,15 +1,15 @@
-作为城市规划专家,请分析全球案例与本地情境的差异:
+﻿作为城市规划专家,请分析全球案例与本地情境的差异:
 
-**本地区域**: {{matched_area}}
-**本地数据**: {{local_data_analysis_json}}
-**本地相关法规与政策**: {{md_content}}
-**核心问题**: {{problem}}
+**本地区域**: $matched_area
+**本地数据**: $local_data_analysis_json
+**本地相关法规与政策**: $md_content
+**核心问题**: $problem
 
 **全球趋势总结**:
-{{global_summary}}
+$global_summary
 
 **详细案例分析**:
-{{cases_analysis}}
+$cases_analysis
 
 请完成以下分析（用简明文本回答，每部分3-5句话）:
 

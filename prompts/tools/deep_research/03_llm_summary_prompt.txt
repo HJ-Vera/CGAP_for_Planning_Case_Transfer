@@ -1,0 +1,26 @@
+你是城市规划专家。请根据【新增内容】补充完善【当前案例摘要】。
+
+【当前案例摘要】（已有信息，请保留并补充）：
+$formatted_extraction
+
+【本轮新增内容】：
+$round_raw
+
+规则：
+- 已有实质内容的字段请完整保留，可在末尾追加新信息
+- 空白字段尽量从新增内容中填写；若新增内容中确实没有该信息，保持空字符串
+- is_complete：当7个字段均有实质内容时为true
+
+请严格按以下JSON格式输出，不要输出其他内容：
+```json
+{{
+  "city_country": "...",
+  "time": "...",
+  "core_problem": "...",
+  "solution": "...",
+  "key_results": "...",
+  "preconditions": "...",
+  "downsides": "...",
+  "is_complete": true或false
+}}
+```

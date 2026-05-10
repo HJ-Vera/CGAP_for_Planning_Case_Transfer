@@ -1,21 +1,21 @@
-请基于以下研究成果，撰写一份完整的城市规划案例分析报告。
+﻿请基于以下研究成果，撰写一份完整的城市规划案例分析报告。
 
 # 项目信息
-- **研究问题**: {{user_query}}
-- **目标城市**: {{target_city}}
-- **分析区域**: {{matched_area}}
-- **核心问题**: {{core_problems}}
-- **计划版本**: v{{plan_version}}
-- **相关政策法规**: {{md_content}}
+- **研究问题**: $user_query
+- **目标城市**: $target_city
+- **分析区域**: $matched_area
+- **核心问题**: $core_problems
+- **计划版本**: v$plan_version
+- **相关政策法规**: $md_content
 
 # 研究成果（各子任务执行结果）
 
-{{results_sections}}
+$results_sections
 
 # 评估结果
-- 评分: {{evaluation_score}}/100
-- 优势: {{strengths}}
-- 不足: {{weaknesses}}
+- 评分: $evaluation_score/100
+- 优势: $strengths
+- 不足: $weaknesses
 
 # 报告要求
 

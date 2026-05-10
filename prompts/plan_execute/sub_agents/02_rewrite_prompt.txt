@@ -1,10 +1,10 @@
-作为资深城市规划研究专家，请基于以下本地情境分析，完成搜索词重写。
+﻿作为资深城市规划研究专家，请基于以下本地情境分析，完成搜索词重写。
 
-**用户原始问题**: {{user_query}}
-**目标城市**: {{target_city}}
-**匹配区域**: {{matched_area}}
-**本地数据分析**: {{analysis_text}}
-**本地数据**: {{local_data_json}}
+**用户原始问题**: $user_query
+**目标城市**: $target_city
+**匹配区域**: $matched_area
+**本地数据分析**: $analysis_text
+**本地数据**: $local_data_json
 
 请完成以下任务:
 
@@ -21,7 +21,7 @@
 - 每个核心问题生成 2 条英文搜索词、1 条中文搜索词
 - 英文搜索词应聚焦: "new town planning", "TOD development", "brownfield redevelopment",
   "urban renewal", "transit-oriented development", "satellite city" 等国际规划术语
-- 搜索词必须避免出现: {{matched_area}}、香港、Hong Kong 等本地地名
+- 搜索词必须避免出现: $matched_area、香港、Hong Kong 等本地地名
 - 搜索词应能检索到新加坡、伦敦、东京、首尔、阿姆斯特丹、巴黎、深圳等城市的类似规划案例
 
 请严格按以下 JSON 格式输出，不要输出其他内容:

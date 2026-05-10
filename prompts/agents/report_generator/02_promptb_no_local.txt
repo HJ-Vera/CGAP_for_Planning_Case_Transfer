@@ -1,35 +1,35 @@
-请基于以下内容生成一份完整的国际化城市规划方案报告:
+﻿请基于以下内容生成一份完整的国际化城市规划方案报告:
 
 # 一、项目概况
-**原始问题**: {{user_query}}
-**目标区域**: {{matched_area}}
+**原始问题**: $user_query
+**目标区域**: $matched_area
 
 # 二、全球案例研究概况
-共收集 {{case_stats_total}} 个相关案例，其中：
-- 国际案例: {{case_stats_global}} 个
-- 本地案例: {{case_stats_local}} 个
+共收集 $case_stats_total 个相关案例，其中：
+- 国际案例: $case_stats_global 个
+- 本地案例: $case_stats_local 个
 
 # 三、详细案例分析
 以下是每个问题对应的详细案例分析，请仔细参考这些案例内容：
 
-## 问题1: {{core_problem_1}}
-{{problem_1_case_analyses}}
+## 问题1: $core_problem_1
+$problem_1_case_analyses
 
-## 问题2: {{core_problem_2}}
-{{problem_2_case_analyses}}
+## 问题2: $core_problem_2
+$problem_2_case_analyses
 
-## 问题3: {{core_problem_3}}
-{{problem_3_case_analyses}}
+## 问题3: $core_problem_3
+$problem_3_case_analyses
 
 # 五、差异分析
-{{gap_analysis_directions}}
+$gap_analysis_directions
 
 # 六、综合规划方案
-{{adaptation_plan}}
+$adaptation_plan
 
 # 七、评估结果
-总分: {{total_score}}/400
-{{scores_detail}}
+总分: $total_score/400
+$scores_detail
 
 # 八、报告撰写要求
 请基于以上所有信息，生成一份详细、专业的 Markdown 格式城市规划方案报告。
@@ -37,9 +37,9 @@
 ## 报告结构要求：
 1. **执行摘要** - 简要概括报告核心内容，不要对查询区域做出深入分析，聚焦案例总结
 2. **全球案例研究**
-   - 2.1 {{rewritten_problem_1}}案例分析（重点参考问题1的案例）
-   - 2.2 {{rewritten_problem_2}}案例分析（重点参考问题2的案例）
-   - 2.3 {{rewritten_problem_3}}案例分析（重点参考问题3的案例）
+   - 2.1 $rewritten_problem_1案例分析（重点参考问题1的案例）
+   - 2.2 $rewritten_problem_2案例分析（重点参考问题2的案例）
+   - 2.3 $rewritten_problem_3案例分析（重点参考问题3的案例）
    - 2.4 关键成功要素总结
 3. **差异分析与适应性改造**
    - 3.1 前置条件对比分析

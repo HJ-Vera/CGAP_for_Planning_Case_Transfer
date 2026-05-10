@@ -3,6 +3,7 @@
 """
 
 from state import AgentState
+from prompts import load_prompt
 from langchain_core.messages import SystemMessage, HumanMessage
 from llm import get_llm
 import json
@@ -28,25 +29,15 @@ async def feedback_loop(state: AgentState) -> AgentState:
 
     llm = get_llm(max_tokens=8000)
 
-    prompt = f"""你是城市规划研究顾问。评审专家对当前方案提出了以下反馈:
+    prompt = load_prompt(
+        "agents/feedback", "01_feedback_prompt",
+        feedback=feedback,
+        scores_json=json.dumps(scores, ensure_ascii=False),
+        revision=revision,
+        core_problems_list=chr(10).join(f"  {i+1}. {p}" for i, p in enumerate(state.get("rewritten_problems", []))),
+    )
 
-**评审反馈**: {feedback}
-**各项得分**: {json.dumps(scores, ensure_ascii=False)}
-**改进意见**: {revision}
-
-**当前 3 个核心问题**:
-{chr(10).join(f"  {i+1}. {p}" for i, p in enumerate(state.get("rewritten_problems", [])))}
-
-请根据反馈，为每个核心问题生成改进后的搜索关键词（中文，20字以内），
-重点补强得分最低的维度。
-
-请严格按以下格式输出（每行一个，共3行）:
-问题1新关键词: xxx
-问题2新关键词: xxx
-问题3新关键词: xxx
-"""
-
-    response = await llm.invoke([
+    response = llm.invoke([
         SystemMessage(content="你是搜索策略优化专家"),
         HumanMessage(content=prompt),
     ])

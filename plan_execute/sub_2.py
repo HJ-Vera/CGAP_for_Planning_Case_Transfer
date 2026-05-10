@@ -11,6 +11,7 @@ from typing import Any, Dict, List
 
 from langchain_core.messages import SystemMessage, HumanMessage
 
+from prompts import load_prompt
 from llm import get_llm
 from config import (
     TOKEN_LIMITS, HONGKONG_DATA_FILE, KNOWLEDGE_BASE_MD,
@@ -85,21 +86,13 @@ def _exec_analyze_local_data(state: PlanExecuteState, task: SubTask) -> Dict:
     all_areas = df[area_column].astype(str).tolist()
 
     # ── 用和 scenario_agent 一样的完整 prompt 做区域匹配 ──
-    area_matching_prompt = f"""
-你需要从数据表中找到与用户查询最相关的区域。
-
-**用户查询**: {user_query}
-**目标城市**: {target_city}
-
-**数据表中的所有区域（共{len(all_areas)}个）**: {', '.join(all_areas)}
-
-注意：
-- 数据表中的区域是区议会选区级别（如"油麻地"、"旺角南"、"尖沙咀"），不是区级别（如"油尖旺区"）
-- 如果用户查询涉及一个大范围区域（如"油尖旺区"、"北部都会区"），它包含多个选区，请列出所有属于该区域的选区
-- 例如"油尖旺区"应匹配：油麻地、旺角南、旺角北、尖沙咀、大角咀等油尖旺区下辖的所有选区
-- 请直接在回复中包含匹配到的区域名称，必须与数据表中的名称基本一致
-- 如果不确定，宁可多选几个相关的，不要漏选
-"""
+    area_matching_prompt = load_prompt(
+        "plan_execute/sub_2", "01_area_matching_prompt",
+        user_query=user_query,
+        target_city=target_city,
+        total_areas=str(len(all_areas)),
+        all_areas=", ".join(all_areas),
+    )
 
     resp = llm.invoke([
         SystemMessage(content="你是香港地理信息匹配专家，熟悉香港18个区议会分区及其下辖选区"),
@@ -302,10 +295,12 @@ def _exec_deep_research_case(state: PlanExecuteState, task: SubTask) -> Dict:
             print(f"    ⚠️ 网页内容不足，使用 LLM 基于标题进行基础研究")
             resp = llm.invoke([
                 SystemMessage(content="你是城市规划案例研究专家"),
-                HumanMessage(content=f"请基于你的知识，对以下城市规划案例进行分析:\n\n"
-                     f"标题: {title}\n摘要: {snippet}\nURL: {url}\n\n"
-                     f"请描述你对这个案例的理解。"
-                     f"如果你不了解这个具体案例，请说明详细情况并标注推断内容，不要随意推测或捏造事实或者数据。"),
+                HumanMessage(content=load_prompt(
+                    "plan_execute/sub_2", "05_fallback_prompt",
+                    title=title,
+                    snippet=snippet,
+                    url=url,
+                )),
             ])
             return {
                 "title": title,
@@ -408,12 +403,12 @@ def _exec_hybrid_retrieval(state: PlanExecuteState, task: SubTask) -> List[Dict]
     ])
     print(f"    📊 候选案例列表:\n{results_text}")
 
-    select_prompt = f"""从以下候选案例中选出最相关的 {n_select} 个。不要香港本地的。
-问题: {problem_cn}
-候选案例:
-{results_text}
-
-只输出序号，逗号分隔（如: 1,3,5,7）"""
+    select_prompt = load_prompt(
+        "plan_execute/sub_2", "02_select_prompt",
+        n_select=str(n_select),
+        problem_cn=problem_cn,
+        results_text=results_text,
+    )
 
     resp = llm.invoke([
         SystemMessage(content="你是案例选择专家"),
@@ -464,25 +459,14 @@ def _exec_gap_analysis(state: PlanExecuteState, task: SubTask) -> str:
 
     md_content = read_md_file(PLANNING_KNOWLEDGE_MD)
 
-    prompt = f"""作为城市规划专家，请分析全球案例与本地情境的差异:
-
-**本地区域**: {local_context.get('matched_area', '未知')}
-**本地数据摘要**: {local_context.get('analysis_text', '未知')}
-**相关政策法规**: {md_content}
-**核心问题**: {problem}
-
-**收集到的案例信息**:
-{cases_text}
-
-请完成:
-【对比分析】全球案例与本地的相似点和差异点
-【关键差异】本地缺失的条件（制度/经济/技术/社会）
-【适应性改造方案】如何调整全球经验适应本地
-【实施风险】潜在挑战和代价
-【实施路径】短期/中期/长期步骤
-
-请用 Markdown 格式输出。
-"""
+    prompt = load_prompt(
+        "plan_execute/sub_2", "03_gap_analysis_prompt",
+        matched_area=local_context.get("matched_area", "未知"),
+        analysis_text=local_context.get("analysis_text", "未知"),
+        md_content=md_content,
+        problem=problem,
+        cases_text=cases_text,
+    )
 
     resp = llm.invoke([
         SystemMessage(content="你是国际城市规划专家"),
@@ -501,9 +485,10 @@ def _exec_translate(state: PlanExecuteState, task: SubTask) -> str:
 
     llm = get_llm(max_tokens=2000)
 
-    prompt = f"""请将以下中文城市规划问题翻译成英文，保留关键概念，适合国际学术搜索:
-{text}
-只输出英文翻译。"""
+    prompt = load_prompt(
+        "plan_execute/sub_2", "04_translate_prompt",
+        text=text,
+    )
 
     resp = llm.invoke([
         SystemMessage(content="你是专业翻译"),

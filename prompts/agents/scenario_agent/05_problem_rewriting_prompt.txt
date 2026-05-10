@@ -1,12 +1,12 @@
-作为资深城市规划专家,请基于以下信息,识别并重写核心问题。
+﻿作为资深城市规划专家,请基于以下信息,识别并重写核心问题。
 
-**用户原始问题**: {{user_query}}
-**目标城市**: {{target_city}}
-**匹配区域**: {{matched_area}}
-**城市规划相关政策和法律**: {{md_content}}
-**区域数据**: {{local_info_json}}
-**数据分析**: {{data_analysis_text}}
-**网络信息**: {{opinion_summary}}
+**用户原始问题**: $user_query
+**目标城市**: $target_city
+**匹配区域**: $matched_area
+**城市规划相关政策和法律**: $md_content
+**区域数据**: $local_info_json
+**数据分析**: $data_analysis_text
+**网络信息**: $opinion_summary
 
 请分析:
 1. 这个区域的主要空间特点是什么，包括容积率，建筑年限，建筑高度，地形地貌？

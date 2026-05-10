@@ -1,0 +1,33 @@
+name: objective
+description: 客观维度评审 — 评估外部案例与香港规划查询在检索精准性、场景匹配度、来源可靠性、时效性四个客观维度的表现
+type: objective
+dimensions:
+  - id: D1
+    key: D1_precision
+    label: 检索精准性
+    label_en: Retrieval Precision
+    definition: 外部案例命中查询核心议题的程度——包括土地用途类型、规划问题性质和地理脉络
+    reasoning_fields: '"evidence": "string", "hk_comparison": "string", "anchor_match": "string", "score_rationale": "string"'
+  - id: D2
+    key: D2_scenario
+    label: 场景匹配度
+    label_en: Scenario Matching
+    definition: 外部案例的物理空间特征与香港查询情境的可比程度，仅限物理/空间相似性
+    reasoning_fields: '"evidence": "string", "hk_comparison": "string", "anchor_match": "string", "score_rationale": "string"'
+  - id: D3
+    key: D3_source
+    label: 来源可靠性
+    label_en: Source Reliability
+    definition: 外部案例原始来源的权威程度与可查证性，与香港适用性无关
+    reasoning_fields: '"evidence": "string", "hk_comparison": "string", "anchor_match": "string", "score_rationale": "string"'
+  - id: D4
+    key: D4_timeliness
+    label: 时效性
+    label_en: Timeliness
+    definition: 外部案例的政策背景和规划方法是否仍有效，以及是否与香港当前框架对齐
+    reasoning_fields: '"external_currency": "string", "hk_alignment": "string", "score_rationale": "string"'
+score_range:
+  min: 1
+  max: 5
+  total_min: 4
+  total_max: 20

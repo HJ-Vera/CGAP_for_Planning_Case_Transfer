@@ -1,19 +1,19 @@
-
+﻿
 项目概况
-**原始问题**: {{user_query}}
-**目标区域**: {{matched_area}}
-**本地数据**: {{data_analysis}}
-**本地情境**: {{context_summary}}
-**本地存在问题**: {{full_response}}
-**相关政策法规**: {{md_content}}
+**原始问题**: $user_query
+**目标区域**: $matched_area
+**本地数据**: $data_analysis
+**本地情境**: $context_summary
+**本地存在问题**: $full_response
+**相关政策法规**: $md_content
 
 核心问题识别
-{{core_problems_list}}
+$core_problems_list
 
 作为评审专家,请对以下规划方案进行评分:
 
 **规划方案**:
-{{adaptation_plan}}
+$adaptation_plan
 
 请对以下4个维度打分（每项0-100分,60分及格）:
 1. 问题匹配度

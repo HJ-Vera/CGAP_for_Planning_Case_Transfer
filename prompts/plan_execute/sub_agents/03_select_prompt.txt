@@ -1,7 +1,7 @@
-从以下候选案例中选出最相关的 {{n_select}} 个。
-问题: {{problem_cn}}
+﻿从以下候选案例中选出最相关的 $n_select 个。
+问题: $problem_cn
 候选案例:
-{{results_text}}
+$results_text
 
 要求:
 1. 参考RRF融合排名，但也要考虑案例质量和多元性.不要香港本地的。

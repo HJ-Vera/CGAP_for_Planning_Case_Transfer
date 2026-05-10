@@ -1,0 +1,34 @@
+你是城市规划案例审查专家。请判断以下案例哪些字段信息缺失或不足。
+
+【案例标题】$title
+
+【参考内容节选】
+$content
+
+【当前已提取信息】
+$formatted_extraction
+
+请审查以上所有内容，判断以下7个字段是否有实质内容：
+1. 城市/国家 (city_country)
+2. 时间 (time)
+3. 核心问题 (core_problem)
+4. 解决方案 (solution)
+5. 关键数据/成果 (key_results)
+6. 前置条件 (preconditions)
+7. 潜在代价/负面影响 (downsides)
+
+判断标准：
+- 在参考内容或已提取信息中有具体、实质描述 → 视为"已有"，不列入缺失
+- 仅有模糊提及或完全没有 → 视为"缺失"，列入 missing
+- 该信息在此类官方资料中本就不会公开（谨慎判断）→ 列入 unobtainable
+
+**重要**: 请在返回的字段名中使用括号内的英文key，例如 "city_country" 而非 "城市/国家"。
+
+请严格按以下JSON格式输出，不要输出其他内容：
+```json
+{{
+  "missing": ["english_key_1", "english_key_2"],
+  "unobtainable": ["english_key_1"],
+  "notes": "简短说明"
+}}
+```

@@ -16,6 +16,7 @@ from state import AgentState
 from config import TOKEN_LIMITS, KNOWLEDGE_BASE_MD, HONGKONG_DATA_FILE
 from llm import get_llm
 from tools.data_loader import load_hongkong_data, read_md_file
+from prompts import load_prompt
 from tools.data_analysis import analyze_regional_data
 from services.search_service import SearchService
 from services.llm_service import LLMService
@@ -58,21 +59,12 @@ async def scenario_deconstruction_agent(state: AgentState) -> AgentState:
     # ========== 第二步: 让 LLM 理解数据表 ==========
     print("\n🧠 步骤 2: AI 理解数据表含义...")
 
-    table_understanding_prompt = f"""
-你是一位数据分析专家。请仔细分析以下数据表:
-
-**数据表信息**:
-- 列名: {list(df.columns)}
-- 行数: {len(df)}
-- 数据预览 (前3行):
-{df.head(3).to_string()}
-
-请简要回答:
-1. 哪一列是区域/地区名称列？
-2. 这个数据表主要描述什么信息？
-
-请直接回答，不需要JSON格式。
-"""
+    table_understanding_prompt = load_prompt(
+        "agents/scenario_agent", "01_table_understanding_prompt",
+        df_columns=str(list(df.columns)),
+        df_rows=str(len(df)),
+        df_head=df.head(3).to_string(),
+    )
 
     messages = [
         SystemMessage(content="你是数据分析专家"),
@@ -108,20 +100,13 @@ async def scenario_deconstruction_agent(state: AgentState) -> AgentState:
     print(f"  📍 数据表中的所有区域: {', '.join(all_areas[:5])}{'...' if len(all_areas) > 5 else ''}")
 
     # 让 LLM 进行智能匹配
-    area_matching_prompt = f"""
-将用户输入的地名（可能是宽泛、模糊、不精确的）精准映射到以下标准选区列表中的一个或多个选区。
-
-**用户查询**: {user_query}
-**关键词**: {area_name}
-**数据表描述**: {table_summary}
-
-**数据表中的所有区域**: {', '.join(all_areas)}
-
-注意：
-- 如果用户查询涉及一个大范围区域（如"新田科技城"、"北部都会区"），它可能跨越多个区议会分区，请列出所有相关的分区。
-- 如果用户查询仅涉及一个具体分区，只返回那一个。
-- 请直接在回复中包含匹配到的区域名称（必须与数据表中的名称完全一致）。
-"""
+    area_matching_prompt = load_prompt(
+        "agents/scenario_agent", "02_area_matching_prompt",
+        user_query=user_query,
+        area_name=area_name,
+        table_summary=table_summary,
+        all_areas=", ".join(all_areas),
+    )
 
     messages = [
         SystemMessage(content="你是一位香港选区地名匹配专家，熟悉香港所有行政区划及地理常识。"),
@@ -265,37 +250,18 @@ async def scenario_deconstruction_agent(state: AgentState) -> AgentState:
     # ========== 第五/六步的 LLM 分析并发 ==========
     print("\n🧠 步骤 5-6: 并行分析本地数据与网络信息...")
 
-    data_analysis_prompt = f"""
-作为城市规划数据分析专家,请分析以下区域数据:
+    data_analysis_prompt = load_prompt(
+        "agents/scenario_agent", "03_data_analysis_prompt",
+        matched_area=matched_area,
+        local_info_json=json.dumps(local_info, ensure_ascii=False, indent=2),
+        result_text=result_text,
+    )
 
-**区域**: {matched_area}
-**区域数据**: {json.dumps(local_info, ensure_ascii=False, indent=2)}
-**数据分析结果**: {result_text}
-
-请简要分析:
-1. 这个区域的地理空间，人口，经济，就业，建筑情况的主要特点分别是什么？
-2. 数据中反应的最突出和值得考虑的特质是什么？
-3. 可能存在什么城市规划问题？
-4.如果数据分析结果中写明是消融实验，则输出消融实验：跳过本地数据分析
-
-
-请用分要点回答，结构清晰（800字以内，不要MD格式）。
-"""
-
-    network_analysis_prompt = f"""
-作为城市规划网络信息分析专家,请分析以下区域{matched_area}的网络信息:
-
-{opinion_summary}
-
-请分析:
-1. 可能存在什么城市规划的问题和争议？
-2. 利益相关方有哪些，他们为什么支持或者反对
-3. 土地权属和征地问题如何解决？
-4. 发展现状与政策建议有哪些？
-5. 如果网络信息结果中写明是消融实验，则输出消融实验：跳过网络信息搜索
-
-请用抓住要点和主要矛盾，简要回答。
-"""
+    network_analysis_prompt = load_prompt(
+        "agents/scenario_agent", "04_network_analysis_prompt",
+        matched_area=matched_area,
+        opinion_summary=opinion_summary,
+    )
 
     data_analysis_text, opinion_summary = await asyncio.gather(
         LLMService.ainvoke("default", max_tokens=TOKEN_LIMITS["scenario_agent"], messages=[
@@ -317,52 +283,16 @@ async def scenario_deconstruction_agent(state: AgentState) -> AgentState:
     print("\n✍️ 步骤 7: 综合分析并重写核心问题...")
     # md_content = read_md_file(KNOWLEDGE_BASE_MD)
 
-    problem_rewriting_prompt = f"""
-作为资深城市规划专家,请基于以下信息,识别并重写核心问题。
-
-**用户原始问题**: {user_query}
-**目标城市**: {target_city}
-**匹配区域**: {matched_area}
-**城市规划相关政策和法律**: {md_content}
-**区域数据**: {json.dumps(local_info, ensure_ascii=False)}
-**数据分析**: {data_analysis_text}
-**网络信息**: {opinion_summary}
-
-请分析:
-1. 这个区域的主要空间特点是什么，包括容积率，建筑年限，建筑高度，地形地貌？
-2. 相关的宏观政策导向是什么？包括香港2030，最新执政报告。
-3. 土地权属和征地问题如何解决？
-4. 可能存在什么城市规划的问题和争议？
-5. 发展现状与政策建议有哪些？
-6. 利益相关方有哪些，他们为什么支持或者反对
-
-基于上述分析，请完成以下任务:
-1. 综合上述信息，分析城市开发，建设或者更新中的主要矛盾和次要矛盾，以此判断出出该城市规划方案需要解决的3个核心问题。
-2. 具体写出每个问题，每个问题500字以内，以网络搜集的信息为主，需要包括上位规划和相关政策，区域现状，关键争议与问题，人口和经济状况，未来战略方向。
-3. 将每个问题结合本地数据和网络信息进行情景化重写（严格遵循以下输出标准）
-
-请按以下格式输出（不要用JSON，直接markdown格式）:
-
-# 【情景分析】
-1.宏观政策和上位规划
-2.空间特征
-3.社会经济状况
-4.土地权属和征地情况
-5.利益相关方和主要立场
-
-# 【核心问题】
-1. 问题1
-2. 问题2
-3. 问题3
-
-# 【情景化重写】
-1. 重写后的问题1（只输出主要4个城市规划专业关键字，20字以内，尽量不要包含意思相似的关键词，不包含地名）
-2. 重写后的问题2（只输出主要4个城市规划专业关键字，20字以内，尽量不要包含意思相似的关键词，不包含地名）
-3. 重写后的问题3（只输出主要4个城市规划专业关键字，20字以内，尽量不要包含意思相似的关键词，不包含地名）
-
-# 【情境总结】
-一段话总结本地情境（500字）
-"""
+    problem_rewriting_prompt = load_prompt(
+        "agents/scenario_agent", "05_problem_rewriting_prompt",
+        user_query=user_query,
+        target_city=target_city,
+        matched_area=matched_area,
+        md_content=md_content,
+        local_info_json=json.dumps(local_info, ensure_ascii=False),
+        data_analysis_text=data_analysis_text,
+        opinion_summary=opinion_summary,
+    )
 
     messages = [
         SystemMessage(content="你是城市规划专家"),

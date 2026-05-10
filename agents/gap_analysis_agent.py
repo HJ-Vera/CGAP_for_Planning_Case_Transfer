@@ -12,6 +12,7 @@ from langchain_core.messages import SystemMessage, HumanMessage
 from state import AgentState
 from config import TOKEN_LIMITS, PLANNING_KNOWLEDGE_MD, OUTPUT_DIR
 from llm import get_llm
+from prompts import load_prompt
 from tools.data_loader import read_md_file
 import experiments.exp_flags as flags
 
@@ -63,36 +64,15 @@ async def gap_analysis_agent(state: AgentState) -> AgentState:
         global_summary = cases[0].get('global_summary', '') if cases else ''
         md_content = read_md_file(PLANNING_KNOWLEDGE_MD)
 
-        prompt = f"""
-作为城市规划专家,请分析全球案例与本地情境的差异:
-
-**本地区域**: {local_context.get('matched_area', 'Unknown')}
-**本地数据**: {json.dumps(local_context.get('data_analysis', {}), ensure_ascii=False)}
-**本地相关法规与政策**: {md_content}
-**核心问题**: {problem}
-
-**全球趋势总结**:
-{global_summary}
-
-**详细案例分析**:
-{cases_analysis}
-
-请完成以下分析（用简明文本回答，每部分3-5句话）:
-
-【对比分析】
-全球案例的主要做法与本地情境的相似点和差异点:
-
-【关键差异 (Gaps)】
-哪些条件在全球案例中存在但本地缺失（制度、经济、技术、社会条件等）:
-
-【适应性改造方案】
-如何调整全球经验以适应本地情境（具体措施）:
-
-【实施风险预警】
-借鉴这些方案可能面临的挑战和代价:
-
-直接输出分析文本。
-"""
+        prompt = load_prompt(
+            "agents/gap_analysis_agent", "01_gap_analysis_prompt",
+            matched_area=local_context.get('matched_area', 'Unknown'),
+            local_data_analysis_json=json.dumps(local_context.get('data_analysis', {}), ensure_ascii=False),
+            md_content=md_content,
+            problem=problem,
+            global_summary=global_summary,
+            cases_analysis=cases_analysis,
+        )
 
         messages = [SystemMessage(content="你是国际城市规划专家"), HumanMessage(content=prompt)]
         response = await llm.ainvoke(messages)
@@ -119,46 +99,20 @@ async def gap_analysis_agent(state: AgentState) -> AgentState:
     # 整合方案
     print("\n🔗 整合总体规划方案...")
 
-    integration_prompt = f"""
-请将以下三个方向的全球经验分析整合成一个连贯的城市规划方案:
-
-**区域**: {local_context.get('matched_area', 'Unknown')}
-**本地数据**: {json.dumps(local_context.get('data_analysis', {}), ensure_ascii=False)}
-**本地分析**: {json.dumps(local_context.get('context_summary', {}), ensure_ascii=False)}
-**本地存在问题**: {json.dumps(local_context.get('full_response', {}), ensure_ascii=False)}
-**本地相关法规与政策**: {md_content}
-
-{chr(10).join([
-    f"**方向{i+1}: {v['problem']}**\n"
-    f"全球趋势: {v['global_summary']}\n"
-    f"分析结果: {v['analysis']}\n"
-    for i, v in enumerate(gap_analysis_results.values())
-])}
-
-请撰写一份综合规划方案，内容详实，细节充分，分析深入，内容包括:
-
-【一、总体定位与目标】
-基于本地情境和全球经验的综合定位
-
-【二、三大核心策略】
-方向1: [具体措施、国际经验借鉴、本地化调整]
-方向2: [具体措施、国际经验借鉴、本地化调整]
-方向3: [具体措施、国际经验借鉴、本地化调整]
-
-【三、前置条件与准备】
-需要具备的制度、经济、技术、社会条件
-
-【四、实施路径与时序】
-短期、中期、长期的实施步骤
-
-【五、风险管控】
-潜在代价、负面影响及应对措施
-
-【六、预期成果】
-定量和定性的预期效果
-
-请确保方案具有国际视野但符合本地实际。
-"""
+    integration_prompt = load_prompt(
+        "agents/gap_analysis_agent", "02_integration_prompt",
+        matched_area=local_context.get('matched_area', 'Unknown'),
+        local_data_analysis_json=json.dumps(local_context.get('data_analysis', {}), ensure_ascii=False),
+        context_summary_json=json.dumps(local_context.get('context_summary', {}), ensure_ascii=False),
+        full_response_json=json.dumps(local_context.get('full_response', {}), ensure_ascii=False),
+        md_content=md_content,
+        gap_analysis_directions=chr(10).join([
+            f"**方向{i+1}: {v['problem']}**\n"
+            f"全球趋势: {v['global_summary']}\n"
+            f"分析结果: {v['analysis']}\n"
+            for i, v in enumerate(gap_analysis_results.values())
+        ]),
+    )
 
     messages = [SystemMessage(content="你是国际城市规划专家"), HumanMessage(content=integration_prompt)]
     integration_response = await llm.ainvoke(messages)
