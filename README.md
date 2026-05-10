@@ -37,7 +37,7 @@ CGAP 尝试通过 Structured Intermediate States 与 Multi-Stage Reasoning Workf
 
 ---
 <div align="center"> 
-<img width="800" height="492" alt="image" src="https://github.com/user-attachments/assets/05b0b62b-7ecb-4b87-91d6-b238dbda3c13" />
+<img width="900" height="492" alt="image" src="https://github.com/user-attachments/assets/05b0b62b-7ecb-4b87-91d6-b238dbda3c13" />
 </div>   
 
 ---
@@ -151,6 +151,7 @@ CGAP 将城市规划案例迁移拆解为多个显式推理阶段，通过中间
 - **Runtime Output**（`output/`）：运行时生成，包含断点快照、规划报告、案例摘要和综合分析报告。
 - **Model Cache**（`models/`）：本地缓存的 Sentence-BERT 嵌入模型，用于混合检索的语义编码。
 
+<br> 
 
 ## 研究状态
 
