@@ -141,7 +141,7 @@ CGAP 将城市规划案例迁移拆解为多个显式推理阶段，通过中间
 系统可信度的核心来源。大多数 Agent 项目只有 demo，CGAP 提供了完整的实验与评估体系：
 
 - **Ablation Framework**（`experiments/`）：通过 Feature Flags 控制各组件开关（本地分析 / 网页搜索 / 混合检索 / 差异分析），支持批量运行和结果收集。
-- **Automated Evaluation**（`eval/`）：LLM-as-a-Judge 机制，对比 Workflow 输出与单 LLM 基线，支持成对比较和多维度评分，评估结果按消融维度分目录存储。
+- **Automated Evaluation**（`eval/`）：LLM-as-a-Judge 机制，对比 Workflow 输出与单 LLM 基线，支持成对比较和多维度评分，评估结果按组分目录存储。
 
 <br> 
 
