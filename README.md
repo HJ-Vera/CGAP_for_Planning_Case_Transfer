@@ -45,6 +45,15 @@ CGAP 尝试通过 Structured Intermediate States 与 Multi-Stage Reasoning Workf
 > CGAP 将复杂规划推理拆解为多个结构化阶段, 通过显式信息组织减少上下文噪声与隐式推理负担。
   <br> 
 
+## Demo
+
+---
+
+[![观看视频](封面图的网址)](https://www.bilibili.com/video/BV1Hp5J6FEeT/?spm_id_from=333.1387.homepage.video_card.click&vd_source=de230c627d4e67d7ffc9a9851c4a6d51)
+
+---
+<br>
+
 ## 项目结构
 
 系统由五个层次构成：**Orchestration Layer**、**Core Reasoning Stages**、**Infrastructure Services / Reasoning Utilities**、**Evaluation Framework**、**Knowledge & Runtime Layer**。
