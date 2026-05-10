@@ -36,9 +36,10 @@ CGAP 尝试通过 Structured Intermediate States 与 Multi-Stage Reasoning Workf
 ## CGAP Workflow（推理流程）
 
 ---
-<div align="center"> 
-<img width="900" height="492" alt="image" src="https://github.com/user-attachments/assets/05b0b62b-7ecb-4b87-91d6-b238dbda3c13" />
-</div>   
+<div align="center">
+  <img src="images/CGAP_Workflow.png" alt="CGAP 工作流程图" width="850">
+</div>  
+
 
 ---
 
@@ -157,6 +158,6 @@ CGAP 将城市规划案例迁移拆解为多个显式推理阶段，通过中间
 
 本仓库目前包含一项正在进行中的研究项目的实现框架及部分实验组件。
 
-考虑到学校的相关规定，完整论文和全部实验结果将在论文提交后公开发布。
+考虑到学校的相关规定，完整代码，论文和全部实验结果将在论文提交后公开发布。
 
 
