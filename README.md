@@ -49,7 +49,7 @@ CGAP 尝试通过 Structured Intermediate States 与 Multi-Stage Reasoning Workf
 
 ---
 
-[![观看视频](封面图的网址)](https://www.bilibili.com/video/BV1Hp5J6FEeT/)
+[![观看视频](images/CGAP-封面.jpg)](https://www.bilibili.com/video/BV1Hp5J6FEeT/)
 
 ---
 <br>
