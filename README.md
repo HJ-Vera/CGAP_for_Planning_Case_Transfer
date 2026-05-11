@@ -154,6 +154,17 @@ CGAP 将城市规划案例迁移拆解为多个显式推理阶段，通过中间
 
 <br> 
 
+## 初步结果
+
+---
+<div align="center">
+  <img src="images/pre_result.png" alt="CGAP 工作流程图" width="960">
+</div>  
+
+---
+
+<br> 
+
 ## 研究状态
 
 本仓库目前包含一项正在进行中的研究项目的实现框架及部分实验组件。
