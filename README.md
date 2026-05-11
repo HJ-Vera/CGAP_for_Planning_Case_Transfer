@@ -50,7 +50,7 @@ CGAP 尝试通过 Structured Intermediate States 与 Multi-Stage Reasoning Workf
 
 ---
 <div align="center">
-<a href="https://www.bilibili.com/video/BV1kR546nEjh/?share_source=copy_web&vd_source=8d66fcdf3a22a4934fc87bf172984607">
+<a href="https://www.bilibili.com/video/BV1wV546JEhE/?share_source=copy_web&vd_source=8d66fcdf3a22a4934fc87bf172984607">
   <img src="images/CGAP-封面.jpg" alt="观看视频" width="800">
 </a>
 </div> 
@@ -59,7 +59,7 @@ CGAP 尝试通过 Structured Intermediate States 与 Multi-Stage Reasoning Workf
 
 > 💡 **观看提示**：如果点击图片后提示“视频不见了”，请使用**下方链接**。
 > 
-> 🎬 **备用直链**：https://www.bilibili.com/video/BV1kR546nEjh/?share_source=copy_web&vd_source=8d66fcdf3a22a4934fc87bf172984607
+> 🎬 **备用直链**：【CGAP-Demo】 https://www.bilibili.com/video/BV1wV546JEhE/?share_source=copy_web&vd_source=8d66fcdf3a22a4934fc87bf172984607
 
 <br>
 
