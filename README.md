@@ -50,7 +50,7 @@ CGAP 尝试通过 Structured Intermediate States 与 Multi-Stage Reasoning Workf
 
 ---
 <div align="center">
-<a href="https://www.bilibili.com/video/BV1wV546JEhE/?share_source=copy_web&vd_source=8d66fcdf3a22a4934fc87bf172984607">
+<a href="https://www.bilibili.com/video/BV1Pg546HEGz/?share_source=copy_web&vd_source=8d66fcdf3a22a4934fc87bf172984607">
   <img src="images/CGAP-封面.jpg" alt="观看视频" width="800">
 </a>
 </div> 
@@ -59,8 +59,7 @@ CGAP 尝试通过 Structured Intermediate States 与 Multi-Stage Reasoning Workf
 
 > 💡 **观看提示**：如果点击图片后提示“视频不见了”，请使用**下方链接**。
 > 
-> 🎬 **备用直链**：【CGAP-Demo】 https://www.bilibili.com/video/BV1wV546JEhE/?share_source=copy_web&vd_source=8d66fcdf3a22a4934fc87bf172984607
-
+> 🎬 **备用直链**：【CGAP-Demo】 https://www.bilibili.com/video/BV1Pg546HEGz/?share_source=copy_web&vd_source=8d66fcdf3a22a4934fc87bf172984607
 <br>
 
 ## 项目结构
@@ -158,10 +157,14 @@ CGAP 将城市规划案例迁移拆解为多个显式推理阶段，通过中间
 
 ---
 <div align="center">
-  <img src="images/pre_result.png" alt="CGAP 工作流程图" width="960">
+  <img src="images/pre_result.png" alt="CGAP 工作流程图" width="980">
 </div>  
 
 ---
+
+> 💡
+> 在多个真实城市规划场景上的初步实验表明，CGAP 在检索质量、上下文一致性、可实施性与本地化适配等维度上均优于基线方法。
+> 结果表明，复杂任务中的性能不仅取决于模型能力，也与信息组织方式和推理流程结构密切相关。
 
 <br> 
 
