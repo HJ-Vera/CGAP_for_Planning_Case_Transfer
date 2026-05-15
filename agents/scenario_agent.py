@@ -1,11 +1,3 @@
-"""
-智能体 1: 情景解构智能体 (异步版)
-- 智能理解数据表结构
-- 智能匹配区域
-- 深度分析本地情境
-- 重写问题
-"""
-
 import asyncio
 import json
 import numpy as np
@@ -281,7 +273,6 @@ async def scenario_deconstruction_agent(state: AgentState) -> AgentState:
 
     # ========== 第七步: 综合分析并重写问题 ==========
     print("\n✍️ 步骤 7: 综合分析并重写核心问题...")
-    # md_content = read_md_file(KNOWLEDGE_BASE_MD)
 
     problem_rewriting_prompt = load_prompt(
         "agents/scenario_agent", "05_problem_rewriting_prompt",
@@ -301,7 +292,7 @@ async def scenario_deconstruction_agent(state: AgentState) -> AgentState:
     response_text = await LLMService.ainvoke("default", max_tokens=TOKEN_LIMITS["scenario_agent"], messages=messages)
     response_text = response_text.strip()
     
-    print(f"\n✅ LLM 情景分析完成，响应长度: {len(response_text)} 字符（Markdown 结果将通过独立气泡渲染）\n")
+    print(f"\n✅ LLM 情景分析完成，响应长度: {len(response_text)} 字符\n")
 
     # 灵活解析响应
     core_problems = []
@@ -379,7 +370,6 @@ async def scenario_deconstruction_agent(state: AgentState) -> AgentState:
     for i, problem in enumerate(state['rewritten_problems'], 1):
         print(f"  {i}. {problem}")
     print(f"\n💡 情境总结: {context_summary}")
-    # display(Markdown(json.dumps(state, indent=2, ensure_ascii=False)))
     import os
     from config import OUTPUT_DIR
     os.makedirs(OUTPUT_DIR, exist_ok=True)

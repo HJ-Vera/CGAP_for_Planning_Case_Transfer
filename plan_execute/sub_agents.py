@@ -5,6 +5,7 @@ Sub Agents — 子任务执行器
 所有工具来自共享的 tools/ 目录。
 """
 
+import asyncio
 import json
 import re
 from typing import Any, Dict, List
@@ -510,7 +511,7 @@ def _exec_deep_research_case(state: PlanExecuteState, task: SubTask) -> Dict:
 
     # ── 深度研究 ──
     case = {"title": title, "url": url, "snippet": snippet}
-    result = deep_case_research(
+    result = asyncio.run(deep_case_research(
         case=case,
         initial_content=initial_content,
         llm=llm,
@@ -518,7 +519,7 @@ def _exec_deep_research_case(state: PlanExecuteState, task: SubTask) -> Dict:
         search_serper=search_serper,
         fetch_webpage_content=fetch_webpage_content,
         max_loops=3,
-    )
+    ))
 
     return {
         "title": title,

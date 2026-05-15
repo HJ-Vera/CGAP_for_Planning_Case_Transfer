@@ -16,8 +16,19 @@ from config import (
 )
 
 
-def get_llm(type="default", max_tokens: int = 50000):
-    """根据不同智能体返回对应的LLM"""
+def get_llm(type="default", max_tokens: int = 50000) -> ChatOpenAI:
+    """
+    返回对应类型的 LLM 实例。
+
+    Args:
+        type: LLM 类型，支持 "default" (DeepSeek v4-pro),
+              "Gemini", "minimax", "chat" (DeepSeek v4-flash),
+              "claude", "opus", "glm", "qwen"
+        max_tokens: 最大输出 token 数，默认 50000
+
+    Returns:
+        ChatOpenAI 实例（所有类型统一通过 OpenAI 兼容接口）
+    """
 
     if type == "Gemini":
         return ChatGoogleGenerativeAI(
@@ -95,7 +106,7 @@ def get_llm(type="default", max_tokens: int = 50000):
     else:
         # 默认返回原来的DeepSeek配置
         return ChatOpenAI(
-            model="deepseek-v4-flash",
+            model="deepseek-v4-pro",
             openai_api_key=DEEPSEEK_API_KEY,
             openai_api_base=DEEPSEEK_API_BASE,
             max_tokens=max_tokens,

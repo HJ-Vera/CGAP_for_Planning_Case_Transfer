@@ -93,16 +93,6 @@ def _tkw(fp):
 # ==================== 辅助函数 ====================
 
 
-from scipy.signal import savgol_filter
-from sklearn.cluster import KMeans
-from sklearn.metrics import silhouette_score
-
-from kneed import KneeLocator
-
-import numpy as np
-
-from kneed import KneeLocator
-
 def _auto_optimal_k(inertia: list, k_range) -> int:
     k_list = list(k_range)
     if len(inertia) < 3:
@@ -118,17 +108,6 @@ def _auto_optimal_k(inertia: list, k_range) -> int:
     )
 
     return kl.elbow if kl.elbow is not None else 8 # 找不到就回退到你认为的8
-
-
-'''def _auto_optimal_k(inertia: list, k_range) -> int:
-    """通过二阶差分（肘部法则）自动确定最优聚类数，失败则回退到 4。"""
-    if len(inertia) < 3:
-        return list(k_range)[0]
-    diffs = np.diff(inertia)
-    second_diffs = np.diff(diffs)
-    best_idx = int(np.argmax(second_diffs)) + 2
-    k_list = list(k_range)
-    return k_list[best_idx] if best_idx < len(k_list) else 4'''
 
 
 def _safe_percentile_high(z: float) -> float:
@@ -622,27 +601,9 @@ def _plot_region_map(
     xlim = ax.get_xlim()
     ylim = ax.get_ylim()
 
-    # 3. 加底图（zoom=13 覆盖香港全境，速度与清晰度平衡）
-    # 尝试多个底图源，优先使用国内可访问的底图，如果都失败则使用纯色背景
-    basemap_sources = [
-        ctx.providers.CartoDB.DarkMatter,    # CartoDB 暗色主题
-    ]
+    # 3. 底图加载已禁用，使用纯色背景
 
     basemap_loaded = False
-    '''for source in basemap_sources:
-        try:
-            ctx.add_basemap(
-                ax,
-                source=source,
-                zoom=11,
-                zorder=1,
-            )
-            basemap_loaded = True
-            print(f"  底图加载成功: {source.name if hasattr(source, 'name') else str(source)}")
-            break
-        except Exception as e:
-            print(f"  底图源加载失败 ({source.name if hasattr(source, 'name') else str(source)}): {str(e)[:100]}")
-            continue'''
 
     if not basemap_loaded:
         print("  所有底图源均加载失败，使用纯色背景（无底图）")
@@ -653,18 +614,6 @@ def _plot_region_map(
     ax.set_ylim(ylim)
 
     # 5. 最后画文字，永远在最顶层 — 为每个高亮区域标注名称
-    '''for hr_name in highlight_regions:
-        target_geom = gdf[gdf[geo_col] == hr_name]
-        if not target_geom.empty:
-            centroid = target_geom.geometry.centroid.iloc[0]
-            ax.annotate(
-                hr_name,
-                xy=(centroid.x, centroid.y),
-                fontsize=11, fontweight='bold', color='black',
-                ha='center', va='bottom',
-                fontproperties=fp if fp else None,
-                zorder=15,
-            )'''
 
     # 图例（深色风格）
     if len(highlight_regions) > 1:

@@ -28,6 +28,8 @@ from services.search_service import SearchService
 from services.fetch_service import async_fetch_webpage_content, async_fetch_webpage_content_alternative
 from services.llm_service import LLMService
 
+SELECTED_CASE_COUNT = 2
+
 def extract_content(response):
     """Extract text from LangChain AIMessage response, handling both string and list content."""
     content = response.content
@@ -237,10 +239,6 @@ async def case_query_agent(state, problem_index: int) -> List[Dict]:
     # ========== 第四步: LLM 智能选择最终案例 ==========
     selected_cases = []
     used = set()
-    try:
-        from experiments.exp_flags import USE_HYBRID
-    except ImportError:
-        USE_HYBRID = True
 
     if USE_HYBRID:
         print(f"\n🤖 步骤 4: LLM 智能选择最终案例...")
@@ -328,7 +326,6 @@ async def case_query_agent(state, problem_index: int) -> List[Dict]:
 
     # 循环处理，直到成功处理FINAL_CASE_COUNT个案例或候选列表耗尽
     # 注意：内容不足（<2000字符）的案例会被跳过，不计入成功处理的案例
-    SELECTED_CASE_COUNT = 2
     while len(structured_cases) < SELECTED_CASE_COUNT and candidate_index < len(merged_candidates):
         case = merged_candidates[candidate_index]
         candidate_index += 1
@@ -455,7 +452,7 @@ async def case_query_agent(state, problem_index: int) -> List[Dict]:
         except Exception as e:
             print(f"    ⚠️ 报告保存失败: {str(e)[:50]}")
 
-        print(final_report[:500] + "...")
+        # print(final_report[:500] + "...")
 
         # ── 5.4 构造structured_case（字段对齐新函数输出）─────────────
         structured_case = {
@@ -558,7 +555,7 @@ async def case_query_agent(state, problem_index: int) -> List[Dict]:
     print(f"🌍 英文案例: {sum(1 for c in structured_cases if c.get('language') == 'en')} 个")
     print(f"🇨🇳 中文案例: {sum(1 for c in structured_cases if c.get('language') == 'zh')} 个")
     print(f"🔍 补充搜索: {sum(1 for c in structured_cases if c.get('has_supplement'))} 个")
-    print(f"📊 global_summary 长度: {len(global_summary)} 字符（Markdown 结果将通过独立气泡渲染）")
+    print(f"📊 global_summary 长度: {len(global_summary)} 字符")
 
     safe_name = re.sub(r'[\\/:*?"<>|\s]', '_', str(problem_cn))
     os.makedirs(OUTPUT_DIR, exist_ok=True)

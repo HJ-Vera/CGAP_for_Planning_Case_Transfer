@@ -35,12 +35,7 @@ async def gap_analysis_agent(state: AgentState) -> AgentState:
 
     gap_analysis_results = {}
 
-    try:
-        from experiments.exp_flags import USE_GAP_ANALYSIS
-    except ImportError:
-        USE_GAP_ANALYSIS= True
-
-    if USE_GAP_ANALYSIS == False:
+    if flags.USE_GAP_ANALYSIS == False:
         print("⚠️ 差异分析已关闭，跳过此步骤")
         state["gap_analysis"] = {}
         state["adaptation_plan"] = "差异分析已关闭，未生成改造方案。"
@@ -121,7 +116,7 @@ async def gap_analysis_agent(state: AgentState) -> AgentState:
     state["adaptation_plan"] = integration_response.content.strip()
 
     print("\n✅ 差异分析完成")
-    print(f"📄 规划方案长度: {len(state['adaptation_plan'])} 字符（Markdown 结果将通过独立气泡渲染）")
+    print(f"📄 规划方案长度: {len(state['adaptation_plan'])} 字符")
 
     # 保存总结
     import os

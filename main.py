@@ -231,9 +231,11 @@ async def _resume_from_checkpoint(saved_state: dict, last_step: str, ckpt):
         if pending:
             print(f"\n▶️ 执行案例查询: {[f'case_query_{i+1}' for i in pending]}")
             state_snapshot = dict(state)
+            _agent_sem = asyncio.Semaphore(3)  # 最多同时跑3个case_query_agent
 
             async def _run_case(idx):
-                cases = await case_query_agent(state_snapshot, idx)
+                async with _agent_sem:
+                    cases = await case_query_agent(state_snapshot, idx)
                 return idx, {f"problem_{idx + 1}": cases}
 
             tasks = [_run_case(i) for i in pending]

@@ -142,7 +142,6 @@ async def generate_final_report(state: AgentState) -> AgentState:
 - 本地案例: {problem_stats['local']} 个
 """
     md_content = read_md_file(PLANNING_KNOWLEDGE_MD)
-    prompt = ""
     # 构建完整的提示词
     prompta = load_prompt(
         "agents/report_generator", "01_prompta_full",

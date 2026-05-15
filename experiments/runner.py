@@ -8,6 +8,7 @@ import sys
 import json
 import time
 import traceback
+import asyncio
 
 # 把项目根目录加入 path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
@@ -232,7 +233,7 @@ def _run_workflow(query: str, exp_cfg: dict) -> tuple:
     start = time.time()
 
     from main import main as main_workflow
-    result = main_workflow(query)
+    result = asyncio.run(main_workflow(query))
 
     elapsed = time.time() - start
 
@@ -258,7 +259,7 @@ def _run_plan_execute(query: str, exp_cfg: dict) -> tuple:
     start = time.time()
 
     from main_pe import main as main_pe
-    result = main_pe(query)
+    result = asyncio.run(main_pe(query))
 
     elapsed = time.time() - start
 
@@ -306,13 +307,6 @@ def run_all():
             save_path = os.path.join(RESULTS_DIR, f"{exp_name}_{current}.json")
             with open(save_path, "w", encoding="utf-8") as f:
                 json.dump(result, f, ensure_ascii=False, indent=2, default=str)
-
-            # 同时保存报告
-            if result.get("report"):
-                report_path = os.path.join(RESULTS_DIR,
-                    f"report_{exp_name}_{query[:15].replace(' ', '_')}.md")
-                with open(report_path, "w", encoding="utf-8") as f:
-                    f.write(result["report"])
 
             print(f"  → 状态: {result['status']}")
             if result.get("metrics"):
