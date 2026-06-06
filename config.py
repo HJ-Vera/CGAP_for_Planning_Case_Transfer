@@ -55,6 +55,5 @@ ACADEMIC_SEARCH_LIMIT = 50  # 学术搜索返回的最大结果数
 DATA_DIR = "./data"
 OUTPUT_DIR = "./output"
 HONGKONG_DATA_FILE = f"{DATA_DIR}/hongkong_llm_data.xlsx"
-KNOWLEDGE_BASE_MD = f"{DATA_DIR}/香港规划情景知识库.md"
 PLANNING_KNOWLEDGE_MD = f"{DATA_DIR}/HK_Planning_Knowledge.md"
 GEOJSON_PATH = f"{DATA_DIR}/hk_districts.geojson"  # 可选，地图文件

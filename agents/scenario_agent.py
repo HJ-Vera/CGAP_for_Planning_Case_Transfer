@@ -5,7 +5,7 @@ import numpy as np
 from langchain_core.messages import SystemMessage, HumanMessage
 
 from state import AgentState
-from config import TOKEN_LIMITS, KNOWLEDGE_BASE_MD, HONGKONG_DATA_FILE
+from config import TOKEN_LIMITS, PLANNING_KNOWLEDGE_MD, HONGKONG_DATA_FILE
 from llm import get_llm
 from tools.data_loader import load_hongkong_data, read_md_file
 from prompts import load_prompt
@@ -214,7 +214,7 @@ async def scenario_deconstruction_agent(state: AgentState) -> AgentState:
         print(f"\n🔬 步骤 5: 深度分析本地数据...")
         from config import OUTPUT_DIR
         result_text = analyze_regional_data(df, matched_area, output_dir=OUTPUT_DIR, matched_areas=matched_areas)
-        md_content = read_md_file(KNOWLEDGE_BASE_MD)
+        md_content = read_md_file(PLANNING_KNOWLEDGE_MD)
         print(result_text)
     else:
         print(f"\n⏭️ 步骤 5: 跳过本地数据分析（消融模式）")

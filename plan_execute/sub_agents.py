@@ -17,7 +17,7 @@ from langchain_core.messages import SystemMessage, HumanMessage
 from llm import get_llm
 from prompts import load_prompt
 from config import (
-    TOKEN_LIMITS, HONGKONG_DATA_FILE, KNOWLEDGE_BASE_MD,
+    TOKEN_LIMITS, HONGKONG_DATA_FILE,
     PLANNING_KNOWLEDGE_MD, OUTPUT_DIR, GEOJSON_PATH,
     BM25_CANDIDATE_K, FINAL_CASE_COUNT, HYBRID_ALPHA, SBERT_MODEL_NAME,
     SKIP_SEMANTIC_SCHOLAR,
