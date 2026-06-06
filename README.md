@@ -187,10 +187,11 @@ CGAP 将城市规划案例迁移拆解为多个显式推理阶段，通过中间
 
 <br> 
 
-## 研究状态
+## 示例报告
 
-本仓库目前包含一项正在进行中的研究项目的实现框架及部分实验组件。
-
-考虑到学校的相关规定，完整代码，论文和全部实验结果将在论文提交后公开发布。
+- **Sham Shui Po Regeneration Plan** [[中文版]](https://hj-vera.github.io/CGAP_for_Planning_Case_Transfer/example_output/Sham%20Shui%20Po/index.html) | [[English Version]](https://hj-vera.github.io/CGAP_for_Planning_Case_Transfer/example_output/Sham%20Shui%20Po/index_en.html)
+- **Kwai Tsing Planning Proposal** [[中文版]](https://hj-vera.github.io/CGAP_for_Planning_Case_Transfer/example_output/Kwai%20Tsing/kwai_tsing_index.html) | [[English Version]](https://hj-vera.github.io/CGAP_for_Planning_Case_Transfer/example_output/Kwai%20Tsing/kwai_tsing_index_en.html)
+- **SanTin Development Plan** [[中文版]](https://hj-vera.github.io/CGAP_for_Planning_Case_Transfer/example_output/San%20Tin/san_tin_index.html) | [[English Version]](https://hj-vera.github.io/CGAP_for_Planning_Case_Transfer/example_output/San%20Tin/san_tin_index_en.html)
+- **Lau Fau Shan Planning Proposal** [[中文版]](https://hj-vera.github.io/CGAP_for_Planning_Case_Transfer/example_output/Lau%20Fau%20Shan/query_19_workflow.html) | [[English Version]](https://hj-vera.github.io/CGAP_for_Planning_Case_Transfer/example_output/Lau%20Fau%20Shan/query_19_workflow_en.html)
 
 
