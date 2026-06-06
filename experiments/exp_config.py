@@ -1,5 +1,5 @@
 """
-实验配置 — 用配置控制实验变量，不改代码
+实验配置
 """
 
 # 测试查询集
@@ -102,27 +102,3 @@ EXPERIMENTS = {
     },
 }
 
-# 输出目录结构规范
-# 每次实验运行的输出会按以下结构存放:
-#
-# output/experiments/
-# ├── workflow_full/
-# │   ├── query_1_新田科技城/
-# │   │   ├── meta.json              ← 运行元信息（查询、模式、耗时、评估分数）
-# │   │   ├── final_report.md        ← 最终报告
-# │   │   ├── cases/                 ← 各案例的 comprehensive analysis
-# │   │   │   ├── case_1.json        ← 结构化字段（title, url, city_country, solution...）
-# │   │   │   ├── case_1_report.md   ← 完整分析报告
-# │   │   │   ├── case_2.json
-# │   │   │   ├── case_2_report.md
-# │   │   │   └── ...
-# │   │   ├── context.json           ← 本地情境分析（matched_area, core_problems, local_data）
-# │   │   └── gap_analysis.md        ← 差异分析报告
-# │   ├── query_2_油尖旺区/
-# │   │   └── ...
-# │   └── summary.json               ← 该实验组所有查询的汇总指标
-# ├── plan_execute_full/
-# │   └── ...
-# ├── ablation_no_local_and_web/
-# │   └── ...
-# └── comparison.csv                  ← 跨实验组对比表
