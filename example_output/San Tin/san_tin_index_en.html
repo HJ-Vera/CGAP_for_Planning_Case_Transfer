@@ -1,0 +1,2378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WWNTI · Yuen Long–San Tin Wetland-Wise New Town Initiative</title>
+<style>
+/* ============================================
+   WWNTI - 元朗-新田湿地智慧城市规划报告
+   编辑风格 · 深墨调 · 专业咨询报告
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* 色彩系统 - 墨绿与赭金 */
+  --ink: #0d1f1c;
+  --ink-deep: #06110f;
+  --ink-soft: #1a302c;
+  --paper: #f5f1e8;
+  --paper-warm: #efe9d8;
+  --paper-light: #faf7ee;
+  --gold: #b08d57;
+  --gold-bright: #d4a574;
+  --gold-deep: #8a6d3f;
+  --moss: #4a6b5c;
+  --moss-light: #6b8a7a;
+  --crimson: #8b3a3a;
+  --slate: #3a4744;
+  --rule: rgba(13, 31, 28, 0.12);
+  --rule-strong: rgba(13, 31, 28, 0.25);
+
+  /* 字体 */
+  --font-serif-cn: "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
+  --font-sans-cn: "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", sans-serif;
+  --font-serif-en: "Cormorant Garamond", "EB Garamond", Georgia, serif;
+  --font-mono: "JetBrains Mono", "SF Mono", Menlo, monospace;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-serif-cn);
+  font-size: 16px;
+  line-height: 1.85;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(176, 141, 87, 0.04) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(74, 107, 92, 0.04) 0%, transparent 50%);
+}
+
+/* 纸张纹理 */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(45deg, rgba(13,31,28,0.008) 0px, transparent 1px, transparent 3px),
+    repeating-linear-gradient(-45deg, rgba(176,141,87,0.006) 0px, transparent 1px, transparent 3px);
+  z-index: 1;
+}
+
+/* ============================================
+   封面 Hero
+   ============================================ */
+.cover {
+  position: relative;
+  min-height: 100vh;
+  background: var(--ink);
+  color: var(--paper);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 4rem 6vw 3rem;
+}
+
+.cover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at top right, rgba(176, 141, 87, 0.18) 0%, transparent 60%),
+    radial-gradient(ellipse at bottom left, rgba(74, 107, 92, 0.25) 0%, transparent 55%),
+    linear-gradient(180deg, var(--ink-deep) 0%, var(--ink) 100%);
+}
+
+.cover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(245, 241, 232, 0.02) 0px, rgba(245, 241, 232, 0.02) 1px, transparent 1px, transparent 28px);
+  pointer-events: none;
+}
+
+.cover-inner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  flex: 1;
+  gap: 2rem;
+}
+
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+.cover-top .brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.cover-top .brand-mark {
+  width: 28px; height: 28px;
+  border: 1px solid var(--gold);
+  display: grid; place-items: center;
+  font-family: var(--font-serif-en);
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--gold-bright);
+}
+
+.cover-center {
+  align-self: center;
+  max-width: 1100px;
+}
+
+.cover-eyebrow {
+  font-family: var(--font-serif-en);
+  font-style: italic;
+  font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+  color: var(--gold-bright);
+  letter-spacing: 0.04em;
+  margin-bottom: 1.5rem;
+}
+
+.cover-title {
+  font-family: var(--font-serif-cn);
+  font-weight: 900;
+  font-size: clamp(2.6rem, 6vw, 5.2rem);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  margin: 0 0 1.2rem;
+  color: var(--paper);
+}
+
+.cover-title .accent {
+  color: var(--gold-bright);
+  font-style: italic;
+  font-family: var(--font-serif-en);
+  font-weight: 500;
+}
+
+.cover-subtitle {
+  font-family: var(--font-serif-en);
+  font-size: clamp(1rem, 1.4vw, 1.4rem);
+  font-style: italic;
+  color: rgba(245, 241, 232, 0.7);
+  letter-spacing: 0.02em;
+  margin-bottom: 2.5rem;
+  max-width: 900px;
+  line-height: 1.4;
+}
+
+.cover-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem 3rem;
+  padding-top: 1.8rem;
+  border-top: 1px solid rgba(176, 141, 87, 0.3);
+  max-width: 1000px;
+}
+
+.meta-block {
+  font-family: var(--font-sans-cn);
+}
+
+.meta-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+
+.meta-value {
+  font-family: var(--font-serif-cn);
+  font-size: 1rem;
+  color: var(--paper);
+  font-weight: 400;
+}
+
+.cover-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: rgba(245, 241, 232, 0.5);
+  text-transform: uppercase;
+}
+
+.scroll-hint {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.scroll-line {
+  width: 60px; height: 1px;
+  background: var(--gold);
+  animation: scrollPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleX(0.5); transform-origin: left; }
+  50% { opacity: 1; transform: scaleX(1); transform-origin: left; }
+}
+
+/* ============================================
+   导航栏
+   ============================================ */
+.nav-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(245, 241, 232, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rule);
+  padding: 0.9rem 4vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-brand {
+  font-family: var(--font-serif-en);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--ink);
+}
+
+.nav-brand strong {
+  font-family: var(--font-serif-cn);
+  font-weight: 700;
+  font-style: normal;
+  color: var(--gold-deep);
+  margin-right: 0.5rem;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.8rem;
+  list-style: none;
+  padding: 0; margin: 0;
+  font-family: var(--font-sans-cn);
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+.nav-links a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  position: relative;
+  padding: 0.3rem 0;
+  transition: color 0.2s;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 0; height: 1.5px;
+  background: var(--gold);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--gold-deep);
+}
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* ============================================
+   主体容器
+   ============================================ */
+.report {
+  position: relative;
+  z-index: 2;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 5rem 5vw 6rem;
+}
+
+.section {
+  position: relative;
+  margin-bottom: 6rem;
+  scroll-margin-top: 80px;
+}
+
+.section-num {
+  display: flex;
+  align-items: baseline;
+  gap: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+.section-num .num {
+  font-family: var(--font-serif-en);
+  font-style: italic;
+  font-size: 3.2rem;
+  font-weight: 300;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.section-num .tag {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--moss);
+  padding-top: 0.4rem;
+}
+
+.section h2 {
+  font-family: var(--font-serif-cn);
+  font-weight: 700;
+  font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+  line-height: 1.25;
+  margin: 0 0 0.8rem;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+}
+
+.section h3 {
+  font-family: var(--font-serif-cn);
+  font-weight: 600;
+  font-size: 1.35rem;
+  margin: 2.5rem 0 1rem;
+  color: var(--ink);
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+.section h3::before {
+  content: '';
+  position: absolute;
+  left: -1rem; top: 0.3em;
+  width: 3px; height: 1.2em;
+  background: var(--gold);
+}
+
+.section h4 {
+  font-family: var(--font-serif-cn);
+  font-weight: 600;
+  font-size: 1.08rem;
+  margin: 1.8rem 0 0.8rem;
+  color: var(--ink-soft);
+}
+
+.section h5 {
+  font-family: var(--font-sans-cn);
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: 0.04em;
+  margin: 1.2rem 0 0.5rem;
+  color: var(--gold-deep);
+  text-transform: uppercase;
+}
+
+.section-lead {
+  font-family: var(--font-serif-cn);
+  font-size: 1.15rem;
+  line-height: 1.75;
+  color: var(--slate);
+  margin: 0 0 2rem;
+  max-width: 70ch;
+  font-weight: 300;
+  border-left: 2px solid var(--gold);
+  padding-left: 1.2rem;
+}
+
+.section p {
+  margin: 0 0 1.1rem;
+  max-width: 75ch;
+  text-align: justify;
+  text-justify: inter-character;
+}
+
+.section ul, .section ol {
+  max-width: 75ch;
+  padding-left: 1.2rem;
+}
+
+.section ul li, .section ol li {
+  margin-bottom: 0.6rem;
+  padding-left: 0.3rem;
+}
+
+.section ul li::marker {
+  color: var(--gold);
+  font-size: 0.85em;
+}
+
+.section ol li::marker {
+  color: var(--gold);
+  font-family: var(--font-serif-en);
+  font-style: italic;
+  font-weight: 600;
+}
+
+.section strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.section em {
+  font-family: var(--font-serif-en);
+  font-style: italic;
+  color: var(--gold-deep);
+}
+
+/* ============================================
+   执行摘要 - 特殊处理
+   ============================================ */
+.executive {
+  background: linear-gradient(135deg, var(--paper-warm) 0%, var(--paper-light) 100%);
+  padding: 3.5rem 3.5rem;
+  margin: 0 0 6rem;
+  border-radius: 2px;
+  border-left: 5px solid var(--gold);
+  position: relative;
+  box-shadow:
+    0 1px 0 var(--rule),
+    0 30px 60px -30px rgba(13, 31, 28, 0.15);
+}
+
+.executive::before {
+  content: '01';
+  position: absolute;
+  top: 1.5rem; right: 2rem;
+  font-family: var(--font-serif-en);
+  font-style: italic;
+  font-size: 5rem;
+  color: var(--gold);
+  opacity: 0.15;
+  line-height: 1;
+  font-weight: 400;
+}
+
+.executive h2 {
+  margin-top: 0;
+}
+
+.exec-strategies {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--rule);
+}
+
+.strategy-card {
+  background: var(--paper-light);
+  padding: 1.5rem;
+  border-top: 2px solid var(--gold);
+  position: relative;
+}
+
+.strategy-card .strat-num {
+  font-family: var(--font-serif-en);
+  font-style: italic;
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.strategy-card h5 {
+  font-family: var(--font-serif-cn);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink);
+  margin: 0 0 0.5rem;
+}
+
+.strategy-card p {
+  font-size: 0.88rem;
+  line-height: 1.65;
+  margin: 0;
+  color: var(--slate);
+  font-weight: 300;
+}
+
+/* ============================================
+   数据指标块
+   ============================================ */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1px;
+  background: var(--rule-strong);
+  border: 1px solid var(--rule-strong);
+  margin: 2rem 0 2.5rem;
+}
+
+.stat {
+  background: var(--paper);
+  padding: 1.5rem 1.2rem;
+  text-align: left;
+}
+
+.stat-num {
+  font-family: var(--font-serif-en);
+  font-style: italic;
+  font-size: 2.4rem;
+  font-weight: 500;
+  color: var(--gold-deep);
+  line-height: 1;
+  margin-bottom: 0.4rem;
+  display: block;
+}
+
+.stat-num .unit {
+  font-size: 1rem;
+  color: var(--moss);
+}
+
+.stat-label {
+  font-family: var(--font-sans-cn);
+  font-size: 0.78rem;
+  color: var(--slate);
+  line-height: 1.4;
+}
+
+/* ============================================
+   核心问题卡片
+   ============================================ */
+.problems {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.problem-card {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 1.5rem;
+  background: var(--paper-light);
+  padding: 2rem;
+  border-left: 4px solid var(--crimson);
+  position: relative;
+}
+
+.problem-card .p-num {
+  font-family: var(--font-serif-en);
+  font-style: italic;
+  font-size: 4.5rem;
+  font-weight: 300;
+  color: var(--crimson);
+  line-height: 0.9;
+  opacity: 0.8;
+}
+
+.problem-card h4 {
+  margin: 0 0 0.8rem;
+  font-size: 1.15rem;
+  color: var(--ink);
+}
+
+.problem-card .quote {
+  font-family: var(--font-serif-cn);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--gold-deep);
+  border-left: 2px solid var(--gold);
+  padding-left: 1rem;
+  margin: 1rem 0;
+  line-height: 1.7;
+}
+
+.problem-card p {
+  font-size: 0.95rem;
+  margin: 0;
+  color: var(--slate);
+}
+
+/* ============================================
+   策略大卡片
+   ============================================ */
+.strategy-block {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 3rem;
+  margin: 2rem 0;
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.strategy-block::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(176, 141, 87, 0.15) 0%, transparent 70%);
+}
+
+.strategy-block .strat-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(176, 141, 87, 0.3);
+  position: relative;
+}
+
+.strategy-block .strat-header .num {
+  font-family: var(--font-serif-en);
+  font-style: italic;
+  font-size: 3rem;
+  font-weight: 300;
+  color: var(--gold-bright);
+  line-height: 1;
+}
+
+.strategy-block h3 {
+  color: var(--paper);
+  border: none;
+  margin: 0;
+  padding: 0;
+  font-size: 1.6rem;
+}
+
+.strategy-block h3::before { display: none; }
+
+.strategy-block .strat-subtitle {
+  font-family: var(--font-serif-en);
+  font-style: italic;
+  color: var(--gold-bright);
+  font-size: 0.95rem;
+  margin-top: 0.3rem;
+}
+
+.strategy-block h4 {
+  color: var(--gold-bright);
+  font-family: var(--font-sans-cn);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  margin: 1.8rem 0 0.8rem;
+}
+
+.strategy-block p, .strategy-block li {
+  color: rgba(245, 241, 232, 0.85);
+  font-size: 0.95rem;
+}
+
+.strategy-block strong {
+  color: var(--gold-bright);
+  font-weight: 600;
+}
+
+.strategy-block em {
+  color: var(--paper);
+}
+
+.strategy-block ul li::marker {
+  color: var(--gold-bright);
+}
+
+/* ============================================
+   时间线
+   ============================================ */
+.timeline {
+  position: relative;
+  margin: 2rem 0;
+  padding-left: 2rem;
+  border-left: 1px solid var(--rule-strong);
+}
+
+.timeline-phase {
+  position: relative;
+  margin-bottom: 2.5rem;
+  padding-left: 1.5rem;
+}
+
+.timeline-phase::before {
+  content: '';
+  position: absolute;
+  left: -2.4rem;
+  top: 0.5rem;
+  width: 12px; height: 12px;
+  background: var(--gold);
+  border-radius: 50%;
+  border: 3px solid var(--paper);
+  box-shadow: 0 0 0 1px var(--gold);
+}
+
+.timeline-phase .phase-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--moss);
+  text-transform: uppercase;
+}
+
+.timeline-phase .phase-title {
+  font-family: var(--font-serif-cn);
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--ink);
+  margin: 0.3rem 0 0.8rem;
+}
+
+.timeline-phase ul {
+  margin: 0.5rem 0;
+  font-size: 0.92rem;
+}
+
+/* ============================================
+   案例对比表格 / 表格
+   ============================================ */
+.table-wrap {
+  margin: 2rem 0;
+  overflow-x: auto;
+  border: 1px solid var(--rule-strong);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--paper-light);
+  font-size: 0.92rem;
+}
+
+thead {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+th {
+  text-align: left;
+  padding: 0.9rem 1rem;
+  font-family: var(--font-sans-cn);
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+  border-right: 1px solid rgba(245, 241, 232, 0.15);
+}
+
+th:last-child { border-right: none; }
+
+td {
+  padding: 1rem;
+  vertical-align: top;
+  border-bottom: 1px solid var(--rule);
+  border-right: 1px solid var(--rule);
+  line-height: 1.6;
+}
+
+td:last-child { border-right: none; }
+
+tr:last-child td { border-bottom: none; }
+
+tbody tr:hover {
+  background: var(--paper-warm);
+}
+
+td strong {
+  color: var(--gold-deep);
+}
+
+/* ============================================
+   案例区块
+   ============================================ */
+.cases-intro {
+  background: var(--paper-warm);
+  padding: 2rem 2.5rem;
+  margin: 2rem 0;
+  border-left: 3px solid var(--moss);
+  font-family: var(--font-serif-cn);
+  font-style: italic;
+  color: var(--slate);
+}
+
+.case-detail {
+  background: var(--paper-light);
+  border: 1px solid var(--rule);
+  margin: 1.5rem 0;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.case-header {
+  background: linear-gradient(180deg, var(--moss) 0%, var(--ink-soft) 100%);
+  color: var(--paper);
+  padding: 1.8rem 2rem;
+  position: relative;
+}
+
+.case-header .case-tag {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  color: var(--gold-bright);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.case-header h3 {
+  color: var(--paper);
+  border: none;
+  margin: 0;
+  padding: 0;
+  font-size: 1.3rem;
+  font-family: var(--font-serif-cn);
+  font-weight: 600;
+}
+
+.case-header h3::before { display: none; }
+
+.case-header .case-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 0.8rem;
+  font-family: var(--font-sans-cn);
+  font-size: 0.82rem;
+  color: rgba(245, 241, 232, 0.7);
+}
+
+.case-header .case-meta span strong {
+  color: var(--gold-bright);
+  font-weight: 600;
+  margin-right: 0.3rem;
+}
+
+.case-body {
+  padding: 2rem 2.2rem;
+}
+
+.case-body h4 {
+  font-family: var(--font-serif-cn);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--gold-deep);
+  margin: 1.5rem 0 0.7rem;
+  padding-left: 0.7rem;
+  border-left: 3px solid var(--gold);
+}
+
+.case-body h4:first-child { margin-top: 0; }
+
+.case-body h5 {
+  font-family: var(--font-sans-cn);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  margin: 1rem 0 0.4rem;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+.case-body p, .case-body li {
+  font-size: 0.94rem;
+  line-height: 1.75;
+}
+
+.case-question {
+  background: var(--paper-warm);
+  border-left: 3px solid var(--crimson);
+  padding: 1rem 1.5rem;
+  margin: 0 0 1.5rem;
+  font-size: 0.88rem;
+  color: var(--slate);
+  font-style: italic;
+}
+
+.case-question strong {
+  color: var(--crimson);
+  font-style: normal;
+}
+
+.case-url {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--gold-deep);
+  text-decoration: none;
+  margin-top: 0.5rem;
+  padding: 0.3rem 0.6rem;
+  background: rgba(176, 141, 87, 0.08);
+  border: 1px solid rgba(176, 141, 87, 0.25);
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+
+.case-url:hover {
+  background: var(--gold);
+  color: var(--paper);
+}
+
+/* ============================================
+   引用块 / 提示框
+   ============================================ */
+.callout {
+  background: var(--paper-warm);
+  border: 1px solid var(--rule-strong);
+  padding: 1.5rem 1.8rem;
+  margin: 1.5rem 0;
+  border-left: 3px solid var(--moss);
+  font-size: 0.95rem;
+}
+
+.callout.warn {
+  border-left-color: var(--crimson);
+  background: rgba(139, 58, 58, 0.04);
+}
+
+.callout.gold {
+  border-left-color: var(--gold);
+  background: rgba(176, 141, 87, 0.06);
+}
+
+/* ============================================
+   结尾
+   ============================================ */
+.outro {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 4rem 4vw;
+  margin-top: 6rem;
+  position: relative;
+}
+
+.outro-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.outro h2 {
+  font-family: var(--font-serif-en);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  color: var(--gold-bright);
+  margin: 0 0 1rem;
+}
+
+.outro p {
+  color: rgba(245, 241, 232, 0.7);
+  font-family: var(--font-serif-cn);
+  font-size: 0.95rem;
+  max-width: 60ch;
+  margin: 0 auto 1rem;
+  line-height: 1.75;
+}
+
+.outro-mark {
+  font-family: var(--font-serif-en);
+  font-style: italic;
+  color: var(--gold);
+  letter-spacing: 0.2em;
+  font-size: 0.8rem;
+  margin-top: 2rem;
+  border-top: 1px solid rgba(176, 141, 87, 0.3);
+  padding-top: 1.5rem;
+  display: inline-block;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+/* ============================================
+   响应式
+   ============================================ */
+@media (max-width: 900px) {
+  .report { padding: 3rem 6vw 4rem; }
+  .executive { padding: 2rem 1.8rem; }
+  .strategy-block { padding: 2rem 1.5rem; }
+  .case-body { padding: 1.5rem 1.5rem; }
+  .case-header { padding: 1.4rem 1.5rem; }
+  .nav-links { display: none; }
+  .problem-card { grid-template-columns: 1fr; padding: 1.5rem; }
+  .problem-card .p-num { font-size: 3rem; }
+  .cover { padding: 3rem 6vw 2rem; }
+  .cover-top { flex-direction: column; gap: 1rem; }
+  .cover-bottom { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .section-num .num { font-size: 2.2rem; }
+}
+
+@media (max-width: 600px) {
+  body { font-size: 15px; }
+  table { font-size: 0.82rem; }
+  th, td { padding: 0.7rem 0.6rem; }
+}
+
+/* 选中样式 */
+::selection {
+  background: var(--gold);
+  color: var(--ink);
+}
+
+/* 链接 */
+a {
+  color: var(--gold-deep);
+  text-decoration: underline;
+  text-decoration-color: rgba(176, 141, 87, 0.3);
+  text-underline-offset: 3px;
+  transition: all 0.2s;
+}
+
+a:hover {
+  color: var(--gold);
+  text-decoration-color: var(--gold);
+}
+
+/* 文字装饰 */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 3rem 0;
+  color: var(--gold);
+  font-family: var(--font-serif-en);
+  font-style: italic;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+}
+
+.divider::before, .divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--rule-strong);
+}
+
+/* 滚动条 */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--paper-warm); }
+::-webkit-scrollbar-thumb { background: var(--gold-deep); border-radius: 0; }
+::-webkit-scrollbar-thumb:hover { background: var(--ink); }
+
+/* 入场动画 */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.cover-eyebrow { animation: fadeUp 0.8s 0.1s both; }
+.cover-title { animation: fadeUp 0.9s 0.2s both; }
+.cover-subtitle { animation: fadeUp 1s 0.4s both; }
+.cover-meta { animation: fadeUp 1.1s 0.6s both; }
+
+</style>
+</head>
+<body>
+
+<!-- ============================================ COVER ============================================ -->
+<section class="cover">
+  <div class="cover-inner">
+
+    <div class="cover-top">
+      <div class="brand">
+        <div class="brand-mark">W</div>
+        <span>Wetland-Wise New Town Initiative</span>
+      </div>
+      <span>Report №. WWNTI-2025-FINAL</span>
+    </div>
+
+    <div class="cover-center">
+      <div class="cover-eyebrow">A Paradigm-Shifting Master Plan</div>
+      <h1 class="cover-title">
+        Yuen Long–San Tin<br>
+        <span class="accent">Wetland Smart City</span><br>
+        Integrated Development Plan
+      </h1>
+      <p class="cover-subtitle">
+        A development paradigm where healthy wetland ecosystems become the core asset<br>
+        driving green innovation, top-tier talent, and inclusive community prosperity.
+      </p>
+
+      <div class="cover-meta">
+        <div class="meta-block">
+          <div class="meta-label">Authored by</div>
+          <div class="meta-value">International Urban Planning Expert Consortium</div>
+        </div>
+        <div class="meta-block">
+          <div class="meta-label">Date of Submission</div>
+          <div class="meta-value">May 2025</div>
+        </div>
+        <div class="meta-block">
+          <div class="meta-label">Region</div>
+          <div class="meta-value">Hong Kong Northern Metropolis</div>
+        </div>
+        <div class="meta-block">
+          <div class="meta-label">Vision</div>
+          <div class="meta-value">International Wetland Conservation × I&T Demonstration Zone</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cover-bottom">
+      <span>Hong Kong Northern Metropolis · 2025–2040</span>
+      <div class="scroll-hint">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================ NAVIGATION ============================================ -->
+<nav class="nav-bar">
+  <div class="nav-brand"><strong>WWNTI</strong><em>Final Report</em></div>
+  <ul class="nav-links">
+    <li><a href="#summary">Summary</a></li>
+    <li><a href="#context">Context</a></li>
+    <li><a href="#problems">Problems</a></li>
+    <li><a href="#cases">Case Studies</a></li>
+    <li><a href="#adaptation">Adaptation</a></li>
+    <li><a href="#plan">Master Plan</a></li>
+    <li><a href="#timeline">Roadmap</a></li>
+    <li><a href="#risk">Risk</a></li>
+    <li><a href="#next">Actions</a></li>
+    <li><a href="#appendix">Appendix</a></li>
+  </ul>
+</nav>
+
+<main class="report">
+
+<!-- ============================================ 1. EXECUTIVE SUMMARY ============================================ -->
+<section class="section" id="summary">
+  <div class="executive">
+    <div class="section-num">
+      <span class="num">01</span>
+      <span class="tag">Executive Summary</span>
+    </div>
+    <h2>When the Ecosystem Becomes the City's Core Competitiveness</h2>
+    <p class="section-lead">
+      This report proposes an integrated development plan—the <em>Wetland-Wise New Town Initiative</em>—for Yuen Long–San Tin, a core component of Hong Kong's Northern Metropolis. It is a <strong>paradigm-shifting project</strong> in which the ecosystem becomes the core competitive asset, innovation revolves around ecological challenges, and community development is anchored in ecological equity.
+    </p>
+    <p>
+      The area is currently characterised by high-ecological-value fishponds and gei wai (accounting for <strong>27.3%</strong> of land), fragmented rural settlements, and a marginalised population. It has been designated as the future "International I&T New Town," encompassing the San Tin Technopole and the Ngau Tam Mei University Town. However, this grand vision stands in <strong>severe structural tension</strong> with the area's tight ecological constraints, highly fragmented land tenure, and low-skill-dependent social ecology. Without careful handling, this could lead to ecological disaster, development deadlock, or a repeat of the jobs-housing imbalance that gave Tin Shui Wai its grim "City of Sadness" reputation.
+    </p>
+    <p>
+      Through in-depth analysis of three core problems, and by systematically drawing on six global and local case studies—from Dongting Lake and Colorado to Australia and the San Francisco Bay Area—this report proposes three core planning strategies:
+    </p>
+
+    <div class="exec-strategies">
+      <div class="strategy-card">
+        <div class="strat-num">I</div>
+        <h5>Ecology-First & Market-Based Conservation</h5>
+        <p>A dual-track mechanism: "ex-ante environmental veto + wetland banking." Ecological performance certification becomes a mandatory precondition for planning permission, drawing on Dongting Lake and Colorado experience to build quantified assessment tools and a regional wetland compensation market.</p>
+      </div>
+      <div class="strategy-card">
+        <div class="strat-num">II</div>
+        <h5>Tenure Sharing & Collaborative Development</h5>
+        <p>The first-ever "Indigenous Community Land Trust" combined with "precinct-based collaborative development." Drawing on China's TDR and Australia's strata title regime, this replaces compulsory resumption with public-private partnership, turning the premium-negotiation "black box" into a tiered, transparent framework.</p>
+      </div>
+      <div class="strategy-card">
+        <div class="strat-num">III</div>
+        <h5>Tiered Employment & Inclusive Community</h5>
+        <p>A three-rung employment ladder from "wetland ranger" to "I&T researcher," with mandatory pre-emptive provision of public facilities. Drawing on the APA jobs-housing balance report and the Bay Area Jobs First plan, this ensures full-cycle integration of indigenous residents, new immigrants, and I&T talent.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ 2. CONTEXT ============================================ -->
+<section class="section" id="context">
+  <div class="section-num">
+    <span class="num">02</span>
+    <span class="tag">Project Context</span>
+  </div>
+  <h2>The Heart of the Northern Metropolis: A Chasm Between Vision and Reality</h2>
+
+  <h3>2.1 Macro Location and Strategic Positioning</h3>
+  <p>
+    Located in the northwestern New Territories, Yuen Long–San Tin is a <strong>core component of the Northern Metropolis Innovation & Technology Belt</strong>. Under the <em>Hong Kong 2030+</em> framework and the Northern Metropolis Strategy, the area is tasked with the historic mission of becoming the "International I&T New Town," encompassing the 627-hectare <strong>San Tin Technopole</strong> (planned to create 165,000 jobs) and the approximately 130-hectare <strong>Ngau Tam Mei University Town and Integrated Medical-Education-Research Hospital</strong>. The regional development principle is "industry-led, infrastructure-first," with the first batch of residents scheduled to move in by <strong>2034</strong>.
+  </p>
+
+  <h3>2.2 A Fragmented Rural Landscape on a High-Ecological-Value Base</h3>
+  <p>
+    The area currently exhibits a typical low-density, high-ecological-value rural form. Ecological and rural land uses dominate absolutely. Fishponds and gei wai account for an exceptionally high proportion; woodland and grassland together exceed 34%; built-up land is extremely scattered. Nearly 27% of the fishponds are directly linked to the <strong>Deep Bay Ramsar Wetland</strong>, whose water-quality sensitivity is extremely high—a critical constraint on development. Buildings are mostly low-rise (averaging 11 metres) with a plot ratio of just 0.62, yet temporary housing (squatter huts) numbers as many as 811 households, reflecting a severe shortage of formal housing supply.
+  </p>
+
+  <div class="stats-grid">
+    <div class="stat"><span class="stat-num">27.3<span class="unit">%</span></span><div class="stat-label">Fishpond & gei wai land share</div></div>
+    <div class="stat"><span class="stat-num">0.62</span><div class="stat-label">Plot ratio</div></div>
+    <div class="stat"><span class="stat-num">811<span class="unit"> HH</span></span><div class="stat-label">Squatter households</div></div>
+    <div class="stat"><span class="stat-num">2,209</span><div class="stat-label">Population in squatters</div></div>
+    <div class="stat"><span class="stat-num">11<span class="unit">m</span></span><div class="stat-label">Average building height</div></div>
+  </div>
+
+  <h3>2.3 An Ageing, Low-Skilled, Vulnerable Community</h3>
+  <p>
+    The local community exhibits pronounced demographic ageing and economic marginalisation. The total population is approximately 17,800, with a median age of <strong>47</strong> and those aged 65+ comprising <strong>18.9%</strong>. Labour-force participation stands at only <strong>51.5%</strong>; employment is highly concentrated in non-skilled workers (27%) and services, with median monthly income at just <strong>HK$15,000</strong>, and an enormous gender gap. Local employment opportunities are extremely scarce: only <strong>6.8%</strong> of residents work within the district, forcing the vast majority into long cross-district commutes. Household rent-to-income ratio sits at a median of <strong>36.1%</strong>, making housing burden exceptionally heavy.
+  </p>
+
+  <div class="stats-grid">
+    <div class="stat"><span class="stat-num">17,800</span><div class="stat-label">Total population</div></div>
+    <div class="stat"><span class="stat-num">47</span><div class="stat-label">Median age</div></div>
+    <div class="stat"><span class="stat-num">18.9<span class="unit">%</span></span><div class="stat-label">Population aged 65+</div></div>
+    <div class="stat"><span class="stat-num">51.5<span class="unit">%</span></span><div class="stat-label">Labour participation</div></div>
+    <div class="stat"><span class="stat-num">6.8<span class="unit">%</span></span><div class="stat-label">Local employment rate</div></div>
+    <div class="stat"><span class="stat-num">$15K</span><div class="stat-label">Median monthly income (HKD)</div></div>
+    <div class="stat"><span class="stat-num">36.1<span class="unit">%</span></span><div class="stat-label">Rent-to-income ratio</div></div>
+    <div class="stat"><span class="stat-num">14.7<span class="unit">%</span></span><div class="stat-label">Tertiary-educated share</div></div>
+  </div>
+
+  <h3>2.4 Core Planning Conflicts: Three Structural Tensions</h3>
+  <div class="callout warn">
+    <p style="margin:0"><strong>Between the grand narrative of the Northern Metropolis and local reality, three structural tensions emerge:</strong></p>
+  </div>
+  <ol>
+    <li><strong>Ecological red line vs. net development gain:</strong> Deep Bay's "no net increase in pollution" international obligation clashes sharply with large-scale land conversion. With 27.3% of the area's fishponds and gei wai listed as development reserve land, the ecological bottom line is precariously thin.</li>
+    <li><strong>Rigid rights vs. land assembly:</strong> The traditional rights of indigenous residents (notably the Small House Concession) safeguarded by Article 40 of the Basic Law, intertwined with highly fragmented private land tenure (Tso/Tong land, old-schedule agricultural lots, brownfields), make conventional resumption procedures protracted—seriously threatening the 2034 occupancy commitment.</li>
+    <li><strong>Low-skill society vs. knowledge economy:</strong> A massive human-capital mismatch exists between the current low-skill-dependent social ecology (low education, ageing, low income) and the future knowledge-job thresholds of the university town and Technopole. Without intervention, the area will repeat Tin Shui Wai's jobs-housing imbalance trauma.</li>
+  </ol>
+</section>
+
+<!-- ============================================ 3. CORE PROBLEMS ============================================ -->
+<section class="section" id="problems">
+  <div class="section-num">
+    <span class="num">03</span>
+    <span class="tag">Core Problems Identification</span>
+  </div>
+  <h2>Three Structural Challenges That Must Be Overcome</h2>
+  <p class="section-lead">
+    Based on a deep diagnosis of the local context, we precisely identify three core problems on Yuen Long–San Tin's development path that must be addressed. Any plan that ignores even one of them is destined for systemic failure.
+  </p>
+
+  <div class="problems">
+    <div class="problem-card">
+      <div class="p-num">I</div>
+      <div>
+        <h4>Balancing Ecological Constraints with Development Growth</h4>
+        <div class="quote">"Under the rigid ecological threshold of the Ramsar Wetland and Deep Bay's 'no net increase in pollution' obligation, how can large-scale land conversion achieve a substantive balance between development growth and ecological conservation?"</div>
+        <p>Currently, the Environmental Impact Assessment (EIA) regime and town planning approval (TPO) function as two separate legal instruments with risk of disconnection. The Town Planning Board may grant planning permission without fully resolving environmental impacts, causing wetland compensation to be downgraded to landscape greening or other superficial measures, with no quantified assessment tools (such as Colorado's EIA methodology). Without a thorough reform spanning institutions, technology, and economic incentives, mere administrative directives cannot stem biodiversity loss and timing disruption.</p>
+      </div>
+    </div>
+
+    <div class="problem-card">
+      <div class="p-num">II</div>
+      <div>
+        <h4>Fragmented Tenure vs. Development Timeline</h4>
+        <div class="quote">"Can existing policy reconcile the fundamental conflict between highly fragmented private land tenure with rigid traditional rights, and modern urban development?"</div>
+        <p>Local land tenure is exceedingly complex: Tso/Tong (clan) land lacks a modern legal personality, making coordination difficult; the development of old-schedule agricultural land suffers a dual-track procedure (statutory planning + land administration) compounded by the uncertainty of land premium negotiations, often taking over 10 years. Facing the relocation gap of 811 squatter households and the Small House rights of indigenous villagers, even the government's "accelerated resumption with higher compensation" policy—combined with the still-immature "precinct development" model—fails to resolve the core deficits of rights valuation and collective bargaining mechanisms.</p>
+      </div>
+    </div>
+
+    <div class="problem-card">
+      <div class="p-num">III</div>
+      <div>
+        <h4>Jobs-Housing Imbalance and Skills Mismatch Crisis</h4>
+        <div class="quote">"In a low-skill-dependent social ecology, how can the implantation of a high-end knowledge industry avoid repeating the jobs-housing imbalance, and prevent the marginalisation and social segregation of indigenous residents?"</div>
+        <p>The lesson of Tin Shui Wai is a sword of Damocles hanging over this project. The local employment rate is only 6.8%; non-skilled workers constitute a high proportion; and the future 160,000 knowledge-economy jobs have almost "zero overlap" with the local labour force. Community facilities are severely lacking (GIC land 1.6%, recreational land 0.3%), and the 18.9% elderly population's needs are gravely misaligned with supply. Without a smooth, inclusive skills-upgrading pathway and a robust community safety net, industrial implantation will become a social cleansing that displaces indigenous residents.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ 4. GLOBAL CASE STUDIES ============================================ -->
+<section class="section" id="cases">
+  <div class="section-num">
+    <span class="num">04</span>
+    <span class="tag">Global Case Studies</span>
+  </div>
+  <h2>Six Cases, Three Themes, One Universal Path</h2>
+  <p class="section-lead">
+    To address the three core problems, we examined six cases spanning ecological restoration, tenure integration, and jobs-housing balance. Synthesising all six, a universal path to success emerges clearly: <strong>institutional reform first, clear rights definition, deep social participation, and aligned incentives</strong>.
+  </p>
+
+  <h3>4.1 Ecological Capacity & Wetland Compensation (Problem 1)</h3>
+  <p><em>Key references: Dongting Lake Ecological Dredging & Colorado Wetland Ecological Integrity Assessment</em></p>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th style="width:22%">Case</th><th style="width:30%">Core Problem</th><th>Core Strategy & Actions</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Dongting Lake Ecological Dredging</strong><br><em>Hunan, China</em></td>
+        <td>Sediment accumulation has caused lake shrinkage, wetland degradation, and biodiversity decline.</td>
+        <td><strong>Multi-objective habitat reshaping:</strong> A combined "land lowering + ecological lake + preservation of original sandbars" model that simultaneously delivers flood storage, wetland restoration, and species habitat reconstruction. A strict "parallel topic studies + tiered approval" compliance pathway was established, making impact assessment of sensitive targets (nature reserves, aquatic resource protection zones) a precondition for project entry.</td>
+      </tr>
+      <tr>
+        <td><strong>Colorado Wetland EIA</strong><br><em>Colorado, USA</em></td>
+        <td>Lack of standardised, quantifiable wetland health assessment tools, leaving management decisions without evidence base.</td>
+        <td><strong>Quantified ecological integrity assessment:</strong> Developed an 11-metric scoring model (Level 3) covering Landscape Context, Condition, and Size, grading wetlands A–D based on "reference conditions." The method treats plant communities as long-term integrative responders to environmental stress, and successfully incorporated assessment data into Clean Water Act water-quality reporting as part of the statutory EIA data stream.</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>4.2 Fragmented Tenure Integration (Problem 2)</h3>
+  <p><em>Key references: Australian Strata Title & China's Transfer of Land Development Rights</em></p>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th style="width:22%">Case</th><th style="width:30%">Core Problem</th><th>Core Strategy & Actions</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Australian Strata Title</strong><br><em>Australia / Cayman Islands</em></td>
+        <td>Property fragmentation in vertical buildings challenges traditional common-law property concepts rooted in horizontal parcels.</td>
+        <td><strong>Three-dimensional tenure & collective governance:</strong> Strata title legally subdivides vertical airspace property rights, and a legally-constituted Owners Corporation manages common property. Administrative funds and sinking funds ensure financial sustainability.</td>
+      </tr>
+      <tr>
+        <td><strong>China's TDR</strong><br><em>Various Chinese cities</em></td>
+        <td>Under a dual urban-rural land system, how to effectively transfer development rights, protect arable-land red lines, and let rural areas share in land value appreciation.</td>
+        <td><strong>Diverse institutional arrangements:</strong> Three modes identified and practiced—government-led "linking increases with decreases," market-driven "land tickets" (Chongqing), and community self-organised "dual-field separation" (Zhunan, Nanjing). The core is to abstract the indicators generated by rural construction-land reclamation into tradable "development rights."</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>4.3 Jobs-Housing Balance & Inclusive Community (Problem 3)</h3>
+  <p><em>Key references: APA Jobs-Housing Balance Report & Bay Area Jobs First Regional Plan</em></p>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th style="width:22%">Case</th><th style="width:30%">Core Problem</th><th>Core Strategy & Actions</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>APA Jobs-Housing Balance</strong><br><em>USA, 2003</em></td>
+        <td>Urban sprawl and rigid zoning have caused spatial mismatches between jobs and housing.</td>
+        <td><strong>A systemic policy toolkit:</strong> A complete chain from diagnosis (four imbalance types) to intervention (comprehensive plans, mixed-use zoning, inclusionary zoning, employer-assisted housing). Integrated jobs-housing balance analysis into the statutory Development of Regional Impact (DRI) review.</td>
+      </tr>
+      <tr>
+        <td><strong>Bay Area Jobs First</strong><br><em>San Francisco Bay Area, USA</em></td>
+        <td>Economic inequality, prevalence of low-quality jobs, climate vulnerability, and exclusion of marginalised groups from decision-making.</td>
+        <td><strong>Bottom-up participatory planning:</strong> Placed workers and community representatives at the heart of decision-making, jointly selecting six target industries. Pushed industries toward equity and sustainability through "high-road job floors" (living wage, benefits), binding agreements (Project Labour Agreements), and blended fiscal leverage.</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>4.4 Synthesis: Key Success Factors</h3>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th style="width:18%">Dimension</th><th>Key Elements</th><th style="width:25%">Source Cases</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Institutional Design</strong></td>
+        <td>Parallel approval mechanisms · Quantified assessment standards · Statutory planning instruments</td>
+        <td>Dongting Lake, Colorado, APA</td>
+      </tr>
+      <tr>
+        <td><strong>Rights Handling</strong></td>
+        <td>Making implicit rights explicit · Integrating fragmented rights · Shared compensation mechanisms</td>
+        <td>China TDR, Australian Strata, Zhunan</td>
+      </tr>
+      <tr>
+        <td><strong>Social Construction</strong></td>
+        <td>Deep public participation · Tiered employment opportunities · Pre-emptive facility provision</td>
+        <td>Bay Area Jobs First</td>
+      </tr>
+      <tr>
+        <td><strong>Economic Logic</strong></td>
+        <td>Internalised cost-benefit · Diversified fiscal instruments</td>
+        <td>Dongting Lake, Colorado, Bay Area</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ============================================ 5. LOCAL ADAPTATION ============================================ -->
+<section class="section" id="adaptation">
+  <div class="section-num">
+    <span class="num">05</span>
+    <span class="tag">Local Adaptation</span>
+  </div>
+  <h2>Not Copy-Paste, but Institutional Grafting</h2>
+  <p class="section-lead">
+    When transplanting global experience to Yuen Long–San Tin, we must clearly recognise the uniqueness of the local context. Simple "copy and paste" is bound to fail; deep adaptation is required.
+  </p>
+
+  <h3>5.1 Pre-Conditions Comparison</h3>
+  <div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th style="width:12%">Dimension</th>
+        <th style="width:30%">Global Cases</th>
+        <th style="width:30%">Local Context</th>
+        <th>Critical Gap</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Institutional</strong></td>
+        <td>Inter-agency coordinated approval is the norm; federal/state law backs assessment tools; mature cross-regional coordination bodies.</td>
+        <td>EIA and TPO are two separate legal instruments without substantive linkage; no legal tool to make ecological assessment a veto over planning permission.</td>
+        <td>Absence of a "EIA-Planning-Lands" three-track legal linkage and a quantitative ecological assessment tool to support planning decisions.</td>
+      </tr>
+      <tr>
+        <td><strong>Economic</strong></td>
+        <td>Public finance bears the bulk of ecological restoration investment; federal grants and diversified funds leverage the market; tradable land development rights markets exist.</td>
+        <td>Government finance heavily dependent on land sales revenue; no equivalent of U.S. wetland mitigation banking; PPP models like "precinct development" still pilot-stage.</td>
+        <td>Market mechanism for ecological compensation absent; "net gain" target lacks financial instruments; PPP financial models (premium, profit sharing) opaque.</td>
+      </tr>
+      <tr>
+        <td><strong>Technical</strong></td>
+        <td>Long-term species databases and expert teams; mature ecological dredging and 3D cadastre technology.</td>
+        <td>Grassroots planning has not incorporated fine-grained biological baseline data; AFCD's SSSI assessment is static; 3D cadastre still conceptual.</td>
+        <td>Lack of localised, planning-embedded rapid biological assessment tools and a multi-dimensional information platform for Tso/Tong and Small House rights.</td>
+      </tr>
+      <tr>
+        <td><strong>Social</strong></td>
+        <td>Project sites mostly uninhabited; highly organised unions and grassroots NGOs as negotiating partners.</td>
+        <td>Involves 811 squatter households, indigenous villages, and Tso/Tong land—immense relocation pressure; low community organisation, no mature bodies representing squatters or foreign workers.</td>
+        <td>No global case faces such a concentrated overlay of traditional rights and resettlement needs; no off-the-shelf solution for Hong Kong's compound tenure-resettlement problem.</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>5.2 Implementation Barriers</h3>
+  <ol>
+    <li><strong>Legal and institutional barriers:</strong> Amending the Town Planning Ordinance to embed an "ecological compatibility certificate" as a precondition has a long legislative cycle and may face resistance from real-estate interests and certain political forces. Creating a special Community Land Trust ordinance requires careful interface with Article 40 of the Basic Law and existing land law—any misstep could trigger judicial review.</li>
+    <li><strong>Economic and fiscal barriers:</strong> High-standard ecological compensation and front-loaded social infrastructure will significantly raise development costs, potentially eroding financial viability. Land trusts and development-rights banks may face asset-pricing difficulties without sufficient market liquidity or government backstop.</li>
+    <li><strong>Social and political barriers:</strong> The "share-ification" and pricing of land rights easily provokes fairness disputes; squatters' complex resettlement eligibility tiers (1982/84 cutoffs) are a ticking time bomb. Environmental groups may reject any "compensation" logic and insist on "zero development," launching legal challenges.</li>
+    <li><strong>Technical and capacity barriers:</strong> Producing a localised EIA manual, building a multi-dimensional cadastral platform, and training large numbers of qualified "ecological rangers" and trust managers all require strong professional capacity and time—local talent reserves may be a bottleneck.</li>
+  </ol>
+
+  <h3>5.3 Local Adaptation Strategies</h3>
+  <div class="callout gold">
+    <p style="margin:0"><strong>Core principles:</strong> Resolve tenure deadlock through institutional innovation; carry public-interest goals via market instruments; build social consensus via participatory governance.</p>
+  </div>
+  <ol>
+    <li><strong>Graft, don't copy:</strong> Rather than importing foreign laws directly, draw on their "functional equivalents." For instance, instead of setting up a U.S.-style wetland mitigation bank, create a statutory public-fund—the Deep Bay Wetland Conservation Fund—within Hong Kong law and grant it exclusive authority over ecological credit pricing and trading.</li>
+    <li><strong>Transform rights, don't strip them:</strong> Do not abolish Small House and other traditional rights; create a "rights converter" that transforms them into modern property forms (trust beneficial interests, gross floor area credits). The conversion must be premised on informed consent and deep participation of all rights-holders, turning adversarial resumption into cooperative dividend relationships.</li>
+    <li><strong>Create middle ground, no hard landing:</strong> For the chasm between local labour and the knowledge economy, do not hope to leap directly across. Create transitional industrial belts like "ecological conservation" and "medical logistics," supported by government subsidies and skills training.</li>
+    <li><strong>Modularise the timeline to decouple risks:</strong> To prevent a single institutional innovation's failure from sinking the whole plan, modularise the rollout. "Facility-first" and "pre-built public housing" modules—which don't depend on the land trust—serve as ballast, ensuring the 2034 occupancy commitment holds. Complex modules like the ecological bank and land trust are rolled out gradually via pilots.</li>
+  </ol>
+</section>
+
+<!-- ============================================ 6. MASTER PLAN ============================================ -->
+<section class="section" id="plan">
+  <div class="section-num">
+    <span class="num">06</span>
+    <span class="tag">Integrated Master Plan</span>
+  </div>
+  <h2>Wetland Smart City</h2>
+  <p class="section-lead">
+    Yuen Long–San Tin will not repeat the traditional "develop first, govern later" or "dormitory town" path. The only correct positioning is as an <strong>"International Wetland Conservation and I&T Demonstration Zone."</strong> Here, healthy wetland ecosystems are no longer obstacles to development, but core assets that nurture green technology, attract top talent, and drive community prosperity.
+  </p>
+
+  <h3>6.1 Core Quantitative Goals</h3>
+  <div class="stats-grid">
+    <div class="stat"><span class="stat-num">≥1.2:1</span><div class="stat-label">Wetland compensation ratio (net gain)</div></div>
+    <div class="stat"><span class="stat-num">25<span class="unit">%</span></span><div class="stat-label">Local employment rate (up from 6.8%)</div></div>
+    <div class="stat"><span class="stat-num">1,500<span class="unit">+</span></span><div class="stat-label">Transitional & permanent public housing units</div></div>
+    <div class="stat"><span class="stat-num">3.5<span class="unit">m²</span></span><div class="stat-label">GIC land per capita (at first occupancy)</div></div>
+    <div class="stat"><span class="stat-num">&lt;30<span class="unit">%</span></span><div class="stat-label">Median rent-to-income ratio</div></div>
+    <div class="stat"><span class="stat-num">2.5<span class="unit">m²</span></span><div class="stat-label">Recreational land per capita</div></div>
+  </div>
+
+  <div class="divider">— Three Core Strategies —</div>
+
+  <!-- Strategy I -->
+  <div class="strategy-block">
+    <div class="strat-header">
+      <span class="num">I</span>
+      <div>
+        <h3>Ecological Red Line Defence</h3>
+        <div class="strat-subtitle">Dual-track mechanism: "Ex-ante environmental veto + Wetland Bank"</div>
+      </div>
+    </div>
+    <p><em>Addresses Core Problem 1 · Integrates the best of Dongting Lake & Colorado EIA</em></p>
+    <p>This strategy transforms Deep Bay's rigid ecological constraints from upstream planning disputes into statutory, enforceable, quantifiable development standards, while creating market instruments to optimise regional ecological outcomes.</p>
+
+    <h4>A. Establishing a statutory "Certificate of Ecological Compatibility" pre-procedure</h4>
+    <p>Submit amendments to the Town Planning Ordinance and the Environmental Impact Assessment Ordinance to the Legislative Council. Before the Town Planning Board reviews any planning application involving the "ecologically sensitive area list," the applicant must submit a <strong>Certificate of Ecological Compatibility (CEC)</strong> jointly issued by the Environment and Ecology Bureau and the Agriculture, Fisheries and Conservation Department. Without it, the Board cannot initiate review.</p>
+    <p>The CEC has three elements: exhaustive avoidance and minimisation; a legally binding "Wetland Net Gain Plan" (area ratio ≥1.2:1, functional equivalency ≥1:1); and a biodiversity performance monitoring plan of at least five years.</p>
+
+    <h4>B. Creating the Deep Bay Wetland Conservation Fund and "Wetland Bank"</h4>
+    <p>Establish via legislation the statutory body <strong>The Deep Bay Wetland Conservation Fund (DBWCF)</strong>. The Fund undertakes large-scale, high-standard restoration in designated "key restoration zones" (Tsim Bei Tsui, Lau Fau Shan's abandoned fishponds), applying methods from the Dongting Lake case—land lowering, ecological lakes, habitat diversification—to generate <strong>Wetland Ecological Credits</strong>. Development projects may, after rigorous review, be required to purchase credits equivalent to their residual ecological debt, creating a closed-loop "develop–compensate–conserve" financing cycle.</p>
+
+    <h4>C. Producing and adopting a localised Deep Bay Wetland Ecological Integrity Assessment Manual</h4>
+    <p>The government commissions local universities together with international experts to adapt Colorado's three-level EIA framework and "reference condition" methodology. Deep Bay wetlands are subdivided into specific ecotypes (gei wai fishponds, reed marshes, mangrove fringes), each with reference states and a rapid assessment toolset, becoming the statutory technical basis for CEC applications.</p>
+  </div>
+
+  <!-- Strategy II -->
+  <div class="strategy-block">
+    <div class="strat-header">
+      <span class="num">II</span>
+      <div>
+        <h3>Tenure-Sharing Breakthrough</h3>
+        <div class="strat-subtitle">"Indigenous Community Land Trust + Precinct-Based Collaborative Development"</div>
+      </div>
+    </div>
+    <p><em>Addresses Core Problem 2 · Draws on China's TDR wisdom and Australia's strata title</em></p>
+    <p>This strategy avoids drawn-out adversarial resumption, instead designing a consensus-based benefit-sharing mechanism that bundles scattered, opposing rights into a unified force driving development.</p>
+
+    <h4>A. The first-ever "San Tin / Ngau Tam Mei Community Land Trust"</h4>
+    <p>The government drafts the <em>Northern Metropolis Community Land Trust Ordinance</em> as a legal framework. Tso/Tong managers, Small House rights-holders, and old-schedule agricultural land owners are invited to inject their scattered, hard-to-develop land rights—after independent third-party valuation—into the trust as assets. <strong>Rights conversion matrix:</strong> Tso/Tong and agricultural land → Class A beneficial certificates (land value); Small House rights → Class B beneficial certificates or equivalent gross floor area credits. The beneficiaries' general meeting becomes the supreme decision-making body, mirroring Australia's "Owners Corporation" model.</p>
+
+    <h4>B. Full-process "Precinct-Based Collaborative Development"</h4>
+    <p>The government packages trust land, adjacent government land, and required infrastructure into a single precinct (e.g., 20 hectares) for open tender. Bidders must form a consortium of "Developer + Land Trust." A <strong>"Tiered Land Premium Framework"</strong> is built into the tender: fixed base premium + profit-sharing above a defined return rate—ending opaque, lot-by-lot negotiation. Unified planning must include defined proportions of public housing, GIC facilities, wetland compensation zones, and employment-ladder industrial space.</p>
+
+    <h4>C. A modern realisation pathway for Small House rights</h4>
+    <p>Class B certificate holders may choose: (1) physical realisation—priority purchase of a modern multi-storey unit ≤700 sq ft, offset by certificate value and partial cash subsidy; (2) cash dividends—annual share of commercial development returns; (3) hybrid model. This fully complies with Article 40 of the Basic Law.</p>
+  </div>
+
+  <!-- Strategy III -->
+  <div class="strategy-block">
+    <div class="strat-header">
+      <span class="num">III</span>
+      <div>
+        <h3>Curing Social Fragmentation</h3>
+        <div class="strat-subtitle">"Tiered Local Employment Spectrum + Absolute Facility Pre-Provision"</div>
+      </div>
+    </div>
+    <p><em>Addresses Core Problem 3 · Adopts the APA Jobs-Housing Balance & Bay Area Jobs First principles</em></p>
+    <p>This strategy acknowledges the productivity gap and uses active public intervention to build an inclusive ladder between old community and new economy, while pre-emptively providing public services to mend physical and psychological divides.</p>
+
+    <h4>A. Constructing a three-rung employment ladder</h4>
+    <p><strong>Rung 1 (Year 0–2) Green care and community services:</strong> wetland ecological rangers, community agronomists, zero-carbon community technicians, elderly and child carers. Priority hiring of local residents aged 40–55 and squatter residents. 3–6 months of subsidised pre-employment training.</p>
+    <p><strong>Rung 2 (Year 2–5) Modern technical services:</strong> derivative jobs around the hospital and university—patient transport and care assistants, medical equipment sterilisation and logistics, advanced facility management, lab technical support. Industry-academia partnerships with the Vocational Training Council deliver 1–2 year "micro-credential" programmes.</p>
+    <p><strong>Rung 3 (Year 5+) Knowledge economy:</strong> Via legally binding <strong>Community Benefits Agreements (CBA)</strong>, all companies receiving land grants or policy incentives in the Technopole or University Town must commit to: (a) reserving at least 15% of new entry-level positions (data labelling, IT support, administration, health services) for local residents over five years; (b) sending researchers to local secondary schools and community colleges to run coding workshops and science talks.</p>
+
+    <h4>B. Implementing innovative "Absolute Facility Pre-Provision" zoning</h4>
+    <p>Lease conditions for all precincts contain rigid <strong>"Facility Pre-Provision Clauses."</strong> On the day the first residential unit receives its Occupation Permit, the following must already be operational: a community complex (with elderly day-care, child-care, library, training centre, hall); a standard community park (2.5 m² per capita); shuttle bus services to the nearest railway station (San Tin Station on the Northern Link), plus internal pedestrian and cycling paths.</p>
+
+    <h4>C. Establishing a "Community Resilience Fund"</h4>
+    <p>Capitalised with 3% of government land premium and a portion of the trust's commercial returns. Functions include: (1) the <strong>"Rent Shield"</strong> programme—five-year rent subsidies for affected squatter tenants ineligible for full public-housing rehousing (e.g., those with under seven years' residency); (2) <strong>"Community Emergency"</strong> reserves for assisting vulnerable households during economic downturns.</p>
+  </div>
+</section>
+
+<!-- ============================================ 7. IMPLEMENTATION ROADMAP ============================================ -->
+<section class="section" id="timeline">
+  <div class="section-num">
+    <span class="num">07</span>
+    <span class="tag">Implementation Roadmap</span>
+  </div>
+  <h2>2025 → 2040: A Modular Phased Approach</h2>
+  <p class="section-lead">
+    The plan adopts a "modular, phased" rollout to handle complexity and uncertainty. Three phases advance progressively, from institutional foundations to core formation, and finally to mature integration and model export.
+  </p>
+
+  <div class="timeline">
+
+    <div class="timeline-phase">
+      <div class="phase-label">2025 — 2028 · Phase I</div>
+      <div class="phase-title">Icebreaking and Foundation Period</div>
+      <ul>
+        <li><strong>[2025–2026]</strong> Launch public consultation on the <em>Northern Metropolis (Special Planning Provisions) Ordinance</em>, providing legal definition and standing for the "Community Land Trust" and the "Certificate of Ecological Compatibility."</li>
+        <li><strong>[2026–2027]</strong> Form the Deep Bay Wetland Conservation Fund's preparatory committee and apply to LegCo for ~HK$10 billion in seed funding. Commission the localised <em>Wetland Ecological Integrity Assessment Manual</em>.</li>
+        <li><strong>[2027–2028]</strong> Establish the Northern Metropolis "One-Stop Approval Hub Team" with co-located staff from Planning, Lands, and EPD.</li>
+        <li><strong>[Mid-2026]</strong> Select pilot villages in Ngau Tam Mei with relatively clear Tso/Tong tenure to launch the first Community Land Trust.</li>
+        <li><strong>[End-2027]</strong> Complete draft OZP amendments for San Tin / Ngau Tam Mei, incorporating all innovative provisions.</li>
+        <li><strong>[2028]</strong> The Wetland Bank launches its first demonstration restoration project at Tsim Bei Tsui.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-phase">
+      <div class="phase-label">2029 — 2034 · Phase II</div>
+      <div class="phase-title">Core Formation and First Occupancy Period</div>
+      <ul>
+        <li><strong>[From 2029]</strong> Core precincts of the San Tin Technopole tendered in batches under the "Precinct-Based Collaborative Development" model.</li>
+        <li><strong>[2030]</strong> The One-Stop Approval Hub begins processing planning and lands applications for the first precincts under the new model.</li>
+        <li><strong>[2031]</strong> The Northern Link main line and San Tin Station come into service, with simultaneous opening of community circular bus routes.</li>
+        <li><strong>[2032]</strong> Large-scale recruitment and training launched for "Rung 1" positions (ecological rangers, etc.).</li>
+        <li><strong>[Mid-2033]</strong> First GIC complexes, parks, and public housing receive Occupation Permits, meeting the "Absolute Facility Pre-Provision" standard.</li>
+        <li><strong>[End-2034]</strong> 🏁 <strong>First batch of affected residents and Technopole employees move into new homes.</strong></li>
+      </ul>
+    </div>
+
+    <div class="timeline-phase">
+      <div class="phase-label">2035 — 2040+ · Phase III</div>
+      <div class="phase-title">Mature Integration and Model Export Period</div>
+      <ul>
+        <li>University Town and the integrated hospital reach full operation; Rungs 2 and 3 of the employment ladder activate. Local employment rate stabilises above <strong>25%</strong>.</li>
+        <li>The first major compensation restoration project led by the Wetland Bank completes its five-year monitoring cycle. An independent scientific report confirms positive net gain on key ecological indicators.</li>
+        <li>The first Community Land Trust enters stable dividend phase, establishing a mature culture combining indigenous self-governance with professional management.</li>
+        <li>The "Wetland Smart City" model is codified into methodology and white papers, exported to other high-ecological-sensitivity regions (Mekong Delta, East African Great Lakes) via international conferences and academic journals.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================ 8. RISK ASSESSMENT ============================================ -->
+<section class="section" id="risk">
+  <div class="section-num">
+    <span class="num">08</span>
+    <span class="tag">Risk Assessment & Response</span>
+  </div>
+  <h2>Candid Foresight, Resilient Design</h2>
+  <p class="section-lead">
+    Every bold vision carries inherent risks. We must approach them with candour and prudence, designing matching control mechanisms.
+  </p>
+
+  <h3>8.1 Potential Costs</h3>
+  <div class="callout warn">
+    <strong>Economic cost (high risk):</strong> The CEC's high standards and "Absolute Facility Pre-Provision" will substantially raise front-loaded investment, potentially pushing up the land premium baseline.<br>
+    <strong>Fiscal pressure (high risk):</strong> Rung 1's many public and social enterprise positions depend on ongoing public subsidy. Failure to transition them to market-driven Rungs 2 and 3 could create a fiscal sinkhole.
+  </div>
+  <div class="callout warn">
+    <strong>Rights valuation disputes (very high risk):</strong> The quantitative valuation of Tso/Tong land and Small House rights within the trust will be the flashpoint. Any distribution scheme perceived as "unfair" could trigger internal rifts and protracted litigation.<br>
+    <strong>Institutional conflict (high risk):</strong> Novel mechanisms will almost certainly trigger judicial review challenges from rejected developers.
+  </div>
+
+  <h3>8.2 Adverse Impact Warnings</h3>
+  <ol>
+    <li><strong>"Green gentrification" risk:</strong> As Ngau Tam Mei becomes more "liveable" due to ecological improvements and educational facilities, land and housing values will surge. Even with trust dividends, vulnerable tenants without property rights (particularly squatters ineligible for full rehousing) may still be priced out completely.</li>
+    <li><strong>Soft return of social segregation:</strong> If the three-rung ladder malfunctions, indigenous residents may be locked into low-paid Rung 1 positions while I&T talent congregates in newer, better neighbourhoods—creating a new form of physical and class segregation: "two districts in one city."</li>
+    <li><strong>Reverse incentives in ecological compensation:</strong> Credit trading could create moral hazard, with projects relaxing "avoidance and minimisation" efforts and instead buying credits to "absolve" themselves—systematically lowering the ecological baseline.</li>
+  </ol>
+
+  <h3>8.3 Risk Control Measures</h3>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th style="width:30%">Risk Type</th><th>Core Control Measures</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Fiscal & market risks</strong><br>(cost escalation, reverse incentives)</td>
+        <td>Set transparency indicators to prevent bureaucratic cost inflation; an expert committee performs annual benchmark price review for wetland credits; enforce "avoidance first" priority via detailed checklist-based review, blocking shortcuts to the "absolution" route.</td>
+      </tr>
+      <tr>
+        <td><strong>Segregation & equity risks</strong><br>(green gentrification, rights pricing)</td>
+        <td>The Community Land Trust Ordinance mandates seats for women, low-income households, and affected tenants in the beneficiaries' general meeting and committee; an "anti-gentrification combo" of Rent Shield (short-term), trust dividend housing subsidies (medium-term), and permanently trust-held public housing units (long-term); independent third-party valuation with a retired-judge-led appeal arbitration body.</td>
+      </tr>
+      <tr>
+        <td><strong>Legal & institutional challenge</strong><br>(judicial review)</td>
+        <td>Legislate first to firm up the foundations; ensure planning authority's discretion on ecological factors is clearly bounded; establish a "sandbox" trial period that exposes legal ambiguities under controlled conditions before broad rollout.</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ============================================ 9. EXPECTED OUTCOMES ============================================ -->
+<section class="section">
+  <div class="section-num">
+    <span class="num">09</span>
+    <span class="tag">Expected Outcomes & Evaluation</span>
+  </div>
+  <h2>A Multi-Dimensional Paradigm Shift</h2>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th style="width:14%">Dimension</th><th style="width:46%">Quantitative Indicators (2034–2040)</th><th>Qualitative Impact</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Ecology</strong></td>
+        <td>100% of development-induced wetland function loss compensated at ≥1:1, with key zones achieving >1.2:1 net gain; net-zero increase in nitrogen and phosphorus load into Deep Bay; over-wintering numbers and feeding frequency of flagship waterbirds (e.g., Black-faced Spoonbill) stable or rising.</td>
+        <td>A replicable management paradigm for water environments in high-sensitivity zones. <em>Independent third-party annual monitoring reports.</em></td>
+      </tr>
+      <tr>
+        <td><strong>Society & Economy</strong></td>
+        <td>Local employment rate up from 6.8% to >15% by 2034, >25% by 2040; median monthly household income of indigenous families to match the Hong Kong median by 2038; over 90% of eligible squatter residents to receive public housing.</td>
+        <td>A decisive reversal of the jobs-housing imbalance and "working poor" stigma, becoming Hong Kong's most inclusive new town.</td>
+      </tr>
+      <tr>
+        <td><strong>Governance</strong></td>
+        <td>>80% of target precincts developed under the Community Land Trust or similar PPP model; trust transparency and beneficiary satisfaction scores ≥80/100.</td>
+        <td>Adversarial resumption disputes converted into shared development force, providing an institutional outlet for New Territories land issues.</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ============================================ 10. NEXT ACTIONS ============================================ -->
+<section class="section" id="next">
+  <div class="section-num">
+    <span class="num">10</span>
+    <span class="tag">Next Actions</span>
+  </div>
+  <h2>Five Actions from Plan to Ground</h2>
+  <p class="section-lead">
+    To prevent this plan from gathering dust on a shelf, we propose five concrete, immediately actionable steps.
+  </p>
+
+  <ol>
+    <li>
+      <strong>Establish a High-Level Task Force</strong><br>
+      Immediately establish the <strong>Yuen Long–San Tin Wetland Smart City Task Force (WN-SMART Group)</strong> under the Northern Metropolis Coordination Office, composed of senior officials from the Development Bureau, Environment Bureau, Lands Department, and Planning Department. The Task Force reports directly to the Financial Secretary, with real cross-bureau coordination authority—the first step to breaking departmental silos.
+    </li>
+    <li>
+      <strong>Launch "Three Foundation Stones" of Legislative Research</strong><br>
+      <em>Study 1</em> (Ecology-first system): commission legal scholars to assess the legality, operability, and judicial-review risk of embedding the CEC in the Town Planning Ordinance.<br>
+      <em>Study 2</em> (Community Land Trust): partner with the Heung Yee Kuk to study equity quantification methods and the interface with Article 40 of the Basic Law.<br>
+      <em>Study 3</em> (Wetland Bank financial model): quantitative modelling of credit pricing, trading rules, and long-term financial sustainability.
+    </li>
+    <li>
+      <strong>Begin "Social Negotiation" Engagement Immediately</strong><br>
+      Through the Home Affairs Department and professional social-work agencies, launch "Community Vision Workshops" in the villages. The first purpose is to <em>listen, build trust, and educate</em>—not to sell the plan. This is the most effective investment in defusing future resistance.
+    </li>
+    <li>
+      <strong>Demarcate "No-Development" and "Priority Restoration" Ecological Boundaries</strong><br>
+      By 2026, the AFCD shall demarcate permanently no-go ecological core zones (high-value gei wai clusters). In parallel, designate "Priority Restoration Zones" in Lau Fau Shan etc., and launch the first government-funded technical feasibility and design studies.
+    </li>
+    <li>
+      <strong>Intensify International Outreach and Investment Promotion</strong><br>
+      Use the "Wetland Smart City" brand to engage the world's leading ESG-focused tech firms, universities, and R&D institutions. Position the "Ecological Credit Trading" and "Community Benefits Agreement" innovations as unique business-environment offerings and investment vehicles, attracting visionary "lighthouse" companies first.
+    </li>
+  </ol>
+</section>
+
+<!-- ============================================ 11. APPENDIX: CASE STUDIES ============================================ -->
+<section class="section" id="appendix">
+  <div class="section-num">
+    <span class="num">11</span>
+    <span class="tag">Appendix</span>
+  </div>
+  <h2>Six Global Case Studies in Detail</h2>
+  <p class="section-lead">
+    Below are the complete detailed analyses of the six global and local cases referenced in this plan, organised by associated problem. Each case covers source, background, problem, solution, results, prerequisites, potential costs, and transferability assessment.
+  </p>
+
+  <div class="cases-intro">
+    Problem 1 focuses on ecological capacity and wetland compensation; Problem 2 on fragmented-tenure integration and PPP; Problem 3 on jobs-housing balance and inclusive community. Each case contains both directly transferable tools and notes on the difficulties of migrating them to Hong Kong's local context.
+  </div>
+
+  <!-- Case 1: Dongting Lake -->
+  <article class="case-detail">
+    <div class="case-header">
+      <div class="case-tag">Case 01 · Problem 1 · Ecological Capacity & Wetland Compensation</div>
+      <h3>Dongting Lake Ecological Dredging Pilot Project EIA Report</h3>
+      <div class="case-meta">
+        <span><strong>Region:</strong> Yuanjiang City, Yiyang, Hunan, China</span>
+        <span><strong>Date:</strong> December 2022</span>
+        <span><strong>Type:</strong> Government-commissioned public research report</span>
+      </div>
+    </div>
+    <div class="case-body">
+      <div class="case-question"><strong>Linked Problem:</strong> Under the rigid threshold of the Ramsar Wetland and Deep Bay's "no net pollution increase" obligation, how can large-scale land conversion at the San Tin Technopole and University Town achieve substantive balance between development growth and ecological conservation through environmental carrying-capacity assessment, three-tier mitigation, and ex-ante compensation?</div>
+
+      <h4>Background</h4>
+      <p>Dongting Lake is the only river-connected lake in the middle reaches of the Yangtze. Due to cumulative sediment accumulation, the lake's area has shrunk from a historical maximum of 6,000 km² to 2,625 km², triggering systemic problems including reduced flood storage capacity and wetland ecological degradation. Hunan Province launched a pilot ecological dredging project at Heini Zhou (Black Mud Islet) in South Dongting Lake before full-scale rollout.</p>
+
+      <h4>Core Problem</h4>
+      <h5>Problem Description</h5>
+      <p>Sediment accumulation has raised the elevation of Heini Zhou, accelerating its dryland transformation and severely degrading wetland ecological function. During dry seasons, water area shrinks dramatically, compressing fish feeding, wintering, and spawning grounds, and degrading benthic biota, aquatic vegetation, and suitable migratory bird habitats.</p>
+      <h5>Project Difficulties</h5>
+      <ul>
+        <li><strong>Extreme environmental sensitivity:</strong> The project area falls entirely within Hunan's ecological protection redline, overlapping multiple sensitive targets including a provincial nature reserve, a national aquatic resource protection zone, an Internationally Important Wetland, and adjacent national-level aquatic resource zones.</li>
+        <li><strong>Long-duration construction overlapping ecologically fragile periods:</strong> The 33-month construction period must avoid fish spawning and bird wintering seasons.</li>
+        <li><strong>Strict multi-objective balance:</strong> Must simultaneously satisfy flood storage, wetland restoration, aquatic resource protection, and navigational maintenance needs.</li>
+        <li><strong>Complex compliance pathway:</strong> Required parallel preparation of EIA, biodiversity impact, aquatic resource impact, and international wetland restoration topical reports.</li>
+      </ul>
+
+      <h4>Solution</h4>
+      <h5>Specific Measures</h5>
+      <ul>
+        <li><strong>Land lowering and sandbar reshaping:</strong> Dredging across 14.29 km² of Heini Zhou (actual dredged area 12.68 km²), removing topsoil and partial subsoil to lower elevation.</li>
+        <li><strong>Constructing ecological lakes:</strong> Three ecological lakes covering 2.88 km² designed on the islet to maintain water depth during dry season.</li>
+        <li><strong>Preserving original sandbars and ecological highlands:</strong> Three preserved areas totalling 1.61 km² as seed banks; ecological highlands above the normal waterline serve as permanent spawning grounds for soft-shelled turtles and tortoises.</li>
+        <li><strong>Large-scale habitat restoration:</strong> Over 11 km², landform micro-modification and vegetation reconstruction create submerged vegetation belts, sedge communities, reed communities, and bird-feeding plant belts.</li>
+        <li><strong>Controlled dredging:</strong> Cutter-suction dredgers with bottom-dragging silt curtains and steel sheet pile cofferdams to reduce sediment dispersion.</li>
+        <li><strong>Full collection of construction waste:</strong> Ship sewage and oily water collected by specialised vessels for onshore licensed disposal.</li>
+      </ul>
+
+      <h5>Key Technical / Policy Tools</h5>
+      <ul>
+        <li><strong>"Parallel topics + tiered approval" toolkit:</strong> Three core topical reports (biodiversity impact, aquatic resource impact, international wetland restoration) prepared in parallel and submitted to corresponding provincial or national agencies.</li>
+        <li><strong>Environmental dredging technical guideline:</strong> Strict adherence to national guidelines using precise depth control, low-disturbance equipment, and anti-dispersion barriers.</li>
+        <li><strong>Ecological compensation and dynamic monitoring:</strong> In-situ spawning ground restoration of 2.66 km², enhancement stocking, and monitoring transects—all under "Three Simultaneity" environmental acceptance.</li>
+      </ul>
+
+      <h4>Results</h4>
+      <ul>
+        <li>Total project area 14.29 km²; dredged 12.68 km²; ecological lakes 2.88 km²; preserved sandbars 1.61 km²; habitat restoration 11 km².</li>
+        <li>In-situ restored fish spawning grounds of ~2.66 km², providing substrate for carp, crucian carp, catfish, and yellowhead.</li>
+        <li>Continuous emergent–floating–submerged vegetation belt supports bird food sources and shelter needs.</li>
+        <li>As the first pilot, provides replicable institutional and technical templates for full-scale Dongting Lake dredging.</li>
+      </ul>
+
+      <h4>Prerequisites</h4>
+      <h5>Institutional</h5>
+      <ul>
+        <li>Listed in the Encouraged category of China's <em>Industrial Structure Adjustment Guidance Catalogue</em>.</li>
+        <li>Aligned with multiple superior plans including the provincial functional zoning, ecological function zoning, and 14th Five-Year ecological environment plan.</li>
+        <li>Provincial Forestry Bureau issued an in-principle support letter; aquatic resource topical report passed provincial Agriculture and Rural Affairs Bureau review.</li>
+        <li>EIA report completed two rounds of online disclosure, on-site posting, and newspaper publication.</li>
+      </ul>
+      <h5>Economic</h5>
+      <p>Fully invested by Hunan Provincial Water Resources Development Investment Co. Environmental investment included in the total project budget (specific figures not disclosed).</p>
+      <h5>Technical</h5>
+      <p>Compiled by the Hunan Provincial Survey & Design Institute for Water Resources; baseline surveys commissioned to the Hunan Aquatic Sciences Institute and other specialised institutions. Dredging uses domestic mature environmental equipment and pollution barriers.</p>
+      <h5>Social</h5>
+      <p>Heini Zhou is uninhabited—social resistance was extremely low. EIA stage included community symposia and public disclosures protecting nearby residents' right to know.</p>
+
+      <h4>Potential Costs / Adverse Impacts</h4>
+      <ul>
+        <li><strong>Construction cost:</strong> Large-scale ecological dredging of 14.29 km² with high-grade environmental processes is expensive.</li>
+        <li><strong>Construction-period NIMBY effects:</strong> Temporary storage areas as close as 15–18 metres to residential settlements; dust, noise affecting 140–200 households.</li>
+        <li><strong>Fishery conflicts:</strong> Closed construction areas temporarily disrupt fishermen's livelihoods.</li>
+        <li><strong>Ship oil spill risk:</strong> Oil slicks would directly threaten downstream protection zone cores.</li>
+        <li><strong>Suspended-sediment escape risk:</strong> Failed silt curtains would discharge high-SS waters into core zones.</li>
+        <li><strong>Sediment re-deposition and maintenance:</strong> Future periodic redredging mechanism likely required.</li>
+        <li><strong>Restoration uncertainty:</strong> Wetland vegetation reconstruction takes years to fully mature.</li>
+      </ul>
+
+      <h4>Transferability Assessment</h4>
+      <h5>Applicable Contexts</h5>
+      <ul>
+        <li>Large lakes and estuaries nationwide where suspended sediment is causing surface area loss.</li>
+        <li>Major dredging projects overlapping multiple sensitive ecological designations.</li>
+      </ul>
+      <h5>Migration Difficulty</h5>
+      <ul>
+        <li><strong>High institutional threshold:</strong> Required provincial-level high-position coordination; without top-down mechanisms, cross-bureau barriers will be substantial.</li>
+        <li><strong>Technical standards and cost:</strong> High-grade environmental processes unaffordable in fiscally constrained regions.</li>
+        <li><strong>Uninhabited-area advantage hard to replicate:</strong> The case's biggest social advantage—no resettlement—does not translate to areas with long-term residents.</li>
+        <li><strong>Lack of long-term operations and maintenance template:</strong> As a pilot, mechanisms for re-deposition monitoring, vegetation maintenance, and stocking follow-up remain experimental.</li>
+      </ul>
+
+      <a href="https://www.yiyang.gov.cn/yyshjbhj/uploadfiles/202212/20221202092828392.pdf" class="case-url" target="_blank">↗ View Original Source</a>
+    </div>
+  </article>
+
+  <!-- Case 2: Colorado -->
+  <article class="case-detail">
+    <div class="case-header">
+      <div class="case-tag">Case 02 · Problem 1 · Quantified Ecological Integrity Assessment</div>
+      <h3>Ecological Integrity Assessment for Colorado Wetlands</h3>
+      <div class="case-meta">
+        <span><strong>Region:</strong> Colorado, USA</span>
+        <span><strong>Date:</strong> March 2016 (v2.1)</span>
+        <span><strong>Type:</strong> Government-commissioned public research</span>
+      </div>
+    </div>
+    <div class="case-body">
+      <div class="case-question"><strong>Linked Problem:</strong> The current disconnection between EIA and planning approval has caused wetland compensation to be downgraded to lower-tier measures. With 27.3% of the area's fishponds/gei wai and 14.4% of woodland listed as development reserve, the ecological bottom line risks disruption and biodiversity loss.</div>
+
+      <h4>Background</h4>
+      <p>Before 2008, Colorado lacked a standardised, comparable wetland assessment tool focused on biological integrity. Existing assessments mostly addressed single functions or specific permits—they could not systematically answer "is this wetland's ecology overall good or bad?" With EPA funding, the Colorado Natural Heritage Program (CNHP) developed the EIA method based on the NatureServe framework.</p>
+
+      <h4>Core Problem</h4>
+      <ul>
+        <li><strong>No systemic measurement of biological integrity:</strong> Managers lacked a biology-based "ecological thermometer."</li>
+        <li><strong>Vague reference standards distorting grading:</strong> Uniform thresholds without classification can mis-grade naturally sparse wetlands as degraded.</li>
+        <li><strong>Difficulty in attribution and target setting:</strong> Lack of a decision-support framework integrating landscape, hydrology, and vegetation into intuitive levels and stressor identification.</li>
+        <li><strong>Inter-agency data gap:</strong> Colorado Department of Public Health & Environment needed wetland-as-aquatic-resource data for federal Clean Water Act reporting—but lacked supporting data.</li>
+      </ul>
+
+      <h4>Solution</h4>
+      <h5>Specific Measures</h5>
+      <ul>
+        <li><strong>Three-dimensional multi-metric scoring model:</strong> Ecological integrity divided into Landscape Context, Condition, and Size rank factors, with 11 sub-metrics.</li>
+        <li><strong>Classification-based reference grading system:</strong> Each metric scored A (Excellent/Reference), B (Good), C (Fair), D (Poor) based on deviation from reference state. The B–C boundary represents the minimum acceptable level of sustainable ecological integrity.</li>
+        <li><strong>Detailed field identification guide:</strong> Including Assessment Area (AA) delineation rules, vegetation sampling standardisation, soil and water field tests, and hydrology metrics.</li>
+        <li><strong>Multiple embedded wetland classification keys:</strong> Including NatureServe ecosystem classification, USFWS Cowardin classification, and HGM classification.</li>
+        <li><strong>Stressor checklist for attribution:</strong> Records surrounding and internal stressors (roads, dykes, grazing, ditches) to inform restoration prioritisation.</li>
+      </ul>
+
+      <h5>Key Tools</h5>
+      <ul>
+        <li><strong>Reference Condition concept:</strong> Standards set against historical (200–300 years ago) natural variability or low-intensity Indigenous use, giving the assessment historical depth.</li>
+        <li><strong>"Top-down" ecological integrity logic:</strong> Treats plant communities as "phytometers" integrating hydrology, chemistry, and disturbance history.</li>
+        <li><strong>Quantified buffer and landscape metrics:</strong> Originally applied "continuous natural cover length/width," "500m-ring land-use intensity index" and similar landscape ecology metrics.</li>
+        <li><strong>Multi-level assessment compatibility (Levels 1-2-3):</strong> Mainly designed for Level 3, but the framework reserves interfaces for Level 1 (remote sensing) and Level 2 (rapid).</li>
+      </ul>
+
+      <h4>Results</h4>
+      <ul>
+        <li><strong>Basin-scale wetland status baseline:</strong> Applied from 2008–2015 to multiple river basins (Lemly et al. 2011–2015).</li>
+        <li><strong>Federal water-quality reporting success:</strong> Data adopted by CDPHE for the 2012 Integrated Water Quality Monitoring and Assessment Report, submitted to EPA under CWA §303(d) and §305(b).</li>
+        <li><strong>Established conservation and restoration priorities:</strong> CPW's Wetlands Wildlife Conservation Program uses the grading to allocate scarce conservation funds.</li>
+        <li><strong>Unified inter-agency vocabulary:</strong> Enabled comparable data sharing across EPA, parks, county and city land managers.</li>
+        <li><strong>Improved public communication:</strong> Four-colour grading (Excellent/Good/Fair/Poor) translates expert assessment into public-comprehensible terms.</li>
+      </ul>
+
+      <h4>Prerequisites</h4>
+      <h5>Institutional</h5>
+      <ul>
+        <li>Multi-party joint investment: stable EPA Region 8, CPW, and CNHP/CSU partnership.</li>
+        <li>Legal-policy interface: CWA requires reporting on all water bodies, including wetlands as aquatic resources.</li>
+        <li>Consensus on classification standards: All parties accept NatureServe and HGM classifications.</li>
+      </ul>
+      <h5>Economic</h5>
+      <p>Public-finance-led, reliant on EPA and state appropriations. Level 3 assessment unit cost far exceeds rapid assessment, requiring sustained annual budgets.</p>
+      <h5>Technical</h5>
+      <p>Composite team capability (plant taxonomy, soil morphology, hydrogeomorphology, GIS); GPS, sub-metre orthophotos, soil survey tools; long-term plant inventory database support.</p>
+      <h5>Social</h5>
+      <p>Stakeholder buy-in (private landowners' concerns about assessment must be addressed via "no-penalty" third-party positioning); tiered training network.</p>
+
+      <h4>Potential Costs / Adverse Impacts</h4>
+      <ul>
+        <li><strong>High per-site cost:</strong> Level 3 assessment's strict sampling requirements result in long labour times.</li>
+        <li><strong>"Labelling" panic:</strong> A "D-grade" wetland may be misread as an "environmental black mark" in local media.</li>
+        <li><strong>Reference standard's cultural sensitivity:</strong> Excludes post-European-colonisation use by default, potentially ignoring human-assisted ecological sustainability.</li>
+        <li><strong>Visual assessment bias:</strong> Multiple metrics rely on visual judgment, with inter-observer error.</li>
+        <li><strong>Disconnect from market-based mitigation:</strong> EIA cannot serve as a statutory tool for calculating compensation amount—application skews toward public-sector monitoring.</li>
+        <li><strong>Climate change challenges fixed reference systems:</strong> Holding to a 200-year-old "natural state" as Grade A may become inappropriate.</li>
+      </ul>
+
+      <h4>Transferability Assessment</h4>
+      <h5>Applicable Contexts</h5>
+      <ul>
+        <li>Province/basin-scale baseline survey of wetland status.</li>
+        <li>Performance monitoring of ecological restoration projects.</li>
+        <li>Cross-boundary unified-standard monitoring networks.</li>
+      </ul>
+      <h5>Migration Difficulty</h5>
+      <ul>
+        <li><strong>Migration barrier is "content," not "logic":</strong> The real obstacle is establishing local reference conditions and C-values for each wetland type.</li>
+        <li><strong>Personnel and equipment dependency:</strong> A bottleneck in regions with weak plant-taxonomy education.</li>
+        <li><strong>Institutional grafting is key:</strong> Effectiveness requires linking EIA grades to development-approval "ecological entry thresholds."</li>
+      </ul>
+
+      <a href="https://www.cnhp.colostate.edu/download/documents/2016/2016_Colorado_EIA_Field_Manual_Version_2.1.pdf" class="case-url" target="_blank">↗ View Original Source</a>
+    </div>
+  </article>
+
+  <!-- Case 3: Australian Strata -->
+  <article class="case-detail">
+    <div class="case-header">
+      <div class="case-tag">Case 03 · Problem 2 · Fragmented Tenure Integration & Collective Governance</div>
+      <h3>The Fragmentation of Property Interests and Vertical Real Estate</h3>
+      <div class="case-meta">
+        <span><strong>Region:</strong> Australia / Cayman Islands</span>
+        <span><strong>Date:</strong> January 2025</span>
+        <span><strong>Type:</strong> Academic research (QITP-IJRED)</span>
+      </div>
+    </div>
+    <div class="case-body">
+      <div class="case-question"><strong>Linked Problem:</strong> Facing Yuen Long–San Tin's highly fragmented private land tenure (Tso/Tong, old-schedule agricultural lots, brownfields, "ding rights" land), and the rigid constraints of 811 squatter households plus indigenous Small House entitlements, can existing policy resolve the fundamental conflict between Article 40 traditional rights and modern urban development?</div>
+
+      <h4>Background</h4>
+      <p>The 21st century's rapid urbanisation has seen global megacities embrace vertical real estate. Traditional common law property regimes rooted in horizontal parcel notions face unprecedented fragmentation of property interests in three-dimensional development. Questions of unit ownership across floors, common space management, and airspace rights pose systemic challenges to the common law concepts of "possession" and "control."</p>
+
+      <h4>Core Problem</h4>
+      <ul>
+        <li><strong>Legal-concept mismatch:</strong> Common law's "possession equals ownership" struggles to explain non-contact rights and collective rights over shared spaces.</li>
+        <li><strong>Governance complexity:</strong> Boundaries between exclusive and common property are fluid, with unclear management authority.</li>
+        <li><strong>Institutional lag:</strong> Legal frameworks from the early 20th century did not anticipate the vertical subdivision need.</li>
+        <li><strong>Difficulty balancing interests:</strong> Individual disposition rights conflict with collective interests (structural safety, façade uniformity, common facility maintenance).</li>
+      </ul>
+
+      <h4>Solution</h4>
+      <h5>Specific Measures</h5>
+      <ul>
+        <li><strong>Reform of airspace and stratified property frameworks:</strong> Introduce strata title to legally subdivide vertical airspace.</li>
+        <li><strong>Establish strata legal-person governance:</strong> Owners Corporations manage common property and raise administrative and sinking funds.</li>
+        <li><strong>Dynamic regulatory evolution:</strong> Legislatures and courts continuously adjust rules on decision procedure, cost allocation, and dispute resolution.</li>
+      </ul>
+
+      <h5>Key Tools</h5>
+      <ul>
+        <li><strong>Stratified property registration:</strong> 3D cadastre technology.</li>
+        <li><strong>Private governance mechanism:</strong> Legally-constituted Owners Corporations with rule-making, fee collection, enforcement, and insurance powers.</li>
+        <li><strong>Financial sustainability tools:</strong> Administrative fund (operations) + sinking fund (long-term maintenance) dual-fund model.</li>
+        <li><strong>Flexible legal interpretation:</strong> Courts extend "possession" and "control" to recognise non-exclusive, collective rights forms.</li>
+      </ul>
+
+      <h4>Results</h4>
+      <p>The paper does not provide specific quantitative data. <em>Positive impacts:</em> reduced individual maintenance burden; cost sharing; clearer property rights (independent unit transferability and mortgaging). <em>Negative impacts:</em> rising neighbour disputes; restricted individual control; complex decision processes; committee management risks.</p>
+
+      <h4>Prerequisites</h4>
+      <h5>Institutional</h5>
+      <ul>
+        <li>Property-registration law accommodating spatial subdivision (e.g., Strata Title Acts).</li>
+        <li>Judiciary willing to extend common law concepts adaptively.</li>
+        <li>Clear legal standing for Owners Corporations.</li>
+        <li>Mandatory financial reporting, insurance, and disclosure requirements.</li>
+      </ul>
+      <h5>Economic</h5>
+      <p>High land prices, scarcity; developers motivated to construct strata units; owners able to pay management and special levies.</p>
+      <h5>Technical</h5>
+      <p>High-rise construction technology; CAD/BIM-integrated registration system; property-management systems with finance, maintenance, and communication modules.</p>
+      <h5>Social</h5>
+      <p>Resident acceptance of vertical living; social capital supporting committee operation; rule-and-contract norms.</p>
+
+      <h4>Potential Costs / Adverse Impacts</h4>
+      <ul>
+        <li><strong>Unforeseen special levies:</strong> Building emergencies may impose large one-off costs on owners.</li>
+        <li><strong>Insurance shortfalls:</strong> Underinsured Owners Corporations face huge disaster losses.</li>
+        <li><strong>Routine neighbour conflicts:</strong> Noise, renovation hours, pets, common-area use disputes.</li>
+        <li><strong>Participation fatigue and representation crisis:</strong> Most owners disengage, leaving rule by a few activists.</li>
+        <li><strong>Decision gridlock:</strong> High quorums delay urgent repairs.</li>
+        <li><strong>Aging buildings, underfunded sinking funds:</strong> Early contribution rates often underestimate long-term costs.</li>
+      </ul>
+
+      <h4>Transferability Assessment</h4>
+      <h5>Applicable Contexts</h5>
+      <ul>
+        <li>Highly urbanised regions with extreme land scarcity.</li>
+        <li>Markets transitioning from horizontal to vertical development.</li>
+        <li>Legal-reform windows of opportunity.</li>
+      </ul>
+      <h5>Migration Difficulty</h5>
+      <ul>
+        <li><strong>Legal-tradition barriers:</strong> Civil law systems cannot copy directly; deep localisation needed.</li>
+        <li><strong>High administrative and technical requirements:</strong> 3D cadastre needs advanced information infrastructure.</li>
+        <li><strong>Cultural and social acceptance:</strong> Strong-collective-decision model may face resistance in individualistic societies.</li>
+        <li><strong>Vested-interest opposition:</strong> Developers and land-finance interests may resist tenure subdivision.</li>
+      </ul>
+
+      <a href="https://qitpress.com/articles/QITP-IJRED_05_01_001" class="case-url" target="_blank">↗ View Original Source</a>
+    </div>
+  </article>
+
+  <!-- Case 4: China TDR -->
+  <article class="case-detail">
+    <div class="case-header">
+      <div class="case-tag">Case 04 · Problem 2 · Land Development Rights Made Explicit</div>
+      <h3>Institutional Diversity in Transferring Land Development Rights in China</h3>
+      <div class="case-meta">
+        <span><strong>Region:</strong> China (Chengdu, Zhunan/Nanjing, etc.)</span>
+        <span><strong>Date:</strong> 2008–2025</span>
+        <span><strong>Type:</strong> Academic monograph (Springer)</span>
+      </div>
+    </div>
+    <div class="case-body">
+      <div class="case-question"><strong>Linked Problem:</strong> The dual-track procedure's premium-negotiation uncertainty and the immaturity of PPP "precinct development" models mean land assembly may exceed 10 years, seriously threatening the Northern Metropolis's 2034 occupancy commitment.</div>
+
+      <h4>Background</h4>
+      <p>China's dual urban-rural collective land system created tension between surging urban construction-land demand and rural construction-land idleness amid arable-land protection pressure. The Transfer of Development Rights (TDR) became a core policy tool for coordinating urban-rural spatial restructuring. This monograph systematically analyses China's TDR institutional diversity using new-institutional-economics and comparative-institutional-analysis frameworks.</p>
+
+      <h4>Core Problem</h4>
+      <ul>
+        <li>How to define and effectuate transfer of development rights from rural collective to urban construction land.</li>
+        <li>How to ensure rural areas and farmers share fairly in land value appreciation while protecting the arable-land red line.</li>
+        <li>Why local practice has developed diverse institutional arrangements under unified top-level design.</li>
+        <li>Feasibility, limits, and risks of self-organised governance in land management.</li>
+      </ul>
+
+      <h4>Solution</h4>
+      <h5>Three Typical Institutional Arrangements</h5>
+      <ul>
+        <li><strong>Government-led model:</strong> "Linking Increases with Decreases" policy. Central government caps indicators; local governments generate surplus indicators via land consolidation and reclamation, traded within or across jurisdictions.</li>
+        <li><strong>Market-driven model:</strong> Chongqing's "Land Tickets" and Chengdu's Rural Property Exchange allow indicators to trade openly with price set by supply-demand.</li>
+        <li><strong>Self-organised model:</strong> Zhunan, Nanjing's "Dual-Field Separation"—village collectives divide land into "subsistence fields" and "development fields," determining allocation democratically.</li>
+      </ul>
+
+      <h5>Key Tools</h5>
+      <ul>
+        <li><strong>TDR mechanism:</strong> Abstracts rural construction-land reclamation indicators into tradable "development rights."</li>
+        <li><strong>Comparative institutional analysis:</strong> Evaluates governance structure, property arrangement, transaction costs, and incentive mechanisms.</li>
+        <li><strong>Rights certification technology:</strong> Nationwide certification of rural contracted land and collective construction land.</li>
+        <li><strong>Self-governance design:</strong> Community democratic procedures, contract management, internal supervision.</li>
+      </ul>
+
+      <h4>Results</h4>
+      <h5>Quantitative</h5>
+      <ul>
+        <li>Rural land certification rate ~40% (2018).</li>
+        <li>National household contracted-land transfer rate 37%.</li>
+        <li>Farmer satisfaction with certification policy: 59.63%.</li>
+        <li>Post-reform Zhunan per-capita disposable income exceeded ¥40,000.</li>
+      </ul>
+      <h5>Qualitative</h5>
+      <ul>
+        <li>Confirmed that self-organised governance has clear limits and risks in land governance—not suitable as sole dominant mode.</li>
+        <li>Revealed the logic of institutional diversity within centralised land governance.</li>
+        <li>Provided theoretical reference for global urban-rural disparity issues.</li>
+      </ul>
+
+      <h4>Prerequisites</h4>
+      <h5>Institutional</h5>
+      <ul>
+        <li>Land public-ownership foundation (urban state-owned, rural collective-owned).</li>
+        <li>Transitional economy features (planning and market coexisting).</li>
+        <li>Centralised land governance tradition (zoning constituting rigid constraint).</li>
+      </ul>
+      <h5>Economic</h5>
+      <p>Pronounced urban-rural income gap drives demand; local governments dependent on land finance; underdeveloped rural finance markets necessitate multi-party cooperation.</p>
+      <h5>Technical</h5>
+      <p>GIS and remote sensing support reclamation verification; rural property exchanges as information platforms; certification surveying gradually spreading.</p>
+      <h5>Social</h5>
+      <p>Awakening farmer rights consciousness; rural labour outflow enabling land transfer; resumption violence prompting procedural justice reforms.</p>
+
+      <h4>Potential Costs / Adverse Impacts</h4>
+      <ul>
+        <li><strong>Short-term fiscal pressure:</strong> Government-led model requires upfront fiscal outlays.</li>
+        <li><strong>Unequal benefit distribution:</strong> Locational difference and bargaining-power asymmetry leave some village collectives with far less than developers.</li>
+        <li><strong>Resumption-conflict risk:</strong> Low compensation and opaque procedures inflame government-villager disputes.</li>
+        <li><strong>Community-cohesion decline:</strong> Self-organised mode captured by elites may erode collective trust.</li>
+        <li><strong>Livelihood uncertainty:</strong> Farmers losing land face risk without timely job transition.</li>
+        <li><strong>Policy execution deviation:</strong> Local officials may inflate reclamation figures or force villagers into apartments.</li>
+        <li><strong>Market volatility:</strong> "Land ticket" prices vulnerable to real-estate cycles.</li>
+      </ul>
+
+      <h4>Transferability Assessment</h4>
+      <h5>Applicable Contexts</h5>
+      <ul>
+        <li>Transitional economies or developing countries facing rapid urbanisation alongside rural decline.</li>
+        <li>Countries with collective land systems.</li>
+        <li>Policy agendas seeking rural revitalisation via shared land-value capture.</li>
+      </ul>
+      <h5>Migration Difficulty</h5>
+      <ul>
+        <li><strong>Strong institutional path dependence:</strong> Without similar tenure structure and planning controls, direct replication is extremely difficult.</li>
+        <li><strong>High governance capacity required:</strong> Strong planning execution and market supervision essential.</li>
+        <li><strong>Cultural and social-capital differences:</strong> Self-organised mode relies on community trust networks.</li>
+        <li><strong>Policy-sequencing required:</strong> Land certification, registration, and rural-finance reforms must advance together.</li>
+      </ul>
+
+      <a href="https://link.springer.com/content/pdf/10.1007/978-981-95-2302-3.pdf" class="case-url" target="_blank">↗ View Original Source</a>
+    </div>
+  </article>
+
+  <!-- Case 5: Jobs-Housing Balance -->
+  <article class="case-detail">
+    <div class="case-header">
+      <div class="case-tag">Case 05 · Problem 3 · Jobs-Housing Balance Policy Toolkit</div>
+      <h3>Jobs-Housing Balance (APA PAS Report No. 516)</h3>
+      <div class="case-meta">
+        <span><strong>Region:</strong> USA (Atlanta, Oregon, Pittsburgh, etc.)</span>
+        <span><strong>Date:</strong> November 2003</span>
+        <span><strong>Type:</strong> Professional report (American Planning Association)</span>
+      </div>
+    </div>
+    <div class="case-body">
+      <div class="case-question"><strong>Linked Problem:</strong> In a context of missing local employment centres (6.8% local employment rate), 27% non-skilled workers, and a median monthly income of just HK$15,000, how can the implantation of high-end I&T avoid Tin Shui Wai's jobs-housing imbalance trauma?</div>
+
+      <h4>Background</h4>
+      <p>Late-20th-century America experienced massive urban sprawl and jobs-housing separation. The average one-way work-trip distance rose from 9.40 miles (1969) to 11.80 miles (1995). In Atlanta, per-capita daily vehicle miles travelled (VMT) grew from 19.8 (1982) to 35.1 (1999)—a 77% surge. This produced congestion, air pollution, and rising commuting costs.</p>
+
+      <h4>Core Problem</h4>
+      <h5>Four Imbalance Types</h5>
+      <div class="table-wrap">
+      <table style="font-size:0.88rem">
+        <thead><tr><th>Type</th><th>Imbalance Pattern</th><th>Typical Area</th></tr></thead>
+        <tbody>
+          <tr><td>Type 1</td><td>Many jobs (low-skill), little housing</td><td>Suburban job centres, Edge Cities</td></tr>
+          <tr><td>Type 2</td><td>Many jobs (high-skill), little high-end housing</td><td>Central business districts</td></tr>
+          <tr><td>Type 3</td><td>Few jobs (low-skill), abundant housing</td><td>Older suburbs, inner-city neighbourhoods</td></tr>
+          <tr><td>Type 4</td><td>Few jobs (high-skill), abundant high-end housing</td><td>High-income bedroom communities</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <h5>Project Difficulties</h5>
+      <ul>
+        <li>Conceptual ambiguity: standards (1.5:1 or 1:1) vary across studies.</li>
+        <li>Commuting behaviour's multifactorial complexity—even balanced ratios may still produce long commutes due to skills mismatch, dual-earner location choices.</li>
+        <li>Market-government tension: low-end housing markets constrained by land prices and exclusionary zoning.</li>
+        <li>Geographic-unit selection controversy: municipality, MPO boundary, labour-market area, or commute-shed?</li>
+      </ul>
+
+      <h4>Solution</h4>
+      <h5>Comprehensive Plan Level</h5>
+      <ul>
+        <li>Adopt jobs-housing balance as policy goal in the Comprehensive Plan.</li>
+        <li>Assess current state and identify imbalance type.</li>
+        <li>Set quantitative jobs-housing ratio targets, allocated to subareas.</li>
+        <li>Coordinate Housing Element with Economic Development Element.</li>
+      </ul>
+      <h5>Land-Use Regulatory Tools</h5>
+      <ul>
+        <li>Amend zoning to allow residential compatibility or mixed-use in employment-dense areas.</li>
+        <li>"Affordable Housing Overlay" districts around major employment centres.</li>
+        <li>Inclusionary Zoning.</li>
+        <li>Reduce barriers to multi-family housing, Accessory Dwelling Units, and Infill Development.</li>
+      </ul>
+      <h5>Jobs-Housing Balance in DRI Review</h5>
+      <ul>
+        <li>Define the proposed development's Area of Influence (AOI).</li>
+        <li>Calculate existing jobs-housing ratio, affordability gap, and skill composition within AOI.</li>
+        <li>Evaluate whether the project worsens or eases imbalance; include jobs-housing requirements as approval conditions.</li>
+      </ul>
+      <h5>Transport and Housing Investment</h5>
+      <ul>
+        <li>Locate affordable housing along transit corridors.</li>
+        <li>Improve reverse-commute transit service.</li>
+        <li>Rent subsidies and down-payment assistance.</li>
+      </ul>
+
+      <h5>Key Policy Tools</h5>
+      <ul>
+        <li><strong>Jobs-to-housing ratio baseline:</strong> 1.5:1 (range 1.3–1.7:1); Jobs-to-employed-residents ratio 1:1 (range 0.8–1.25:1).</li>
+        <li><strong>AOI jobs-housing analysis model:</strong> Used in DRI review.</li>
+        <li><strong>Employer-Assisted Housing:</strong> Incentivises companies to invest in employees' nearby housing.</li>
+        <li><strong>State/federal affordable-housing tax credits.</strong></li>
+      </ul>
+
+      <h4>Results</h4>
+      <ul>
+        <li>National average one-way work-trip distance up 25.5% (9.40→11.80 miles).</li>
+        <li>Atlanta's per-capita daily VMT up 77% over 17 years.</li>
+        <li>Commute-cost differential: a 22-mile commuter's annual cost (incl. time) is $9,105—3.5× a 6-mile commuter's $2,576.</li>
+        <li>Pushed jobs-housing balance from academic concept to institutionalised local planning practice.</li>
+        <li>ARC and GRTA embedded jobs-housing analysis into the Quality Growth Toolkit and DRI review.</li>
+      </ul>
+
+      <h4>Prerequisites</h4>
+      <h5>Institutional</h5>
+      <ul>
+        <li>Local government must hold planning and land-use authority.</li>
+        <li>Regional coordination mechanism essential (GRTA DRI review, ARC regional planning).</li>
+        <li>Institutionalised large-development review procedure.</li>
+        <li>Federal/state support framework.</li>
+      </ul>
+      <h5>Economic</h5>
+      <p>Jobs and housing data availability; incentives compelling enough for developers; sustained public finance support.</p>
+      <h5>Technical</h5>
+      <p>GIS analysis capability; local-standard development; qualitative balance assessment tools (skills-job matching).</p>
+      <h5>Social</h5>
+      <p>Community acceptance of mixed-use and density; political consensus on affordable housing; employer and industry engagement.</p>
+
+      <h4>Potential Costs / Adverse Impacts</h4>
+      <ul>
+        <li><strong>Fiscal pressure of affordable housing:</strong> Burdens local finance.</li>
+        <li><strong>Market signal distortion:</strong> Strong regulation may dampen industry investment.</li>
+        <li><strong>Community exclusion and gentrification tension:</strong> Introducing jobs into low-income areas may displace existing residents.</li>
+        <li><strong>Uneven benefit distribution:</strong> Mid-skill workers benefit most; the unemployed and very low-income may not.</li>
+        <li><strong>Defining "balance" is hard:</strong> No universal answer on geographic scale or baseline.</li>
+        <li><strong>Uncertain congestion-easing effect:</strong> Balance doesn't guarantee short commutes.</li>
+        <li><strong>Political-legal resistance:</strong> Loosening exclusive single-family zoning may face owner lawsuits.</li>
+      </ul>
+
+      <h4>Transferability Assessment</h4>
+      <h5>Applicable Contexts</h5>
+      <ul>
+        <li>Rapidly urbanising metropolitan areas with worsening congestion.</li>
+        <li>Administrative systems with regional land review or planning coordination.</li>
+        <li>Areas with integrated jobs-housing data platforms.</li>
+        <li>Older industrial cities facing structural change.</li>
+      </ul>
+      <h5>Migration Difficulty</h5>
+      <ul>
+        <li><strong>Institutional (medium):</strong> Chinese local governments hold stronger intervention powers than US ones, but lack MPO-like regional coordination.</li>
+        <li><strong>Economic (medium-high):</strong> Current real-estate market value expectations make land concessions difficult.</li>
+        <li><strong>Technical (medium-low):</strong> GIS and survey methods widely adopted in China; new data sources (mobile signalling) enhance dynamic analysis.</li>
+        <li><strong>Social (high):</strong> Disputes over high-density mixed-use; public participation mechanisms still developing.</li>
+      </ul>
+
+      <a href="http://planning-org-uploaded-media.s3.amazonaws.com/publication/download_pdf/PAS-Report-516.pdf" class="case-url" target="_blank">↗ View Original Source</a>
+    </div>
+  </article>
+
+  <!-- Case 6: Bay Area Jobs First -->
+  <article class="case-detail">
+    <div class="case-header">
+      <div class="case-tag">Case 06 · Problem 3 · Participatory Planning & High-Road Employment</div>
+      <h3>Bay Area Jobs First Collaboratives Regional Plan (Part 2)</h3>
+      <div class="case-meta">
+        <span><strong>Region:</strong> San Francisco Bay Area (9 counties), USA</span>
+        <span><strong>Date:</strong> August 2024</span>
+        <span><strong>Type:</strong> Government-led regional planning document</span>
+      </div>
+    </div>
+    <div class="case-body">
+      <div class="case-question"><strong>Linked Problem:</strong> The 18.9% elderly population, severely lacking community facilities, and the gap with future knowledge-job thresholds could marginalise indigenous residents, segregate new communities, and trigger a "city without society" planning crisis.</div>
+
+      <h4>Background</h4>
+      <p>In 2021, California Governor Gavin Newsom launched the $600 million Regional Investment Initiative (formerly the Community Economic Resilience Fund). The Bay Area Jobs First Collaborative (BAJFC) was formed to draft the regional plan. The plan has two parts: Part 1 (December 2023) provided baseline assessment; Part 2 (this report) established the transition roadmap. BAJFC convenes labour, business, local government, education, environmental-justice groups, and community organisations to fundamentally change the traditional top-down economic-development model.</p>
+
+      <h4>Core Problem</h4>
+      <ul>
+        <li><strong>Pervasive economic inequality and low-quality jobs:</strong> Bay Area middle-wage jobs grew only 22% from 1990–2021. Many women and BIPOC workers trapped in "low-road" jobs.</li>
+        <li><strong>Climate vulnerability:</strong> Extreme heat, floods, wildfires frequent. Santa Rosa hit 115°F (46.1°C) in 2022.</li>
+        <li><strong>Decision-process exclusion:</strong> Traditional economic policymaking dominated by government and market elites, excluding directly affected workers and disadvantaged communities.</li>
+      </ul>
+
+      <h4>Solution</h4>
+      <h5>Bottom-up Participatory Planning</h5>
+      <p>"Stakeholder voice" elevated to a fourth priority alongside job quality, equity, and climate resilience. Through subregional representative meetings, regular office hours, and real-time shared documents, community and workers directly participate in target-industry selection and investment strategy.</p>
+
+      <h5>Six Target Industries</h5>
+      <ul>
+        <li><strong>Arts & culture:</strong> Improve economic security for artists and creative workers.</li>
+        <li><strong>Care & early childhood education:</strong> Improve conditions for primarily women-of-colour workforce.</li>
+        <li><strong>Construction:</strong> Project Labour Agreements and joint apprenticeships open pathways to high-wage, stable jobs.</li>
+        <li><strong>Healthcare:</strong> Address ageing-population care needs; improve conditions, paid training, clear career ladders.</li>
+        <li><strong>Manufacturing:</strong> Leverage federal CHIPS Act and similar policies for "high-road" advanced manufacturing.</li>
+        <li><strong>Sustainable environmental stewardship:</strong> Create jobs in park maintenance and nature-based solutions (e.g., wetland restoration).</li>
+      </ul>
+
+      <h5>Four Cross-Cutting Economic-Foundation Strategies</h5>
+      <ul>
+        <li><strong>Eliminating institutional and structural barriers:</strong> Reform credit and licensing rules to ensure BIPOC and women-led businesses benefit equally.</li>
+        <li><strong>Supporting small businesses and worker cooperatives:</strong> Promote ESOP and cooperative models.</li>
+        <li><strong>Reshaping government's role:</strong> Tie public procurement and funding to high-road job standards.</li>
+        <li><strong>Maintaining the collaborative:</strong> Institutionalise BAJFC as a permanent regional economic-governance platform.</li>
+      </ul>
+
+      <h5>Key Policy Tools</h5>
+      <ul>
+        <li><strong>High-Road Job Floor:</strong> Living wages, family health insurance, full-time year-round employment guarantee.</li>
+        <li><strong>Blended fiscal leverage:</strong> Combining California's $600M, federal IIJA and IRA grants, with Community Benefits Agreements.</li>
+        <li><strong>Standardised training and pathways:</strong> California Apprenticeship Initiative (CAI), Semiconductor Nanotechnology Apprenticeship Program (SNAP), ESOL training.</li>
+        <li><strong>Binding agreements:</strong> Project Labour Agreements (PLA), Disadvantaged Business Enterprise (DBE) goals.</li>
+      </ul>
+
+      <h4>Results</h4>
+      <p>As a final-draft regional plan not yet in full implementation, no terminal quantitative performance data are available.</p>
+      <h5>Qualitative Impacts</h5>
+      <ul>
+        <li><strong>Governance innovation:</strong> Established a three-tier consultation mechanism (Steering Committee — Research & Community Committee — six subregional reps).</li>
+        <li><strong>Community capacity-building:</strong> Labour and grassroots community representatives directly led official-plan industry selection for the first time.</li>
+        <li><strong>Cross-sector consensus:</strong> Signed common text across nine counties and various sectors, replacing fragmented departmental plans.</li>
+      </ul>
+
+      <h4>Prerequisites</h4>
+      <h5>Institutional</h5>
+      <ul>
+        <li>California's SB162 and similar legislation provided legal framework for the Regional Investment Initiative.</li>
+        <li>Mature Bay Area regional bodies (MTC, ABAG) and existing strategies (Plan Bay Area 2050, CEDS).</li>
+        <li>Clear collaborative charter with 21-member Steering Committee structure.</li>
+      </ul>
+      <h5>Economic</h5>
+      <p>$600M California catalyst funding; federal-level hundreds of billions in infrastructure and climate investment; Bay Area inequality creating moral and political pressure for living-wage enforcement.</p>
+      <h5>Technical</h5>
+      <p>Professional planning consultants (PolicyLink) and top universities (UC Berkeley Labor Center); cloud collaboration and virtual meetings.</p>
+      <h5>Social</h5>
+      <p>Highly organised labour movements and active minority community groups; post-George-Floyd-era sensitivity to systemic exclusion; economic compensation for participants ensured low-income participation.</p>
+
+      <h4>Potential Costs</h4>
+      <p>Not addressed in source. As a final-draft plan, the document does not contain an independent section systematically assessing implementation-phase risks such as fiscal crowd-out, SME compliance cost increases, or industry over-concentration.</p>
+
+      <h4>Transferability Assessment</h4>
+      <h5>Applicable Contexts</h5>
+      <ul>
+        <li>Megacity regions seeking to reverse "middle-income trap" and low-end job lock-in.</li>
+        <li>Local governments and regional alliances embedding "just transition" into climate adaptation.</li>
+        <li>Regions transitioning from elite-led to participatory, empowering "collaborative governance."</li>
+      </ul>
+      <h5>Migration Difficulty</h5>
+      <ul>
+        <li><strong>Institutional risk:</strong> Requires strong upper-level government empowerment or cross-jurisdictional compromise.</li>
+        <li><strong>Funding threshold:</strong> Heavy reliance on sustained, large-scale public investment.</li>
+        <li><strong>Social-capital dependence:</strong> Success depends on mature union networks and grassroots NGOs.</li>
+        <li><strong>Standard localisation:</strong> "Living wage" and "high-road job" metrics need local adjustment for prices and benefits.</li>
+      </ul>
+
+      <a href="https://www.allhomeca.org/wp-content/uploads/2024/11/Final-Draft-Bay-Area-Jobs-First-Collaboratives-Regional-Plan-Part-2.pdf" class="case-url" target="_blank">↗ View Original Source</a>
+    </div>
+  </article>
+
+</section>
+
+</main>
+
+<!-- ============================================ OUTRO ============================================ -->
+<footer class="outro">
+  <div class="outro-inner">
+    <h2>"A paradigm shift, not a project."</h2>
+    <p>
+      The Yuen Long–San Tin Wetland Smart City is not merely a tech hub—it is a paradigm-shifting project in which the ecosystem becomes the core competitive asset, innovation revolves around ecological challenges, and community development is anchored in ecological equity.
+    </p>
+    <p style="font-size:0.85rem;color:rgba(245,241,232,0.5);margin-top:1.5rem;">
+      All information in this report is extracted, classified, and synthesised from the provided case texts. Details not addressed in the public sources are explicitly marked as "not covered in public materials" or "insufficient data, pending update," with no external speculation or fabricated content.
+    </p>
+    <div class="outro-mark">— End of Report —</div>
+  </div>
+</footer>
+
+</body>
+</html>

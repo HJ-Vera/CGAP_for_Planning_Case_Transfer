@@ -1,0 +1,2767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sham Shui Po Organic Regeneration — An Integrated Plan for Community-Value-Driven Urban Renewal</title>
+<style>
+/* ============================================================
+   深水埗有机更新综合规划方案
+   设计：编辑杂志风格 × 都市建筑印记
+   ============================================================ */
+
+/* ---------- 字体与变量 ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap');
+
+:root {
+  /* 主色：深墨绿与暖砖红 */
+  --ink: #1a1f1c;            /* 主背景：近黑墨绿 */
+  --ink-2: #232925;           /* 次背景 */
+  --ink-3: #2d3431;           /* 卡片背景 */
+  --paper: #f4ede1;          /* 米白主文字 */
+  --paper-soft: #ddd4c2;     /* 次文字 */
+  --paper-dim: #a39c8a;      /* 三级文字 */
+  --brick: #c2542a;          /* 砖红强调色 */
+  --brick-soft: #d97e4f;     /* 砖红浅 */
+  --gold: #d4a857;           /* 金色（用于数据） */
+  --moss: #6b8d5c;           /* 苔绿色 */
+  --line: #3d4540;            /* 分隔线 */
+  --line-soft: #2d3431;
+
+  --font-serif-cn: 'Noto Serif SC', 'Songti SC', 'STSong', serif;
+  --font-sans-cn: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-display: 'Cormorant Garamond', 'Noto Serif SC', serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --max-w: 1280px;
+  --content-w: 760px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-sans-cn);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* 噪点纹理 */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+}
+
+/* ---------- 顶部导航 ---------- */
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(26, 31, 28, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+
+.topbar-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 14px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.topbar-title {
+  font-family: var(--font-serif-cn);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  color: var(--paper);
+}
+
+.topbar-title em {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--brick-soft);
+  font-weight: 400;
+  font-size: 16px;
+  margin-right: 6px;
+}
+
+.topbar-nav {
+  display: flex;
+  gap: 22px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  font-weight: 400;
+}
+
+.topbar-nav a {
+  color: var(--paper-dim);
+  text-decoration: none;
+  transition: color 0.25s;
+  position: relative;
+  padding-bottom: 3px;
+}
+
+.topbar-nav a:hover {
+  color: var(--brick-soft);
+}
+
+.topbar-nav a:hover::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--brick-soft);
+}
+
+/* ---------- HERO ---------- */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 120px 32px 80px;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '深水埗';
+  position: absolute;
+  bottom: -8vw;
+  right: -2vw;
+  font-family: var(--font-serif-cn);
+  font-weight: 900;
+  font-size: 38vw;
+  color: var(--ink-2);
+  line-height: 0.85;
+  letter-spacing: -0.05em;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.hero-left .eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: var(--brick);
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.hero-left .eyebrow::before {
+  content: '';
+  width: 36px;
+  height: 1px;
+  background: var(--brick);
+}
+
+.hero-title {
+  font-family: var(--font-serif-cn);
+  font-weight: 700;
+  font-size: clamp(36px, 5vw, 64px);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  color: var(--paper);
+  margin-bottom: 32px;
+}
+
+.hero-title .accent {
+  color: var(--brick-soft);
+  font-style: italic;
+  font-weight: 600;
+  font-family: var(--font-display);
+}
+
+.hero-subtitle {
+  font-family: var(--font-serif-cn);
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--paper-soft);
+  max-width: 480px;
+  margin-bottom: 40px;
+  padding-left: 16px;
+  border-left: 2px solid var(--brick);
+}
+
+.hero-meta {
+  display: flex;
+  gap: 40px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--paper-dim);
+  text-transform: uppercase;
+}
+
+.hero-meta div span {
+  display: block;
+  color: var(--paper);
+  font-size: 22px;
+  font-family: var(--font-display);
+  margin-top: 4px;
+  letter-spacing: 0;
+  text-transform: none;
+  font-weight: 500;
+}
+
+.hero-right {
+  position: relative;
+  padding: 40px;
+  background: linear-gradient(135deg, var(--ink-2) 0%, var(--ink) 100%);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+}
+
+.hero-right::before {
+  content: '01';
+  position: absolute;
+  top: -22px;
+  left: 30px;
+  background: var(--ink);
+  padding: 0 12px;
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--brick);
+  font-size: 22px;
+  letter-spacing: 0.1em;
+}
+
+.hero-right h3 {
+  font-family: var(--font-serif-cn);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--paper);
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px 32px;
+}
+
+.stat-grid .stat-item {
+  padding: 6px 0;
+}
+
+.stat-grid .stat-value {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 500;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.stat-grid .stat-value .unit {
+  font-size: 16px;
+  color: var(--paper-soft);
+  margin-left: 2px;
+}
+
+.stat-grid .stat-label {
+  font-size: 12px;
+  color: var(--paper-dim);
+  letter-spacing: 0.05em;
+}
+
+/* ---------- 通用区块 ---------- */
+section.block {
+  padding: 100px 32px;
+  position: relative;
+}
+
+section.block.alt {
+  background: var(--ink-2);
+}
+
+.block-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  position: relative;
+}
+
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+  margin-bottom: 56px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+.section-num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 56px;
+  font-weight: 400;
+  color: var(--brick);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.section-title-group {
+  flex: 1;
+}
+
+.section-title-en {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  color: var(--paper-dim);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.section-title {
+  font-family: var(--font-serif-cn);
+  font-size: clamp(28px, 3.2vw, 40px);
+  font-weight: 600;
+  color: var(--paper);
+  line-height: 1.2;
+  letter-spacing: -0.005em;
+}
+
+/* ---------- 执行摘要 ---------- */
+.summary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 56px;
+}
+
+.summary-card {
+  padding: 32px 28px;
+  background: var(--ink-3);
+  border-top: 2px solid var(--brick);
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.summary-card:hover {
+  transform: translateY(-4px);
+}
+
+.summary-card .num {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--brick-soft);
+  font-size: 14px;
+  letter-spacing: 0.15em;
+  margin-bottom: 14px;
+  display: block;
+}
+
+.summary-card h4 {
+  font-family: var(--font-serif-cn);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--paper);
+  margin-bottom: 14px;
+  line-height: 1.4;
+}
+
+.summary-card p {
+  font-size: 14px;
+  color: var(--paper-soft);
+  line-height: 1.75;
+}
+
+.summary-prose {
+  max-width: 880px;
+  font-family: var(--font-serif-cn);
+  font-size: 17px;
+  line-height: 1.95;
+  color: var(--paper-soft);
+}
+
+.summary-prose p {
+  margin-bottom: 1.4em;
+}
+
+.summary-prose p:first-child::first-letter {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 4.5em;
+  float: left;
+  line-height: 0.85;
+  padding-right: 12px;
+  padding-top: 4px;
+  color: var(--brick);
+  font-weight: 500;
+}
+
+.summary-prose strong {
+  color: var(--paper);
+  font-weight: 600;
+}
+
+/* ---------- 章节 ---------- */
+.sub-title {
+  font-family: var(--font-serif-cn);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--paper);
+  margin: 48px 0 20px;
+  padding-left: 16px;
+  border-left: 3px solid var(--brick);
+  line-height: 1.4;
+}
+
+.sub-title .num {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--brick-soft);
+  margin-right: 10px;
+  font-weight: 400;
+}
+
+.sub-sub-title {
+  font-family: var(--font-serif-cn);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--paper);
+  margin: 32px 0 14px;
+  padding-left: 14px;
+  position: relative;
+}
+
+.sub-sub-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 6px;
+  height: 6px;
+  background: var(--brick);
+  border-radius: 50%;
+}
+
+.prose {
+  max-width: var(--content-w);
+  font-size: 15.5px;
+  line-height: 1.95;
+  color: var(--paper-soft);
+}
+
+.prose.wide {
+  max-width: none;
+}
+
+.prose p {
+  margin-bottom: 1.3em;
+}
+
+.prose strong {
+  color: var(--paper);
+  font-weight: 600;
+  background: linear-gradient(transparent 60%, rgba(194, 84, 42, 0.18) 60%);
+  padding: 0 2px;
+}
+
+.prose ul, .prose ol {
+  margin: 0.5em 0 1.3em 1.5em;
+  color: var(--paper-soft);
+}
+
+.prose ul li, .prose ol li {
+  margin-bottom: 0.5em;
+}
+
+.prose ul li::marker {
+  color: var(--brick);
+}
+
+/* ---------- 表格 ---------- */
+.tbl-wrap {
+  margin: 28px 0;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  background: var(--ink-2);
+}
+
+table thead {
+  background: var(--ink-3);
+}
+
+table th {
+  padding: 14px 18px;
+  text-align: left;
+  font-family: var(--font-serif-cn);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--brick-soft);
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--brick);
+  vertical-align: top;
+}
+
+table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line);
+  color: var(--paper-soft);
+  vertical-align: top;
+  line-height: 1.7;
+}
+
+table tr:last-child td {
+  border-bottom: none;
+}
+
+table tr:hover td {
+  background: rgba(194, 84, 42, 0.04);
+}
+
+table td strong {
+  color: var(--paper);
+  font-weight: 600;
+}
+
+/* ---------- 问题卡片（三大核心问题） ---------- */
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 32px;
+}
+
+.problem-card {
+  padding: 36px 32px;
+  background: linear-gradient(165deg, var(--ink-3) 0%, var(--ink-2) 100%);
+  border: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+
+.problem-card::before {
+  content: attr(data-num);
+  position: absolute;
+  top: -20px;
+  right: 16px;
+  font-family: var(--font-display);
+  font-size: 130px;
+  font-weight: 400;
+  color: rgba(194, 84, 42, 0.08);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.problem-card h4 {
+  font-family: var(--font-serif-cn);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--paper);
+  margin-bottom: 14px;
+  line-height: 1.4;
+  position: relative;
+}
+
+.problem-card .tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--brick);
+  padding: 4px 10px;
+  border: 1px solid var(--brick);
+  border-radius: 100px;
+  margin-bottom: 16px;
+}
+
+.problem-card p {
+  font-size: 14px;
+  color: var(--paper-soft);
+  line-height: 1.8;
+  position: relative;
+}
+
+/* ---------- 策略卡 ---------- */
+.strategy {
+  background: var(--ink-3);
+  padding: 48px 44px;
+  margin: 36px 0;
+  border-left: 4px solid var(--brick);
+  position: relative;
+}
+
+.strategy-head {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 24px;
+  padding-bottom: 18px;
+  border-bottom: 1px dashed var(--line);
+}
+
+.strategy-num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 42px;
+  color: var(--brick);
+  font-weight: 500;
+  line-height: 1;
+}
+
+.strategy-name {
+  font-family: var(--font-serif-cn);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--paper);
+  line-height: 1.3;
+}
+
+/* ---------- 案例卡片网格 ---------- */
+.case-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  margin-top: 32px;
+}
+
+.case-card {
+  background: var(--ink-2);
+  padding: 32px 30px;
+  border: 1px solid var(--line);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.case-card:hover {
+  border-color: var(--brick);
+  transform: translateY(-3px);
+}
+
+.case-card .case-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--paper-dim);
+  margin-bottom: 14px;
+}
+
+.case-card .case-meta .case-no {
+  color: var(--brick);
+  font-weight: 500;
+}
+
+.case-card .case-meta .case-flag {
+  padding: 2px 8px;
+  background: var(--ink-3);
+  border-radius: 2px;
+}
+
+.case-card h4 {
+  font-family: var(--font-serif-cn);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--paper);
+  margin-bottom: 14px;
+  line-height: 1.4;
+}
+
+.case-card .case-en {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--paper-dim);
+  line-height: 1.5;
+  margin-bottom: 18px;
+}
+
+.case-card .case-summary {
+  font-size: 14px;
+  color: var(--paper-soft);
+  line-height: 1.75;
+  margin-bottom: 18px;
+}
+
+.case-card .case-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+}
+
+.case-card .case-tag {
+  padding: 3px 10px;
+  background: rgba(194, 84, 42, 0.12);
+  color: var(--brick-soft);
+  border-radius: 2px;
+  letter-spacing: 0.1em;
+}
+
+/* ---------- 关键成功要素 ---------- */
+.ksf-table {
+  margin: 32px 0;
+}
+
+/* ---------- 实施路径时间线 ---------- */
+.timeline {
+  position: relative;
+  margin: 48px 0;
+  padding-left: 32px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: linear-gradient(180deg, var(--brick) 0%, var(--line) 100%);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 48px;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -32px;
+  top: 6px;
+  width: 17px;
+  height: 17px;
+  border: 2px solid var(--brick);
+  background: var(--ink);
+  border-radius: 50%;
+}
+
+.timeline-item::after {
+  content: '';
+  position: absolute;
+  left: -27px;
+  top: 11px;
+  width: 7px;
+  height: 7px;
+  background: var(--brick);
+  border-radius: 50%;
+}
+
+.timeline-phase {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--brick);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.timeline-title {
+  font-family: var(--font-serif-cn);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--paper);
+  margin-bottom: 6px;
+}
+
+.timeline-period {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--gold);
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+.timeline-content {
+  background: var(--ink-2);
+  border: 1px solid var(--line);
+  padding: 24px 28px;
+}
+
+.timeline-content h5 {
+  font-family: var(--font-serif-cn);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--paper);
+  margin: 16px 0 8px;
+}
+
+.timeline-content h5:first-child {
+  margin-top: 0;
+}
+
+.timeline-content p, .timeline-content ul {
+  font-size: 14px;
+  color: var(--paper-soft);
+  line-height: 1.8;
+}
+
+.timeline-content .milestone {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 8px 16px;
+  background: rgba(212, 168, 87, 0.1);
+  border-left: 2px solid var(--gold);
+  font-size: 13px;
+  color: var(--gold);
+  font-family: var(--font-serif-cn);
+}
+
+/* ---------- 指标看板（预期成果） ---------- */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin: 32px 0;
+}
+
+.kpi-card {
+  background: var(--ink-3);
+  padding: 28px 26px;
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+
+.kpi-card .kpi-label {
+  font-size: 12px;
+  color: var(--paper-dim);
+  letter-spacing: 0.05em;
+  margin-bottom: 14px;
+  line-height: 1.4;
+}
+
+.kpi-card .kpi-flow {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.kpi-card .kpi-from {
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: var(--paper-dim);
+  font-style: italic;
+}
+
+.kpi-card .kpi-arrow {
+  color: var(--brick);
+  font-family: var(--font-mono);
+  font-size: 14px;
+}
+
+.kpi-card .kpi-to {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.kpi-card .kpi-note {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--paper-dim);
+  letter-spacing: 0.05em;
+}
+
+/* ---------- 引用 ---------- */
+.callout {
+  margin: 32px 0;
+  padding: 28px 32px;
+  background: rgba(194, 84, 42, 0.08);
+  border-left: 3px solid var(--brick);
+  font-family: var(--font-serif-cn);
+  font-size: 17px;
+  line-height: 1.85;
+  color: var(--paper);
+  font-style: italic;
+  position: relative;
+}
+
+.callout::before {
+  content: '"';
+  position: absolute;
+  top: -8px;
+  left: 24px;
+  font-family: var(--font-display);
+  font-size: 70px;
+  color: var(--brick);
+  font-style: italic;
+  line-height: 1;
+  opacity: 0.5;
+}
+
+/* ---------- 案例详情 ---------- */
+.case-detail {
+  background: var(--ink-2);
+  margin-top: 56px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--brick);
+}
+
+.case-detail-head {
+  padding: 32px 40px;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(135deg, var(--ink-3) 0%, var(--ink-2) 100%);
+  position: relative;
+}
+
+.case-detail-no {
+  position: absolute;
+  top: 22px;
+  right: 36px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 64px;
+  color: var(--brick);
+  font-weight: 500;
+  line-height: 1;
+  opacity: 0.7;
+}
+
+.case-detail-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--brick);
+  margin-bottom: 12px;
+}
+
+.case-detail-title {
+  font-family: var(--font-serif-cn);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--paper);
+  line-height: 1.4;
+  margin-bottom: 8px;
+  padding-right: 80px;
+}
+
+.case-detail-title-en {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--paper-dim);
+  line-height: 1.5;
+  padding-right: 80px;
+}
+
+.case-detail-meta {
+  display: flex;
+  gap: 28px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+
+.case-detail-meta div {
+  font-size: 12px;
+  color: var(--paper-dim);
+  font-family: var(--font-mono);
+  letter-spacing: 0.08em;
+}
+
+.case-detail-meta strong {
+  color: var(--paper);
+  font-family: var(--font-sans-cn);
+  font-weight: 500;
+  margin-left: 6px;
+}
+
+.case-detail-body {
+  padding: 32px 40px 40px;
+}
+
+.case-detail-body h4 {
+  font-family: var(--font-serif-cn);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--paper);
+  margin: 24px 0 12px;
+  padding-left: 14px;
+  border-left: 2px solid var(--brick);
+}
+
+.case-detail-body h4:first-child {
+  margin-top: 0;
+}
+
+.case-detail-body h5 {
+  font-family: var(--font-serif-cn);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--brick-soft);
+  margin: 18px 0 8px;
+}
+
+.case-detail-body p {
+  font-size: 14.5px;
+  color: var(--paper-soft);
+  line-height: 1.85;
+  margin-bottom: 1em;
+}
+
+.case-detail-body ul {
+  font-size: 14.5px;
+  color: var(--paper-soft);
+  line-height: 1.85;
+  margin: 0 0 1em 1.5em;
+}
+
+.case-detail-body ul li {
+  margin-bottom: 0.5em;
+}
+
+.case-detail-body ul li::marker {
+  color: var(--brick);
+}
+
+.case-detail-body strong {
+  color: var(--paper);
+  font-weight: 600;
+}
+
+/* 案例详情：可折叠（保持展开以确保所有信息可见，但有视觉指引） */
+.case-detail-body details {
+  margin-bottom: 12px;
+}
+
+.case-detail-body details summary {
+  cursor: pointer;
+  padding: 12px 0;
+  font-family: var(--font-serif-cn);
+  font-weight: 600;
+  color: var(--paper);
+  border-bottom: 1px solid var(--line);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.case-detail-body details summary::-webkit-details-marker {
+  display: none;
+}
+
+.case-detail-body details summary::before {
+  content: '+';
+  font-family: var(--font-display);
+  color: var(--brick);
+  font-size: 22px;
+  line-height: 1;
+  transition: transform 0.2s;
+}
+
+.case-detail-body details[open] summary::before {
+  content: '−';
+}
+
+/* ---------- 行动建议表 ---------- */
+.actor-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 0;
+  margin: 28px 0;
+  border: 1px solid var(--line);
+}
+
+.actor-row {
+  display: contents;
+}
+
+.actor-name, .actor-action {
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+.actor-row:last-child .actor-name,
+.actor-row:last-child .actor-action {
+  border-bottom: none;
+}
+
+.actor-name {
+  font-family: var(--font-serif-cn);
+  font-weight: 600;
+  color: var(--brick-soft);
+  background: var(--ink-3);
+  font-size: 14px;
+}
+
+.actor-action {
+  background: var(--ink-2);
+  color: var(--paper-soft);
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+/* ---------- 结语 ---------- */
+.coda {
+  padding: 100px 32px;
+  background: linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.coda::before {
+  content: '有機更新';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-serif-cn);
+  font-weight: 900;
+  font-size: 26vw;
+  color: rgba(194, 84, 42, 0.04);
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  z-index: 0;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.coda-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.coda-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: var(--brick);
+  margin-bottom: 20px;
+}
+
+.coda h2 {
+  font-family: var(--font-serif-cn);
+  font-size: clamp(28px, 3.4vw, 42px);
+  font-weight: 600;
+  color: var(--paper);
+  line-height: 1.3;
+  margin-bottom: 32px;
+}
+
+.coda p {
+  font-family: var(--font-serif-cn);
+  font-size: 17px;
+  line-height: 2;
+  color: var(--paper-soft);
+  margin-bottom: 1.4em;
+}
+
+.coda .signoff {
+  margin-top: 40px;
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--brick-soft);
+  font-size: 20px;
+}
+
+/* ---------- 页脚 ---------- */
+footer {
+  padding: 50px 32px;
+  background: var(--ink);
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+
+footer .footer-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+
+footer p {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--paper-dim);
+  margin: 4px 0;
+}
+
+footer .footer-rule {
+  width: 60px;
+  height: 1px;
+  background: var(--brick);
+  margin: 0 auto 24px;
+}
+
+/* ---------- 响应式 ---------- */
+@media (max-width: 980px) {
+  .hero {
+    padding: 100px 24px 60px;
+  }
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .hero::before {
+    font-size: 50vw;
+    bottom: -10vw;
+  }
+  .summary-grid,
+  .problem-grid {
+    grid-template-columns: 1fr;
+  }
+  .kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .case-grid {
+    grid-template-columns: 1fr;
+  }
+  section.block {
+    padding: 70px 24px;
+  }
+  .section-header {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .section-num {
+    font-size: 42px;
+  }
+  .topbar-nav {
+    display: none;
+  }
+  .actor-grid {
+    grid-template-columns: 1fr;
+  }
+  .actor-name {
+    border-bottom: none;
+  }
+  .case-detail-head, .case-detail-body {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .case-detail-no {
+    font-size: 44px;
+    right: 20px;
+  }
+  .case-detail-title, .case-detail-title-en {
+    padding-right: 56px;
+  }
+  .strategy {
+    padding: 32px 24px;
+  }
+}
+
+@media (max-width: 560px) {
+  body { font-size: 15px; }
+  .hero-title { font-size: 32px; }
+  .kpi-grid { grid-template-columns: 1fr; }
+  .hero-meta { flex-direction: column; gap: 16px; }
+  table { font-size: 13px; }
+  table th, table td { padding: 10px 12px; }
+}
+
+/* ---------- 入场动画 ---------- */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-left > * {
+  animation: fadeUp 0.8s ease-out backwards;
+}
+.hero-left > *:nth-child(1) { animation-delay: 0.1s; }
+.hero-left > *:nth-child(2) { animation-delay: 0.25s; }
+.hero-left > *:nth-child(3) { animation-delay: 0.4s; }
+.hero-left > *:nth-child(4) { animation-delay: 0.55s; }
+.hero-right {
+  animation: fadeUp 0.9s ease-out 0.4s backwards;
+}
+
+/* 打印优化 */
+@media print {
+  body { background: white; color: black; }
+  .topbar, body::before { display: none; }
+  .hero, .coda { background: white; }
+  section.block { padding: 30px 16px; page-break-inside: avoid; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ==================== Top Navigation ==================== -->
+<nav class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-title"><em>SSP</em>Sham Shui Po · Organic Regeneration Plan</div>
+    <div class="topbar-nav">
+      <a href="#summary">Summary</a>
+      <a href="#context">Context</a>
+      <a href="#problems">Problems</a>
+      <a href="#cases">Cases</a>
+      <a href="#strategy">Strategy</a>
+      <a href="#timeline">Pathway</a>
+      <a href="#outcomes">Outcomes</a>
+      <a href="#appendix">Appendix</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ==================== HERO ==================== -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="eyebrow">SHAM SHUI PO · URBAN REGENERATION</div>
+      <h1 class="hero-title">Sham Shui Po <span class="accent">Organic</span><br>Regeneration Plan</h1>
+      <p class="hero-subtitle">Toward a community-value-driven urban renaissance — bridging three structural divides through financial-feasibility innovation, embedded participation, and the 15-minute vibrant neighbourhood.</p>
+      <div class="hero-meta">
+        <div>Planning Horizon<span>20 Years</span></div>
+        <div>Pilot Sites<span>2 Parcels</span></div>
+        <div>Case Studies<span>6 Studies</span></div>
+      </div>
+    </div>
+    <aside class="hero-right">
+      <h3>Sham Shui Po · Data Profile</h3>
+      <div class="stat-grid">
+        <div class="stat-item">
+          <div class="stat-value">46.9<span class="unit">yrs</span></div>
+          <div class="stat-label">Median Age</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">20.4<span class="unit">%</span></div>
+          <div class="stat-label">Population Aged 65+</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">14<span class="unit">%</span></div>
+          <div class="stat-label">In-District Employment</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">2.68</div>
+          <div class="stat-label">Plot Ratio</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">9.7<span class="unit">%</span></div>
+          <div class="stat-label">Open-Space Share</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">38.2<span class="unit">%</span></div>
+          <div class="stat-label">New-Arrival Population</div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</header>
+
+<!-- ==================== 1. Executive Summary ==================== -->
+<section class="block" id="summary">
+  <div class="block-inner">
+    <div class="section-header">
+      <div class="section-num">01</div>
+      <div class="section-title-group">
+        <div class="section-title-en">Executive Summary</div>
+        <h2 class="section-title">Executive Summary</h2>
+      </div>
+    </div>
+
+    <div class="summary-grid">
+      <div class="summary-card">
+        <span class="num">— Strategy i</span>
+        <h4>Affordable Organic Redevelopment</h4>
+        <p>Integrate plot-ratio transfer, off-site land exchange, and the Land Sharing Pilot Scheme to internalise environmental externalities and break the financial-infeasibility deadlock.</p>
+      </div>
+      <div class="summary-card">
+        <span class="num">— Strategy ii</span>
+        <h4>Embedded Participation Framework</h4>
+        <p>Statutorily mandate community planning forums and an independent rehousing appeals board, shifting from "tokenistic consultation" to genuine co-decision-making.</p>
+      </div>
+      <div class="summary-card">
+        <span class="num">— Strategy iii</span>
+        <h4>15-Minute Vibrant Neighbourhood</h4>
+        <p>Lift local employment and quality of life through mixed-use zoning, transport micro-circulation, and a pocket-park network, repairing the jobs-housing imbalance.</p>
+      </div>
+    </div>
+
+    <div class="summary-prose">
+      <p>Sham Shui Po is among the most representative ageing inner-city districts in Hong Kong, and now confronts the convergence of three structural dilemmas in urban regeneration: <strong>a structural contradiction between building obsolescence and the financial viability of redevelopment</strong>, <strong>contested social equity arising from chronically inadequate public participation</strong>, and <strong>a compounded predicament of jobs-housing imbalance, infrastructure overload, and a shortage of public space</strong>. Drawing on demographic and economic data across 25 sub-districts of Sham Shui Po, current land-use conditions, and a diagnosis of its planning issues, this report introduces six international and local case studies for comparative analysis — covering adaptive-reuse financial modelling in Canada, the social-policy lessons of Dutch urban renewal, the public-participation mechanisms of Guangzhou and South Africa, and metropolitan commuting governance in China and the United Kingdom.</p>
+
+      <p>Through precondition comparison and adaptive transformation, the report proposes three core strategies. Only by deeply integrating all three can the structural divides of "financial infeasibility, participatory mistrust, and functional mismatch" be bridged.</p>
+
+      <p>The plan sets out a phased implementation pathway — short-term pilot launch (years 1–3), mid-term replication at scale (years 4–10), and long-term structural transformation (years 10–20) — complemented by risk-management mechanisms and quantitative and qualitative targets. Within ten years, in-district employment is expected to rise from 14% to 25%, open space to reach 2.5 m² per capita, and public trust in the regeneration process to climb from roughly 20% to above 55%. The outcome is a replicable "Sham Shui Po Organic Regeneration Model" that can serve as an institutional and technical template for other ageing Hong Kong districts such as Kwun Tong, Kowloon City, and Yau Tsim Mong.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 2. Local Context ==================== -->
+<section class="block alt" id="context">
+  <div class="block-inner">
+    <div class="section-header">
+      <div class="section-num">02</div>
+      <div class="section-title-group">
+        <div class="section-title-en">Local Context & Diagnosis</div>
+        <h2 class="section-title">Local Context & Diagnosis</h2>
+      </div>
+    </div>
+
+    <h3 class="sub-title"><span class="num">2.1</span>Geography & Land-Use Characteristics</h3>
+    <div class="prose">
+      <p>Sham Shui Po lies in the western part of Kowloon and is one of Hong Kong's traditional high-density inner-city districts. This study covers 25 sub-areas including Po Lai, Cheung Sha Wan, Nam Cheong North, Shek Kip Mei, and Nam Cheong East. The geography is marked by <strong>flat terrain</strong> (average ground elevation of 26 m with minimal variation) and <strong>intense urbanisation</strong>: road and transport land accounts for the largest share at 29.2%, residential use totals roughly 34.8% (split between 17.4% private and 17.3% public housing), open space and recreational facilities make up just 9.7%, and natural vegetation is nearly absent (grassland 1.2%, shrubland 1.0%). Science-park and technology-park land is effectively zero.</p>
+      <p>This land structure reflects Sham Shui Po's <strong>built-out, stock-driven spatial character as a mature inner-city district</strong>: public space is heavily compressed, residential and transport uses dominate, and there is a lack of ecological buffers and functional diversity. Compared with other Cluster-2 areas across Hong Kong (typified by low income and high public-housing share), Sham Shui Po's private-housing land share exceeds the cluster mean by 199.7%, and its commercial/office building share is elevated. The presence of a small high-income segment (monthly income above HK$60,000) hints at marked internal spatial differentiation — Cheung Sha Wan and the adjacent area show older building stock, while Po Lai and Nam Cheong East host comparatively more private housing and commercial activity.</p>
+    </div>
+
+    <h3 class="sub-title"><span class="num">2.2</span>Demographics & Economic Profile</h3>
+    <div class="prose">
+      <p>Sham Shui Po has a population of approximately 172,000, with pronounced ageing: 20.4% are aged 65 or above and the median age is 46.9, well above the Hong Kong average of roughly 44. By place of birth, 55.6% are born locally and 38.2% in mainland China, Macau or Taiwan — reflecting a notably high new-arrival share. Educationally, the population skews towards secondary school and above, with only 18.4% holding a university degree, indicating a relatively low-skill profile.</p>
+      <p>Economically, the labour-force participation rate is 58% (below Hong Kong's roughly 60%), the median personal income is HK$17,438 (male HK$21,450, female HK$14,378), the median household income is HK$27,555, the median rent is HK$4,000, and the median rent-to-income ratio is 23.3%. Low-income groups are concentrated — the largest working-population cohort sits in the HK$10,000–19,999 monthly bracket, and households earning below HK$6,000 also represent a sizeable share. This structure shows Sham Shui Po as <strong>a district mixing low- and very-low-income groups</strong>, with significant housing-affordability pressure: the private-housing rent-to-income ratio of 23.3% is approaching the international warning threshold of 30%.</p>
+    </div>
+
+    <h3 class="sub-title"><span class="num">2.3</span>Building Stock & Housing Conditions</h3>
+    <div class="prose">
+      <p>Average building height in the district is 12.3 m (predominantly low-rise), the plot ratio is 2.68 (below many other redevelopment areas in Hong Kong), and the median year of construction is 1985 (buildings are now over 38 years old on average). Residential uses occupy 90% of building function, commercial and office 4.7%, and industrial 5.9%. By housing type, the population is concentrated in private permanent housing (52.3%), public rental housing (37.6%), and subsidised home-ownership (8.3%). The average household size is 2.59 persons, the single-person household share is high (exceeding 81% of comparison areas), and over 60% of housing is rental.</p>
+      <p>The data sketch a textbook ageing-district predicament: <strong>severely outdated buildings, fragmented ownership (high share of private buildings with multiple owners), large tenant population, and shrinking household sizes</strong>. Building ages above 35 years mean that many private buildings face structural-safety and dilapidated-facility issues that call for large-scale renewal. Yet the plot ratio of just 2.68 limits any new floor area gained from demolition-and-rebuild, and under the existing compensation regime — particularly the URA's seven-year flat-equivalent formula — financial feasibility is extremely low.</p>
+    </div>
+
+    <h3 class="sub-title"><span class="num">2.4</span>Employment & Commuting Pattern</h3>
+    <div class="prose">
+      <p>Only 14% of the district's working population is employed within Sham Shui Po; the other 86% commute out — to Kowloon (23.4%), Hong Kong Island (17.6%), and the New Towns (13.9%). Sectoral employment is concentrated in wholesale and retail, public administration, education and healthcare, and real estate and professional services — a low value-added industrial mix lacking office and tech-sector jobs. The median personal income of HK$17,438 (below Hong Kong's average) creates a self-reinforcing "low-skill / low-pay" loop.</p>
+      <p>Road land accounts for a high 29.2% share, yet morning-peak traffic is already saturated (MTR Tsuen Wan Line and bus corridors are operating under heavy load). Open space at 9.7% falls well short of the <em>Hong Kong 2030+</em> benchmark of 2.5 m² per capita. GIC facilities occupy 10.7% but are unevenly distributed, with a particular shortage of elderly medical and day-care services. The convergence of traffic congestion, scarce green space, and inadequate community facilities accelerates outflow risk and exposes Sham Shui Po to a long-term threat of "hollowing-out".</p>
+    </div>
+
+    <h3 class="sub-title"><span class="num">2.5</span>Institutional Backdrop: Hong Kong's Renewal Constraints</h3>
+    <div class="prose">
+      <p>The regeneration of Sham Shui Po cannot be detached from Hong Kong's distinctive institutional context. The <strong>tripartite development-control regime</strong> (planning, building, and lease) imposes rigid constraints on any project: even after the Town Planning Board grants planning permission, the project must still navigate Lands Department land-premium negotiation and Buildings Department drawing approval — a process that typically spans 11–14 years. The <strong>Urban Renewal Authority (URA) operating under the URS framework</strong> holds compulsory land-resumption power, yet the "seven-year flat-equivalent formula" has driven acquisition costs sharply upward. Across the whole of Hong Kong, only about 1,500–2,000 units are redeveloped per year — far below the rate needed to address the roughly 330,000 units aged over 55 years.</p>
+      <p>In addition, the <strong>inherent tension within Hong Kong's dual-track public–private housing market</strong> — coupled with the government's heavy fiscal reliance on land-sale revenue — generates structural resistance to policies aimed at lowering housing prices or raising the public-housing share. At the macro level, although <em>Hong Kong 2030+</em> identifies urban renewal as a core strategy, mega-projects such as the Northern Metropolis siphon away significant public funds and administrative bandwidth, leaving "medium-priority ageing districts" like Sham Shui Po at a disadvantage in resource allocation. Only by grasping these institutional imprints can a truly implementable proposal be designed.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 3. Core Problems ==================== -->
+<section class="block" id="problems">
+  <div class="block-inner">
+    <div class="section-header">
+      <div class="section-num">03</div>
+      <div class="section-title-group">
+        <div class="section-title-en">Core Problems</div>
+        <h2 class="section-title">Core Problems Identified</h2>
+      </div>
+    </div>
+
+    <div class="prose wide">
+      <p>Drawing on local data and contextual analysis, Sham Shui Po's regeneration confronts three interlocking core problems. These are not isolated but mutually reinforcing: financial infeasibility stalls redevelopment, buildings continue to age, the neighbourhood environment deteriorates, and employment and public-space appeal weaken further; inadequate participation triggers community resistance, delays projects, and deepens the financial bind; jobs-housing imbalance and facility shortages drive out-migration, eroding the very demand base that would justify renewal.</p>
+    </div>
+
+    <div class="problem-grid">
+      <article class="problem-card" data-num="01">
+        <div class="tag">FINANCIAL</div>
+        <h4>Building Obsolescence × Financial Viability<br>— A Structural Contradiction</h4>
+        <p>The median construction year is 1985 (over 38 years old); many private buildings are now beyond 50. With a plot ratio of just 2.68, additional floor area after redevelopment is limited, and financial returns struggle to cover acquisition costs. The URA's "seven-year flat-equivalent formula" further intensifies financial pressure, making market-led redevelopment all but impossible.</p>
+      </article>
+      <article class="problem-card" data-num="02">
+        <div class="tag">PARTICIPATION</div>
+        <h4>Inadequate Public Participation<br>and Equity Contestation</h4>
+        <p>Residents are excluded from upstream planning, and statutory consultation is widely seen as "sham consultation". With 38.2% new arrivals — many unfamiliar with appeal channels — and a high share of single-person households and elderly living alone, displaced community networks leave vulnerable groups unable to adapt. Legislation for a rehousing appeals mechanism has progressed slowly, and the trust crisis continues to accumulate.</p>
+      </article>
+      <article class="problem-card" data-num="03">
+        <div class="tag">JOBS · SPACE</div>
+        <h4>Jobs-Housing Imbalance and<br>Infrastructure Overload</h4>
+        <p>Only 14% of workers find employment locally; 86% commute out. Morning-peak transport is saturated and open space is severely deficient (9.7%). GIC facilities are unevenly distributed, particularly lacking elderly medical and day-care services. Economically, the district is locked in a "low-skill / low-pay" loop, with few office or tech-sector job opportunities.</p>
+      </article>
+    </div>
+
+    <h3 class="sub-title"><span class="num">3.1</span>Problem One · Barriers Detailed</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th style="width: 22%;">Barrier Dimension</th><th>Concrete Manifestation</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Building obsolescence</strong></td><td>Median construction year 1985 — over 38 years old; many private buildings exceed 50 years.</td></tr>
+          <tr><td><strong>Financial infeasibility</strong></td><td>Plot ratio of 2.68 yields very little new floor area; the seven-year-flat formula inflates acquisition costs; the private market lacks incentives.</td></tr>
+          <tr><td><strong>Social vulnerability</strong></td><td>60% tenants; low incomes (household median HK$27,555); ageing population; limited capacity to absorb relocation disruption.</td></tr>
+          <tr><td><strong>Policy bottlenecks</strong></td><td>Fragmented ownership (multi-owner private blocks); limited plot-ratio uplift; rigid URS compensation regime.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub-title"><span class="num">3.2</span>Problem Two · Barriers Detailed</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th style="width: 22%;">Barrier Dimension</th><th>Concrete Manifestation</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Tokenistic participation</strong></td><td>Residents are excluded from upstream planning; consultation only opens at the TPB representation stage and is widely seen as a sham.</td></tr>
+          <tr><td><strong>New-arrival disadvantage</strong></td><td>38.2% of residents are born in mainland China, Macau, or Taiwan, are unfamiliar with appeal channels, and are weakened in negotiation.</td></tr>
+          <tr><td><strong>Decision-making legitimacy deficit</strong></td><td>District Council voting disputes and broader stakeholder distrust.</td></tr>
+          <tr><td><strong>Weak rehousing compensation</strong></td><td>Cash allowances (median rent HK$4,000) or limited referrals only; no mandatory guarantee of same-district rehousing.</td></tr>
+          <tr><td><strong>Fragile community networks</strong></td><td>High single-person household share, many elderly living alone; relocation produces social isolation.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub-title"><span class="num">3.3</span>Problem Three · Barriers Detailed</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th style="width: 22%;">Barrier Dimension</th><th>Concrete Manifestation</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Severe jobs-housing imbalance</strong></td><td>Only 14% local employment; 86% commute out; morning-peak transport is saturated.</td></tr>
+          <tr><td><strong>Open-space deficit</strong></td><td>Just 9.7% of land — well below the 2.5 m² per-capita benchmark; few pocket parks or vertical greenery.</td></tr>
+          <tr><td><strong>Uneven community facilities</strong></td><td>GIC occupies 10.7% but is unevenly distributed; elderly medical and day-care services are particularly scarce.</td></tr>
+          <tr><td><strong>Weak economic structure</strong></td><td>Personal income HK$17,438 (below Hong Kong average); concentration in low value-added sectors; lack of tech jobs.</td></tr>
+          <tr><td><strong>Overloaded commuting infrastructure</strong></td><td>The Tsuen Wan Line and bus corridors saturate at morning peak; residents fear redevelopment will worsen congestion.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 4. Global Case Studies ==================== -->
+<section class="block alt" id="cases">
+  <div class="block-inner">
+    <div class="section-header">
+      <div class="section-num">04</div>
+      <div class="section-title-group">
+        <div class="section-title-en">Global Case Studies</div>
+        <h2 class="section-title">Global Case Studies</h2>
+      </div>
+    </div>
+
+    <div class="prose wide">
+      <p>This section systematically reviews six international and local cases corresponding to the three core problems, distilling their key lessons, preconditions, and limitations to inform the adaptive design of the Sham Shui Po proposal.</p>
+    </div>
+
+    <!-- Financial Direction -->
+    <h3 class="sub-title"><span class="num">4.1</span>Direction One · Financial Viability of Ageing-District Redevelopment</h3>
+    <div class="case-grid">
+      <article class="case-card">
+        <div class="case-meta">
+          <span class="case-no">CASE 01</span>
+          <span class="case-flag">🇨🇦 Canada</span>
+          <span>2007 · Academic</span>
+        </div>
+        <h4>Financial Feasibility of Adaptive Reuse in Canada</h4>
+        <div class="case-en">The economics of adaptive reuse of old buildings: A financial feasibility study & analysis · University of Waterloo</div>
+        <p class="case-summary">Built a Pro-Forma financial model quantifying the cash-flow gap between adaptive reuse and new construction. Introduced externality-quantification tools such as carbon-debt analysis and waste-reduction metrics, combined with a policy mix of tax credits, density bonuses, and streamlined approvals. The study finds new construction needs 10–80 years to repay its carbon debt, while adaptive reuse can substantially reduce emissions.</p>
+        <div class="case-tags">
+          <span class="case-tag">Pro-Forma Model</span>
+          <span class="case-tag">Carbon-Debt Metric</span>
+          <span class="case-tag">Density Bonus</span>
+        </div>
+      </article>
+      <article class="case-card">
+        <div class="case-meta">
+          <span class="case-no">CASE 02</span>
+          <span class="case-flag">🇳🇱 Netherlands</span>
+          <span>Postwar–2010+ · Journal</span>
+        </div>
+        <h4>Review of Dutch Urban Renewal Policies</h4>
+        <div class="case-en">Review of Dutch Urban Renewal Policies · Urban Planning International 2022(1)</div>
+        <p class="case-summary">The Dutch postwar shift from state-led renewal to neoliberalism deepened social inequality and spatial segregation. The cautionary lesson: market mechanisms alone cannot safeguard social equity. Embedded, mandatory social-integration policies are essential — including binding public-housing ratios, the statutory status of community participation, and rehousing protections.</p>
+        <div class="case-tags">
+          <span class="case-tag">Welfare State</span>
+          <span class="case-tag">Social Integration</span>
+          <span class="case-tag">Cautionary Tale</span>
+        </div>
+      </article>
+    </div>
+
+    <!-- Participation Direction -->
+    <h3 class="sub-title"><span class="num">4.2</span>Direction Two · Public Participation and Planning Justice</h3>
+    <div class="case-grid">
+      <article class="case-card">
+        <div class="case-meta">
+          <span class="case-no">CASE 03</span>
+          <span class="case-flag">🇨🇳 China · Guangzhou</span>
+          <span>2014–2020 · MDPI Land</span>
+        </div>
+        <h4>Public Participation in Guangzhou's Community Regeneration</h4>
+        <div class="case-en">Evolutionary Patterns and Mechanism Optimization of Public Participation in Community Regeneration Planning: A Case Study of Guangzhou</div>
+        <p class="case-summary">Established a flexible policy-adaptation mechanism, built a tri-partite financing framework of "government guidance + market operation + resident contribution", and cultivated community-planner organisations. Achieved three paradigm shifts: participants moved from "passive respondents" to "active builders"; participation moved from "fragmented intervention" to "whole-cycle empowerment"; methods evolved from "one-way communication" to "collaborative co-governance".</p>
+        <div class="case-tags">
+          <span class="case-tag">Statutory Early Engagement</span>
+          <span class="case-tag">Community Planner</span>
+          <span class="case-tag">Digital Platform</span>
+        </div>
+      </article>
+      <article class="case-card">
+        <div class="case-meta">
+          <span class="case-no">CASE 04</span>
+          <span class="case-flag">🇿🇦 South Africa · Gqeberha</span>
+          <span>2018–2021 · JOPAFL</span>
+        </div>
+        <h4>South African Land-Expropriation Public Participation</h4>
+        <div class="case-en">Engaging Community Perspectives in South Africa: Evaluating Public Participation in the Expropriation of Land Without Compensation</div>
+        <p class="case-summary">Collected 129,127 emails and held 36 hearings — yet most were organised, duplicate submissions failing to reflect the community's diverse voices. The crucial warning: tokenistic participation inevitably collapses trust and escalates conflict. A closed-loop response system is essential — every public submission must receive a written reply within a statutory deadline, elevating participation from "consultation" to "co-decision".</p>
+        <div class="case-tags">
+          <span class="case-tag">Tokenism Warning</span>
+          <span class="case-tag">Closed-Loop Feedback</span>
+          <span class="case-tag">Vulnerable-Group Access</span>
+        </div>
+      </article>
+    </div>
+
+    <!-- Jobs-Housing Direction -->
+    <h3 class="sub-title"><span class="num">4.3</span>Direction Three · Jobs-Housing Imbalance & Infrastructure Capacity</h3>
+    <div class="case-grid">
+      <article class="case-card">
+        <div class="case-meta">
+          <span class="case-no">CASE 05</span>
+          <span class="case-flag">🇨🇳 China · Metropolitan Regions</span>
+          <span>2023 · Commissioned</span>
+        </div>
+        <h4>China's 1-Hour Commuting Circle: Features & Strategy</h4>
+        <div class="case-en">Grasping the Characteristics of the 1-Hour Commuting Circle · NDRC / Macroeconomic Management</div>
+        <p class="case-summary">Addresses the twin predicaments of "connected but inaccessible" and "accessible but underused": opening up dead-end roads, harmonising rail standards; integrated ticketing, mutual security recognition, P+R interchange; bespoke express services (such as Beijing's Yanjiao-to-Guomao customised buses); dedicated carriages for the elderly and women. The Beijing peri-urban corridor carries 920,000 trips per day, and Guangzhou-Foshan accounts for 60% of Guangzhou's cross-city commuting.</p>
+        <div class="case-tags">
+          <span class="case-tag">Customised Express Bus</span>
+          <span class="case-tag">Micro-Circulation Feeder</span>
+          <span class="case-tag">P+R Interchange</span>
+        </div>
+      </article>
+      <article class="case-card">
+        <div class="case-meta">
+          <span class="case-no">CASE 06</span>
+          <span class="case-flag">🇬🇧 United Kingdom</span>
+          <span>1984 · Leeds University</span>
+        </div>
+        <h4>Transport Devolution in UK Metropolitan Counties</h4>
+        <div class="case-en">Transport in the metropolitan counties: current performance and future prospects · University of Leeds, ITS</div>
+        <p class="case-summary">A two-tier government structure produces strategic-role disputes, fiscal overruns, functional fragmentation, and democratic-accountability gaps in transport. The report critically appraises the 1983 White Paper's proposal to abolish the metropolitan counties. Key insight: transport and land-use planning must be strategically integrated; devolution requires that professional capacity and fiscal resources are devolved in parallel.</p>
+        <div class="case-tags">
+          <span class="case-tag">Cross-Department Coordination</span>
+          <span class="case-tag">Strategic Integration</span>
+          <span class="case-tag">Joint Board</span>
+        </div>
+      </article>
+    </div>
+
+    <!-- Key Success Factors -->
+    <h3 class="sub-title"><span class="num">4.4</span>Key Success Factors — Summary</h3>
+    <div class="prose wide">
+      <p>The table below distils the common Key Success Factors (KSFs) extracted from the six cases. Equally important are the <strong>key failure warnings</strong> drawn from the South African and Dutch experiences: tokenistic participation inevitably triggers trust collapse; purely market-led renewal worsens segregation; and the marginalisation of social policy undermines long-term social sustainability.</p>
+    </div>
+    <div class="tbl-wrap ksf-table">
+      <table>
+        <thead>
+          <tr><th style="width: 16%;">Dimension</th><th>Key Success Factor</th><th style="width: 22%;">Case Source</th></tr>
+        </thead>
+        <tbody>
+          <tr><td rowspan="3"><strong>Financial Viability</strong></td><td>Policy mix (tax + density bonus + fast-track approval) to lower the threshold of entry</td><td>Canada, Netherlands</td></tr>
+          <tr><td>Internalisation of externalities (carbon debt, waste reduction) to improve the return profile</td><td>Canada</td></tr>
+          <tr><td>A "retrofit-first" assessment process to avoid needless demolition</td><td>Canada</td></tr>
+          <tr><td rowspan="4"><strong>Public Participation</strong></td><td>Statutory early-stage engagement (residents incorporated from the conception phase)</td><td>Guangzhou</td></tr>
+          <tr><td>Closed-loop response system (with legally enforceable reasoning)</td><td>Guangzhou, South Africa (negative)</td></tr>
+          <tr><td>Community-planner mediation mechanism (professional outreach)</td><td>Guangzhou</td></tr>
+          <tr><td>Dedicated provision for vulnerable groups (multilingual, offline channels)</td><td>Guangzhou, South Africa (negative)</td></tr>
+          <tr><td rowspan="4"><strong>Jobs-Housing & Transport</strong></td><td>Micro-circulation feeders and customised buses/trains to raise the efficiency of existing infrastructure</td><td>China (Beijing customised express bus)</td></tr>
+          <tr><td>Cross-department coordination platforms (such as joint boards or dedicated bureaux)</td><td>United Kingdom</td></tr>
+          <tr><td>Mixed-use zoning and local-employment promotion</td><td>Netherlands, China</td></tr>
+          <tr><td>Public-space quality compensation (pocket parks, vertical greenery)</td><td>Netherlands, China</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 5. Gap Analysis & Adaptation ==================== -->
+<section class="block" id="adaptation">
+  <div class="block-inner">
+    <div class="section-header">
+      <div class="section-num">05</div>
+      <div class="section-title-group">
+        <div class="section-title-en">Gap Analysis & Adaptive Transformation</div>
+        <h2 class="section-title">Gap Analysis & Adaptive Transformation</h2>
+      </div>
+    </div>
+
+    <h3 class="sub-title"><span class="num">5.1</span>Precondition Comparison</h3>
+    <div class="prose wide"><p>The systematic gaps between Sham Shui Po's preconditions and those of the global cases are summarised below:</p></div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 15%;">Condition Type</th>
+            <th>Typical Case Conditions</th>
+            <th>Sham Shui Po Reality</th>
+            <th style="width: 18%;">Critical Gap</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Institutional</strong></td>
+            <td>Heritage-building tax credits (Canada); mandatory mixed-community planning (Netherlands); stock-renewal policy frameworks (Guangzhou); constitutional mandate for public participation (South Africa)</td>
+            <td>No dedicated tax breaks for retrofitting old buildings; URS participation lacks statutory status; long and uncertain land-premium negotiation cycles; rehousing eligibility cut off by the 1982/85 registration baselines</td>
+            <td>No institutionalised early-engagement stage; no independent rehousing appeals mechanism; unpredictability of land premium</td>
+          </tr>
+          <tr>
+            <td><strong>Economic</strong></td>
+            <td>Mature mortgage valuation by banks for retrofit projects (Canada); social-capital cost-sharing in renewal (Guangzhou); avoidance of overbuilt-infrastructure debt (China's metropolitan regions)</td>
+            <td>Median household income of HK$27,555 and median rent of HK$4,000 cannot support high-cost retrofits; private market lacks redevelopment incentive; structural reliance on land-sale revenue</td>
+            <td>Low rental yields cannot underwrite high-cost renewal; absence of green finance and impact-bond innovation</td>
+          </tr>
+          <tr>
+            <td><strong>Technical</strong></td>
+            <td>Carbon-debt accounting and environmental-benefit quantification (Canada); multi-tier rail standards (China); transport modelling and professional teams (UK)</td>
+            <td>No quantification of the environmental benefits of retrofitting old buildings; no full life-cycle cost framework; transport data exists but is not integrated with planning</td>
+            <td>Carbon-reduction externalities are absent from policy decisions; insufficient micro-circulation design capacity</td>
+          </tr>
+          <tr>
+            <td><strong>Social</strong></td>
+            <td>Heritage-advocacy organisations (Canada); village-collective-style community groups (Guangzhou); active social movements (South Africa); rigid commuting demand (China's metropolitan regions)</td>
+            <td>High share of new arrivals unfamiliar with appeal channels; high single-person and elderly-living-alone shares; weak community self-organisation capacity; low trust in redevelopment</td>
+            <td>Lack of effective community-representative bodies; weak culture of deep participation; pronounced digital divide among vulnerable groups</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub-title"><span class="num">5.2</span>Implementation Barriers</h3>
+    <div class="prose">
+      <p>When drawing on the case experience, Sham Shui Po faces the following key implementation barriers:</p>
+      <ol>
+        <li><strong>Ownership fragmentation and consolidation deadlock</strong>: more than half of the district's residential stock is in private buildings, predominantly multi-owner ageing blocks, some involving Tso/Tong land or inheritance disputes. A "majority-rule" mechanism (akin to Singapore's 75% threshold under the Strata Titles Act) would be needed — yet Hong Kong currently lacks the legal basis.</li>
+        <li><strong>Severely limited plot-ratio uplift</strong>: at 2.68, the plot ratio falls well below the profitability threshold for redevelopment (commonly thought to be above 4.0). On-site increment is minimal, requiring off-site land exchange and land-sharing tools — instruments still immature in Hong Kong.</li>
+        <li><strong>Uncertainty of the land-premium regime</strong>: Lands Department valuation is independent and negotiation cycles are long, so any project's financial model must build in years of negotiation timing and material premium volatility.</li>
+        <li><strong>Institutional resistance to participation</strong>: historical grievances (the H15 project and others) have produced deep resident distrust. The current URS lacks mandatory early-engagement provisions, and legislative reform progresses slowly.</li>
+        <li><strong>High cost of cross-department coordination</strong>: the "three-track" parallel review by Planning, Buildings, and Lands — combined with the Transport Department and District Council — requires multiple rounds of circulation and approval, lengthening cycles to 11–14 years.</li>
+        <li><strong>Competition for fiscal resources</strong>: the Northern Metropolis absorbs significant government resources and land-sale revenues, leaving Sham Shui Po — a "medium-priority ageing district" — at a disadvantage in dedicated funding pools.</li>
+        <li><strong>Social vulnerability creating a renewal-vs-social-cost tension</strong>: the heavy presence of low-income tenants and elderly people living alone means every renewal project must shoulder high transitional rehousing costs and faces real risks of severing community networks.</li>
+      </ol>
+    </div>
+
+    <h3 class="sub-title"><span class="num">5.3</span>Localisation Strategies</h3>
+
+    <h4 class="sub-sub-title">5.3.1 Localising Financial-Viability Tools</h4>
+    <div class="prose">
+      <ul>
+        <li><strong>Embed "externality internalisation" in Hong Kong policy</strong>: drawing on the Canadian Pro-Forma model, mandate "carbon-debt payback" and "full life-cycle cost" assessments for redevelopment projects in Sham Shui Po. For private buildings over 50 years old but structurally sound, prioritise an adaptive-reuse feasibility check.</li>
+        <li><strong>Link plot-ratio bonuses to mixed use</strong>: in the revised Sham Shui Po OZP, establish "renewal-bonus zones". Projects providing at least 20% public housing or community facilities may obtain up to a 20% additional plot ratio or height relaxation.</li>
+        <li><strong>Off-site land exchange and Land Sharing Pilot</strong>: transfer ownership of inner-district buildings that cannot be consolidated to sites in the Northern Metropolis through "off-site exchange"; pilot the Land Sharing Scheme on private-led projects.</li>
+        <li><strong>Land-premium predictability innovation</strong>: provide "pre-pricing + tenure-locked" guidance for renewal projects to minimise both negotiation duration and premium volatility.</li>
+      </ul>
+    </div>
+
+    <h4 class="sub-sub-title">5.3.2 Localising Participation Tools</h4>
+    <div class="prose">
+      <ul>
+        <li><strong>Statutorise early-engagement units</strong>: amend the URS to add a "mandatory community-planning forum" clause. Set up sub-area forums in Sham Shui Po composed of resident representatives (with dedicated seats for new arrivals and elderly living alone), District Councillors, and URA and Planning Department officers.</li>
+        <li><strong>Independent Rehousing Appeals Board</strong>: create a statutory rehousing tribunal outside the existing TPB and URA structures to hear disputes over flat-for-flat, same-district rehousing, and rental compensation. Provide "community planners" for end-to-end support.</li>
+        <li><strong>Closed-loop response system</strong>: every public submission must receive a written reply within 30 days explaining whether it has been accepted and why, with publication on the URA website.</li>
+        <li><strong>Transitional housing and network preservation</strong>: provide in-district modular housing or transitional units during the redevelopment period; require redevelopment projects to reserve at least 5% of floor area as "community-shared space".</li>
+      </ul>
+    </div>
+
+    <h4 class="sub-sub-title">5.3.3 Localising Jobs-Housing and Infrastructure Tools</h4>
+    <div class="prose">
+      <ul>
+        <li><strong>Mixed-use zoning and local-employment promotion</strong>: revise the Sham Shui Po OZP to designate "mixed-use (residential / commercial / office)" belts along Cheung Sha Wan Road and Nam Cheong Street; grant automatic planning permission for the revitalisation of old industrial buildings.</li>
+        <li><strong>Transport micro-circulation and active-mobility upgrades</strong>: introduce intra-district circular feeder minibuses and add accessible bus shelters in elderly-concentrated areas; convert back lanes and idle sites into a "green-corridor" walking network that encourages walking and cycling.</li>
+        <li><strong>Fast-tracked pocket parks and vertical greenery</strong>: identify 17 short-term tenancy sites and unused government land for a first wave of 10 pocket parks + 5 elderly day-care centres; introduce vertical greenery on building setbacks and beneath footbridges.</li>
+        <li><strong>Cross-district job-matching platform</strong>: link to the Northern Metropolis innovation-and-technology corridor, building a vocational-training and job-matching platform that gives Sham Shui Po residents skill-conversion opportunities.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 6. Integrated Plan ==================== -->
+<section class="block alt" id="strategy">
+  <div class="block-inner">
+    <div class="section-header">
+      <div class="section-num">06</div>
+      <div class="section-title-group">
+        <div class="section-title-en">Integrated Planning Proposal</div>
+        <h2 class="section-title">Integrated Planning Proposal</h2>
+      </div>
+    </div>
+
+    <h3 class="sub-title"><span class="num">6.1</span>Overall Positioning & Goals</h3>
+    <div class="callout">Anchored in the principles of "community-value-driven, mixed-function activation, inclusive multi-stakeholder governance", this plan transforms Sham Shui Po from a single-use ageing residential area into a model district of organic urban regeneration in Hong Kong — preserving the social networks and spatial DNA of the high-density inner city, while delivering financial viability, social equity, and environmental liveability through layered renewal, functional restructuring, and social empowerment.</div>
+
+    <div class="prose">
+      <p><strong>Overall objectives</strong>:</p>
+      <ul>
+        <li><strong>Financial sustainability</strong>: build a composite financing model leveraging "plot-ratio transfer + land sharing + off-site exchange" to break the redevelopment deficit deadlock and lift the pilot project IRR to a market-acceptable level (no less than 8%).</li>
+        <li><strong>Social justice</strong>: elevate public participation from "tokenistic consultation" to "co-decision-making"; establish an independent rehousing appeals mechanism; safeguard tenant and new-arrival rights; lift trust in the renewal process to above 55%.</li>
+        <li><strong>Functional reshaping</strong>: through mixed-use zoning and transport micro-circulation, raise in-district employment from 14% to 25% (about 3,000 new local jobs), achieve the <em>Hong Kong 2030+</em> open-space benchmark of 2.5 m² per capita, and ensure 100% GIC coverage.</li>
+      </ul>
+    </div>
+
+    <h3 class="sub-title"><span class="num">6.2</span>Three Core Strategies</h3>
+
+    <!-- Strategy 1 -->
+    <div class="strategy">
+      <div class="strategy-head">
+        <span class="strategy-num">i.</span>
+        <h4 class="strategy-name">Break the Financial Deadlock — Build a Mechanism for Affordable Organic Redevelopment</h4>
+      </div>
+      <div class="prose wide">
+        <p><strong>1. Reinvent financial-viability assessment</strong>: mandate a Canadian-style Pro-Forma analysis framework for Sham Shui Po redevelopment, incorporating carbon-debt payback, full life-cycle cost, and environmental-externality accounting. Partner with the Environmental Protection Department to develop a "Sham Shui Po Building-Retrofit Carbon-Benefit Calculator".</p>
+        <p><strong>2. Link plot-ratio bonuses to mixed use</strong>: in the OZP revision, establish "renewal-bonus zones" (along Cheung Sha Wan Road, Nam Cheong Street, and Shek Kip Mei Road) and set out detailed bonus rules:</p>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>Bonus Type</th><th>Qualifying Conditions</th><th>Bonus Magnitude</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Public-housing bonus</strong></td><td>Provide at least 20% public housing (including elderly housing and one-person units)</td><td>Up to 15% additional plot ratio</td></tr>
+            <tr><td><strong>Community-facility bonus</strong></td><td>Provide elderly day-care centres, pocket parks, etc.</td><td>Up to 5% additional plot ratio</td></tr>
+            <tr><td><strong>Green-building bonus</strong></td><td>BEAM Plus Silver or above</td><td>Up to 5% additional plot ratio</td></tr>
+            <tr><td><strong>Mixed-use bonus</strong></td><td>Ground floor allocated to community retail / cultural-creative use</td><td>Up to 2-storey height relaxation</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="prose wide">
+        <p><strong>3. Explore off-site exchange and land sharing</strong>: owners surrender hard-to-consolidate ownership to the government in exchange for equivalent new development land in the Northern Metropolis. Deepen the Land Sharing Pilot Scheme — open a dedicated "Sham Shui Po Renewal Window" at the Lands Department, offering "standard land-premium quotes" and a fast-track approval channel for projects that have consolidated 60% of ownership.</p>
+        <p><strong>4. Set up a "Sham Shui Po Renewal Dedicated Fund"</strong>: initial capitalisation of HK$5 billion, drawn from government grants (HK$2 bn), the Hong Kong Housing Society (HK$1 bn), green-development bonds (HK$1 bn), and private investors (HK$1 bn at a guaranteed 5% return).</p>
+        <p style="color: var(--paper-dim); font-size: 13px; font-style: italic;">Case support: the Canada study demonstrates the decisive role of policy mixes (bonuses + subsidies) in lifting retrofit feasibility; the Netherlands case warns that bonuses must not be left wholly to the market.</p>
+      </div>
+    </div>
+
+    <!-- Strategy 2 -->
+    <div class="strategy">
+      <div class="strategy-head">
+        <span class="strategy-num">ii.</span>
+        <h4 class="strategy-name">Build an Embedded Participation Framework — Securing Planning Justice in the Renewal Process</h4>
+      </div>
+      <div class="prose wide">
+        <p><strong>1. Statutorise early-engagement units</strong>: amend the URS and set up three sub-area forums in Sham Shui Po (Cheung Sha Wan / Nam Cheong, Shek Kip Mei, and Sham Shui Po Centre), with the following membership:</p>
+        <ul>
+          <li>8 resident representatives (open recruitment + random draw, of whom at least 2 are new arrivals and 2 are elderly living alone)</li>
+          <li>2 District Councillors</li>
+          <li>2 URA officers (non-voting)</li>
+          <li>1 Planning Department officer (non-voting)</li>
+          <li>2 community planners (technical assistance)</li>
+        </ul>
+        <p>Forums hold motion-initiation rights at the project conception stage, and a forum majority must approve before any statutory planning application.</p>
+        <p><strong>2. Independent Rehousing Appeals Board</strong>: established under URA Ordinance amendments as a statutory rehousing tribunal of 7 members (1 retired judge, 2 registered social workers, 2 community representatives, 1 surveyor, 1 medical practitioner). Decisions must be issued within 60 days and are final and binding.</p>
+        <p><strong>3. Closed-loop response system</strong>: the URA must reply in writing within 30 days of receiving each public submission, stating the reasons for acceptance or rejection and publishing the reply on the project website. Submissions without a timely reply are deemed automatically accepted.</p>
+        <p><strong>4. Transitional rehousing and social-network preservation</strong>: during the redevelopment period, affected residents are provided with in-district modular housing or transitional units (priority for the same district, sited within 1 km of the original location). Redevelopment projects must reserve at least 5% of floor area as "community-shared space".</p>
+        <p style="color: var(--paper-dim); font-size: 13px; font-style: italic;">Case support: the Guangzhou case offers a direct blueprint for statutorised early engagement and community-planner systems; the South Africa case warns of the consequences of tokenistic participation.</p>
+      </div>
+    </div>
+
+    <!-- Strategy 3 -->
+    <div class="strategy">
+      <div class="strategy-head">
+        <span class="strategy-num">iii.</span>
+        <h4 class="strategy-name">Repair the Jobs-Housing Imbalance — Build a "15-Minute Vibrant Neighbourhood"</h4>
+      </div>
+      <div class="prose wide">
+        <p><strong>1. Mixed-use zoning and local employment</strong>: through OZP revision, add "Mixed Use (Class A)" along Cheung Sha Wan Road, Nam Cheong Street, and Shek Kip Mei Road — allowing free combinations of residential, commercial, office, and cultural-creative uses. Apply a "fast-track revitalisation" channel to the Cheung Sha Wan industrial-building cluster. Require new commercial floor space to be prioritised for lease to local resident-led micro-enterprises (with in-district hiring ≥ 60% in the first year of operation).</p>
+        <p><strong>2. Transport micro-circulation and active-mobility upgrades</strong>:</p>
+        <ul>
+          <li><strong>Circular feeder minibuses</strong>: launch two intra-district loop routes (Shek Kip Mei to Sham Shui Po Station; Nam Cheong Station to Cheung Sha Wan Road), running at 5-minute intervals during peak hours with one-fare connectivity.</li>
+          <li><strong>Accessible bus shelters</strong>: install 20 covered shelters with electronic arrival displays in elderly-concentrated areas.</li>
+          <li><strong>Green-corridor walking network</strong>: convert back lanes and idle sites into a pedestrian green corridor connecting 10 pocket parks.</li>
+          <li><strong>Shared-bicycle system</strong>: introduce non-electric shared bicycles (the district's gentle gradient suits them), with 30 docking stations and the first hour free.</li>
+        </ul>
+        <p><strong>3. Public space and GIC backfill</strong>:</p>
+        <ul>
+          <li>10 pocket parks (each at least 500 m²)</li>
+          <li>5 elderly community centres (day-care and social space)</li>
+          <li>2 community farms (resident-adopted)</li>
+          <li>One integrated medical clinic + one elderly day-care centre in each of Nam Cheong North and Shek Kip Mei</li>
+        </ul>
+        <p style="color: var(--paper-dim); font-size: 13px; font-style: italic;">Case support: China's metropolitan-region "customised express bus" translates directly into the micro-circulation feeder concept; the UK case's "strategic integration" principle is embodied in mixed-use zoning; and the "15-minute neighbourhood" concept from the Netherlands and Guangzhou cases guides the public-space layout.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 7. Implementation Pathway ==================== -->
+<section class="block" id="timeline">
+  <div class="block-inner">
+    <div class="section-header">
+      <div class="section-num">07</div>
+      <div class="section-title-group">
+        <div class="section-title-en">Implementation Pathway</div>
+        <h2 class="section-title">Implementation Pathway & Sequencing</h2>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-phase">PHASE 01 — Short Term</div>
+        <h4 class="timeline-title">Pilot Launch & Institutional Setup</h4>
+        <div class="timeline-period">Years 1 – 3</div>
+        <div class="timeline-content">
+          <h5>Core Tasks</h5>
+          <p>① Amend the URS to add community-forum and independent-appeals-board clauses; ② issue the "Sham Shui Po Renewal Guidelines" with detailed plot-ratio-bonus and off-site-exchange trial rules; ③ select two pilot parcels (one private-led, one public–private mixed) and launch ownership consolidation and compensation packages; ④ establish the community renewal forum and rehousing appeals board (initial trial of 3 years); ⑤ deliver 5 pocket parks and 3 elderly day-care centres, and launch circular feeder minibuses; ⑥ kick off the industrial-building fast-track revitalisation with a first batch of 5 buildings; ⑦ establish the Sham Shui Po Renewal Dedicated Fund with an initial HK$2 bn injection.</p>
+          <div class="milestone">Key milestones: pilot parcels obtain planning permission; the forum convenes successfully at least twice; the rehousing board accepts its first batch of cases</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-phase">PHASE 02 — Medium Term</div>
+        <h4 class="timeline-title">Replication & Deep Integration</h4>
+        <div class="timeline-period">Years 4 – 10</div>
+        <div class="timeline-content">
+          <h5>Core Tasks</h5>
+          <p>① Evaluate the pilot, distil lessons, and scale to Nam Cheong North, Shek Kip Mei, and Cheung Sha Wan; ② carry out a comprehensive OZP revision to institutionalise mixed-use belts and plot-ratio bonuses; ③ complete the district-wide 10-pocket-park network and green-corridor walking system; ④ extend new community facilities (medical clinics, day-care centres) across the entire district; ⑤ stand up a cross-district job-matching platform linked to the Northern Metropolis I&T corridor; ⑥ complete the first batch of off-site exchanges; ⑦ deliver the Land Sharing Pilot Scheme on the ground in Sham Shui Po.</p>
+          <div class="milestone">Key milestones: in-district employment reaches 20%; open space reaches 2.0 m² per capita; community-forum resident participation ≥ 30%</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-phase">PHASE 03 — Long Term</div>
+        <h4 class="timeline-title">Structural Transformation & Iterative Review</h4>
+        <div class="timeline-period">Years 10 – 20</div>
+        <div class="timeline-content">
+          <h5>Core Tasks</h5>
+          <p>① In-district employment in Sham Shui Po stabilises at 25%, and the cross-district commuting share falls below 70%; ② open space and GIC fully meet the standards (2.5 m² and 3.5 m² per capita); ③ codify the "Sham Shui Po Organic Regeneration Model" as a replicable policy template, extending it to Kowloon City, Yau Tsim Mong, and other ageing districts; ④ evaluate social-integration indicators (income mobility, new-arrival integration, community trust) and dynamically adjust the policy mix.</p>
+          <div class="milestone">Key milestones: 25% employment target met; trust polling ≥ 55%; replicable institutional manual produced</div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="sub-title">Precondition Preparation · Completed Alongside the Short-Term Phase</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th style="width: 14%;">Dimension</th><th>Required Conditions</th><th style="width: 28%;">Responsible Bodies</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Institutional reform</strong></td><td>URS amendment, OZP revision, trial land-premium guidance, statutorisation of the rehousing appeals board</td><td>Development Bureau, Planning Department, Lands Department</td></tr>
+          <tr><td><strong>Financial provision</strong></td><td>Dedicated-fund capitalisation, social-impact-bond issuance</td><td>Financial Services and the Treasury Bureau, URA, HKMA</td></tr>
+          <tr><td><strong>Technical readiness</strong></td><td>Carbon-debt calculator, digital-twin platform, technical retrofitting guidelines</td><td>Architectural Services Department, HKPC, Hong Kong Housing Society</td></tr>
+          <tr><td><strong>Organisational build-out</strong></td><td>Community-planner team training (at least 20 people); transitional-housing negotiation coalition</td><td>Home Affairs Bureau, District Councils, NGOs</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 8. Risk Assessment ==================== -->
+<section class="block alt" id="risk">
+  <div class="block-inner">
+    <div class="section-header">
+      <div class="section-num">08</div>
+      <div class="section-title-group">
+        <div class="section-title-en">Risk Assessment & Response</div>
+        <h2 class="section-title">Risk Assessment & Response</h2>
+      </div>
+    </div>
+
+    <h3 class="sub-title"><span class="num">8.1</span>Potential Costs</h3>
+    <div class="prose">
+      <p><strong>1. Economic costs</strong></p>
+      <ul>
+        <li>Misuse of plot-ratio bonuses could over-densify pockets of Sham Shui Po, intensifying transport and environmental loads.</li>
+        <li>Mis-valued off-site exchanges could materially reduce government land revenue and weaken the fiscal position.</li>
+        <li>If the dedicated fund recovers slowly in its early years, it may become a fiscal burden and crowd out other public services.</li>
+        <li>If land-premium "pre-pricing" is set too low, developers may capture arbitrage gains, leaching public revenue; set too high, no project moves forward.</li>
+      </ul>
+      <p><strong>2. Social impacts</strong></p>
+      <ul>
+        <li>While a mandatory public-housing share protects social integration, it may dampen overall project returns and prompt some developers to exit.</li>
+        <li>If the community forum is captured by interest groups or large owners, tenants and new arrivals could be marginalised — reinforcing rather than easing polarisation.</li>
+        <li>Poorly sited or poorly managed modular / transitional housing could create new "temporary poverty enclaves".</li>
+        <li>The introduction of cultural-creative and community retail can trigger gentrification — low-end businesses pushed out and original residents' living costs rising.</li>
+      </ul>
+      <p><strong>3. Institutional implementation risks</strong></p>
+      <ul>
+        <li>The independent rehousing appeals board may face case backlogs and administrative strain in its early operations.</li>
+        <li>Cross-department coordination costs could keep cycles longer than expected, missing the 18-month approval target.</li>
+        <li>Slow legislative amendment (the URS reform must pass through the Legislative Council) may leave the pilot launch without an adequate legal basis.</li>
+      </ul>
+    </div>
+
+    <h3 class="sub-title"><span class="num">8.2</span>Negative-Scenario Early Warnings</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>Negative Scenario</th><th>Triggering Conditions</th><th>Warning Indicator</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>No bidders for pilot sites</strong></td><td>Plot-ratio bonus insufficient; land-premium pre-pricing set too low or too high; market downturn</td><td>No substantive bids within 6 months of tender publication</td></tr>
+          <tr><td><strong>Community forum politicised</strong></td><td>High-conflict issues attract political-group capture; unfair process for selecting resident representatives</td><td>Forum meetings disrupted multiple times; attendance below 20%</td></tr>
+          <tr><td><strong>Surge in rehousing appeals</strong></td><td>Compensation standards too low or procedures too complex; residents distrust the URA</td><td>Monthly appeals exceed 100; overdue-handling rate &gt; 30%</td></tr>
+          <tr><td><strong>Accelerated gentrification</strong></td><td>Cultural-creative retail pushes rents up rapidly; low-end shops forced out</td><td>Median rent growth exceeds income growth for two consecutive years</td></tr>
+          <tr><td><strong>Worsening congestion</strong></td><td>Redevelopment adds more population than the micro-circulation can carry; feeder-minibus ridership underperforms</td><td>Morning-peak V/C ratio fails to fall (or rises); minibus average daily ridership below 50% of design</td></tr>
+          <tr><td><strong>Fiscal funding interruption</strong></td><td>Dedicated fund underperforms the promised return; government enters fiscal consolidation</td><td>Fund balance below 80% of the annual plan</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub-title"><span class="num">8.3</span>Risk Control Measures</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th style="width: 16%;">Risk Category</th><th style="width: 22%;">Specific Risk</th><th>Control Measures</th><th style="width: 18%;">Responsible Bodies</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Financial-viability trap</strong></td><td>Limited plot-ratio bonus deters developers</td><td>During the pilot, the government provides a backstop acquisition guarantee (at 80% of market value to cap losses); introduce social-impact bonds to monetise social benefits; pre-secure a stock of exchange land in the Northern Metropolis</td><td>Development Bureau, URA</td></tr>
+          <tr><td><strong>Ownership-consolidation deadlock</strong></td><td>Tso / Tong land or inheritance disputes block consolidation</td><td>Introduce a moderate "majority-rule" mechanism (modelled on Singapore's Strata Titles Act, allowing compulsory acquisition once 75% ownership is reached); set up a mandatory expert-mediation phase (6 months)</td><td>Development Bureau, Department of Justice</td></tr>
+          <tr><td><strong>Participation fatigue & trust crisis</strong></td><td>Residents participate without real decision rights, or the forum is captured by interest groups</td><td>Forum resolutions must be matched by written acceptance/rejection rationale, submitted to the District Council annually; appoint an independent ombudsperson to receive complaints; hold regular "open review days"</td><td>Home Affairs Bureau, District Councils</td></tr>
+          <tr><td><strong>Gentrification</strong></td><td>Post-retrofit rent rises force out original tenants</td><td>Mandatory minimum 20% public-housing share; cap rent growth at the median income growth in the district (no more than 2%); offer "rent-freeze pledge" during the transition (until redevelopment completion); reserve affordable commercial units</td><td>Transport and Housing Bureau, URA</td></tr>
+          <tr><td><strong>Construction delay and cost overrun</strong></td><td>Unforeseen ground conditions, unauthorised structures to be removed, resident obstruction</td><td>Build a 15% contingency into project budgets; conduct detailed pre-construction surveys (3D laser scanning + structural inspection); sign "construction-period MOU" with the community</td><td>Architectural Services Department, contractors</td></tr>
+          <tr><td><strong>Cross-department coordination lag</strong></td><td>"Three-track parallel" review by Planning, Lands, and Buildings extends approvals beyond plan</td><td>Set up a "Sham Shui Po Renewal Dedicated Bureau" with statutory authority — handling planning permission, lease modification, and building approval as a one-stop shop, reporting monthly progress to the Chief Secretary</td><td>Chief Secretary, Development Bureau</td></tr>
+          <tr><td><strong>Fiscal pressure</strong></td><td>Heavy front-loaded fund commitment, or land-market downturn slashes revenue</td><td>Rolling investment, launching only the first batch of pilots; co-investment with social capital and pension-fund institutions; design a "downside-risk-sharing mechanism"</td><td>Financial Services and the Treasury Bureau</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 9. Expected Outcomes ==================== -->
+<section class="block" id="outcomes">
+  <div class="block-inner">
+    <div class="section-header">
+      <div class="section-num">09</div>
+      <div class="section-title-group">
+        <div class="section-title-en">Expected Outcomes & Evaluation</div>
+        <h2 class="section-title">Expected Outcomes & Evaluation</h2>
+      </div>
+    </div>
+
+    <h3 class="sub-title"><span class="num">9.1</span>Quantitative Targets · 10-Year Mid-Term Baseline</h3>
+
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">In-District Employment Rate</div>
+        <div class="kpi-flow">
+          <span class="kpi-from">14%</span>
+          <span class="kpi-arrow">→</span>
+          <span class="kpi-to">25%</span>
+        </div>
+        <div class="kpi-note">5-yr target 20% / 10-yr target 25%</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Open Space per Capita</div>
+        <div class="kpi-flow">
+          <span class="kpi-from">&lt;0.5m²</span>
+          <span class="kpi-arrow">→</span>
+          <span class="kpi-to">2.5m²</span>
+        </div>
+        <div class="kpi-note">Meeting the Hong Kong 2030+ standard</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Public Trust in the Renewal Process</div>
+        <div class="kpi-flow">
+          <span class="kpi-from">~20%</span>
+          <span class="kpi-arrow">→</span>
+          <span class="kpi-to">55%</span>
+        </div>
+        <div class="kpi-note">35% at 5 yrs / 55% at 10 yrs</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Public Housing Share of New Units</div>
+        <div class="kpi-flow">
+          <span class="kpi-from">0%</span>
+          <span class="kpi-arrow">→</span>
+          <span class="kpi-to">30%</span>
+        </div>
+        <div class="kpi-note">25% at 5 yrs / 30% at 10 yrs</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">New Local Jobs Created</div>
+        <div class="kpi-flow">
+          <span class="kpi-from">0</span>
+          <span class="kpi-arrow">→</span>
+          <span class="kpi-to">3,000</span>
+        </div>
+        <div class="kpi-note">1,000 at 5 yrs / 3,000 at 10 yrs</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Redeveloped Units</div>
+        <div class="kpi-flow">
+          <span class="kpi-from">0</span>
+          <span class="kpi-arrow">→</span>
+          <span class="kpi-to">1,500</span>
+        </div>
+        <div class="kpi-note">500 at 5 yrs / 1,500 at 10 yrs</div>
+      </div>
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>Indicator</th><th>Baseline (Current)</th><th>5-Year Target</th><th>10-Year Target</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>In-district employment rate</td><td>14%</td><td>20%</td><td>25%</td></tr>
+          <tr><td>Open space per capita</td><td>&lt; 0.5 m² (est.)</td><td>1.5 m²</td><td>2.5 m² (Hong Kong 2030+ standard)</td></tr>
+          <tr><td>Public-housing share of new units</td><td>0%</td><td>25%</td><td>30%</td></tr>
+          <tr><td>Effective resident participation in community forum</td><td>N/A</td><td>20%</td><td>30% (new arrivals and elderly ≥ 15%)</td></tr>
+          <tr><td>Avg. case-handling time at the rehousing appeals board</td><td>None</td><td>6 months</td><td>≤ 4 months</td></tr>
+          <tr><td>Rehousing satisfaction</td><td>None</td><td>50%</td><td>70%</td></tr>
+          <tr><td>Public trust in the renewal process</td><td>≈ 20% (est.)</td><td>35%</td><td>55%</td></tr>
+          <tr><td>Cross-district AM-peak congestion (V/C)</td><td>&gt; 1.0</td><td>−5%</td><td>−10%</td></tr>
+          <tr><td>Redeveloped units (public + private)</td><td>0 (baseline)</td><td>500</td><td>1,500</td></tr>
+          <tr><td>New local jobs</td><td>0</td><td>1,000</td><td>3,000</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub-title"><span class="num">9.2</span>Qualitative Outcomes</h3>
+    <div class="prose">
+      <ul>
+        <li><strong>Social integration</strong>: post-redevelopment, the original-resident return rate ≥ 50%; community network preservation improves (community-shared-space utilisation ≥ 60%); rights of new arrivals and the elderly are better protected; redevelopment-related litigation falls by 50%.</li>
+        <li><strong>Spatial quality</strong>: street-corner greenery, walking corridors, and elderly facilities form a "pedestrian-friendly" network; post-retrofit, building energy consumption drops by more than 30% (BEAM Plus certified); street frontages improve (active commercial fronts, no vacant shops).</li>
+        <li><strong>Trust in governance</strong>: public trust in the renewal process rises from roughly 20% to ≥ 55%; the community forum becomes a routine deliberation platform, replacing protest with negotiation; the rehousing appeals board gains broad social recognition.</li>
+        <li><strong>Replicability</strong>: a distinctive Hong Kong "financial – participation – function" tri-element regeneration model emerges, complete with technical manuals, institutional templates, and case libraries — ready for replication in other ageing districts (Kwun Tong, Mong Kok, Kowloon City).</li>
+      </ul>
+    </div>
+
+    <h3 class="sub-title"><span class="num">9.3</span>Evaluation Mechanism</h3>
+    <div class="prose">
+      <ul>
+        <li><strong>Annual monitoring report</strong>: coordinated by the URA across departments, publishing the <em>Sham Shui Po Organic Regeneration Annual Monitoring Report</em> — covering all quantitative indicators, financial accounts, public-participation records, and rehousing case summaries.</li>
+        <li><strong>Five-year mid-term review</strong>: conducted by an independent third party (e.g. the HKU Department of Geography or the CUHK School of Architecture), with a particular focus on social impact and spatial outcomes. Findings are tabled before the LegCo Panel on Housing.</li>
+        <li><strong>Participation evaluation</strong>: through resident satisfaction surveys, forum feedback questionnaires, and an annual review of rehousing appeals, the participation mechanism is continuously refined.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 10. Recommendations ==================== -->
+<section class="block alt" id="recommendations">
+  <div class="block-inner">
+    <div class="section-header">
+      <div class="section-num">10</div>
+      <div class="section-title-group">
+        <div class="section-title-en">Recommendations & Next Steps</div>
+        <h2 class="section-title">Recommendations & Next Steps</h2>
+      </div>
+    </div>
+
+    <h3 class="sub-title"><span class="num">10.1</span>Priority Actions · Year One</h3>
+    <div class="prose">
+      <ol>
+        <li><strong>Prepare institutional reform</strong>: led by the Development Bureau, complete a URS amendment draft within 6 months (adding community-forum and independent-appeals-board clauses) and submit it to LegCo. In parallel, drive the Lands Department to issue "Trial Guidance on Pre-Pricing Land Premium for Sham Shui Po Renewal Projects".</li>
+        <li><strong>Select pilot parcels</strong>: after consulting the District Council, the URA selects 2 pilot parcels of roughly 0.5–1 hectare each — one predominantly private residential (e.g. the older block cluster around Nam Cheong Street), the other public–private mixed (e.g. the undeveloped fringe of Shek Kip Mei Estate).</li>
+        <li><strong>Pilot community forum</strong>: the Home Affairs Bureau, working with the District Council, sets up the first "community renewal forum" in Sham Shui Po — selecting resident representatives via open recruitment plus random draw — and completes the first round of community-planner recruitment and training (20 people).</li>
+        <li><strong>Fast-track pocket parks</strong>: the Development Bureau / Architectural Services Department selects 5 of the 17 idle sites for priority pocket-park design and construction (delivered within 6 months), signalling rapid wins to the community.</li>
+        <li><strong>Inject the dedicated fund</strong>: the Financial Services and the Treasury Bureau completes the first HK$2 bn capital injection and engages the HKMA and pension funds on social-impact-bond issuance.</li>
+      </ol>
+    </div>
+
+    <h3 class="sub-title"><span class="num">10.2</span>Medium-Term Priorities · Years 2 – 3</h3>
+    <div class="prose">
+      <ol>
+        <li><strong>Legislation completed</strong>: URS amendments are enacted by LegCo, the community forum and rehousing appeals board acquire statutory status, and the OZP revision concludes — formally establishing the Sham Shui Po renewal-bonus zone.</li>
+        <li><strong>Pilot projects break ground</strong>: the 2 pilot parcels obtain planning permission, complete land-premium negotiation, and receive building approval — with construction beginning. Build-out is expected to take 2–3 years.</li>
+        <li><strong>Appeals board in full operation</strong>: the independent rehousing appeals board is fully operational, with the community-planner team in place, and begins hearing the first batch of appeals.</li>
+        <li><strong>Micro-circulation transport system</strong>: circular feeder minibuses go into service and the first phase of the green-corridor walking network is completed.</li>
+        <li><strong>Digital-twin platform online</strong>: a "Sham Shui Po Renewal Digital Twin" — integrating land ownership, demographic, transport, and green-space data — is opened for public query and scenario simulation.</li>
+      </ol>
+    </div>
+
+    <h3 class="sub-title"><span class="num">10.3</span>Sustained Long-Term Investment</h3>
+    <div class="prose">
+      <ol>
+        <li><strong>Annual monitoring and mid-term review</strong>: publish annual reports continuously, with an independent comprehensive review every five years and dynamic policy recalibration.</li>
+        <li><strong>Cross-district linkage</strong>: establish information-sharing and job-matching mechanisms with the Northern Metropolis and other West Kowloon ageing districts.</li>
+        <li><strong>Model dissemination</strong>: once experience accumulates, export the "Sham Shui Po Organic Regeneration Model" to Kowloon City, Yau Tsim Mong, Kwun Tong, and other ageing districts.</li>
+      </ol>
+    </div>
+
+    <h3 class="sub-title"><span class="num">10.4</span>Stakeholder Action Recommendations</h3>
+    <div class="actor-grid">
+      <div class="actor-row">
+        <div class="actor-name">Development Bureau / LegCo</div>
+        <div class="actor-action">Lead the URS amendment, land-premium guidance, and OZP revision; provide legal authorisation for the dedicated fund</div>
+      </div>
+      <div class="actor-row">
+        <div class="actor-name">Urban Renewal Authority</div>
+        <div class="actor-action">Act as the delivery body for pilot acquisition, construction, and fund operation; partner with the community forum and the appeals board</div>
+      </div>
+      <div class="actor-row">
+        <div class="actor-name">Planning Dept / Lands Dept</div>
+        <div class="actor-action">Accelerate planning-permission and land-premium reviews; trial "pre-pricing" and "one-stop" approvals</div>
+      </div>
+      <div class="actor-row">
+        <div class="actor-name">Transport Dept / MTR / Bus Operators</div>
+        <div class="actor-action">Design circular feeder-minibus routes; coordinate ticketing integration; supply real-time data</div>
+      </div>
+      <div class="actor-row">
+        <div class="actor-name">District Council / Home Affairs Office</div>
+        <div class="actor-action">Organise the community forum, resident mobilisation, and outreach; supervise forum operations</div>
+      </div>
+      <div class="actor-row">
+        <div class="actor-name">Community Organisations / NGOs</div>
+        <div class="actor-action">Cultivate the community-planner team; run resident participation training; operate shared spaces</div>
+      </div>
+      <div class="actor-row">
+        <div class="actor-name">Private Developers / Investors</div>
+        <div class="actor-action">Bid on pilot projects; supply green-building capital; support the job-matching platform</div>
+      </div>
+      <div class="actor-row">
+        <div class="actor-name">Academic Institutions</div>
+        <div class="actor-action">Deliver independent evaluation, technical support (carbon-debt modelling, digital twin), and policy research</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 11. Appendix: Case Library ==================== -->
+<section class="block" id="appendix">
+  <div class="block-inner">
+    <div class="section-header">
+      <div class="section-num">11</div>
+      <div class="section-title-group">
+        <div class="section-title-en">Appendix · Detailed Case Analysis</div>
+        <h2 class="section-title">Appendix · Detailed Case Library & Deep Analysis</h2>
+      </div>
+    </div>
+
+    <div class="prose wide">
+      <p>The following provides a complete list and detailed analysis of the six cases referenced in this study, for in-depth reference.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th style="width: 4%;">#</th><th>Case Title</th><th style="width: 14%;">City / Country</th><th style="width: 10%;">Period</th><th style="width: 16%;">Source Type</th><th style="width: 18%;">Core Problem Addressed</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>The economics of adaptive reuse of old buildings: A financial feasibility study & analysis</td><td>Ontario, Canada</td><td>2007</td><td>Academic (University of Waterloo)</td><td>Problem 1: Financial Viability</td></tr>
+          <tr><td>2</td><td>Review of Dutch Urban Renewal Policies</td><td>Netherlands</td><td>Postwar–2010+</td><td>Academic Journal (<em>Urban Planning International</em>)</td><td>Problem 1: Financial Viability & Social Impact</td></tr>
+          <tr><td>3</td><td>Evolutionary Patterns and Mechanism Optimization of Public Participation in Community Regeneration Planning: A Case Study of Guangzhou</td><td>Guangzhou, China</td><td>2014–2020</td><td>Academic Journal (MDPI <em>Land</em>)</td><td>Problem 2: Public Participation</td></tr>
+          <tr><td>4</td><td>Engaging Community Perspectives in South Africa: Evaluating Public Participation in the Expropriation of Land Without Compensation</td><td>Gqeberha, South Africa</td><td>2018–2021</td><td>Academic Journal (JOPAFL)</td><td>Problem 2: Public Participation</td></tr>
+          <tr><td>5</td><td>Grasping the Characteristics of the 1-Hour Commuting Circle — Guiding the Steady Development of China's Modern Metropolitan Regions</td><td>China (Beijing etc.)</td><td>2023</td><td>Government-Commissioned Research (NDRC)</td><td>Problem 3: Jobs-Housing & Commuting</td></tr>
+          <tr><td>6</td><td>Transport in the metropolitan counties: current performance and future prospects, vol. II: evidence</td><td>United Kingdom</td><td>1984</td><td>Academic Research (Leeds ITS)</td><td>Problem 3: Transport Organisation & Governance</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Case Detail 1 -->
+    <article class="case-detail">
+      <div class="case-detail-head">
+        <div class="case-detail-no">01</div>
+        <div class="case-detail-tag">CASE STUDY · FINANCIAL FEASIBILITY</div>
+        <h3 class="case-detail-title">Adaptive Reuse of Old Buildings — A Financial Feasibility Analysis</h3>
+        <div class="case-detail-title-en">The economics of adaptive reuse of old buildings: A financial feasibility study & analysis</div>
+        <div class="case-detail-meta">
+          <div>City / Country<strong>Ontario, Canada</strong></div>
+          <div>Period<strong>2007</strong></div>
+          <div>Type<strong>Academic Study · University of Waterloo</strong></div>
+        </div>
+      </div>
+      <div class="case-detail-body">
+        <h4>Background</h4>
+        <p>The financial feasibility of adaptive reuse of old buildings has long been intensely debated among investors, planners, policy-makers, and heritage advocates. Conventional wisdom holds that demolishing and rebuilding is more profitable — a view that has left many streets across North America and Europe lined with abandoned and neglected sites. Governments at all levels in Ontario, Canada have launched a series of programmes and policies to stimulate private investment in old, derelict, and underused buildings, and a number of innovative conversion successes have emerged.</p>
+
+        <h4>Core Problem</h4>
+        <p>The crux is whether adaptive reuse can compete financially with new construction in the marketplace. Conventional business models favour demolition-and-rebuild, leading to wide-scale abandonment of older stock, degraded urban quality, and the loss of both cultural heritage and embodied-carbon benefits.</p>
+        <h5>Project Difficulties / Limitations</h5>
+        <ul>
+          <li><strong>Cost uncertainty</strong>: adaptive reuse often runs into higher-than-expected conversion costs and unpredictable structural-repair expenses.</li>
+          <li><strong>Energy and performance risk</strong>: poorly executed retrofits can leave the converted building more energy-intensive than a new build.</li>
+          <li><strong>Market acceptance</strong>: some conversion uses face weak market reception and insufficient rental uplift.</li>
+          <li><strong>Policy dependence</strong>: financial viability is heavily reliant on government subsidies and tax incentives.</li>
+          <li><strong>Project-management difficulty</strong>: variable existing-building conditions can waste both time and capital.</li>
+          <li><strong>Code and regulatory constraints</strong>: meeting modern fire, accessibility, and structural standards in older buildings incurs additional cost.</li>
+        </ul>
+
+        <h4>Solution</h4>
+        <p>The study employs a comparative method, building a Pro-Forma financial model that sets up two hypothetical development scenarios — adaptive reuse and new construction — and measures and compares their economic costs and benefits under Ontario conditions.</p>
+        <h5>Key Techniques / Policy Tools</h5>
+        <ul>
+          <li><strong>Financial-analysis tool</strong>: the Pro-Forma model, used to quantify cash flow, NPV, and IRR across scenarios.</li>
+          <li><strong>Policy tools</strong>: public investment incentives (direct subsidies, low-interest loans); tax breaks (heritage-conversion tax credits); zoning and planning flexibility (density bonuses, use relaxations); technical assistance and demonstration-project support; streamlined approvals and fee waivers.</li>
+          <li><strong>Technical innovation</strong>: structural reinforcement, energy retrofits, and adaptive reorganisation of interior space.</li>
+        </ul>
+
+        <h4>Implementation Outcomes</h4>
+        <h5>Quantitative</h5>
+        <ul>
+          <li><strong>Carbon-debt analysis</strong>: a new build takes 10–80 years to repay the carbon debt incurred by demolition and reconstruction; adaptive reuse substantially reduces total emissions.</li>
+          <li><strong>Waste reduction</strong>: drawing on US EPA data — construction-related waste in 2014 reached approximately 534 million tonnes — conversion projects can sharply cut that figure.</li>
+          <li><strong>Financial results</strong>: the financial performance of adaptive reuse is highly contingent on specific project conditions (building quality, location, conversion-use potential, policy support); under favourable conditions returns can match or exceed new construction.</li>
+        </ul>
+        <h5>Qualitative</h5>
+        <ul>
+          <li><strong>Confirmed environmental benefits</strong>: adaptive reuse offers clear advantages in carbon reduction, resource conservation, and waste minimisation.</li>
+          <li><strong>Policy-effectiveness insight</strong>: combination-type policies tailored to project characteristics — rather than any single tool — are most effective at improving the financial attractiveness of adaptive reuse.</li>
+          <li><strong>Heritage protection meets economic vitality</strong>: old buildings can accommodate modern functions and generate distinctive place value, supporting both urban-character preservation and community economic development.</li>
+        </ul>
+
+        <h4>Preconditions</h4>
+        <h5>Institutional</h5>
+        <ul>
+          <li>Governments at all levels must enact and implement policies to stimulate private retrofit investment.</li>
+          <li>A planning-and-regulatory system aligned with heritage protection is required, allowing flexible change of use.</li>
+          <li>Dedicated funds or tax-credit mechanisms must exist to lower upfront financial barriers.</li>
+        </ul>
+        <h5>Economic</h5>
+        <ul>
+          <li>Private investors and owners must recognise the financial viability of adaptive reuse.</li>
+          <li>Real-estate demand in the target area must support the post-conversion use, ensuring competitive rents or sale prices.</li>
+          <li>A sound risk-assessment and financing mechanism is needed, and banks must accept the mortgage value of conversion projects.</li>
+        </ul>
+        <h5>Technical</h5>
+        <ul>
+          <li>Innovative building-conversion techniques are needed (structural reinforcement, heritage-fabric protection, energy-system integration).</li>
+          <li>Skilled architects, engineers, and contractors are required.</li>
+          <li>Thorough structural and environmental surveys must be carried out beforehand to avoid downstream surprises.</li>
+        </ul>
+        <h5>Social</h5>
+        <ul>
+          <li>Heritage advocates and other stakeholders actively push for the preservation of older buildings.</li>
+          <li>The community accepts the proposed conversion use.</li>
+          <li>Society broadly endorses urban-character preservation and sustainability values.</li>
+        </ul>
+
+        <h4>Potential Costs / Adverse Effects</h4>
+        <h5>Economic</h5>
+        <ul>
+          <li><strong>Cost-overrun risk</strong>: hidden structural problems in old buildings can drive actual spending well beyond budget.</li>
+          <li><strong>Operating-energy uncertainty</strong>: if envelope and system efficiency are not adequately upgraded, energy costs may rise.</li>
+          <li><strong>Opportunity cost</strong>: choosing conversion may forgo the higher densities and more flexible layouts of new construction.</li>
+        </ul>
+        <h5>Social</h5>
+        <ul>
+          <li><strong>Loss of urban character</strong>: clumsy conversion design can erase historic fabric.</li>
+          <li><strong>Gentrification pressure</strong>: upmarket retrofits can push surrounding rents up, displacing original residents and low-end retailers.</li>
+          <li><strong>Public-space loss</strong>: some projects may encroach on public space in pursuit of maximised usable area.</li>
+        </ul>
+        <h5>Implementation Risks & Long-Term Challenges</h5>
+        <ul>
+          <li><strong>Delays and capital-chain disruption</strong>: complex approvals and stringent heritage requirements lengthen schedules.</li>
+          <li><strong>Policy risk</strong>: government incentives may be terminated by budget cuts.</li>
+          <li><strong>Ongoing maintenance cost</strong>: old buildings often cost more to maintain than new ones.</li>
+          <li><strong>Tightening standards</strong>: stricter future seismic, energy, and disaster-resilience standards may impose compliance costs on already-converted buildings.</li>
+        </ul>
+
+        <h4>Transferability Assessment</h4>
+        <h5>Applicable Contexts</h5>
+        <ul>
+          <li>Old inner-city districts or industrial-heritage zones with concentrated old building stock and meaningful heritage value alongside conversion potential.</li>
+          <li>Settings where the government places strong emphasis on sustainability and has fiscal headroom.</li>
+          <li>Markets with differentiated demand — tenants drawn to distinctive, story-rich, energy-efficient retrofit spaces.</li>
+          <li>Projects with above-average baseline conditions: sound structure, good location, manageable conversion cost.</li>
+        </ul>
+        <h5>Transfer Difficulty</h5>
+        <p><strong>Moderate-to-high</strong>: financial success depends heavily on local conditions (market rents, construction costs, interest rates, the quality of existing stock, the strength of policy support); the Pro-Forma method itself can be transferred directly, but input parameters must be calibrated to local data. The policy framework is portable but must be adapted in context; technical standards and talent demands are high; and public-awareness cultivation takes time.</p>
+      </div>
+    </article>
+
+    <!-- Case Detail 2 -->
+    <article class="case-detail">
+      <div class="case-detail-head">
+        <div class="case-detail-no">02</div>
+        <div class="case-detail-tag">CASE STUDY · SOCIAL POLICY</div>
+        <h3 class="case-detail-title">Review of Dutch Urban Renewal Policies</h3>
+        <div class="case-detail-title-en">Review of Dutch Urban Renewal Policies · <em>Urban Planning International</em>, 2022, No. 1</div>
+        <div class="case-detail-meta">
+          <div>City / Country<strong>Netherlands</strong></div>
+          <div>Period<strong>Postwar to 2010+</strong></div>
+          <div>Type<strong>Academic Research · Journal</strong></div>
+        </div>
+      </div>
+      <div class="case-detail-body">
+        <h4>Background</h4>
+        <p>The Netherlands is a "policy-intensive" country that has long addressed urban problems through state intervention. After WWII, the postwar housing shortage drove physical reconstruction; in the 1980s, "city renewal" rose to prominence with economic revitalisation as the primary goal; in the 1990s–2000s, the Big Cities Policy (BCPI) period stressed social integration, community cohesion, and multi-stakeholder participation; after 2010, under neoliberal influence, state intervention diminished sharply and policy turned toward supporting market forces and private investment, with social policy weakened. This pivot has been blamed for deepening social inequality and spatial segregation.</p>
+
+        <h4>Core Problem</h4>
+        <p>Dutch urban renewal long centred on "area-based intervention" to promote social integration and reduce exclusion. Yet the post-2010 neoliberal shift cut social spending and supported markets and enterprises, intensifying segregation between rich and poor areas and widening inequality. The previous Big Cities Policy had failed to clear the existing social deficit, and neoliberal policies further eroded social cohesion.</p>
+        <h5>Project Difficulties / Limitations</h5>
+        <ul>
+          <li>Although the Big Cities Policy emphasised integration, devolution, and area-based targeting, it could not effectively halt the formation of "weak communities" and "parallel societies".</li>
+          <li>Neoliberal policy paid lip-service to social integration but in practice deepened the wealth divide.</li>
+          <li>The standing of the national welfare system declined, and social intervention weakened.</li>
+        </ul>
+
+        <h4>Solution</h4>
+        <p>Based on the three categories of intervention proposed in the article's conclusion:</p>
+        <ol>
+          <li>Place social inequality at the heart of policy.</li>
+          <li>Connect social-integration policy with spatial policy, linking small homogeneous communities with the larger heterogeneous society.</li>
+          <li>Strengthen national and local social-intervention policy, and reaffirm the importance of the national welfare system.</li>
+        </ol>
+        <h5>Key Techniques / Policy Tools</h5>
+        <ul>
+          <li>Combine area-based intervention with social-integration policy.</li>
+          <li>Devolution and multi-level cooperation (central, local, community).</li>
+          <li>Coordinate spatial planning with social policy (mixed communities, public-housing layout aligned with integration goals).</li>
+          <li>Use national welfare tools (social security, public housing, labour-market policy) as the foundation for moderating inequality.</li>
+        </ul>
+
+        <h4>Implementation Outcomes</h4>
+        <h5>Qualitative</h5>
+        <ul>
+          <li><strong>Big Cities Policy era</strong>: emphasis on integration and participation, but long-term impact was limited and could not curb segregation.</li>
+          <li><strong>Neoliberal era</strong>: social inequality worsened, vulnerable groups were marginalised, and social cohesion declined; policy risked guiding society onto a path of "growing inequality and growing separation", potentially fuelling estrangement and conflict.</li>
+          <li>The article notes that the policy shift has materially reshaped the social structure, making it increasingly hard for the poor to escape poor neighbourhoods.</li>
+        </ul>
+
+        <h4>Preconditions</h4>
+        <h5>Institutional</h5>
+        <p>The Netherlands has a long welfare-state tradition and a "policy-intensive" approach; central and local responsibilities are clearly delineated, and the planning system is well-developed. After 2010, state intervention shrank as market forces rose.</p>
+        <h5>Economic</h5>
+        <p>The government's fiscal capacity was historically strong, sustaining ambitious social policy; after 2010, economic strain and global neoliberal trends drove cutbacks in social spending.</p>
+        <h5>Social</h5>
+        <p>Social integration and segregation have long been salient concerns in both political and academic discourse; post-WWII immigration and multiculturalism posed social challenges; and the involvement of the public, markets, and residents in earlier policy phases laid a participatory foundation.</p>
+
+        <h4>Potential Costs / Adverse Effects</h4>
+        <ul>
+          <li><strong>Social impact</strong>: inequality intensifies sharply; vulnerable groups face fewer pathways to mobility, and poverty becomes more entrenched; social cohesion weakens, potentially triggering more conflict and fragmentation; neoliberal policy can undermine prior mixed-community goals, raising the risk of parallel societies.</li>
+          <li><strong>Implementation risk</strong>: an over-rapid pivot can leave a vacuum in social services; market-led renewal may neglect vulnerable groups; and devolution without central coordination can amplify local imbalances.</li>
+          <li><strong>Long-term challenge</strong>: how to balance market efficiency with social equity; how to restore and strengthen the role of the national welfare system; and how to integrate spatial and social policy to reverse the segregation trend.</li>
+        </ul>
+
+        <h4>Transferability Assessment</h4>
+        <h5>Applicable Contexts</h5>
+        <p>Suited to countries or regions undergoing a transition in urban-renewal policy and facing socio-spatial differentiation — particularly those once reliant on national welfare intervention now moving toward market-oriented approaches. For cities concerned with social equity and seeking to avoid the negative effects of neoliberalism, the Dutch experience and its lessons offer real reference value.</p>
+        <h5>Transfer Difficulty</h5>
+        <ul>
+          <li><strong>Institutional differences</strong>: the Netherlands has a mature planning-and-law system and welfare-state tradition; China differs substantially in institutional foundations, central-local relations, and fiscal architecture, making direct transfer difficult.</li>
+          <li><strong>Policy tools</strong>: the emphasis on a "national welfare system" has some echo in China (affordable housing, public-service equalisation), but adaptation must fit local governance structures.</li>
+          <li><strong>Social conditions</strong>: Dutch participation and area-based experience can inform community governance, but must be adapted to different administrative systems.</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- Case Detail 3 -->
+    <article class="case-detail">
+      <div class="case-detail-head">
+        <div class="case-detail-no">03</div>
+        <div class="case-detail-tag">CASE STUDY · PUBLIC PARTICIPATION</div>
+        <h3 class="case-detail-title">Public Participation in Guangzhou's Community Regeneration</h3>
+        <div class="case-detail-title-en">Evolutionary Patterns and Mechanism Optimization of Public Participation in Community Regeneration Planning: A Case Study of Guangzhou</div>
+        <div class="case-detail-meta">
+          <div>City / Country<strong>Guangzhou, China</strong></div>
+          <div>Period<strong>2014–2020</strong></div>
+          <div>Type<strong>Academic Research · MDPI Land</strong></div>
+        </div>
+      </div>
+      <div class="case-detail-body">
+        <h4>Background</h4>
+        <p>Against the macro-backdrop of Chinese cities transitioning from incremental expansion to stock-based renewal, community regeneration has become a critical mechanism for raising the effectiveness of urban governance. Yet the effectiveness of public participation varies markedly across regions. As an early mover in renewal-system innovation and pilots, Guangzhou's four-decade trajectory of participatory planning provides a representative case. Drawing on Arnstein's "ladder of citizen participation", the study analyses the path of evolution from symbolic participation to substantive co-governance.</p>
+
+        <h4>Core Problem</h4>
+        <p>While Guangzhou has been at the forefront of stock-renewal policy in China, public participation in practice still suffers from tokenism, fragmentation, and one-way communication — calling for a systematic optimisation path.</p>
+        <h5>Project Difficulties / Limitations</h5>
+        <ul>
+          <li>Insufficient institutionalisation of public participation, with no legal binding force attached to participation outcomes.</li>
+          <li>Fragmented participation stages — residents are typically engaged only at the consultation step on renewal proposals.</li>
+          <li>Participation methods rely on one-way communication; collaborative co-governance is still immature.</li>
+          <li>Coordination of interests among government, market, and social actors is complex.</li>
+          <li>Administrative coordination costs rise, and platform-and-mechanism innovation challenges traditional governance modes.</li>
+        </ul>
+
+        <h4>Solution</h4>
+        <p>Drawing on the analysis of the Guangzhou case, the study proposes four optimisation paths:</p>
+        <ol>
+          <li>Build a flexible policy-adaptation mechanism that responds dynamically to the demands of multiple actors (e.g. Guangzhou's implementation of flexible-term industrial-land grants).</li>
+          <li>Construct a diversified financing framework of "government guidance + market operation + resident contribution" (e.g. introducing social capital through the "Three Olds" redevelopment policy).</li>
+          <li>Develop a professional support system that combines local rootedness with technical expertise (e.g. performance assessment of industrial land).</li>
+          <li>Advance participation platforms that fuse digital empowerment with institutional innovation (e.g. integrated e-government platforms and "one-network" services).</li>
+        </ol>
+        <h5>Key Techniques / Policy Tools</h5>
+        <ul>
+          <li><strong>Policy framework</strong>: opinions on land-saving and intensive use; ordinance to optimise the business environment.</li>
+          <li><strong>Financing mechanism</strong>: social capital sharing the costs of regeneration.</li>
+          <li><strong>Mediator cultivation</strong>: bridging roles played by professional planners and social organisations.</li>
+          <li><strong>Participation platforms</strong>: digital government platforms and government–enterprise interaction mechanisms.</li>
+        </ul>
+
+        <h4>Implementation Outcomes</h4>
+        <h5>Qualitative</h5>
+        <p>The study identifies three key paradigm shifts:</p>
+        <ol>
+          <li>Participant roles shift from "passive respondents" to "active builders".</li>
+          <li>Participation stages evolve from "fragmented intervention" to "whole-cycle empowerment".</li>
+          <li>Participation methods develop from "one-way communication" to "collaborative co-governance".</li>
+        </ol>
+        <p>Four effectiveness drivers are identified — policy framework, financing mechanism, mediator cultivation, and participation platform — and the path from "symbolic participation" to "substantive co-governance" is articulated.</p>
+
+        <h4>Preconditions</h4>
+        <h5>Institutional</h5>
+        <p>Guangzhou has built a relatively complete stock-renewal policy system: (1) the 2014 opinions on land-saving and intensive use; (2) the 2018 amendments to municipal regulations, updating ancillary rules on property management and urban-rural planning technical standards; (3) the 2020 ordinance to optimise the business environment, providing mechanisms for government–enterprise communication, public-service standardisation, and information sharing.</p>
+
+        <h4>Potential Costs / Adverse Effects</h4>
+        <ul>
+          <li><strong>Economic</strong>: land-saving and intensive-use policy may compress community public space and green areas during implementation; the "Three Olds" redevelopment may bring short-term construction-cost pressure.</li>
+          <li><strong>Social</strong>: a business-environment-first stance can marginalise residents' substantive participation in community regeneration.</li>
+          <li><strong>Implementation risk</strong>: institutional innovations raise inter-departmental administrative coordination costs; flexible policy can leave room for rent-seeking.</li>
+          <li><strong>Long-term challenge</strong>: maintaining platform operations long-term, sustaining resident motivation, and aligning new institutional innovations with existing law.</li>
+        </ul>
+
+        <h4>Transferability Assessment</h4>
+        <h5>Applicable Contexts</h5>
+        <p>The case applies to cities or regions in the stock-renewal stage facing demand for institutionalised public participation — particularly large cities that already have, or plan to establish, an urban-renewal policy system.</p>
+        <h5>Transfer Difficulty</h5>
+        <p><strong>Moderate-to-high</strong>. Guangzhou's success rests on a relatively complete local stock-renewal policy system, strong fiscal-mobilisation capacity, and a digital-government foundation. Cities lacking these institutional bases, administrative capacity, and economic support will face significant challenges in direct transfer. In addition, cultivating a participatory culture is a long-term endeavour.</p>
+      </div>
+    </article>
+
+    <!-- Case Detail 4 -->
+    <article class="case-detail">
+      <div class="case-detail-head">
+        <div class="case-detail-no">04</div>
+        <div class="case-detail-tag">CASE STUDY · PARTICIPATION FAILURE</div>
+        <h3 class="case-detail-title">South African Land-Expropriation Public Participation</h3>
+        <div class="case-detail-title-en">Engaging Community Perspectives in South Africa: Evaluating Public Participation in the Expropriation of Land Without Compensation</div>
+        <div class="case-detail-meta">
+          <div>City / Country<strong>Gqeberha, South Africa (KwaZakhele, Silvertown)</strong></div>
+          <div>Period<strong>2018–2021</strong></div>
+          <div>Type<strong>Academic Research · JOPAFL Issue 31/2024</strong></div>
+        </div>
+      </div>
+      <div class="case-detail-body">
+        <h4>Background</h4>
+        <p>South Africa's Expropriation of Land Without Compensation Bill triggered extensive public-participation activity. Although the National Council of Provinces (NCOP) gathered 129,127 email submissions and held 36 hearings, the study finds that these activities did not in fact reflect the community's diverse voices. Persistent illegal land-grab problems existed locally, alongside profound mistrust between communities and government.</p>
+
+        <h4>Core Problem</h4>
+        <p>Public participation was severely tokenised — despite large data volumes, most submissions were organised and duplicate, and failed to reflect the diverse voices of the community; trust between communities and government was missing, leading to frequent illegal land grabs. Tokenistic participation inevitably triggers trust collapse and escalates conflict.</p>
+
+        <h4>Solution</h4>
+        <ul>
+          <li>Bottom-up active citizenship (community meetings, social-media campaigns).</li>
+          <li>Embed land reform within broader economic-structural adjustment (employment, education, infrastructure).</li>
+          <li>Hybrid participation: formal hearings combined with informal community-space interaction.</li>
+        </ul>
+
+        <h4>Preconditions</h4>
+        <ul>
+          <li>Constitutional clause 59 mandates public participation.</li>
+          <li>High mobile-communication penetration.</li>
+          <li>Community traditions of self-organisation.</li>
+        </ul>
+
+        <h4>Potential Costs</h4>
+        <ul>
+          <li>Expropriation without compensation triggers legal challenge and investor concern.</li>
+          <li>Deeper social division.</li>
+          <li>Political polarisation.</li>
+        </ul>
+
+        <h4>Transferability Assessment</h4>
+        <p>The South African case is an important <strong>warning</strong>: tokenistic participation inevitably collapses trust and escalates conflict. Sham Shui Po must build a <strong>closed-loop response system</strong> — every public submission must receive a written reply within a statutory deadline, with reasons given, upgrading participation from "consultation" to "co-decision". Equal attention must be paid to access for vulnerable groups such as new arrivals and the elderly, avoiding the digital divide.</p>
+      </div>
+    </article>
+
+    <!-- Case Detail 5 -->
+    <article class="case-detail">
+      <div class="case-detail-head">
+        <div class="case-detail-no">05</div>
+        <div class="case-detail-tag">CASE STUDY · COMMUTING & TRANSIT</div>
+        <h3 class="case-detail-title">Grasping the Characteristics of the 1-Hour Commuting Circle</h3>
+        <div class="case-detail-title-en">Guiding the Steady Development of China's Modern Metropolitan Regions · <em>Macroeconomic Management</em>, 2023</div>
+        <div class="case-detail-meta">
+          <div>City / Country<strong>China (Beijing and others)</strong></div>
+          <div>Period<strong>2023</strong></div>
+          <div>Type<strong>Commissioned Research · NDRC</strong></div>
+        </div>
+      </div>
+      <div class="case-detail-body">
+        <h4>Background</h4>
+        <p>Conducted by the NDRC's Centre for Urban and Small-Town Reform and Development, the study examines the planning and construction of the metropolitan 1-hour commuting circle. The 6th Session of the Central Financial and Economic Affairs Commission called for "accelerating the construction of modern metropolitan regions", with the 1-hour commuting circle as the core spatial carrier.</p>
+
+        <h4>Core Problem</h4>
+        <p>The metropolitan 1-hour commuting circle suffers two simultaneous predicaments — "<strong>connected but inaccessible</strong>" (dead-end roads and continuity gaps across administrative boundaries) and "<strong>accessible but underused</strong>" (infrastructure built ahead of demand sitting half-empty, a wasted investment) — yielding low efficiency and poor commuting quality.</p>
+        <h5>Project Difficulties / Limitations</h5>
+        <ul>
+          <li>Building cross-jurisdictional coordination institutions (involving sensitive issues such as administrative rank parity and fiscal revenue-sharing).</li>
+          <li>Integrated ticketing and mutual security recognition between railways and urban rail transit (complicated by the institutional separation between China Railway and local governments).</li>
+          <li>Unified technical standards and regulation (currently no national standards for metropolitan-region rail transit construction).</li>
+        </ul>
+
+        <h4>Solution</h4>
+        <ul>
+          <li><strong>Boost efficiency</strong>: open up dead-end roads, unify rail-transit construction standards, advance interchange-hub upgrades.</li>
+          <li><strong>Strengthen attractiveness</strong>: integrated ticketing, mutual security recognition, P+R interchanges, fiscal subsidies (transit subsidies; exploration of VAT / personal-income-tax deductions).</li>
+          <li><strong>Lift quality</strong>: customised trains (such as Beijing's Yanjiao-to-Guomao express bus), retail-and-leisure facilities at interchange hubs, dedicated carriages for the elderly and women.</li>
+          <li><strong>Strengthen coordinated governance</strong>: provincial-level support, central-city leadership, and monitoring-and-evaluation mechanisms.</li>
+        </ul>
+
+        <h4>Implementation Outcomes</h4>
+        <h5>Quantitative Data</h5>
+        <ul>
+          <li><strong>Beijing peri-urban</strong>: 920,000 trips per day (Beijing's "Three Northern Counties" average 300,000).</li>
+          <li><strong>Guangzhou–Foshan</strong>: 60% of Guangzhou's cross-city commuting.</li>
+          <li><strong>Shenzhen–Dongguan–Huizhou</strong>: more than 200,000 trips per day.</li>
+          <li><strong>International benchmark</strong>: average commute 37–54 minutes; rail share in Tokyo 54%.</li>
+        </ul>
+
+        <h4>Preconditions</h4>
+        <ul>
+          <li>Cross-jurisdictional coordination mechanisms.</li>
+          <li>Unified technical standards and operational regimes.</li>
+          <li>Sustainable fiscal subsidies.</li>
+          <li>Avoidance of building ahead of demand.</li>
+        </ul>
+
+        <h4>Potential Costs</h4>
+        <ul>
+          <li>Debt risk from premature construction.</li>
+          <li>Commuter physical-and-mental-health effects.</li>
+          <li>Social-equity concerns (customised services may differentiate access).</li>
+        </ul>
+
+        <h4>Transferability Assessment</h4>
+        <h5>Applicable Contexts</h5>
+        <ul>
+          <li>Metropolitan regions in the rapid-urbanisation stage.</li>
+          <li>Border zones between multi-tier administrative actors (Beijing–Hebei, Guangzhou–Foshan, etc.).</li>
+          <li>Areas with acute commuting conflict but sustainable fiscal capacity.</li>
+          <li>Cities preparing or revising metropolitan-region plans.</li>
+        </ul>
+        <h5>Transfer Difficulty</h5>
+        <p><strong>High-difficulty areas</strong>: building cross-jurisdictional coordination; railway–urban-rail ticket integration and mutual security recognition; unified technical standards and regulation. <strong>Medium-difficulty</strong>: physically opening dead-end roads; building commuting monitoring-and-evaluation systems. <strong>Low-difficulty</strong>: customised train / bus operations; retail upgrades at interchange hubs; clearing unlawful height-and-width restrictions.</p>
+        <p>Core lesson for Sham Shui Po: launch intra-district micro-circulation feeder buses, using the customised-express-bus concept to raise bus-corridor efficiency; advance one-stop ticketing and real-time information integration; use idle land for P+R car parks. Sham Shui Po commuting is internal to a single city rather than cross-jurisdictional, so coordination difficulty is comparatively lower — the focus is on cross-departmental collaboration.</p>
+      </div>
+    </article>
+
+    <!-- Case Detail 6 -->
+    <article class="case-detail">
+      <div class="case-detail-head">
+        <div class="case-detail-no">06</div>
+        <div class="case-detail-tag">CASE STUDY · GOVERNANCE</div>
+        <h3 class="case-detail-title">Transport Devolution in UK Metropolitan Counties</h3>
+        <div class="case-detail-title-en">Transport in the metropolitan counties: current performance and future prospects, vol. II: evidence</div>
+        <div class="case-detail-meta">
+          <div>City / Country<strong>United Kingdom</strong></div>
+          <div>Period<strong>1984</strong></div>
+          <div>Type<strong>Academic Research · Leeds ITS</strong></div>
+        </div>
+      </div>
+      <div class="case-detail-body">
+        <h4>Background</h4>
+        <p>In October 1983, the UK government published the White Paper <em>Streamlining the Cities</em>, proposing to abolish the six English metropolitan counties and their councils — devolving transport and planning functions to the metropolitan districts and using joint boards to manage public transport. The report was prepared by the Institute for Transport Studies (ITS) at the University of Leeds to provide a systematic assessment of the current two-tier local-government structure in the transport sphere.</p>
+
+        <h4>Core Problem</h4>
+        <p>The existing two-tier local-government structure displays significant deficiencies in transport:</p>
+        <ul>
+          <li><strong>Mismatch between administrative areas and lived patterns</strong>: the 1974 local-government reorganisation did not adapt to the trend of urban suburbanisation.</li>
+          <li><strong>No consensus on the strategic role</strong>: the government argued that metropolitan counties used a "strategic role" pretext to over-reach into local affairs.</li>
+          <li><strong>Fiscal indiscipline and inefficiency</strong>: metropolitan counties were accused of persistent overspending.</li>
+          <li><strong>Functional fragmentation and coordination difficulty</strong>: the two-tier structure left transport-and-land-use planning and public-and-private transport policy hard to integrate.</li>
+          <li><strong>Democratic accountability gap</strong>: the public could not easily identify where responsibility for decisions lay.</li>
+        </ul>
+
+        <h4>Solution</h4>
+        <p>The 1983 White Paper's core reform proposals:</p>
+        <ul>
+          <li><strong>Abolish the metropolitan county councils</strong>: from April 1986, all transport and planning responsibilities transfer to the metropolitan districts.</li>
+          <li><strong>Function devolution</strong>: district-level governments take on structure planning, highways, and traffic management.</li>
+          <li><strong>Public transport managed by joint boards</strong>: Passenger Transport Executives (PTEs) shift to joint-board governance composed of district representatives.</li>
+          <li><strong>Stronger central financial control</strong>: continue using GREA, PEL, and similar instruments.</li>
+          <li><strong>Direct control and monitoring</strong>: implement three-year direct control over joint-board staffing and subsidy levels.</li>
+          <li><strong>Safety net and transition measures</strong>: install a "safety net" to limit inter-district fiscal disparities during transition.</li>
+        </ul>
+        <h5>Key Policy Tools</h5>
+        <ul>
+          <li><strong>TPP (Transport Policies and Programmes)</strong>: submitted annually by districts and joint boards.</li>
+          <li><strong>TSG (Transport Supplementary Grant)</strong>: dedicated grant supporting local transport investment.</li>
+          <li><strong>PEL (Protected Expenditure Level)</strong>: cap on joint-board spending.</li>
+          <li><strong>GREA (Grant-Related Expenditure Assessment)</strong>: spending-need assessment used to distribute the general grant.</li>
+        </ul>
+
+        <h4>Implementation Outcomes</h4>
+        <h5>Qualitative</h5>
+        <ul>
+          <li><strong>Reduced strategic integration</strong>: dispersing former county-level structure-planning and transport-strategy functions among districts weakens integrated transport-and-land-use planning.</li>
+          <li><strong>Expanded central intervention</strong>: in practice strengthens central involvement in local decisions, in tension with the White Paper's "streamlining" rhetoric.</li>
+          <li><strong>New challenges for democratic accountability</strong>: joint boards are appointed rather than directly elected.</li>
+          <li><strong>International evidence warns</strong>: cases from the Netherlands and West Germany suggest that metropolitan transport still requires regional-scale coordination.</li>
+        </ul>
+
+        <h4>Preconditions</h4>
+        <ul>
+          <li><strong>Institutional</strong>: the legacy of the 1974 reorganisation; central-local disagreement on the strategic role; weak voluntary cooperation mechanisms.</li>
+          <li><strong>Economic</strong>: managing scarce public expenditure became a key issue in the early 1980s; central fiscal transfers were instrumentalised.</li>
+          <li><strong>Technical</strong>: professional teams and economies of scale; continuity of data and methods.</li>
+          <li><strong>Social</strong>: public participation and democratic ownership; political representation; regional identity and adaptability.</li>
+        </ul>
+
+        <h4>Potential Costs / Adverse Effects</h4>
+        <ul>
+          <li><strong>Economic</strong>: diseconomies of scale; rising transaction costs; transitional fiscal inequity; inefficiency under direct central control.</li>
+          <li><strong>Social</strong>: weakened strategic perspective; blurred democratic accountability; fragmented public services.</li>
+          <li><strong>Implementation risk</strong>: failure of voluntary cooperation; insufficient district capacity; escalating central-local conflict; international-experience pitfalls.</li>
+          <li><strong>Long-term challenges</strong>: entrenched strategic-local imbalance; difficulty integrating infrastructure; administrative-and-data continuity; uncertainty linked to political cycles.</li>
+        </ul>
+
+        <h4>Transferability Assessment</h4>
+        <h5>Applicable Contexts</h5>
+        <ul>
+          <li>Decisions to restructure metropolitan-area governance.</li>
+          <li>Situations of strained central-local relations.</li>
+          <li>Feasibility assessment of cross-jurisdictional cooperation mechanisms.</li>
+          <li>Preservation of strategic-planning capacity at the city-region scale.</li>
+        </ul>
+        <h5>Transfer Difficulty</h5>
+        <p>Institutional embeddedness is high; the international evidence depends on specific conditions; localising the strategic implications is difficult; information and capacity prerequisites are significant; and political feasibility is uncertain. Core lesson for Sham Shui Po: although the case targets administrative reorganisation, the principle it surfaces — that "<strong>transport and land-use planning must be strategically integrated</strong>" — is equally essential. The recommendation is to set up a "Sham Shui Po Renewal Dedicated Bureau" to unify planning, transport, and renewal, avoiding departmental fragmentation.</p>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ==================== Coda ==================== -->
+<section class="coda">
+  <div class="coda-inner">
+    <div class="coda-tag">— EPILOGUE —</div>
+    <h2>Not Merely a Spatial Project,<br>but an Act of Institutional Innovation and Social Repair</h2>
+    <p>Sham Shui Po's organic regeneration is not merely a spatial-engineering project, but an act of institutional innovation and social repair. In designing this plan we have remained clear-eyed: global experience cannot simply be transplanted, but must be recalibrated within Hong Kong's distinctive three-permit leasehold system, public-housing regime, and political ecology.</p>
+    <p>Only by deeply integrating <strong style="color: var(--brick-soft); font-weight: 600;">financial-viability innovation</strong> (plot-ratio transfer, off-site exchange, internalised carbon benefits), an <strong style="color: var(--brick-soft); font-weight: 600;">embedded participation framework</strong> (statutory community forums, an independent rehousing board, closed-loop feedback), and <strong style="color: var(--brick-soft); font-weight: 600;">spatial-quality repair</strong> (mixed use, micro-circulation transport, pocket parks) can the three structural divides — "financial infeasibility, participatory mistrust, and functional mismatch" — be bridged.</p>
+    <p>The ultimate success of the plan turns not only on the rigour of the planning, but on the resolve of political will, the sincerity of cross-departmental cooperation, and the rebuilding of community trust — the last of which may be the hardest and most decisive variable of them all.</p>
+    <div class="signoff">— Sham Shui Po, the path forward —</div>
+  </div>
+</section>
+
+<!-- ==================== Footer ==================== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-rule"></div>
+    <p>Sham Shui Po Organic Regeneration · Integrated Plan</p>
+    <p>SHAM SHUI PO ORGANIC REGENERATION · INTEGRATED PLAN</p>
+    <p style="margin-top: 18px; color: var(--paper-dim);">Strategic Pillars · Financial Viability × Embedded Participation × 15-Minute Vibrant Neighbourhood</p>
+  </div>
+</footer>
+
+</body>
+</html>

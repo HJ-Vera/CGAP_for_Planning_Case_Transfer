@@ -1,0 +1,2378 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WWNTI · 元朗—新田湿地智慧城市综合发展规划方案</title>
+<style>
+/* ============================================
+   WWNTI - 元朗-新田湿地智慧城市规划报告
+   编辑风格 · 深墨调 · 专业咨询报告
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* 色彩系统 - 墨绿与赭金 */
+  --ink: #0d1f1c;
+  --ink-deep: #06110f;
+  --ink-soft: #1a302c;
+  --paper: #f5f1e8;
+  --paper-warm: #efe9d8;
+  --paper-light: #faf7ee;
+  --gold: #b08d57;
+  --gold-bright: #d4a574;
+  --gold-deep: #8a6d3f;
+  --moss: #4a6b5c;
+  --moss-light: #6b8a7a;
+  --crimson: #8b3a3a;
+  --slate: #3a4744;
+  --rule: rgba(13, 31, 28, 0.12);
+  --rule-strong: rgba(13, 31, 28, 0.25);
+
+  /* 字体 */
+  --font-serif-cn: "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
+  --font-sans-cn: "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", sans-serif;
+  --font-serif-en: "Cormorant Garamond", "EB Garamond", Georgia, serif;
+  --font-mono: "JetBrains Mono", "SF Mono", Menlo, monospace;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-serif-cn);
+  font-size: 16px;
+  line-height: 1.85;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(176, 141, 87, 0.04) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(74, 107, 92, 0.04) 0%, transparent 50%);
+}
+
+/* 纸张纹理 */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(45deg, rgba(13,31,28,0.008) 0px, transparent 1px, transparent 3px),
+    repeating-linear-gradient(-45deg, rgba(176,141,87,0.006) 0px, transparent 1px, transparent 3px);
+  z-index: 1;
+}
+
+/* ============================================
+   封面 Hero
+   ============================================ */
+.cover {
+  position: relative;
+  min-height: 100vh;
+  background: var(--ink);
+  color: var(--paper);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 4rem 6vw 3rem;
+}
+
+.cover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at top right, rgba(176, 141, 87, 0.18) 0%, transparent 60%),
+    radial-gradient(ellipse at bottom left, rgba(74, 107, 92, 0.25) 0%, transparent 55%),
+    linear-gradient(180deg, var(--ink-deep) 0%, var(--ink) 100%);
+}
+
+.cover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(245, 241, 232, 0.02) 0px, rgba(245, 241, 232, 0.02) 1px, transparent 1px, transparent 28px);
+  pointer-events: none;
+}
+
+.cover-inner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  flex: 1;
+  gap: 2rem;
+}
+
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+.cover-top .brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.cover-top .brand-mark {
+  width: 28px; height: 28px;
+  border: 1px solid var(--gold);
+  display: grid; place-items: center;
+  font-family: var(--font-serif-en);
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--gold-bright);
+}
+
+.cover-center {
+  align-self: center;
+  max-width: 1100px;
+}
+
+.cover-eyebrow {
+  font-family: var(--font-serif-en);
+  font-style: italic;
+  font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+  color: var(--gold-bright);
+  letter-spacing: 0.04em;
+  margin-bottom: 1.5rem;
+}
+
+.cover-title {
+  font-family: var(--font-serif-cn);
+  font-weight: 900;
+  font-size: clamp(2.6rem, 6vw, 5.2rem);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  margin: 0 0 1.2rem;
+  color: var(--paper);
+}
+
+.cover-title .accent {
+  color: var(--gold-bright);
+  font-style: italic;
+  font-family: var(--font-serif-en);
+  font-weight: 500;
+}
+
+.cover-subtitle {
+  font-family: var(--font-serif-en);
+  font-size: clamp(1rem, 1.4vw, 1.4rem);
+  font-style: italic;
+  color: rgba(245, 241, 232, 0.7);
+  letter-spacing: 0.02em;
+  margin-bottom: 2.5rem;
+  max-width: 900px;
+  line-height: 1.4;
+}
+
+.cover-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem 3rem;
+  padding-top: 1.8rem;
+  border-top: 1px solid rgba(176, 141, 87, 0.3);
+  max-width: 1000px;
+}
+
+.meta-block {
+  font-family: var(--font-sans-cn);
+}
+
+.meta-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+
+.meta-value {
+  font-family: var(--font-serif-cn);
+  font-size: 1rem;
+  color: var(--paper);
+  font-weight: 400;
+}
+
+.cover-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: rgba(245, 241, 232, 0.5);
+  text-transform: uppercase;
+}
+
+.scroll-hint {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.scroll-line {
+  width: 60px; height: 1px;
+  background: var(--gold);
+  animation: scrollPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleX(0.5); transform-origin: left; }
+  50% { opacity: 1; transform: scaleX(1); transform-origin: left; }
+}
+
+/* ============================================
+   导航栏
+   ============================================ */
+.nav-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(245, 241, 232, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rule);
+  padding: 0.9rem 4vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-brand {
+  font-family: var(--font-serif-en);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--ink);
+}
+
+.nav-brand strong {
+  font-family: var(--font-serif-cn);
+  font-weight: 700;
+  font-style: normal;
+  color: var(--gold-deep);
+  margin-right: 0.5rem;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.8rem;
+  list-style: none;
+  padding: 0; margin: 0;
+  font-family: var(--font-sans-cn);
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+.nav-links a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  position: relative;
+  padding: 0.3rem 0;
+  transition: color 0.2s;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 0; height: 1.5px;
+  background: var(--gold);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--gold-deep);
+}
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* ============================================
+   主体容器
+   ============================================ */
+.report {
+  position: relative;
+  z-index: 2;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 5rem 5vw 6rem;
+}
+
+.section {
+  position: relative;
+  margin-bottom: 6rem;
+  scroll-margin-top: 80px;
+}
+
+.section-num {
+  display: flex;
+  align-items: baseline;
+  gap: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+.section-num .num {
+  font-family: var(--font-serif-en);
+  font-style: italic;
+  font-size: 3.2rem;
+  font-weight: 300;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.section-num .tag {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--moss);
+  padding-top: 0.4rem;
+}
+
+.section h2 {
+  font-family: var(--font-serif-cn);
+  font-weight: 700;
+  font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+  line-height: 1.25;
+  margin: 0 0 0.8rem;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+}
+
+.section h3 {
+  font-family: var(--font-serif-cn);
+  font-weight: 600;
+  font-size: 1.35rem;
+  margin: 2.5rem 0 1rem;
+  color: var(--ink);
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+.section h3::before {
+  content: '';
+  position: absolute;
+  left: -1rem; top: 0.3em;
+  width: 3px; height: 1.2em;
+  background: var(--gold);
+}
+
+.section h4 {
+  font-family: var(--font-serif-cn);
+  font-weight: 600;
+  font-size: 1.08rem;
+  margin: 1.8rem 0 0.8rem;
+  color: var(--ink-soft);
+}
+
+.section h5 {
+  font-family: var(--font-sans-cn);
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: 0.04em;
+  margin: 1.2rem 0 0.5rem;
+  color: var(--gold-deep);
+  text-transform: uppercase;
+}
+
+.section-lead {
+  font-family: var(--font-serif-cn);
+  font-size: 1.15rem;
+  line-height: 1.75;
+  color: var(--slate);
+  margin: 0 0 2rem;
+  max-width: 70ch;
+  font-weight: 300;
+  border-left: 2px solid var(--gold);
+  padding-left: 1.2rem;
+}
+
+.section p {
+  margin: 0 0 1.1rem;
+  max-width: 75ch;
+  text-align: justify;
+  text-justify: inter-character;
+}
+
+.section ul, .section ol {
+  max-width: 75ch;
+  padding-left: 1.2rem;
+}
+
+.section ul li, .section ol li {
+  margin-bottom: 0.6rem;
+  padding-left: 0.3rem;
+}
+
+.section ul li::marker {
+  color: var(--gold);
+  font-size: 0.85em;
+}
+
+.section ol li::marker {
+  color: var(--gold);
+  font-family: var(--font-serif-en);
+  font-style: italic;
+  font-weight: 600;
+}
+
+.section strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.section em {
+  font-family: var(--font-serif-en);
+  font-style: italic;
+  color: var(--gold-deep);
+}
+
+/* ============================================
+   执行摘要 - 特殊处理
+   ============================================ */
+.executive {
+  background: linear-gradient(135deg, var(--paper-warm) 0%, var(--paper-light) 100%);
+  padding: 3.5rem 3.5rem;
+  margin: 0 0 6rem;
+  border-radius: 2px;
+  border-left: 5px solid var(--gold);
+  position: relative;
+  box-shadow:
+    0 1px 0 var(--rule),
+    0 30px 60px -30px rgba(13, 31, 28, 0.15);
+}
+
+.executive::before {
+  content: '01';
+  position: absolute;
+  top: 1.5rem; right: 2rem;
+  font-family: var(--font-serif-en);
+  font-style: italic;
+  font-size: 5rem;
+  color: var(--gold);
+  opacity: 0.15;
+  line-height: 1;
+  font-weight: 400;
+}
+
+.executive h2 {
+  margin-top: 0;
+}
+
+.exec-strategies {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--rule);
+}
+
+.strategy-card {
+  background: var(--paper-light);
+  padding: 1.5rem;
+  border-top: 2px solid var(--gold);
+  position: relative;
+}
+
+.strategy-card .strat-num {
+  font-family: var(--font-serif-en);
+  font-style: italic;
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.strategy-card h5 {
+  font-family: var(--font-serif-cn);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink);
+  margin: 0 0 0.5rem;
+}
+
+.strategy-card p {
+  font-size: 0.88rem;
+  line-height: 1.65;
+  margin: 0;
+  color: var(--slate);
+  font-weight: 300;
+}
+
+/* ============================================
+   数据指标块
+   ============================================ */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1px;
+  background: var(--rule-strong);
+  border: 1px solid var(--rule-strong);
+  margin: 2rem 0 2.5rem;
+}
+
+.stat {
+  background: var(--paper);
+  padding: 1.5rem 1.2rem;
+  text-align: left;
+}
+
+.stat-num {
+  font-family: var(--font-serif-en);
+  font-style: italic;
+  font-size: 2.4rem;
+  font-weight: 500;
+  color: var(--gold-deep);
+  line-height: 1;
+  margin-bottom: 0.4rem;
+  display: block;
+}
+
+.stat-num .unit {
+  font-size: 1rem;
+  color: var(--moss);
+}
+
+.stat-label {
+  font-family: var(--font-sans-cn);
+  font-size: 0.78rem;
+  color: var(--slate);
+  line-height: 1.4;
+}
+
+/* ============================================
+   核心问题卡片
+   ============================================ */
+.problems {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.problem-card {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 1.5rem;
+  background: var(--paper-light);
+  padding: 2rem;
+  border-left: 4px solid var(--crimson);
+  position: relative;
+}
+
+.problem-card .p-num {
+  font-family: var(--font-serif-en);
+  font-style: italic;
+  font-size: 4.5rem;
+  font-weight: 300;
+  color: var(--crimson);
+  line-height: 0.9;
+  opacity: 0.8;
+}
+
+.problem-card h4 {
+  margin: 0 0 0.8rem;
+  font-size: 1.15rem;
+  color: var(--ink);
+}
+
+.problem-card .quote {
+  font-family: var(--font-serif-cn);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--gold-deep);
+  border-left: 2px solid var(--gold);
+  padding-left: 1rem;
+  margin: 1rem 0;
+  line-height: 1.7;
+}
+
+.problem-card p {
+  font-size: 0.95rem;
+  margin: 0;
+  color: var(--slate);
+}
+
+/* ============================================
+   策略大卡片
+   ============================================ */
+.strategy-block {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 3rem;
+  margin: 2rem 0;
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.strategy-block::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(176, 141, 87, 0.15) 0%, transparent 70%);
+}
+
+.strategy-block .strat-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(176, 141, 87, 0.3);
+  position: relative;
+}
+
+.strategy-block .strat-header .num {
+  font-family: var(--font-serif-en);
+  font-style: italic;
+  font-size: 3rem;
+  font-weight: 300;
+  color: var(--gold-bright);
+  line-height: 1;
+}
+
+.strategy-block h3 {
+  color: var(--paper);
+  border: none;
+  margin: 0;
+  padding: 0;
+  font-size: 1.6rem;
+}
+
+.strategy-block h3::before { display: none; }
+
+.strategy-block .strat-subtitle {
+  font-family: var(--font-serif-en);
+  font-style: italic;
+  color: var(--gold-bright);
+  font-size: 0.95rem;
+  margin-top: 0.3rem;
+}
+
+.strategy-block h4 {
+  color: var(--gold-bright);
+  font-family: var(--font-sans-cn);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  margin: 1.8rem 0 0.8rem;
+}
+
+.strategy-block p, .strategy-block li {
+  color: rgba(245, 241, 232, 0.85);
+  font-size: 0.95rem;
+}
+
+.strategy-block strong {
+  color: var(--gold-bright);
+  font-weight: 600;
+}
+
+.strategy-block em {
+  color: var(--paper);
+}
+
+.strategy-block ul li::marker {
+  color: var(--gold-bright);
+}
+
+/* ============================================
+   时间线
+   ============================================ */
+.timeline {
+  position: relative;
+  margin: 2rem 0;
+  padding-left: 2rem;
+  border-left: 1px solid var(--rule-strong);
+}
+
+.timeline-phase {
+  position: relative;
+  margin-bottom: 2.5rem;
+  padding-left: 1.5rem;
+}
+
+.timeline-phase::before {
+  content: '';
+  position: absolute;
+  left: -2.4rem;
+  top: 0.5rem;
+  width: 12px; height: 12px;
+  background: var(--gold);
+  border-radius: 50%;
+  border: 3px solid var(--paper);
+  box-shadow: 0 0 0 1px var(--gold);
+}
+
+.timeline-phase .phase-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--moss);
+  text-transform: uppercase;
+}
+
+.timeline-phase .phase-title {
+  font-family: var(--font-serif-cn);
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--ink);
+  margin: 0.3rem 0 0.8rem;
+}
+
+.timeline-phase ul {
+  margin: 0.5rem 0;
+  font-size: 0.92rem;
+}
+
+/* ============================================
+   案例对比表格 / 表格
+   ============================================ */
+.table-wrap {
+  margin: 2rem 0;
+  overflow-x: auto;
+  border: 1px solid var(--rule-strong);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--paper-light);
+  font-size: 0.92rem;
+}
+
+thead {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+th {
+  text-align: left;
+  padding: 0.9rem 1rem;
+  font-family: var(--font-sans-cn);
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+  border-right: 1px solid rgba(245, 241, 232, 0.15);
+}
+
+th:last-child { border-right: none; }
+
+td {
+  padding: 1rem;
+  vertical-align: top;
+  border-bottom: 1px solid var(--rule);
+  border-right: 1px solid var(--rule);
+  line-height: 1.6;
+}
+
+td:last-child { border-right: none; }
+
+tr:last-child td { border-bottom: none; }
+
+tbody tr:hover {
+  background: var(--paper-warm);
+}
+
+td strong {
+  color: var(--gold-deep);
+}
+
+/* ============================================
+   案例区块
+   ============================================ */
+.cases-intro {
+  background: var(--paper-warm);
+  padding: 2rem 2.5rem;
+  margin: 2rem 0;
+  border-left: 3px solid var(--moss);
+  font-family: var(--font-serif-cn);
+  font-style: italic;
+  color: var(--slate);
+}
+
+.case-detail {
+  background: var(--paper-light);
+  border: 1px solid var(--rule);
+  margin: 1.5rem 0;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.case-header {
+  background: linear-gradient(180deg, var(--moss) 0%, var(--ink-soft) 100%);
+  color: var(--paper);
+  padding: 1.8rem 2rem;
+  position: relative;
+}
+
+.case-header .case-tag {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  color: var(--gold-bright);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.case-header h3 {
+  color: var(--paper);
+  border: none;
+  margin: 0;
+  padding: 0;
+  font-size: 1.3rem;
+  font-family: var(--font-serif-cn);
+  font-weight: 600;
+}
+
+.case-header h3::before { display: none; }
+
+.case-header .case-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 0.8rem;
+  font-family: var(--font-sans-cn);
+  font-size: 0.82rem;
+  color: rgba(245, 241, 232, 0.7);
+}
+
+.case-header .case-meta span strong {
+  color: var(--gold-bright);
+  font-weight: 600;
+  margin-right: 0.3rem;
+}
+
+.case-body {
+  padding: 2rem 2.2rem;
+}
+
+.case-body h4 {
+  font-family: var(--font-serif-cn);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--gold-deep);
+  margin: 1.5rem 0 0.7rem;
+  padding-left: 0.7rem;
+  border-left: 3px solid var(--gold);
+}
+
+.case-body h4:first-child { margin-top: 0; }
+
+.case-body h5 {
+  font-family: var(--font-sans-cn);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  margin: 1rem 0 0.4rem;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+.case-body p, .case-body li {
+  font-size: 0.94rem;
+  line-height: 1.75;
+}
+
+.case-question {
+  background: var(--paper-warm);
+  border-left: 3px solid var(--crimson);
+  padding: 1rem 1.5rem;
+  margin: 0 0 1.5rem;
+  font-size: 0.88rem;
+  color: var(--slate);
+  font-style: italic;
+}
+
+.case-question strong {
+  color: var(--crimson);
+  font-style: normal;
+}
+
+.case-url {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--gold-deep);
+  text-decoration: none;
+  margin-top: 0.5rem;
+  padding: 0.3rem 0.6rem;
+  background: rgba(176, 141, 87, 0.08);
+  border: 1px solid rgba(176, 141, 87, 0.25);
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+
+.case-url:hover {
+  background: var(--gold);
+  color: var(--paper);
+}
+
+/* ============================================
+   引用块 / 提示框
+   ============================================ */
+.callout {
+  background: var(--paper-warm);
+  border: 1px solid var(--rule-strong);
+  padding: 1.5rem 1.8rem;
+  margin: 1.5rem 0;
+  border-left: 3px solid var(--moss);
+  font-size: 0.95rem;
+}
+
+.callout.warn {
+  border-left-color: var(--crimson);
+  background: rgba(139, 58, 58, 0.04);
+}
+
+.callout.gold {
+  border-left-color: var(--gold);
+  background: rgba(176, 141, 87, 0.06);
+}
+
+/* ============================================
+   结尾
+   ============================================ */
+.outro {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 4rem 4vw;
+  margin-top: 6rem;
+  position: relative;
+}
+
+.outro-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.outro h2 {
+  font-family: var(--font-serif-en);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  color: var(--gold-bright);
+  margin: 0 0 1rem;
+}
+
+.outro p {
+  color: rgba(245, 241, 232, 0.7);
+  font-family: var(--font-serif-cn);
+  font-size: 0.95rem;
+  max-width: 60ch;
+  margin: 0 auto 1rem;
+  line-height: 1.75;
+}
+
+.outro-mark {
+  font-family: var(--font-serif-en);
+  font-style: italic;
+  color: var(--gold);
+  letter-spacing: 0.2em;
+  font-size: 0.8rem;
+  margin-top: 2rem;
+  border-top: 1px solid rgba(176, 141, 87, 0.3);
+  padding-top: 1.5rem;
+  display: inline-block;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+/* ============================================
+   响应式
+   ============================================ */
+@media (max-width: 900px) {
+  .report { padding: 3rem 6vw 4rem; }
+  .executive { padding: 2rem 1.8rem; }
+  .strategy-block { padding: 2rem 1.5rem; }
+  .case-body { padding: 1.5rem 1.5rem; }
+  .case-header { padding: 1.4rem 1.5rem; }
+  .nav-links { display: none; }
+  .problem-card { grid-template-columns: 1fr; padding: 1.5rem; }
+  .problem-card .p-num { font-size: 3rem; }
+  .cover { padding: 3rem 6vw 2rem; }
+  .cover-top { flex-direction: column; gap: 1rem; }
+  .cover-bottom { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .section-num .num { font-size: 2.2rem; }
+}
+
+@media (max-width: 600px) {
+  body { font-size: 15px; }
+  table { font-size: 0.82rem; }
+  th, td { padding: 0.7rem 0.6rem; }
+}
+
+/* 选中样式 */
+::selection {
+  background: var(--gold);
+  color: var(--ink);
+}
+
+/* 链接 */
+a {
+  color: var(--gold-deep);
+  text-decoration: underline;
+  text-decoration-color: rgba(176, 141, 87, 0.3);
+  text-underline-offset: 3px;
+  transition: all 0.2s;
+}
+
+a:hover {
+  color: var(--gold);
+  text-decoration-color: var(--gold);
+}
+
+/* 文字装饰 */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 3rem 0;
+  color: var(--gold);
+  font-family: var(--font-serif-en);
+  font-style: italic;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+}
+
+.divider::before, .divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--rule-strong);
+}
+
+/* 滚动条 */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--paper-warm); }
+::-webkit-scrollbar-thumb { background: var(--gold-deep); border-radius: 0; }
+::-webkit-scrollbar-thumb:hover { background: var(--ink); }
+
+/* 入场动画 */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.cover-eyebrow { animation: fadeUp 0.8s 0.1s both; }
+.cover-title { animation: fadeUp 0.9s 0.2s both; }
+.cover-subtitle { animation: fadeUp 1s 0.4s both; }
+.cover-meta { animation: fadeUp 1.1s 0.6s both; }
+
+</style>
+</head>
+<body>
+
+<!-- ============================================ 封面 ============================================ -->
+<section class="cover">
+  <div class="cover-inner">
+
+    <div class="cover-top">
+      <div class="brand">
+        <div class="brand-mark">W</div>
+        <span>Wetland-Wise New Town Initiative</span>
+      </div>
+      <span>Report №. WWNTI-2025-FINAL</span>
+    </div>
+
+    <div class="cover-center">
+      <div class="cover-eyebrow">A Paradigm-Shifting Master Plan / 范式转移规划方案</div>
+      <h1 class="cover-title">
+        元朗—新田<br>
+        <span class="accent">湿地智慧城市</span><br>
+        综合发展规划方案
+      </h1>
+      <p class="cover-subtitle">
+        Wetland-Wise New Town Initiative — where healthy wetland ecosystems become<br>
+        the core asset driving innovation, talent, and inclusive community prosperity.
+      </p>
+
+      <div class="cover-meta">
+        <div class="meta-block">
+          <div class="meta-label">编制单位 / Authored by</div>
+          <div class="meta-value">国际城市规划联合专家组</div>
+        </div>
+        <div class="meta-block">
+          <div class="meta-label">提交日期 / Date</div>
+          <div class="meta-value">2025 年 5 月</div>
+        </div>
+        <div class="meta-block">
+          <div class="meta-label">地区 / Region</div>
+          <div class="meta-value">香港北部都会区</div>
+        </div>
+        <div class="meta-block">
+          <div class="meta-label">愿景目标 / Vision</div>
+          <div class="meta-value">国际湿地保育与创科融合示范区</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cover-bottom">
+      <span>Hong Kong Northern Metropolis · 2025–2040</span>
+      <div class="scroll-hint">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================ 导航栏 ============================================ -->
+<nav class="nav-bar">
+  <div class="nav-brand"><strong>WWNTI</strong><em>Final Report</em></div>
+  <ul class="nav-links">
+    <li><a href="#summary">摘要</a></li>
+    <li><a href="#context">背景</a></li>
+    <li><a href="#problems">核心问题</a></li>
+    <li><a href="#cases">全球案例</a></li>
+    <li><a href="#adaptation">本地化</a></li>
+    <li><a href="#plan">规划方案</a></li>
+    <li><a href="#timeline">时序</a></li>
+    <li><a href="#risk">风险</a></li>
+    <li><a href="#next">行动建议</a></li>
+    <li><a href="#appendix">案例库</a></li>
+  </ul>
+</nav>
+
+<main class="report">
+
+<!-- ============================================ 1. 执行摘要 ============================================ -->
+<section class="section" id="summary">
+  <div class="executive">
+    <div class="section-num">
+      <span class="num">01</span>
+      <span class="tag">Executive Summary · 执行摘要</span>
+    </div>
+    <h2>当生态系统成为城市的核心竞争力</h2>
+    <p class="section-lead">
+      本报告针对香港北部都会区的核心组成部分——元朗-新田地区，提出名为"湿地智慧城市"的综合发展规划方案。这是一个生态系统成为核心竞争力、创新科技围绕生态挑战展开、社区发展以生态公平为基础的<strong>范式转移项目</strong>。
+    </p>
+    <p>
+      该区域现状以高生态价值的鱼塘基围（占 <strong>27.3%</strong>）、破碎化的乡村聚落和边缘化的社区人口为特征，已被定位为未来的"国际创科新城"，涵盖新田科技城与牛潭尾大学城。然而，这一宏大愿景与本地紧张的生态约束、极度碎片化的土地权属和低技能依赖型的社会生态之间，形成了严峻的<strong>结构性张力</strong>。若不审慎处理，极可能导致生态灾难、开发僵局或重蹈天水围"悲情城市"的职住失衡覆辙。
+    </p>
+    <p>
+      本报告通过深入剖析三大核心问题，并系统性地借鉴来自洞庭湖、科罗拉多州、澳大利亚、旧金山湾区等六个全球与本地案例的经验，提出三大核心规划策略：
+    </p>
+
+    <div class="exec-strategies">
+      <div class="strategy-card">
+        <div class="strat-num">I</div>
+        <h5>生态前置与市场化保育</h5>
+        <p>"环境影响前置否决 + 生态银行"双轨机制。将生态效能证明作为规划许可的强制性前置条件，借鉴洞庭湖与科罗拉多经验，建立量化评估工具与区域性湿地补偿市场。</p>
+      </div>
+      <div class="strategy-card">
+        <div class="strat-num">II</div>
+        <h5>产权共享与协作开发</h5>
+        <p>首创"原居民社区土地信托"与"片区协作开发"模式。借鉴中国 TDR 与澳洲分层业权，以公私合营取代强制征收，将补地价"黑箱"转为阶梯式透明框架。</p>
+      </div>
+      <div class="strategy-card">
+        <div class="strat-num">III</div>
+        <h5>阶梯式就业与包容社区</h5>
+        <p>从"生态保育员"到"创科研发者"的就业三阶梯，强行实施公共服务设施"绝对预置"。汲取美国 APA 报告与湾区就业优先规划，确保原住民、新移民与创科人才的全周期融合。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ 2. 项目背景 ============================================ -->
+<section class="section" id="context">
+  <div class="section-num">
+    <span class="num">02</span>
+    <span class="tag">Project Context · 项目背景与本地情境</span>
+  </div>
+  <h2>北部都会区的心脏地带：愿景与现实的鸿沟</h2>
+
+  <h3>2.1 宏观区位与战略定位</h3>
+  <p>
+    元朗-新田地处香港新界西北，是<strong>北部都会区创新科技地带的核心组成部分</strong>。依据《香港 2030+》及北部都会区策略，该片区被赋予"国际创科新城"的历史使命，未来将涵盖百公顷级的<strong>新田科技城</strong>（总发展面积 627 公顷，规划职位 16.5 万个）及约 130 公顷的<strong>牛潭尾大学城与综合医教研医院</strong>。区域发展主轴为"产业带动，基建先行"，预期首批居民于 <strong>2034 年迁入</strong>。
+  </p>
+
+  <h3>2.2 高生态基底的碎片化乡村</h3>
+  <p>
+    当前区域呈典型的低密度、高生态价值的乡村形态。生态和乡村用地占据绝对主导，鱼塘和基围占比异常高，林地草地合计超 34%，建设用地极为零散。近 27% 的鱼塘直接关联<strong>后海湾拉姆萨尔湿地</strong>，其水质敏感度极高，是开发的关键约束。建筑多为低层（平均 11 米），地积比率仅 0.62，但临时房屋（寮屋）户数高达 811 户，反映正规住屋供应严重不足。
+  </p>
+
+  <div class="stats-grid">
+    <div class="stat"><span class="stat-num">27.3<span class="unit">%</span></span><div class="stat-label">鱼塘基围占地比例</div></div>
+    <div class="stat"><span class="stat-num">0.62</span><div class="stat-label">地积比率</div></div>
+    <div class="stat"><span class="stat-num">811<span class="unit">户</span></span><div class="stat-label">临时房屋（寮屋）</div></div>
+    <div class="stat"><span class="stat-num">2,209<span class="unit">人</span></span><div class="stat-label">寮屋涉及人口</div></div>
+    <div class="stat"><span class="stat-num">11<span class="unit">米</span></span><div class="stat-label">建筑平均高度</div></div>
+  </div>
+
+  <h3>2.3 老龄化与低技能的脆弱社区</h3>
+  <p>
+    本地社区呈现出显著的人口老龄化和经济边缘化特征。总人口约 1.78 万，年龄中位数高达 <strong>47 岁</strong>，65 岁以上人口占 <strong>18.9%</strong>。劳动人口参与率仅为 <strong>51.5%</strong>，就业高度集中于非技术工人（27%）和服务业，月收入中位数仅 <strong>15,000 港元</strong>，且性别差距巨大。同区就业机会极度匮乏，仅 <strong>6.8%</strong> 的居民能在区内就业，大量居民被迫长时间跨区通勤。家庭租金收入比率中位数高达 <strong>36.1%</strong>，住房负担极为沉重。
+  </p>
+
+  <div class="stats-grid">
+    <div class="stat"><span class="stat-num">17,800<span class="unit">人</span></span><div class="stat-label">总人口</div></div>
+    <div class="stat"><span class="stat-num">47<span class="unit">岁</span></span><div class="stat-label">年龄中位数</div></div>
+    <div class="stat"><span class="stat-num">18.9<span class="unit">%</span></span><div class="stat-label">65 岁以上人口</div></div>
+    <div class="stat"><span class="stat-num">51.5<span class="unit">%</span></span><div class="stat-label">劳动参与率</div></div>
+    <div class="stat"><span class="stat-num">6.8<span class="unit">%</span></span><div class="stat-label">同区就业率</div></div>
+    <div class="stat"><span class="stat-num">$15K</span><div class="stat-label">月收入中位数（港元）</div></div>
+    <div class="stat"><span class="stat-num">36.1<span class="unit">%</span></span><div class="stat-label">家庭租金收入比</div></div>
+    <div class="stat"><span class="stat-num">14.7<span class="unit">%</span></span><div class="stat-label">大学及以上学历占比</div></div>
+  </div>
+
+  <h3>2.4 核心规划冲突：三重结构性张力</h3>
+  <div class="callout warn">
+    <p style="margin:0"><strong>北部都会区的宏大叙事与本地现状之间存在三重结构性张力：</strong></p>
+  </div>
+  <ol>
+    <li><strong>生态红线 vs 开发净增：</strong>后海湾的"零净增污染"国际义务与大规模土地转换之间构成尖锐矛盾，27.3% 的鱼塘基围被列为开发备用地，生态底线岌岌可危。</li>
+    <li><strong>刚性权益 vs 土地整合：</strong>《基本法》第 40 条保障的原居民丁屋等传统权益，与高度碎片化的私人土地产权交织，常规征地程序耗时漫长，严重挑战 2034 年的迁入时序。</li>
+    <li><strong>低技能社会 vs 知识型经济：</strong>现状低技能依赖型社会生态与未来大学城、科技城的知识型就业门槛之间存在巨大人力资源错配，若不干预，必将重蹈天水围"悲情城市"覆辙。</li>
+  </ol>
+</section>
+
+<!-- ============================================ 3. 核心问题 ============================================ -->
+<section class="section" id="problems">
+  <div class="section-num">
+    <span class="num">03</span>
+    <span class="tag">Core Problems · 核心问题识别</span>
+  </div>
+  <h2>必须跨越的三大结构性难题</h2>
+  <p class="section-lead">
+    基于对本地情境的深度诊断，我们精准识别出元朗-新田发展路径上必须跨越的三大核心问题。任何忽视其中之一的方案，都将导致系统性失败。
+  </p>
+
+  <div class="problems">
+    <div class="problem-card">
+      <div class="p-num">I</div>
+      <div>
+        <h4>生态约束与开发增量的平衡难题</h4>
+        <div class="quote">"在拉姆萨尔湿地与后海湾'零净增污染'的刚性生态门槛下，大规模土地转换如何实现开发增量与生态保育的实质性平衡？"</div>
+        <p>当前，环评制度与规划审批（TPO）作为两套独立法例，存在脱节风险。城规会的规划许可能在不完全解决环境影响的情况下获批，导致湿地补偿常被降级为景观绿化等低级手段，缺乏量化评估工具。若无一场从制度、技术到经济激励的彻底变革，单纯依赖行政指令将无法阻止生物多样性流失和时序紊乱的系统性风险。</p>
+      </div>
+    </div>
+
+    <div class="problem-card">
+      <div class="p-num">II</div>
+      <div>
+        <h4>碎片化产权与开发时效的冲突</h4>
+        <div class="quote">"高度碎片化的私人土地权属及刚性权益约束，在现有政策下能否化解传统权益与现代城市发展的根本冲突？"</div>
+        <p>本地土地权属极为复杂：祖堂地缺乏现代法人地位，协调困难；旧契农地的开发因"双轨程序"（法定规划+土地行政）叠加补地价谈判的不确定性，时长可逾 10 年。面对 811 户临时房屋的安置缺口和原居民丁屋权益，政府的政策即便叠加尚未成熟的"片区开发"模式，也未能从根本上解决权益价值评估和集体协商机制缺失的核心矛盾。</p>
+      </div>
+    </div>
+
+    <div class="problem-card">
+      <div class="p-num">III</div>
+      <div>
+        <h4>职住失衡与技能错配的危机</h4>
+        <div class="quote">"在低技能依赖型社会生态下，植入高端知识型产业，如何避免职住失衡覆辙，防止原住民边缘化和社会隔离？"</div>
+        <p>天水围的教训是悬在本项目头上的达摩克利斯之剑。现状同区就业率仅 6.8%，非技术工人占比高，未来 16 万个知识型职位与本地劳动力几乎是"零重合"。社区设施严重匮乏（GIC 用地 1.6%，休憩用地 0.3%），18.9% 的老龄人口需求与设施供给严重错配。若不设计平滑、包容的技能提升通道和坚实的社区安全网，产业植入将演变为一场将原住民排挤出局的社会清洗。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ 4. 全球案例 ============================================ -->
+<section class="section" id="cases">
+  <div class="section-num">
+    <span class="num">04</span>
+    <span class="tag">Global Case Studies · 全球案例研究</span>
+  </div>
+  <h2>六个案例，三大主题，一条普适路径</h2>
+  <p class="section-lead">
+    为解决上述三个核心问题，我们研究了六个相关案例，涵盖生态修复、产权整合、职住平衡等关键领域。综合所有案例，一条普适性的成功路径清晰显现：<strong>制度先行、权益明晰、社会参与、激励相容</strong>。
+  </p>
+
+  <h3>4.1 生态容量与湿地补偿（问题一）</h3>
+  <p><em>重点参考：洞庭湖生态疏浚 & 科罗拉多州湿地生态完整性评估</em></p>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th style="width:22%">案例</th><th style="width:30%">核心问题</th><th>核心策略与行动</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>洞庭湖生态疏浚</strong><br><em>湖南，中国</em></td>
+        <td>泥沙淤积导致湖泊萎缩、湿地生态退化、生物多样性下降。</td>
+        <td><strong>多目标生境重塑：</strong>通过"降洲疏浚+构建生态湖+保留原状洲滩"组合，同步实现调蓄防洪、湿地修复和物种栖息地重建。建立"多专题并行+分级审批"严格合规路径。</td>
+      </tr>
+      <tr>
+        <td><strong>科罗拉多州湿地 EIA</strong><br><em>科罗拉多州，美国</em></td>
+        <td>缺乏标准化、可定量的湿地健康状况评估工具。</td>
+        <td><strong>量化生态完整性评估：</strong>开发包含景观背景、现状状况、面积三维度的 11 项指标评分模型，基于"参照条件"将湿地评为 A-D 四级。成功纳入联邦《清洁水法》水质报告。</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>4.2 碎片业权整合（问题二）</h3>
+  <p><em>重点参考：澳洲分层业权 & 中国土地发展权转移</em></p>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th style="width:22%">案例</th><th style="width:30%">核心问题</th><th>核心策略与行动</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>澳大利亚分层产权</strong><br><em>澳洲/开曼群岛</em></td>
+        <td>垂直建筑中的产权碎片化挑战传统普通法产权观念。</td>
+        <td><strong>立体产权与集体治理：</strong>通过分层地契制度细分垂直空间产权，建立具法律人格的业主法人团体（Owners Corporation）管理共有财产。通过"行政管理基金"和"偿债基金"实现财务可持续。</td>
+      </tr>
+      <tr>
+        <td><strong>中国土地发展权转移</strong><br><em>中国多城市</em></td>
+        <td>城乡二元土地制度下如何转移发展权、保障耕地红线。</td>
+        <td><strong>多元制度安排：</strong>识别并实践三种模式——政府主导"增减挂钩"、市场驱动"地票"（重庆）、社区自组织"两田分置"（南京竹镇）。将农村建设用地复垦指标抽象为可交易的"发展权"。</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>4.3 职住平衡与包容社区（问题三）</h3>
+  <p><em>重点参考：美国职住平衡报告（APA）& 旧金山湾区就业优先规划</em></p>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th style="width:22%">案例</th><th style="width:30%">核心问题</th><th>核心策略与行动</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>美国职住平衡报告</strong><br><em>APA, 2003</em></td>
+        <td>城市蔓延和功能区划导致的职住空间错配。</td>
+        <td><strong>系统性政策工具包：</strong>构建从"诊断"（四种失衡类型）到"干预"（综合规划、混合用途区划、包容性区划、雇主辅助住房）的完整政策链。将职住平衡分析纳入"区域影响开发"（DRI）法定审查。</td>
+      </tr>
+      <tr>
+        <td><strong>湾区就业优先规划</strong><br><em>旧金山湾区，美国</em></td>
+        <td>经济不平等、低质量就业、气候脆弱性、决策排斥。</td>
+        <td><strong>自下而上参与式规划：</strong>将工人和社区代表置于决策核心，筛选六大目标行业。通过"高道路就业底线"（生活工资、福利）、约束性协议和财政混合杠杆推动产业转型。</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>4.4 综合关键成功要素</h3>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th style="width:18%">成功维度</th><th>关键要素</th><th style="width:25%">典型案例来源</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>制度设计</strong></td>
+        <td>审批机制并联化 · 评估标准量化化 · 规划工具法定化</td>
+        <td>洞庭湖、科罗拉多、APA 报告</td>
+      </tr>
+      <tr>
+        <td><strong>权益处理</strong></td>
+        <td>模糊权益显性化 · 碎片权益整合化 · 补偿机制共享化</td>
+        <td>中国 TDR、澳洲分层、南京竹镇</td>
+      </tr>
+      <tr>
+        <td><strong>社会构建</strong></td>
+        <td>公众参与深层化 · 就业机会阶梯化 · 社区设施预置化</td>
+        <td>湾区就业优先</td>
+      </tr>
+      <tr>
+        <td><strong>经济逻辑</strong></td>
+        <td>成本效益内部化 · 财政工具多元化</td>
+        <td>洞庭湖、科罗拉多、湾区</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ============================================ 5. 本地化改造 ============================================ -->
+<section class="section" id="adaptation">
+  <div class="section-num">
+    <span class="num">05</span>
+    <span class="tag">Local Adaptation · 差异分析与适应性改造</span>
+  </div>
+  <h2>不是复制粘贴，而是制度嫁接</h2>
+  <p class="section-lead">
+    在将全球经验移植到元朗-新田时，必须清醒认识到本地情境的独特性。简单的"复制-粘贴"必然失败，需要深度的适应性改造。
+  </p>
+
+  <h3>5.1 前置条件对比分析</h3>
+  <div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th style="width:12%">维度</th>
+        <th style="width:30%">全球案例</th>
+        <th style="width:30%">本地情境</th>
+        <th>关键缺口</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>制度</strong></td>
+        <td>多部门协同审批；联邦法律为评估工具背书；成熟跨区协调机构。</td>
+        <td>环评与规划审批是两套独立法例，缺乏实质联动；缺乏将生态评估作为否决权的工具。</td>
+        <td>缺乏"环评-规划-地政"三轨实质联动的法律机制及量化生态评估工具。</td>
+      </tr>
+      <tr>
+        <td><strong>经济</strong></td>
+        <td>公共财政承担生态修复；联邦拨款撬动市场；土地发展权交易市场。</td>
+        <td>财政依赖土地出让金；缺乏湿地减缓银行；公私合营模式试行阶段。</td>
+        <td>生态补偿市场机制缺位；公私合营财务模型黑箱化。</td>
+      </tr>
+      <tr>
+        <td><strong>技术</strong></td>
+        <td>长期物种数据库；成熟环保疏浚和三维地籍技术。</td>
+        <td>基层规划未整合精细生物本底数据；三维地籍尚在概念阶段。</td>
+        <td>缺少本地化快速生物评估工具及多维信息平台。</td>
+      </tr>
+      <tr>
+        <td><strong>社会</strong></td>
+        <td>项目区多为无人区；高度组织化工会和草根 NGO。</td>
+        <td>涉及 811 户寮屋、原居民村落及祖堂地，社会征拆压力巨大；社区组织化程度低。</td>
+        <td>全球案例普遍未面临如此集中的传统权益与安置叠加挑战。</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>5.2 实施障碍识别</h3>
+  <ol>
+    <li><strong>法律与制度障碍：</strong>修订《城市规划条例》立法周期长，可能面临地产界阻力。"社区土地信托"专项条例需小心处理与《基本法》第 40 条的衔接，稍有不慎即触发司法覆核。</li>
+    <li><strong>经济与财政障碍：</strong>高标准生态补偿和前置社会基础设施将显著提高开发成本。土地信托若缺乏市场流动性或政府兜底，可能陷入资产定价困境。</li>
+    <li><strong>社会与政治障碍：</strong>权益"份额化"易引发公平性质疑；寮屋居民复杂的安置资格分层是定时炸弹；环保团体可能坚持"零开发"发起法律挑战。</li>
+    <li><strong>技术与能力障碍：</strong>编制本地化 EIA 手册、搭建多维地籍平台、培训"生态管护员"等都需要极强专业能力，本地人才储备可能存在瓶颈。</li>
+  </ol>
+
+  <h3>5.3 本地化调整策略</h3>
+  <div class="callout gold">
+    <p style="margin:0"><strong>核心原则：</strong>用制度创新化解产权困局，用市场化工具承载公益目标，用参与式治理构建社会共识。</p>
+  </div>
+  <ol>
+    <li><strong>制度嫁接而非照搬：</strong>不直接引入他国法律，汲取其"功能等价物"。例如，不直接设立美国"湿地缓解银行"，而是设立符合香港法例的法定公营基金。</li>
+    <li><strong>权益转化而非剥夺：</strong>不强行取消丁屋等传统权益，创设能将之转化为现代产权（信托受益权、楼面面积信用）的"权益转换器"。</li>
+    <li><strong>创造中间地带而非硬着陆：</strong>对劳动力与知识经济的鸿沟，不奢望直接跨越，创造"生态保育""医疗后勤"等中间产业带作为过渡。</li>
+    <li><strong>时序模块化以解耦风险：</strong>采取模块化推进。"配套先行""公营房屋预建"作为压舱石，生态银行、土地信托等复杂模块通过试点推开。</li>
+  </ol>
+</section>
+
+<!-- ============================================ 6. 综合规划方案 ============================================ -->
+<section class="section" id="plan">
+  <div class="section-num">
+    <span class="num">06</span>
+    <span class="tag">Master Plan · 综合规划方案</span>
+  </div>
+  <h2>湿地智慧城市 / Wetland Smart City</h2>
+  <p class="section-lead">
+    元朗-新田将不再走传统"先开发、后治理"或"卧城"的老路。其唯一正确的路径是定位为<strong>"国际湿地保育与创科发展融合示范区"</strong>。在此，健康的湿地生态系统不再是发展的障碍，而是孕育绿色科技、吸引顶级人才、驱动社区繁荣的核心资产。
+  </p>
+
+  <h3>6.1 核心定量目标</h3>
+  <div class="stats-grid">
+    <div class="stat"><span class="stat-num">≥1.2:1</span><div class="stat-label">湿地补偿面积比（净增益）</div></div>
+    <div class="stat"><span class="stat-num">25<span class="unit">%</span></span><div class="stat-label">同区就业率（从 6.8% 提升）</div></div>
+    <div class="stat"><span class="stat-num">1,500<span class="unit">+</span></span><div class="stat-label">过渡及永久公营房屋单位</div></div>
+    <div class="stat"><span class="stat-num">3.5<span class="unit">㎡</span></span><div class="stat-label">人均 GIC 用地（首批迁入达标）</div></div>
+    <div class="stat"><span class="stat-num">&lt;30<span class="unit">%</span></span><div class="stat-label">住户租金收入比中位数</div></div>
+    <div class="stat"><span class="stat-num">2.5<span class="unit">㎡</span></span><div class="stat-label">人均休憩用地</div></div>
+  </div>
+
+  <div class="divider">— 三 大 核 心 策 略 —</div>
+
+  <!-- 策略一 -->
+  <div class="strategy-block">
+    <div class="strat-header">
+      <span class="num">I</span>
+      <div>
+        <h3>生态红线护航</h3>
+        <div class="strat-subtitle">"环境影响前置否决 + 生态银行"双轨机制</div>
+      </div>
+    </div>
+    <p><em>对应核心问题一 · 集成洞庭湖与科罗拉多 EIA 精华</em></p>
+    <p>本策略旨在将后海湾的刚性生态约束，从前端的规划争议，转化为法定的、可执行、可量化的开发准绳，并创造市场化工具实现区域性生态效益最优化。</p>
+
+    <h4>A. 法定"生态兼容性证明"前置程序</h4>
+    <p>提交立法会修订《城市规划条例》及《环境影响评估条例》。城规会审议任何涉及"生态敏感区清单"的规划申请前，申请人必须提交由环境及生态局、渔农自然护理署联合签发的 <strong>"生态兼容性证明"（CEC）</strong>。无此证明，城规会不得启动审议。</p>
+    <p>证明三要件：穷尽避免与减小、提交"湿地净增益方案"（面积比 ≥1.2:1，功能当量比 ≥1:1）、不少于五年的长期绩效监测。</p>
+
+    <h4>B. 创建"后海湾湿地保育基金"暨"生态银行"</h4>
+    <p>通过立法设立法定公营机构 <strong>The Deep Bay Wetland Conservation Fund (DBWCF)</strong>。基金负责在政府划定的"重点生态修复区"（尖鼻咀、流浮山废弃鱼塘），应用洞庭湖案例中的"降洲疏浚+生态湖+生境多样化"等科学工程进行规模化修复，产生 <strong>"湿地生态信用"</strong>。开发项目可被强制要求购买等价信用，形成"开发-补偿-保育"资金闭环。</p>
+
+    <h4>C. 编制本地化《后海湾湿地生态完整性评估手册》</h4>
+    <p>委托本地大学联合国际专家，参考科罗拉多 EIA 方法的"三级评估"架构和"参照条件"理念，将后海湾湿地细分为基围鱼塘、芦苇沼泽、红树林边缘带等具体生态型，开发快速评估工具，作为申请 CEC 的法定技术依据。</p>
+  </div>
+
+  <!-- 策略二 -->
+  <div class="strategy-block">
+    <div class="strat-header">
+      <span class="num">II</span>
+      <div>
+        <h3>权益共享破局</h3>
+        <div class="strat-subtitle">"原居民社区土地信托 + 片区协作开发"新模式</div>
+      </div>
+    </div>
+    <p><em>对应核心问题二 · 汲取中国 TDR 与澳洲分层业权智慧</em></p>
+    <p>本策略旨在避免冗长而充满对抗的征地拉锯战，设计基于共识的利益共享机制，将分散、对立的权益捆绑成推动发展的合力。</p>
+
+    <h4>A. 首创"新田/牛潭尾社区土地信托"</h4>
+    <p>政府起草《北部都会区社区土地信托条例》，引导祖堂、丁屋权益者及旧契农地业主，将分散权益经独立评估后注入信托。<strong>权益转化矩阵：</strong>祖堂地/农地折算为 A 类受益权证；丁屋权益量化为 B 类受益权证或楼面面积信用。受益人大会作为最高权力机构，类似澳洲"业主法人"的现代治理结构。</p>
+
+    <h4>B. "片区协作开发"全流程</h4>
+    <p>政府将信托土地、周边政府土地和配套基建任务作为整体单元招标。投标主体必须是"开发商+信托"联合体。内置 <strong>"阶梯式补地价框架"</strong>：固定基准地价 + 毛利润分成，告别"黑箱"谈判。统一规划须包含公营房屋、GIC 设施、湿地补偿区及就业阶梯产业空间。</p>
+
+    <h4>C. "丁屋权益"现代兑现方案</h4>
+    <p>持有 B 类权益证的原居民可选择：实物兑现（优先认购 ≤700 平方呎单位）、现金收益（年度分红）或混合模式。确保《基本法》第 40 条合规。</p>
+  </div>
+
+  <!-- 策略三 -->
+  <div class="strategy-block">
+    <div class="strat-header">
+      <span class="num">III</span>
+      <div>
+        <h3>社会融合治本</h3>
+        <div class="strat-subtitle">"阶梯式本地就业光谱 + 配套绝对先行"</div>
+      </div>
+    </div>
+    <p><em>对应核心问题三 · 采纳美国 APA 与湾区就业优先理念</em></p>
+    <p>本策略承认生产力落差，并用积极的公共干预，在旧社区与新经济之间架设一座包容的阶梯，同时用公共服务的绝对前置来缝合物理与心理的隔阂。</p>
+
+    <h4>A. 构建"就业三级阶梯"</h4>
+    <p><strong>第一阶梯（0-2 年）绿色护理与社区服务：</strong>湿地生态管护员、社区农艺师、零碳社区运维技术员、长者及幼儿护理员。优先聘用本地 40-55 岁原居民及寮屋居民，提供 3-6 个月有津贴的职前培训。</p>
+    <p><strong>第二阶梯（2-5 年）现代技术服务业：</strong>围绕医院、大学衍生病患转运、医疗设备消毒、设施管理、实验室技术支持等岗位。建立"产学合作"机制，与职业训练局共同设计 1-2 年制"微证书"课程。</p>
+    <p><strong>第三阶梯（5 年以上）知识型经济：</strong>通过 <strong>"社区利益协议（CBA）"</strong>要求科技城企业承诺至少 15% 初级岗位优先向本地居民开放，每年派遣科研人员进入本地中学开设讲座。</p>
+
+    <h4>B. "全民配套绝对预置"创新区划</h4>
+    <p>在所有片区批地条款中写入 <strong>"配套预置条款"</strong>。在首个住宅单位获得"入伙纸"之日，社区综合大楼（含长者护理、托幼、培训中心）、社区公园（人均 2.5㎡）、北环线接驳巴士与社区慢行系统必须已建成投运。</p>
+
+    <h4>C. 设立"社区韧性基金"</h4>
+    <p>利用政府土地溢价的 3% 及信托商业开发收益。包括 <strong>"租金护盾"</strong>计划（为非公屋资格寮屋租户提供 5 年专项补贴）与 <strong>"社区应急"</strong>储备。</p>
+  </div>
+</section>
+
+<!-- ============================================ 7. 实施时序 ============================================ -->
+<section class="section" id="timeline">
+  <div class="section-num">
+    <span class="num">07</span>
+    <span class="tag">Implementation Roadmap · 实施路径与时序</span>
+  </div>
+  <h2>2025 → 2040 模块化分阶段推进</h2>
+  <p class="section-lead">
+    本规划采用"模块化、分阶段"的推进策略，以应对复杂性和不确定性。三阶段层层递进，从制度筑基到核心成型，再到融合成熟与模式输出。
+  </p>
+
+  <div class="timeline">
+
+    <div class="timeline-phase">
+      <div class="phase-label">2025 — 2028 · Phase I</div>
+      <div class="phase-title">破冰与筑基期</div>
+      <ul>
+        <li><strong>【2025-2026】</strong>启动《北部都会区（特别规划条款）条例》公众咨询，为"社区土地信托"和"生态兼容性证明"提供法律地位。</li>
+        <li><strong>【2026-2027】</strong>成立"后海湾湿地保育基金"筹备委员会，申请约 100 亿港元种子资金。委托编制《湿地生态完整性评估手册》。</li>
+        <li><strong>【2027-2028】</strong>成立"一站式中枢审批团队"，跨部门驻点办公。</li>
+        <li><strong>【2026 中】</strong>在牛潭尾选取试点村落启动首个"社区土地信托"权益评估。</li>
+        <li><strong>【2027 底】</strong>完成新田/牛潭尾 OZP 修订草案。</li>
+        <li><strong>【2028】</strong>"湿地生态银行"在尖鼻咀启动首个示范修复工程。</li>
+      </ul>
+    </div>
+
+    <div class="timeline-phase">
+      <div class="phase-label">2029 — 2034 · Phase II</div>
+      <div class="phase-title">核心成型与首批入住期</div>
+      <ul>
+        <li><strong>【2029 起】</strong>新田科技城核心片区以"片区协作开发"模式正式分批招标。</li>
+        <li><strong>【2030】</strong>"一站式审批团队"开始按新模式受理首批片区申请。</li>
+        <li><strong>【2031】</strong>北环线主线及新田站投入服务，同步开通社区微循环公交。</li>
+        <li><strong>【2032】</strong>大规模启动"生态管护员"等"就业第一阶梯"岗位招聘与培训。</li>
+        <li><strong>【2033 中】</strong>首批 GIC 综合大楼、公园及公营房屋项目取得"入伙纸"，达到"配套绝对预置"标准。</li>
+        <li><strong>【2034 底】</strong>🏁 <strong>首批受影响居民及创科新城首批就业者正式迁入新居</strong>。</li>
+      </ul>
+    </div>
+
+    <div class="timeline-phase">
+      <div class="phase-label">2035 — 2040+ · Phase III</div>
+      <div class="phase-title">融合成熟与模式输出期</div>
+      <ul>
+        <li>大学城和医教研医院全面运作，启动第二、三产业阶梯。区内就业率稳定在 <strong>25% 以上</strong>。</li>
+        <li>由"湿地保育银行"主导的首个大型补偿修复区完成五年监测周期，发布独立科学报告，证明主要生态指标实现正向净增益。</li>
+        <li>首个社区土地信托进入稳定分红期，形成原居民自治与专业管理相结合的治理文化。</li>
+        <li>将"湿地智慧城市"模式总结为方法论和白皮书，向湄公河三角洲、东非大湖地区等输出。</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================ 8. 风险评估 ============================================ -->
+<section class="section" id="risk">
+  <div class="section-num">
+    <span class="num">08</span>
+    <span class="tag">Risk Assessment · 风险评估与应对</span>
+  </div>
+  <h2>坦诚预判，构建韧性</h2>
+  <p class="section-lead">
+    任何宏大构想都伴生着风险。我们必须以坦诚和审慎的态度进行预判，并设计相应的管控机制。
+  </p>
+
+  <h3>8.1 潜在代价分析</h3>
+  <div class="callout warn">
+    <strong>经济代价（高风险）：</strong>"生态兼容性证明"高标准要求和"配套绝对预置"将显著增加前期投入，可能推高补地价基准。<br>
+    <strong>财政压力（高风险）：</strong>"就业第一阶梯"大量公营和社企岗位依赖持续公共财政补贴。若未能及时过渡到市场化阶梯，可能形成财政黑洞。
+  </div>
+  <div class="callout warn">
+    <strong>权益定价争议（极高风险）：</strong>在社区土地信托中对祖堂地和丁屋权益的量化估值将是矛盾焦点。任何被视为"不公"的分配方案都可能引发内部撕裂和旷日持久的法律诉讼。<br>
+    <strong>体制冲突（高风险）：</strong>新制度设计几乎必然触发被拒发展商的司法覆核挑战。
+  </div>
+
+  <h3>8.2 负面影响预警</h3>
+  <ol>
+    <li><strong>"绿色绅士化"风险：</strong>牛潭尾地区因生态改善变得宜居，土地和住房价值飙升。即便有信托分红，部分无产权的弱势租户仍可能被彻底挤出。</li>
+    <li><strong>社会隔离的"软性"重演：</strong>如果"就业三阶梯"运转不畅，本地原住民可能被锁定在低薪"第一阶梯"，而创科人才聚居新社区，"有城无市"演变为"一城两区"。</li>
+    <li><strong>生态补偿的"逆向激励"：</strong>生态信用交易可能产生道德风险，开发项目放松"避免和减小影响"努力，依赖购买信用"赎罪"，导致生态基线被系统性压低。</li>
+  </ol>
+
+  <h3>8.3 风险管控措施</h3>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th style="width:30%">风险类型</th><th>核心管控措施</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>财政与市场风险</strong><br>（成本高企、逆向激励）</td>
+        <td>设立透明度指标防止官僚主义；湿地信用价格设专家委员会年度审查；强制"避免"优先序，使用清单式审查堵截"赎罪"路径。</td>
+      </tr>
+      <tr>
+        <td><strong>社会隔离与公平性</strong><br>（绿色绅士化、权益定价）</td>
+        <td>信托治理强制保障妇女、低收入家庭和受影响租户席位；"反绅士化组合拳"（租金护盾+专项居住补贴+永久公屋）；独立第三方评估与申诉仲裁委员会。</td>
+      </tr>
+      <tr>
+        <td><strong>法律与体制挑战</strong><br>（司法覆核）</td>
+        <td>立法先行夯固基石，确保规划当局权限明确；建立"沙盒"试验期，在受控环境下暴露法律模糊点并修补。</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ============================================ 9. 预期成果 ============================================ -->
+<section class="section">
+  <div class="section-num">
+    <span class="num">09</span>
+    <span class="tag">Expected Outcomes · 预期成果与评估</span>
+  </div>
+  <h2>多维度的范式转移</h2>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th style="width:14%">维度</th><th style="width:46%">定量指标（2034-2040 评估期）</th><th>定性影响</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>生态环境</strong></td>
+        <td>湿地生态功能损失 100% 实现 ≥1:1 补偿；后海湾氮磷负荷零净增；黑脸琵鹭等旗舰水鸟越冬频次稳定或上升。</td>
+        <td>形成可复制的高生态敏感区水环境管理范式。<em>独立第三方年度监测报告</em>。</td>
+      </tr>
+      <tr>
+        <td><strong>社会经济</strong></td>
+        <td>同区就业比率从 6.8% 提升至 2034 年 >15%，2040 年 >25%；区内原居民家庭月收入中位数 2038 年前追平全港中位数；>90% 受影响有资格寮屋居民获公屋安置。</td>
+        <td>彻底扭转职住失衡与"在职贫穷"标签，成为全港新市镇中包容性最强的社区。</td>
+      </tr>
+      <tr>
+        <td><strong>治理创新</strong></td>
+        <td>>80% 目标片区采用"社区土地信托"或类似公私合营模式；信托内部透明度和受益人满意度 ≥80/100。</td>
+        <td>将对抗性征地矛盾转化为共享式发展合力，为新界土地问题提供制度出口。</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ============================================ 10. 行动建议 ============================================ -->
+<section class="section" id="next">
+  <div class="section-num">
+    <span class="num">10</span>
+    <span class="tag">Next Actions · 实施建议与下一步</span>
+  </div>
+  <h2>从规划到落地的五项行动</h2>
+  <p class="section-lead">
+    为确保本方案不被束之高阁，现提出具体、可立即启动的行动建议。
+  </p>
+
+  <ol>
+    <li>
+      <strong>成立高层级专责小组</strong><br>
+      在北部都会区统筹办事处下，成立由发展局、环境局、地政署、规划署高层组成的<strong>"元朗—新田湿地智慧城市专责小组"（WN-SMART Group）</strong>。直接对财政司司长负责，拥有跨部门协调实权。
+    </li>
+    <li>
+      <strong>启动"三大基石"立法研究</strong><br>
+      <em>研究一</em>（生态前置制度）：委托法律学者研究嵌入"生态兼容性证明"的合法性。<br>
+      <em>研究二</em>（社区土地信托）：联合新界乡议局研究股权量化方式与第 40 条衔接。<br>
+      <em>研究三</em>（生态银行金融模型）：对"湿地生态信用"定价模型和长期可持续性进行量化建模。
+    </li>
+    <li>
+      <strong>立即启动"社会协商"前置程序</strong><br>
+      通过民政事务总署和专业社工机构在各村启动"社区愿景工作坊"。目的首先是<em>倾听、建立信任、普及知识</em>，而非推销方案。这是化解未来社会阻力的最有效投资。
+    </li>
+    <li>
+      <strong>划定"不可发展"与"优先修复"的生态刚性边界</strong><br>
+      2026 年前由渔护署牵头划定"永久不可开发"的生态核心区。同时在流浮山等地划出"优先修复区"，启动首批政府投资的技术论证与设计。
+    </li>
+    <li>
+      <strong>密集开展国际推介与招商</strong><br>
+      以"湿地智慧城市"品牌向全球关注 ESG 的顶级科技企业、大学及研发机构推介。将"生态信用交易""社区利益协议"作为独特的营商环境和创新投资标的。
+    </li>
+  </ol>
+</section>
+
+<!-- ============================================ 11. 附录：案例库 ============================================ -->
+<section class="section" id="appendix">
+  <div class="section-num">
+    <span class="num">11</span>
+    <span class="tag">Appendix · 详细案例库</span>
+  </div>
+  <h2>六个全球案例完整档案</h2>
+  <p class="section-lead">
+    以下为本规划方案参考的六个全球与本地案例的完整详细分析报告，按所属问题分类。每份案例涵盖来源、背景、问题、方案、成果、前置条件、潜在代价及可借鉴性评估。
+  </p>
+
+  <div class="cases-intro">
+    问题一聚焦生态容量与湿地补偿，问题二聚焦碎片业权整合与公私合作，问题三聚焦职住平衡与包容性社区。每份案例既包含可直接借鉴的工具，也标注了迁移到香港本地情境时的难度与障碍。
+  </div>
+
+  <!-- 案例 1: 洞庭湖 -->
+  <article class="case-detail">
+    <div class="case-header">
+      <div class="case-tag">Case 01 · 所属问题一 · 生态容量与湿地补偿</div>
+      <h3>洞庭湖生态疏浚试点工程环境影响报告书</h3>
+      <div class="case-meta">
+        <span><strong>地区：</strong>中国湖南省益阳市沅江市</span>
+        <span><strong>时间：</strong>2022 年 12 月</span>
+        <span><strong>类型：</strong>政府委托公开研究报告</span>
+      </div>
+    </div>
+    <div class="case-body">
+      <div class="case-question"><strong>对应问题：</strong>在拉姆萨尔湿地与"零净增污染"刚性生态门槛下，新田科技城及大学城的大规模土地转换如何通过环境承载力评估、三级缓解机制和生态补偿前置实现开发增量与生态保育的实质性平衡？</div>
+
+      <h4>背景</h4>
+      <p>洞庭湖是中国长江中游唯一的通江湖泊。受泥沙累积性淤积影响，湖泊面积由历史 6000 平方公里萎缩至 2625 平方公里，引发调蓄能力减弱、湿地生态衰退等系统性问题。湖南省决定先行开展生态疏浚试点，选址南洞庭湖黑泥洲。</p>
+
+      <h4>核心问题</h4>
+      <h5>问题描述</h5>
+      <p>洞庭湖湖盆泥沙淤积导致黑泥洲洲滩抬升、旱化趋势加剧，湿地生态功能显著退化。枯水期水域面积骤减，鱼类索饵、越冬、繁殖空间严重压缩，候鸟适宜栖息地丧失。</p>
+      <h5>项目难点</h5>
+      <ul>
+        <li><strong>环境极度敏感：</strong>工程区位于湖南省生态保护红线范围，涉及省级自然保护区、国家级水产种质资源保护区、国际重要湿地等多重敏感目标。</li>
+        <li><strong>长时序施工与生态脆弱期叠加：</strong>施工总工期 33 个月，必须规避鱼类产卵期、候鸟越冬期。</li>
+        <li><strong>多目标平衡严苛：</strong>需同时满足防洪增蓄、湿地修复、水产种质资源保护、航道维护等多重需求。</li>
+        <li><strong>合规路径复杂：</strong>需平行推进环评、自然保护区生物多样性专题、水产种质资源专题、国际湿地修复方案等多个专项。</li>
+      </ul>
+
+      <h4>解决方案</h4>
+      <h5>具体措施</h5>
+      <ul>
+        <li><strong>降洲疏浚与洲滩重塑：</strong>对黑泥洲 14.29km² 实施疏浚，清除表土降低洲滩高程。</li>
+        <li><strong>构建生态湖：</strong>洲上设计 3 处生态湖，总面积 2.88km²，保障枯水期水深。</li>
+        <li><strong>保留原状洲滩与生态高洲：</strong>3 处共 1.61km² 原状区域，发挥种子库作用；高洲为中华鳖、乌龟提供永久产卵场。</li>
+        <li><strong>大规模生境修复：</strong>11km² 内通过地形微改造和植被重建构建沉水植被带、苔草群落、芦苇群落以及候鸟食源植被带。</li>
+        <li><strong>控制性疏浚：</strong>采取绞吸式挖泥船、拖底式拦污帘和钢板桩围堰，减小悬浮物扩散。</li>
+        <li><strong>施工期污水与固废全收集：</strong>船舶生活污水、油污水全部由专业船舶收集转岸处置。</li>
+      </ul>
+
+      <h5>关键技术/政策工具</h5>
+      <ul>
+        <li><strong>"多专题并行+分级审批"工具包：</strong>同步编制生物多样性、水产种质资源、国际重要湿地修复方案三个核心专题，分报对应部门审批。</li>
+        <li><strong>环保疏浚工程技术指南：</strong>严格遵循《湖泊河流环保疏浚工程技术指南》，采用精准深度控制、低扰动施工设备及防扩散拦截装置。</li>
+        <li><strong>生态补偿与动态监测：</strong>提出原位修复产卵场 2.66km²、增殖放流、生态监测样带等措施，列入环保"三同时"验收。</li>
+      </ul>
+
+      <h4>实施成果</h4>
+      <ul>
+        <li>工程总面积 14.29km²，疏浚 12.68km²，生态湖 2.88km²，保留洲滩 1.61km²，生境修复 11km²。</li>
+        <li>原位修复鱼类产卵场约 2.66km²，为鲤、鲫、鲇、黄颡鱼等提供产卵基质。</li>
+        <li>形成连续的挺水-浮叶-沉水植被复合带，支撑候鸟食源及隐蔽需求。</li>
+        <li>湿地生态系统结构和功能得到明显优化，作为首期试点为后续洞庭湖全面疏浚提供可复制的制度经验。</li>
+      </ul>
+
+      <h4>前置条件</h4>
+      <h5>制度条件</h5>
+      <ul>
+        <li>工程列入《产业结构调整指导目录》鼓励类。</li>
+        <li>与省主体功能区规划、生态功能区划、十四五生态环境保护规划等多项上位规划相符。</li>
+        <li>已取得湖南省林业局原则支持复函；水产种质资源专题通过省农业农村厅审查。</li>
+        <li>环评报告完成两次网络公示、现场张贴和报纸公示。</li>
+      </ul>
+      <h5>经济条件</h5>
+      <p>由湖南省水利发展投资有限公司全额投资。环保投资纳入工程总概算（具体数额未单独披露）。</p>
+      <h5>技术条件</h5>
+      <p>由湖南省水利水电勘测设计规划研究总院编制；委托湖南省水产科学研究所等专业机构完成鱼类、植物、湿地、自然保护区本底调查。疏浚工艺采用国内成熟环保型挖泥设备和防污帘技术。</p>
+      <h5>社会条件</h5>
+      <p>黑泥洲上无人定居，社会阻力极低。环评阶段已召开群众座谈会，保障附近居民知情权。</p>
+
+      <h4>潜在代价/负面影响</h4>
+      <ul>
+        <li><strong>建设成本：</strong>14.29km² 大范围生态疏浚耗资规模较大，须采用高规格环保工艺。</li>
+        <li><strong>施工期邻避效应：</strong>临时堆存场距离居民点最近 15-18 米，扬尘、噪声可能影响 140-200 户居民。</li>
+        <li><strong>渔业作业冲突：</strong>施工区封闭可能短期影响渔民生计。</li>
+        <li><strong>船舶溢油风险：</strong>油膜扩散将直接威胁下游保护区核心区。</li>
+        <li><strong>悬浮物扩散失控风险：</strong>若拦污帘失效，高浓度 SS 可随水流进入核心区。</li>
+        <li><strong>泥沙回淤与维护：</strong>未来或需建立周期性轮浚机制。</li>
+        <li><strong>生态恢复不确定性：</strong>湿地植被群落重建需要较长时间。</li>
+      </ul>
+
+      <h4>可借鉴性评估</h4>
+      <h5>适用情境</h5>
+      <ul>
+        <li>全国各大湖区、河口区因悬浮泥沙快速淤积造成湖面缩减的河湖系统。</li>
+        <li>涉及国家级自然保护区、水产种质资源保护区、国际重要湿地、生态保护红线等多重敏感目标重叠的重大清淤项目。</li>
+      </ul>
+      <h5>迁移难度</h5>
+      <ul>
+        <li><strong>制度门槛较高：</strong>需省级政府专题会议高位推动，地方移植时若无自上而下高层协调机制，将面临较大跨部门壁垒。</li>
+        <li><strong>技术标准与成本：</strong>高规格环保工艺在财政紧张地区难以负担。</li>
+        <li><strong>少人区优势难以复制：</strong>本案例最大社会优势在工程区无人居住，移植到有定居人口区域将面临征拆补偿、替代生计等重大难题。</li>
+        <li><strong>长期运维机制缺乏：</strong>后续监测、植被管护、增殖放流效果跟踪等长效机制尚在探索中。</li>
+      </ul>
+
+      <a href="https://www.yiyang.gov.cn/yyshjbhj/uploadfiles/202212/20221202092828392.pdf" class="case-url" target="_blank">↗ 查看原始资料</a>
+    </div>
+  </article>
+
+  <!-- 案例 2: 科罗拉多 -->
+  <article class="case-detail">
+    <div class="case-header">
+      <div class="case-tag">Case 02 · 所属问题一 · 生态完整性量化评估</div>
+      <h3>Ecological Integrity Assessment for Colorado Wetlands</h3>
+      <div class="case-meta">
+        <span><strong>地区：</strong>美国科罗拉多州</span>
+        <span><strong>时间：</strong>2016 年 3 月（v2.1）</span>
+        <span><strong>类型：</strong>政府委托公开研究报告</span>
+      </div>
+    </div>
+    <div class="case-body">
+      <div class="case-question"><strong>对应问题：</strong>当前环评制度与规划审批脱节，湿地补偿常被替代为低级手段，而区域 27.3% 的鱼塘基围与 14.4% 的林地被列为开发备用地，生态底线面临开发时序紊乱和生物多样性流失的重大风险。</div>
+
+      <h4>背景</h4>
+      <p>2008 年以前，科罗拉多州缺乏一套以生物完整性为核心、可定量对比的标准化湿地状况评估工具。已有评估多侧重单一功能或针对某项工程许可，难以系统回答"湿地生态总体上是好是坏"等综合管理问题。在 EPA 资助下，科罗拉多自然遗产项目（CNHP）团队基于 NatureServe 框架研发了 EIA 方法。</p>
+
+      <h4>核心问题</h4>
+      <ul>
+        <li><strong>湿地生物完整性缺乏系统性测量：</strong>管理部门缺乏基于生物组分和结构的生态健康"体温计"。</li>
+        <li><strong>参考标准模糊导致评级失准：</strong>不加分类地使用统一阈值，易将天然贫瘠湿地误判为退化。</li>
+        <li><strong>退化归因与修复目标难以明确：</strong>缺乏将多维度信息整合成直观等级并标明压力源的决策支持框架。</li>
+        <li><strong>多部门数据衔接缺口：</strong>州公共卫生与环境部需将湿地纳入《清洁水法》水质报告，但缺乏支撑数据。</li>
+      </ul>
+
+      <h4>解决方案</h4>
+      <h5>具体措施</h5>
+      <ul>
+        <li><strong>三维度多指标综合评分模型：</strong>分解为景观背景（Landscape Context）、现状状况（Condition）、面积（Size）三大排序因子，下分 11 个具体指标。</li>
+        <li><strong>基于分类的参照评级体系：</strong>所有指标依据偏离参考状态程度给出 A（优秀/参考）、B（良好）、C（一般）、D（差）四级评分。B-C 边界为生态完整性可持续的最低接受水平。</li>
+        <li><strong>详细野外鉴定指南：</strong>评估区（AA）界定规则、植被采样标准化、土壤与水体快检、水文指标专项等。</li>
+        <li><strong>嵌入多套湿地分类检索系统：</strong>包括 NatureServe 生态系统分类、USFWS Cowardin 分类、HGM 分类检索表。</li>
+        <li><strong>压力源清单辅助归因：</strong>要求记载周边及内部压力源（道路、堤坝、放牧、沟渠等）。</li>
+      </ul>
+
+      <h5>关键技术/政策工具</h5>
+      <ul>
+        <li><strong>参照条件（Reference Condition）理念：</strong>参考标准为过去数百年自然或原住民低强度利用下该类型湿地的变化范围。</li>
+        <li><strong>"自上而下"的生态完整性逻辑：</strong>将植被群落视为"植物计量器"，直接体现水分机制、化学环境及长期干扰史的综合作用。</li>
+        <li><strong>缓冲区与景观格局定量化：</strong>独创性地应用"连续自然地覆被长度/宽度"、"500 米圈层土地利用强度指数"等景观生态学指标。</li>
+        <li><strong>多层级评估兼容（Level 1-2-3）：</strong>本手册主要为 Level 3 设计，但框架预留了 Level 1（遥感分析）和 Level 2（快速环评）接口。</li>
+      </ul>
+
+      <h4>实施成果</h4>
+      <ul>
+        <li><strong>流域级湿地状况摸底：</strong>2008-2015 年方法应用于多个主要河流盆地的抽样评估，产出 Lemly 等系列技术报告。</li>
+        <li><strong>成功上报联邦水质报告：</strong>数据被 CDPHE 采纳用于编制《2012 年综合水质监测与评估报告》，作为《清洁水法》303(d)/305(b) 部分提交 EPA。</li>
+        <li><strong>确立保护与恢复优先级：</strong>CPW 据此选定高评级湿地优先保护，低评级湿地纳入潜在恢复选址库。</li>
+        <li><strong>统一多部门评估语言：</strong>使环保局、公园、县市土地管理局之间共享带有可比性的湿地健康信息。</li>
+        <li><strong>提升公众认知：</strong>四色等级（优秀-良好-一般-差）便于在公众宣传、社区听证中引发共鸣。</li>
+      </ul>
+
+      <h4>前置条件</h4>
+      <h5>制度条件</h5>
+      <ul>
+        <li>多方共投共建：EPA Region 8、CPW 与 CNHP/CSU 稳固伙伴关系。</li>
+        <li>法律与政策接口：CWA 要求报告所有水体的状况。</li>
+        <li>分类标准的共识：各方接受 NatureServe 生态系统分类和 HGM 分类。</li>
+      </ul>
+      <h5>经济条件</h5>
+      <p>公共财政主导，依赖 EPA 和州财政拨款。Level 3 评估单点综合成本远超快速评估，需稳固年度预算。</p>
+      <h5>技术条件</h5>
+      <p>复合型人员能力（植物分类、土壤形态、水文地貌、GIS）；GPS、亚米级正射影像、土壤调查工具等硬件；长期植物清查数据库、标本馆记录支撑。</p>
+      <h5>社会条件</h5>
+      <p>利益相关者认同（私有土地主对评估顾虑需以"无惩罚"第三方定位化解）；培训推广网络。</p>
+
+      <h4>潜在代价/负面影响</h4>
+      <ul>
+        <li><strong>单点评估成本高企：</strong>Level 3 评估因严格样方频率致每个评价区耗费较长工时。</li>
+        <li><strong>"挂牌"恐慌：</strong>"D 级"湿地可能在地方舆论中被曲解为"环境劣迹"。</li>
+        <li><strong>参照标准的文化敏感性：</strong>默认排除欧洲殖民后利用，可能忽略人工辅助的生态可持续性。</li>
+        <li><strong>视觉评估偏差：</strong>多指标依赖目测判断，存在观察者间误差。</li>
+        <li><strong>与市场主导生态补偿机制脱节：</strong>EIA 不能作为计算补偿额度的法定工具，应用偏向公立部门。</li>
+        <li><strong>气候变化挑战固定参考系：</strong>守着 200 年前"自然状态"作为 A 级标准，未来会逐渐显得不合理。</li>
+      </ul>
+
+      <h4>可借鉴性评估</h4>
+      <h5>适用情境</h5>
+      <ul>
+        <li>省域/流域尺度的湿地现状基础普查。</li>
+        <li>生态修复工程的绩效监测。</li>
+        <li>跨行政边界统一评价标准的大区域监测网络。</li>
+      </ul>
+      <h5>迁移难度</h5>
+      <ul>
+        <li><strong>核心移植障碍在"内容"非"逻辑"：</strong>真正壁垒是为每个湿地类型确定本土参照条件、植物名录 C 值。</li>
+        <li><strong>人才与装备依赖性：</strong>植物分类学教育薄弱地区将成为推广瓶颈。</li>
+        <li><strong>制度嫁接是关键："</strong>需将 EIA 评级与开发审批的"生态准入门槛"挂钩。</li>
+      </ul>
+
+      <a href="https://www.cnhp.colostate.edu/download/documents/2016/2016_Colorado_EIA_Field_Manual_Version_2.1.pdf" class="case-url" target="_blank">↗ 查看原始资料</a>
+    </div>
+  </article>
+
+  <!-- 案例 3: 澳洲分层产权 -->
+  <article class="case-detail">
+    <div class="case-header">
+      <div class="case-tag">Case 03 · 所属问题二 · 碎片业权整合与集体治理</div>
+      <h3>The Fragmentation of Property Interests and Vertical Real Estate</h3>
+      <div class="case-meta">
+        <span><strong>地区：</strong>澳大利亚 / 开曼群岛</span>
+        <span><strong>时间：</strong>2025 年 1 月</span>
+        <span><strong>类型：</strong>学术研究（QITP-IJRED）</span>
+      </div>
+    </div>
+    <div class="case-body">
+      <div class="case-question"><strong>对应问题：</strong>面对元朗-新田高度碎片化的私人土地权属（祖堂地、旧契农地、棕地、套丁土地）以及 811 户临时房屋与原居民丁屋权益的刚性约束，能否化解《基本法》第 40 条保障的传统权益与现代城市发展的根本冲突？</div>
+
+      <h4>背景</h4>
+      <p>21 世纪城市化迅猛发展，全球超大城市兴起垂直房地产。传统普通法财产制度根植于水平宗地观念，面对向上延伸的立体化开发，产权利益出现前所未有的碎片化。建筑物不同楼层、单元的权利归属、公共空间管理、空气权等问题，对普通法中的"占有"与"控制"概念形成系统性冲击。</p>
+
+      <h4>核心问题</h4>
+      <ul>
+        <li><strong>法律概念错位：</strong>普通法下"占有即所有"难以解释三维空间中的非接触性权利及共享部分的集体权利。</li>
+        <li><strong>治理复杂性：</strong>个人专有部分与公共共有部分界限模糊，管理权限不清。</li>
+        <li><strong>制度滞后：</strong>现行法律框架多为 20 世纪初及以前形成，未能预见高层产权细分需求。</li>
+        <li><strong>利益平衡困难：</strong>个体业主自由处置需求与集体利益之间存在持续冲突。</li>
+      </ul>
+
+      <h4>解决方案</h4>
+      <h5>具体措施</h5>
+      <ul>
+        <li><strong>改革空气权和分层产权框架：</strong>引入分层地契（strata title）制度，允许对建筑物垂直空间法律细分。</li>
+        <li><strong>建立分层法人治理结构：</strong>通过业主法人团体（owners corporations）管理共有财产，筹集管理基金和偿债基金。</li>
+        <li><strong>动态监管演进：</strong>立法和司法机构持续调整规则，明确决策程序、费用分摊、纠纷解决标准。</li>
+      </ul>
+
+      <h5>关键技术/政策工具</h5>
+      <ul>
+        <li><strong>分层产权登记系统：</strong>三维地籍（3D cadastre）技术。</li>
+        <li><strong>私人治理机制：</strong>具有法律人格的业主法人，拥有制定规则、收费、执行维护和投保权力。</li>
+        <li><strong>财务可持续工具：</strong>行政管理基金（日常运营）+ 偿债基金（sinking fund，长期维修）双基金模式。</li>
+        <li><strong>弹性法律解释：</strong>法院对"占有""控制"等传统术语做出扩展解释。</li>
+      </ul>
+
+      <h4>实施成果</h4>
+      <p>论文未提供具体定量数据。<em>正面影响：</em>减轻个体维护负担、成本分担、产权清晰化（单位独立转让、抵押）。<em>负面影响：</em>邻里摩擦增多、个人控制受限、决策过程复杂、委员会管理风险。</p>
+
+      <h4>前置条件</h4>
+      <h5>制度条件</h5>
+      <ul>
+        <li>可容纳空间细分的财产登记法律（如《分契物业法》）。</li>
+        <li>司法体系愿意对传统普通法概念做适应性解释。</li>
+        <li>业主法人的法律地位清晰界定。</li>
+        <li>财务报告、保险、信息披露的强制性要求。</li>
+      </ul>
+      <h5>经济条件</h5>
+      <p>地价高昂、土地稀缺；开发商有动力承建并销售分层单位；业主整体具备缴纳管理费及特别征费的财务能力。</p>
+      <h5>技术条件</h5>
+      <p>建筑设计与施工技术；CAD/BIM 融合的登记系统；物业管理系统具备财务核算、维修调度功能。</p>
+      <h5>社会条件</h5>
+      <p>居民接受垂直居住模式；社会资本支撑业主委员会运作；对法律规范与契约精神的认可。</p>
+
+      <h4>潜在代价/负面影响</h4>
+      <ul>
+        <li><strong>不可预见的特别征费：</strong>建筑物突发大修，业主可能面临一次性高额支出。</li>
+        <li><strong>保险漏洞：</strong>若法人团体保险不足，灾害发生将蒙受巨大损失。</li>
+        <li><strong>邻里冲突常态化：</strong>噪音、装修时段、宠物管理等摩擦难以避免。</li>
+        <li><strong>参与疲劳与代表危机：</strong>多数业主不愿参与决策，导致少数活跃成员把持权力。</li>
+        <li><strong>决策僵局：</strong>会议法定人数过高，紧急维修无法及时推动。</li>
+        <li><strong>建筑老化与资金不足：</strong>早期偿债基金贡献率可能严重低估远期更新成本。</li>
+      </ul>
+
+      <h4>可借鉴性评估</h4>
+      <h5>适用情境</h5>
+      <ul>
+        <li>高度城市化区域，土地极度稀缺、垂直开发已成主流的大城市。</li>
+        <li>正从平面向立体转型的市场。</li>
+        <li>法律改革窗口期。</li>
+      </ul>
+      <h5>迁移难度</h5>
+      <ul>
+        <li><strong>法律传统障碍：</strong>大陆法系国家无法直接套用，必须深层次本土化改造。</li>
+        <li><strong>行政与技术配套要求高：</strong>三维地籍登记需先进信息化基础。</li>
+        <li><strong>文化与社会接受度：</strong>强集体决策模式在某些强调个人自由的社会遇阻。</li>
+        <li><strong>既得利益阻力：</strong>开发商、地方土地财政可能抵制产权细分。</li>
+      </ul>
+
+      <a href="https://qitpress.com/articles/QITP-IJRED_05_01_001" class="case-url" target="_blank">↗ 查看原始资料</a>
+    </div>
+  </article>
+
+  <!-- 案例 4: 中国TDR -->
+  <article class="case-detail">
+    <div class="case-header">
+      <div class="case-tag">Case 04 · 所属问题二 · 土地发展权显性化</div>
+      <h3>Institutional Diversity in Transferring Land Development Rights in China</h3>
+      <div class="case-meta">
+        <span><strong>地区：</strong>中国（成都、南京竹镇等）</span>
+        <span><strong>时间：</strong>2008-2025</span>
+        <span><strong>类型：</strong>学术研究（Springer 专著）</span>
+      </div>
+    </div>
+    <div class="case-body">
+      <div class="case-question"><strong>对应问题：</strong>双轨程序下补地价谈判的不确定性以及"片区开发"等公私合营模式的未成熟，使得土地整合时长可能超逾 10 年，严重影响北部都会区首批居民 2034 年迁入的时序承诺。</div>
+
+      <h4>背景</h4>
+      <p>中国实行城乡二元土地公有制，快速城市化引致城市建设用地需求激增与农村建设用地闲置、耕地保护压力并存的矛盾。土地发展权转移（TDR）成为协调城乡空间重构、促进农村发展和保障粮食安全的核心政策工具。该书基于新制度经济学和比较制度分析框架，对中国 TDR 中的制度多样性进行系统解析。</p>
+
+      <h4>核心问题</h4>
+      <ul>
+        <li>如何界定和实现从农村集体土地向城市建设用地的发展权转移。</li>
+        <li>如何在保障耕地红线前提下，让农村和农民公平分享土地增值收益。</li>
+        <li>为何在统一顶层设计下，地方实践形成了多元化制度安排。</li>
+        <li>自组织架构在土地治理中的可行性、局限与风险。</li>
+      </ul>
+
+      <h4>解决方案</h4>
+      <h5>三种典型制度安排</h5>
+      <ul>
+        <li><strong>政府主导模式：</strong>"增减挂钩"政策，中央政府设定指标控制总量，地方政府通过土地整理复垦产生节余指标，行政区内或跨区交易。</li>
+        <li><strong>市场驱动模式：</strong>重庆"地票"制度、成都农村产权交易所，允许土地发展权指标在公开市场竞价流转。</li>
+        <li><strong>自组织模式：</strong>南京竹镇"两田分置"改革，村集体内部分为"口粮田"和"发展田"，民主协商自主决定土地配置。</li>
+      </ul>
+
+      <h5>关键工具</h5>
+      <ul>
+        <li><strong>土地发展权转移（TDR）机制：</strong>将复垦产生的空间发展指标抽象为可交易的"发展权"。</li>
+        <li><strong>比较制度分析框架：</strong>从治理结构、产权安排、交易成本、激励机制等维度系统评价。</li>
+        <li><strong>确权登记技术：</strong>全国农村承包地和集体建设用地确权颁证。</li>
+        <li><strong>自组织治理设计：</strong>社区民主程序、契约管理和内部监督机制。</li>
+      </ul>
+
+      <h4>实施成果</h4>
+      <h5>定量成果</h5>
+      <ul>
+        <li>农地确权颁证率约 40%（2018 年）。</li>
+        <li>全国家庭承包耕地流转面积比例达 37%。</li>
+        <li>对确权政策满意的农户占 59.63%。</li>
+        <li>南京竹镇改革后，社区人均可支配收入超过 4 万元人民币。</li>
+      </ul>
+      <h5>定性影响</h5>
+      <ul>
+        <li>证明自组织架构在土地治理中存在明显局限与风险，不宜作为单一主导模式。</li>
+        <li>揭示集中化土地治理体系中制度多样性的产生逻辑。</li>
+        <li>为全球城乡发展差距问题提供理论参考。</li>
+      </ul>
+
+      <h4>前置条件</h4>
+      <h5>制度条件</h5>
+      <ul>
+        <li>土地公有制基础（城市国有、农村集体所有）。</li>
+        <li>转型经济体制特征（计划管控与市场调节并存）。</li>
+        <li>集中化土地治理传统（用途管制制度构成刚性约束）。</li>
+      </ul>
+      <h5>经济条件</h5>
+      <p>显著的城乡收入差距驱动；地方政府对土地财政的依赖；农村金融市场不健全催生多元主体合作。</p>
+      <h5>技术条件</h5>
+      <p>GIS、遥感支撑复垦验收；农村产权交易信息化平台；确权测绘、数据库管理逐步普及。</p>
+      <h5>社会条件</h5>
+      <p>农民权益意识觉醒；劳动力外流提供流转基础；征地冲突倒逼程序正义。</p>
+
+      <h4>潜在代价/负面影响</h4>
+      <ul>
+        <li><strong>短期财政压力：</strong>政府主导模式下前期土地整理需大量财政垫支。</li>
+        <li><strong>收益分配不均：</strong>区位差异、信息不对称导致部分村集体获得的增值收益远低于开发商。</li>
+        <li><strong>征地冲突隐患：</strong>补偿标准低、程序不透明易激化干群矛盾。</li>
+        <li><strong>社区凝聚力下降：</strong>自组织模式被少数精英控制，可能瓦解集体信任。</li>
+        <li><strong>农民生计不确定性：</strong>失去土地后若就业转移滞后将面临生计风险。</li>
+        <li><strong>政策执行偏差：</strong>地方官员可能虚报复垦面积、强制农民上楼。</li>
+        <li><strong>市场波动风险：</strong>地票价格受房地产周期影响剧烈。</li>
+      </ul>
+
+      <h4>可借鉴性评估</h4>
+      <h5>适用情境</h5>
+      <ul>
+        <li>转型经济体或发展中国家，面临快速城镇化与农村衰退并存。</li>
+        <li>实行土地公有制或集体土地制度的国家/地区。</li>
+        <li>寻求通过土地增值收益共享机制促进农村发展的政策议程。</li>
+      </ul>
+      <h5>迁移难度</h5>
+      <ul>
+        <li><strong>制度背景依赖性强：</strong>无类似产权基础和计划调控传统的国家直接复制难度极大。</li>
+        <li><strong>治理能力要求高：</strong>需政府具备较强规划执行力和市场监督能力。</li>
+        <li><strong>文化和社会资本差异：</strong>自组织模式高度依赖社区信任网络。</li>
+        <li><strong>需要政策序列配套：</strong>土地确权、不动产登记、农村金融改革等需同步推进。</li>
+      </ul>
+
+      <a href="https://link.springer.com/content/pdf/10.1007/978-981-95-2302-3.pdf" class="case-url" target="_blank">↗ 查看原始资料</a>
+    </div>
+  </article>
+
+  <!-- 案例 5: 职住平衡 -->
+  <article class="case-detail">
+    <div class="case-header">
+      <div class="case-tag">Case 05 · 所属问题三 · 职住平衡政策工具包</div>
+      <h3>Jobs-Housing Balance (APA PAS Report No. 516)</h3>
+      <div class="case-meta">
+        <span><strong>地区：</strong>美国（亚特兰大、俄勒冈、匹兹堡等）</span>
+        <span><strong>时间：</strong>2003 年 11 月</span>
+        <span><strong>类型：</strong>专业机构报告（美国规划协会）</span>
+      </div>
+    </div>
+    <div class="case-body">
+      <div class="case-question"><strong>对应问题：</strong>在现状就业中心缺失（同区就业率仅 6.8%）、非技术工人占 27% 且月收入中位数仅 15,000 港元的低技能依赖型社会生态下，如何避免重蹈天水围"悲情城市"的职住失衡覆辙？</div>
+
+      <h4>背景</h4>
+      <p>美国 20 世纪后期经历了显著的城市蔓延和职住空间分离。1969-1995 年间，全美平均工作出行距离从 9.40 英里增至 11.80 英里。亚特兰大地区 1982-1999 年人均每日车辆行驶里程从 19.8 英里攀升至 35.1 英里，增幅 77%。这种趋势导致交通拥堵、空气污染、通勤成本上升。</p>
+
+      <h4>核心问题</h4>
+      <h5>四种失衡类型</h5>
+      <div class="table-wrap">
+      <table style="font-size:0.88rem">
+        <thead><tr><th>类型</th><th>失衡特征</th><th>典型区域</th></tr></thead>
+        <tbody>
+          <tr><td>类型一</td><td>就业多（低技能），住房少</td><td>郊区就业中心、边缘城市</td></tr>
+          <tr><td>类型二</td><td>就业多（高技能），高端住房少</td><td>中心城市核心区</td></tr>
+          <tr><td>类型三</td><td>就业少（低技能），住房多</td><td>老旧郊区、中心城市社区</td></tr>
+          <tr><td>类型四</td><td>就业少（高技能），高端住房多</td><td>高收入卧城社区</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <h5>项目难点</h5>
+      <ul>
+        <li>职住平衡概念定义模糊，标准（1.5:1 或 1:1）在不同研究中存在分歧。</li>
+        <li>通勤行为多因素复杂性，即使职住比平衡，仍可能因技能不匹配、双职工家庭择居而长距通勤。</li>
+        <li>市场与政府干预的张力，低端住房市场受土地价格和社区排斥性区划制约。</li>
+        <li>地理分析单元选取争议（市辖区、MPO 边界、劳动市场区、通勤圈）。</li>
+      </ul>
+
+      <h4>解决方案</h4>
+      <h5>综合规划层面</h5>
+      <ul>
+        <li>在地方综合规划（Comprehensive Plan）中正式采纳职住平衡目标。</li>
+        <li>开展现状评估，识别辖区内失衡类型。</li>
+        <li>设定量化职住比目标，分解至各次区域。</li>
+        <li>统筹住房要素与经济发展要素。</li>
+      </ul>
+      <h5>土地利用管制工具</h5>
+      <ul>
+        <li>修订区划条例，允许就业密集区增加居住兼容性或混合开发（Mixed-Use Development）。</li>
+        <li>"可负担住房叠加区"（Affordable Housing Overlay）规划。</li>
+        <li>包容性区划（Inclusionary Zoning）。</li>
+        <li>减少限制多户住宅、辅助居住单元和填充式开发的监管障碍。</li>
+      </ul>
+      <h5>DRI 审查中的职住分析</h5>
+      <ul>
+        <li>界定拟议大型开发项目的"影响区域"（Area of Influence, AOI）。</li>
+        <li>测算 AOI 内现有职住比、住房可负担性缺口及劳动力技能构成。</li>
+        <li>评估项目是否加剧或缓解失衡，并将职住平衡要求纳入审批条件。</li>
+      </ul>
+      <h5>配套交通与住房投资</h5>
+      <ul>
+        <li>优先在公共交通枢纽布局可负担住房。</li>
+        <li>改善反向通勤公共交通服务。</li>
+        <li>租金补贴、购房援助提升低收入家庭居住可及性。</li>
+      </ul>
+
+      <h5>关键政策工具</h5>
+      <ul>
+        <li><strong>职住比基准：</strong>1.5:1（区间 1.3-1.7:1）；就业-就业居民比基准 1:1（区间 0.8-1.25:1）。</li>
+        <li><strong>AOI 职住分析模型：</strong>用于 DRI 审查的影响区评估方法。</li>
+        <li><strong>雇主辅助住房计划（Employer-Assisted Housing）：</strong>鼓励企业投资员工就近居住。</li>
+        <li><strong>州/联邦可负担住房税收优惠。</strong></li>
+      </ul>
+
+      <h4>实施成果</h4>
+      <ul>
+        <li>全美工作出行单程平均距离 25.5% 增长（9.40→11.80 英里）。</li>
+        <li>亚特兰大 VMT 17 年间增长 77%。</li>
+        <li>通勤成本差异：远距离（22 英里）通勤者年成本 9,105 美元，是近距离（6 英里）的 3.5 倍以上。</li>
+        <li>政策议程提升，推动职住平衡从学术概念向地方规划实践工具的制度化转化。</li>
+        <li>ARC 和 GRTA 将职住平衡分析嵌入品质增长工具包和 DRI 审查程序。</li>
+      </ul>
+
+      <h4>前置条件</h4>
+      <h5>制度条件</h5>
+      <ul>
+        <li>地方政府须具备规划制定与土地用途管制权限。</li>
+        <li>区域协调机制必要性（如 GRTA 的 DRI 审查、ARC 的区域规划）。</li>
+        <li>大型开发审查的制度化程序。</li>
+        <li>联邦/州层面的支持框架。</li>
+      </ul>
+      <h5>经济条件</h5>
+      <p>就业与住房市场数据可获取；激励措施足够吸引开发商；公共财政可持续支持。</p>
+      <h5>技术条件</h5>
+      <p>GIS 空间分析能力；本地化标准研制；定性平衡评估工具（技能-岗位匹配）。</p>
+      <h5>社会条件</h5>
+      <p>社区对混合用途和密度提升的接受度；对可负担住房的政治共识；雇主与产业界的参与。</p>
+
+      <h4>潜在代价/负面影响</h4>
+      <ul>
+        <li><strong>可负担住房开发的财政压力：</strong>对地方财政构成负担。</li>
+        <li><strong>市场信号扭曲风险：</strong>强势行政调控可能抑制部分产业投资意愿。</li>
+        <li><strong>社区排斥与绅士化张力：</strong>低收入社区引入就业可能挤占可负担住房存量。</li>
+        <li><strong>政策受益不均：</strong>最大受益者通常是中技能劳动者，无业者可能未获改善。</li>
+        <li><strong>"平衡"的界定困难：</strong>地理尺度、指标基准等问题无普适答案。</li>
+        <li><strong>交通拥堵改善效应的不确定性：</strong>职住平衡不保证短距通勤。</li>
+        <li><strong>政治法律抵制：</strong>削弱排他性单户住宅分区可能面临业主诉讼。</li>
+      </ul>
+
+      <h4>可借鉴性评估</h4>
+      <h5>适用情境</h5>
+      <ul>
+        <li>快速城镇化且交通拥堵加剧的大都会区。</li>
+        <li>拥有区域性土地审查或规划协调机制的行政体系。</li>
+        <li>已建立住房与就业数据整合平台的地区。</li>
+        <li>面临产业转型与人口结构变化的老工业城市。</li>
+      </ul>
+      <h5>迁移难度</h5>
+      <ul>
+        <li><strong>制度层面（中等）：</strong>中国地方政府干预权强，但缺乏类似 MPO 区域协调机制。</li>
+        <li><strong>经济层面（中高等）：</strong>当前房地产市场对住宅用地价值预期高，让利困难。</li>
+        <li><strong>技术层面（中低）：</strong>GIS、调查方法在中国已较普及，新数据源（手机信令）增进动态分析潜力。</li>
+        <li><strong>社会层面（高等）：</strong>对高密度、混合用途社区的争议；公众参与机制完善需较长周期。</li>
+      </ul>
+
+      <a href="http://planning-org-uploaded-media.s3.amazonaws.com/publication/download_pdf/PAS-Report-516.pdf" class="case-url" target="_blank">↗ 查看原始资料</a>
+    </div>
+  </article>
+
+  <!-- 案例 6: 湾区就业优先 -->
+  <article class="case-detail">
+    <div class="case-header">
+      <div class="case-tag">Case 06 · 所属问题三 · 参与式规划与高道路就业</div>
+      <h3>Bay Area Jobs First Collaboratives Regional Plan (Part 2)</h3>
+      <div class="case-meta">
+        <span><strong>地区：</strong>美国加州旧金山湾区（9 县）</span>
+        <span><strong>时间：</strong>2024 年 8 月</span>
+        <span><strong>类型：</strong>外国政府官方规划文件</span>
+      </div>
+    </div>
+    <div class="case-body">
+      <div class="case-question"><strong>对应问题：</strong>高达 18.9% 的老龄人口、极度缺乏的社区设施与未来知识型就业门槛之间的人力资源错配，可能引发原住民被边缘化、新社区社会隔离及"有城无市"的次生规划危机。</div>
+
+      <h4>背景</h4>
+      <p>2021 年加州州长加文·纽森启动总规模 6 亿美元的"区域投资倡议"。旧金山湾区就业优先协作组织（BAJFC）应运而生，负责编制区域规划。该规划分两阶段：第一部分（2023.12）基线评估；第二部分（本报告）转型路线图。BAJFC 汇集劳工、企业、地方政府、教育、环境正义团体和社区组织，旨在从根本上改变传统自上而下的经济发展模式。</p>
+
+      <h4>核心问题</h4>
+      <ul>
+        <li><strong>经济不平等与低质量就业普遍：</strong>湾区中等工资岗位 1990-2021 年仅增长 22%。大量女性及 BIPOC 群体被困于"低道路"岗位。</li>
+        <li><strong>气候脆弱性：</strong>极端高温、洪水、野火频发。2022 年圣罗莎最高温度突破 115°F（46.1°C）。</li>
+        <li><strong>决策过程排斥：</strong>传统经济政策由政府和市场精英主导，直接受影响的工人和弱势社区长期被排除。</li>
+      </ul>
+
+      <h4>解决方案</h4>
+      <h5>"自下而上"参与式规划</h5>
+      <p>将"利益相关者声音"提升为与就业质量、公平、气候韧性并列的第四优先级。通过分区域代表会议、常态化办公时间、实时共享文件评论等方式，确保社区和工人直接参与目标行业筛选与投资策略制定。</p>
+
+      <h5>聚焦六大目标行业</h5>
+      <ul>
+        <li><strong>艺术与文化：</strong>提升艺术家和文创工作者的经济保障。</li>
+        <li><strong>儿童保育与早期教育：</strong>改善以有色人种女性为主体的从业者低薪现状。</li>
+        <li><strong>建筑业：</strong>依靠项目劳工协议和联合学徒制，为弱势群体创造通往高薪岗位的路径。</li>
+        <li><strong>医疗保健：</strong>应对人口老龄化护理需求，改善工作条件、提供带薪培训和职业阶梯。</li>
+        <li><strong>制造业：</strong>利用半导体振兴等联邦政策，推动先进制造业"高道路"发展。</li>
+        <li><strong>可持续环境管理：</strong>在公园养护、自然解决方案（如湿地恢复）等新兴领域创造岗位。</li>
+      </ul>
+
+      <h5>四项跨领域经济基础策略</h5>
+      <ul>
+        <li><strong>消除制度与结构性障碍：</strong>改革信贷、许可等专规，确保 BIPOC 和女性领导的企业平等受益。</li>
+        <li><strong>扶持小企业与工人合作社：</strong>推广员工持股计划（ESOP）和合作社模式。</li>
+        <li><strong>重塑政府角色：</strong>将公共采购、专项资金与高道路就业标准强制挂钩。</li>
+        <li><strong>维持协作机制：</strong>制度化 BAJFC 平台，使之成为区域经济治理的常设性力量。</li>
+      </ul>
+
+      <h5>关键政策工具</h5>
+      <ul>
+        <li><strong>高道路就业底线（High-Road Job Floor）：</strong>足以负担本地生活开销的工资、家庭医疗保险、全日制全年工作保障。</li>
+        <li><strong>财政混合杠杆：</strong>打包利用加州 6 亿美元专项基金、联邦《基础设施投资与就业法》、《通胀削减法案》拨款。</li>
+        <li><strong>标准化培训与准入：</strong>加州学徒倡议（CAI）、半导体纳米技术学徒模式（SNAP）、ESOL 培训。</li>
+        <li><strong>约束性协议：</strong>项目劳工协议（PLA）、弱势企业（DBE）目标。</li>
+      </ul>
+
+      <h4>实施成果</h4>
+      <p>本文件为规划最终草案，未进入实质实施阶段，故无定量终期绩效数据。</p>
+      <h5>定性影响</h5>
+      <ul>
+        <li><strong>治理架构创新：</strong>搭建指导委员会-研究规划与社区参与委员会-六个分区域代表的三级协商机制。</li>
+        <li><strong>社区培力：</strong>劳工组织、草根代表首次直接主导官方规划的产业与策略遴选。</li>
+        <li><strong>跨领域共识达成：</strong>跨越九县和不同利益部门签署共同文本。</li>
+      </ul>
+
+      <h4>前置条件</h4>
+      <h5>制度条件</h5>
+      <ul>
+        <li>加州立法机关通过 SB162 等法案，搭建"区域投资倡议"法律框架。</li>
+        <li>湾区已有成熟区域协调机构（MTC、ABAG）及已有战略规划（2050 湾区规划、CEDS）。</li>
+        <li>明确的协作组织章程，21 名指导委员会成员构成。</li>
+      </ul>
+      <h5>经济条件</h5>
+      <p>加州政府首期 6 亿美元催化资金；联邦层面数千亿美元基础设施与气候投资可供配套；湾区分配不均问题为强制推行生活工资创造倒逼压力。</p>
+      <h5>技术条件</h5>
+      <p>专业城市规划咨询（PolicyLink）和顶级高校（UC Berkeley 劳工中心）支持；云端协作与虚拟会议系统。</p>
+      <h5>社会条件</h5>
+      <p>高度组织化的劳工运动和活跃少数族裔社区组织；"后弗洛伊德时代"对系统性排斥的敏感氛围；为参与者提供经济补偿。</p>
+
+      <h4>潜在代价</h4>
+      <p>公开资料不涉及。本文件为规划草案，未设立独立章节系统性评估实施过程中可能的财政挤出、合规成本或产业过于集中等负面代价。</p>
+
+      <h4>可借鉴性评估</h4>
+      <h5>适用情境</h5>
+      <ul>
+        <li>意图扭转"中等收入陷阱"、破除低端就业锁定的特大都市区。</li>
+        <li>需要在气候适应与低碳转型中嵌入"公正转型"理念的地方政府或区域联盟。</li>
+        <li>试图从"精英式规划"向参与式"合作治理"跃迁的地区。</li>
+      </ul>
+      <h5>迁移难度</h5>
+      <ul>
+        <li><strong>体制适配风险：</strong>需要强力的上级政府赋权或跨行政区妥协机制。</li>
+        <li><strong>资金门槛：</strong>高度依赖大量稳定的前置公共财政投入。</li>
+        <li><strong>社会资本依赖：</strong>本案例严重依赖成熟工会网络和草根 NGO。</li>
+        <li><strong>标准本地化改造：</strong>"生活工资""高道路就业"的具体量化指标需依据当地物价重新调整。</li>
+      </ul>
+
+      <a href="https://www.allhomeca.org/wp-content/uploads/2024/11/Final-Draft-Bay-Area-Jobs-First-Collaboratives-Regional-Plan-Part-2.pdf" class="case-url" target="_blank">↗ 查看原始资料</a>
+    </div>
+  </article>
+
+</section>
+
+</main>
+
+<!-- ============================================ 结尾 ============================================ -->
+<footer class="outro">
+  <div class="outro-inner">
+    <h2>"A paradigm shift, not a project."</h2>
+    <p>
+      元朗-新田"湿地智慧城市"不只是一个科技城——它是一个生态系统成为核心竞争力、创新科技围绕生态挑战展开、社区发展以生态公平为基础的范式转移项目。
+    </p>
+    <p style="font-size:0.85rem;color:rgba(245,241,232,0.5);margin-top:1.5rem;">
+      本报告所有信息均基于提供的案例文本进行提取、归类与综合，对公开资料中未提及的细节已在文中标注"公开资料不涉及"或"资料不足，待补充"，未进行任何外部推测或自行编造补充。
+    </p>
+    <div class="outro-mark">— 报 告 完 / End of Report —</div>
+  </div>
+</footer>
+
+</body>
+</html>

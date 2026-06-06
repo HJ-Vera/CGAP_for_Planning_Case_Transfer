@@ -1,0 +1,3013 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>葵青区"适老生活与社区经济示范区"城市规划方案报告</title>
+<style>
+/* ==========================================================================
+   葵青区规划方案报告 - 样式表
+   设计方向: 编辑性学术杂志 + 城市规划专业感
+   ========================================================================== */
+
+/* ---------- 字体导入 ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ---------- 设计令牌 ---------- */
+:root {
+    /* 色彩系统 - 冷银白纸面 + 深蓝主调 + 多彩辅助色 */
+    --ink: #0f1722;
+    --ink-soft: #1f2a3a;
+    --paper: #f4f6fa;
+    --paper-warm: #eaeef5;
+    --paper-cream: #dde3ed;
+    --rule: #b5bdcb;
+    --rule-soft: #d2d8e2;
+    --muted: #5a6677;
+
+    /* 主色 - 冷调深蓝家族 */
+    --accent-blue: #1e3a5f;
+    --accent-blue-deep: #0a1929;
+    --accent-blue-night: #061325;
+    --accent-blue-mid: #3a6896;
+    --accent-blue-soft: #7ba8cf;
+
+    /* 辅助色 - 多彩点缀（用于不同语义） */
+    --accent-coral: #d4896e;       /* 暖珊瑚 - 强调、引用 */
+    --accent-coral-soft: #e8a98e;
+    --accent-terracotta: #b56b54;  /* 陶土 - 警示、风险 */
+    --accent-mustard: #c89a3d;     /* 芥末黄 - 数据、突出 */
+    --accent-jade: #4a7c8c;        /* 青灰蓝 - 案例、信息 */
+    --accent-forest: #4a7a5e;      /* 林绿 - 成果、积极 */
+    --accent-plum: #7c4a6b;        /* 梅紫 - 制度、深度 */
+
+    /* 兼容旧变量名（保持其他位置不变） */
+    --accent-rust: var(--accent-coral);
+    --accent-rust-soft: var(--accent-coral-soft);
+    --accent-ochre: var(--accent-mustard);
+
+    /* 字体 */
+    --font-display: 'Noto Serif SC', 'Cormorant Garamond', Georgia, serif;
+    --font-serif: 'Noto Serif SC', Georgia, serif;
+    --font-sans: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+    --font-latin-display: 'Cormorant Garamond', Georgia, serif;
+
+    /* 排版尺度 */
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.25rem;
+    --text-2xl: 1.5rem;
+    --text-3xl: 1.875rem;
+    --text-4xl: 2.5rem;
+    --text-5xl: 3.5rem;
+    --text-display: 5.5rem;
+}
+
+/* ---------- 重置与基础 ---------- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-serif);
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.75;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+/* 纸张纹理背景 */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    background-image:
+        radial-gradient(circle at 20% 30%, rgba(91, 140, 181, 0.025) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(30, 58, 95, 0.025) 0%, transparent 50%);
+    opacity: 1;
+}
+
+/* 噪点纹理 */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.35;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' /%3E%3CfeColorMatrix values='0 0 0 0 0.2 0 0 0 0 0.25 0 0 0 0 0.3 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- 封面区域 ---------- */
+.cover {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    overflow: hidden;
+}
+
+.cover-left {
+    padding: 4rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    background: var(--paper-warm);
+    border-right: 1px solid var(--rule);
+    overflow: hidden;
+}
+
+/* 左侧细节 - 极淡的网格底纹 */
+.cover-left::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(30, 58, 95, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30, 58, 95, 0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+}
+
+.cover-left > * {
+    position: relative;
+    z-index: 1;
+}
+
+.cover-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.cover-meta .doc-id {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.cover-meta .doc-id::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--accent-coral);
+}
+
+.cover-title-block {
+    margin: 3rem 0;
+}
+
+.cover-eyebrow {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    color: var(--accent-coral);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.cover-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--accent-blue-deep);
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+}
+
+/* 重点：title-accent 也保持宋体，仅用颜色和粗细区分 */
+.cover-title .title-accent {
+    font-family: var(--font-display);
+    color: var(--accent-coral);
+    font-style: normal;
+    font-weight: 700;
+    position: relative;
+}
+
+.cover-subtitle {
+    font-family: var(--font-serif);
+    font-size: var(--text-xl);
+    color: var(--ink-soft);
+    line-height: 1.5;
+    font-weight: 400;
+    max-width: 90%;
+}
+
+.cover-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    color: var(--muted);
+    letter-spacing: 0.1em;
+}
+
+.cover-footer .divider {
+    width: 80px;
+    height: 1px;
+    background: var(--ink);
+    margin-bottom: 0.5rem;
+}
+
+/* 封面右侧 - 深蓝色 */
+.cover-right {
+    position: relative;
+    background: var(--accent-blue-night);
+    overflow: hidden;
+    color: var(--paper);
+    padding: 4rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.cover-right::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(244, 246, 250, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(244, 246, 250, 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+}
+
+.cover-right::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 30% 40%, rgba(91, 140, 181, 0.18) 0%, transparent 55%),
+        radial-gradient(circle at 80% 75%, rgba(212, 137, 110, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.cover-graphic {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cover-graphic svg {
+    width: 100%;
+    height: auto;
+    max-width: 500px;
+}
+
+.cover-stats {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(244, 246, 250, 0.2);
+}
+
+.cover-stat .stat-value {
+    font-family: var(--font-latin-display);
+    font-size: var(--text-3xl);
+    font-weight: 600;
+    color: var(--accent-rust-soft);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.cover-stat .stat-label {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    color: rgba(244, 246, 250, 0.65);
+    letter-spacing: 0.1em;
+    line-height: 1.4;
+}
+
+/* ---------- 主导航 ---------- */
+.toc-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(244, 246, 250, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+    padding: 1rem 0;
+}
+
+.toc-bar-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.toc-brand {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-shrink: 0;
+}
+
+.toc-brand::before {
+    content: '';
+    display: block;
+    width: 8px;
+    height: 8px;
+    background: var(--accent-rust);
+    border-radius: 50%;
+}
+
+.toc-nav {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.toc-nav a {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    color: var(--ink-soft);
+    text-decoration: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 2px;
+    transition: all 0.2s ease;
+    letter-spacing: 0.05em;
+}
+
+.toc-nav a:hover {
+    background: var(--accent-blue-deep);
+    color: var(--paper);
+}
+
+/* ---------- 主容器 ---------- */
+.report {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 3rem;
+}
+
+/* ---------- 章节 ---------- */
+.section {
+    padding: 6rem 0;
+    border-bottom: 1px solid var(--rule-soft);
+    position: relative;
+}
+
+.section:last-child {
+    border-bottom: none;
+}
+
+.section-header {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 3rem;
+    margin-bottom: 4rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid var(--ink);
+    align-items: end;
+}
+
+.section-num {
+    font-family: var(--font-latin-display);
+    font-size: var(--text-5xl);
+    font-weight: 500;
+    color: var(--accent-coral);
+    line-height: 1;
+    font-style: italic;
+}
+
+/* 每个section使用不同的强调色 */
+#executive .section-num { color: var(--accent-coral); }
+#background .section-num { color: var(--accent-blue-mid); }
+#problems .section-num { color: var(--accent-terracotta); }
+#cases .section-num { color: var(--accent-jade); }
+#differences .section-num { color: var(--accent-plum); }
+#strategy .section-num { color: var(--accent-forest); }
+#risks .section-num { color: var(--accent-terracotta); }
+#outcomes .section-num { color: var(--accent-mustard); }
+#actions .section-num { color: var(--accent-coral); }
+#appendix .section-num { color: var(--accent-jade); }
+
+.section-num .num-label {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+    font-style: normal;
+}
+
+.section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 700;
+    color: var(--accent-blue-deep);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+}
+
+/* ---------- 内容栅格 ---------- */
+.content-grid {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 3rem;
+}
+
+.content-side {
+    position: sticky;
+    top: 6rem;
+    align-self: start;
+}
+
+.side-label {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    line-height: 1.6;
+    border-left: 2px solid var(--accent-rust);
+    padding-left: 1rem;
+}
+
+.content-main {
+    max-width: 800px;
+}
+
+/* ---------- 文本样式 ---------- */
+.lead {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin-bottom: 2rem;
+    font-weight: 400;
+    border-left: 3px solid var(--accent-rust);
+    padding-left: 2rem;
+}
+
+p {
+    margin-bottom: 1.5rem;
+    font-size: var(--text-base);
+    line-height: 1.85;
+    color: var(--ink);
+}
+
+p strong {
+    font-weight: 700;
+    color: var(--accent-blue-deep);
+}
+
+p em {
+    font-style: italic;
+    color: var(--accent-rust);
+}
+
+h3.subsection-title {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    color: var(--ink);
+    margin: 3rem 0 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+}
+
+h3.subsection-title .sub-num {
+    font-family: var(--font-latin-display);
+    font-style: italic;
+    color: var(--accent-rust);
+    font-size: var(--text-xl);
+    font-weight: 500;
+}
+
+h4.minor-title {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--accent-blue-deep);
+    margin: 2rem 0 1rem;
+    letter-spacing: 0.02em;
+}
+
+h4.minor-title::before {
+    content: '§ ';
+    color: var(--accent-rust);
+    font-family: var(--font-latin-display);
+}
+
+/* ---------- 执行摘要特殊样式 ---------- */
+.exec-summary {
+    background: var(--paper-cream);
+    padding: 4rem 3rem;
+    margin: 3rem 0;
+    position: relative;
+    border-top: 4px solid var(--accent-blue-deep);
+}
+
+.exec-summary::before {
+    content: 'Executive Summary';
+    position: absolute;
+    top: -0.7rem;
+    left: 2rem;
+    background: var(--paper-cream);
+    padding: 0 1rem;
+    font-family: var(--font-latin-display);
+    font-style: italic;
+    color: var(--accent-blue-deep);
+    font-size: var(--text-base);
+    letter-spacing: 0.05em;
+}
+
+.exec-summary p {
+    font-family: var(--font-serif);
+    font-size: var(--text-base);
+    line-height: 1.85;
+}
+
+/* ---------- 三大问题卡片 ---------- */
+.problems-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin: 3rem 0;
+}
+
+.problem-card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 2rem;
+    position: relative;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.problem-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--accent-blue-mid);
+    transition: height 0.3s ease;
+}
+
+.problem-card:nth-child(1)::before { background: var(--accent-coral); }
+.problem-card:nth-child(2)::before { background: var(--accent-mustard); }
+.problem-card:nth-child(3)::before { background: var(--accent-jade); }
+
+.problem-card:hover {
+    border-color: var(--accent-blue-deep);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(30, 58, 82, 0.08);
+}
+
+.problem-card:hover::before {
+    height: 5px;
+}
+
+.problem-card .problem-num {
+    font-family: var(--font-latin-display);
+    font-style: italic;
+    font-size: var(--text-3xl);
+    line-height: 1;
+    margin-bottom: 1rem;
+}
+
+.problem-card:nth-child(1) .problem-num { color: var(--accent-coral); }
+.problem-card:nth-child(2) .problem-num { color: var(--accent-mustard); }
+.problem-card:nth-child(3) .problem-num { color: var(--accent-jade); }
+
+.problem-card .problem-label {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+}
+
+.problem-card .problem-title {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: var(--accent-blue-deep);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+.problem-card .problem-desc {
+    font-size: var(--text-sm);
+    line-height: 1.7;
+    color: var(--ink-soft);
+}
+
+/* ---------- 数据指标块 ---------- */
+.data-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin: 3rem 0;
+    background: var(--accent-blue-deep);
+    color: var(--paper);
+    padding: 0;
+    position: relative;
+}
+
+.data-strip::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at top left, rgba(91, 140, 181, 0.15) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.data-strip .data-cell {
+    padding: 2rem 1.5rem;
+    border-right: 1px solid rgba(244, 246, 250, 0.12);
+    position: relative;
+    z-index: 1;
+}
+
+.data-strip .data-cell:last-child {
+    border-right: none;
+}
+
+.data-value {
+    font-family: var(--font-latin-display);
+    font-size: var(--text-4xl);
+    font-weight: 600;
+    color: var(--accent-coral-soft);
+    line-height: 1;
+    margin-bottom: 0.75rem;
+}
+
+/* 数据条带 - 四个值的颜色循环 */
+.data-strip .data-cell:nth-child(1) .data-value { color: var(--accent-coral-soft); }
+.data-strip .data-cell:nth-child(2) .data-value { color: #e4c075; } /* 金黄 */
+.data-strip .data-cell:nth-child(3) .data-value { color: #88c8b4; } /* 薄荷 */
+.data-strip .data-cell:nth-child(4) .data-value { color: var(--accent-blue-soft); }
+
+.data-value .unit {
+    font-size: var(--text-lg);
+    color: rgba(244, 246, 250, 0.6);
+    margin-left: 0.25rem;
+}
+
+.data-label {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    color: rgba(244, 246, 250, 0.72);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1.4;
+}
+
+/* ---------- 引文块 ---------- */
+.pullquote {
+    margin: 3rem 0;
+    padding: 2rem 0;
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    text-align: center;
+}
+
+.pullquote-text {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--accent-blue-deep);
+    letter-spacing: -0.01em;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.pullquote-mark {
+    display: block;
+    font-family: var(--font-latin-display);
+    font-style: italic;
+    color: var(--accent-rust);
+    font-size: var(--text-4xl);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+/* ---------- 案例卡片 ---------- */
+.case-card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    margin-bottom: 2rem;
+    overflow: hidden;
+    transition: all 0.2s ease;
+}
+
+.case-card:hover {
+    box-shadow: 0 8px 24px rgba(30, 58, 82, 0.06);
+}
+
+.case-header {
+    background: var(--paper-warm);
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.case-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.case-tag {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    background: var(--accent-blue-deep);
+    color: var(--paper);
+    border-radius: 2px;
+    font-weight: 500;
+}
+
+.case-tag.tag-coral { background: var(--accent-coral); }
+.case-tag.tag-rust { background: var(--accent-coral); }
+.case-tag.tag-jade { background: var(--accent-jade); }
+.case-tag.tag-ochre { background: var(--accent-mustard); }
+.case-tag.tag-forest { background: var(--accent-forest); }
+.case-tag.tag-plum { background: var(--accent-plum); }
+.case-tag.tag-terracotta { background: var(--accent-terracotta); }
+
+.case-location {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    color: var(--muted);
+    letter-spacing: 0.1em;
+}
+
+.case-year {
+    font-family: var(--font-latin-display);
+    font-style: italic;
+    color: var(--accent-rust);
+    font-size: var(--text-lg);
+    font-weight: 500;
+}
+
+.case-body {
+    padding: 2rem;
+}
+
+.case-title {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+}
+
+.case-title-en {
+    display: block;
+    font-family: var(--font-latin-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: var(--text-base);
+    color: var(--muted);
+    margin-top: 0.25rem;
+    letter-spacing: 0.01em;
+}
+
+.case-section {
+    margin: 1.5rem 0;
+}
+
+.case-section-label {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-rust);
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.case-section-content {
+    font-size: var(--text-sm);
+    line-height: 1.8;
+    color: var(--ink-soft);
+}
+
+/* 案例的"对葵青区启示"特别块 */
+.case-insights {
+    background: var(--paper-cream);
+    padding: 1.5rem 2rem;
+    margin-top: 1.5rem;
+    border-left: 3px solid var(--accent-rust);
+}
+
+.case-insights .case-section-label {
+    color: var(--accent-blue-deep);
+}
+
+.case-insights ul {
+    list-style: none;
+    padding: 0;
+}
+
+.case-insights ul li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    font-size: var(--text-sm);
+    line-height: 1.7;
+    color: var(--ink-soft);
+}
+
+.case-insights ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent-rust);
+    font-family: var(--font-latin-display);
+    font-weight: 600;
+}
+
+/* ---------- 列表样式 ---------- */
+.styled-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+}
+
+.styled-list li {
+    position: relative;
+    padding-left: 2.5rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--rule-soft);
+    line-height: 1.75;
+}
+
+.styled-list li:last-child {
+    border-bottom: none;
+}
+
+.styled-list li::before {
+    content: counter(list-counter, decimal-leading-zero);
+    counter-increment: list-counter;
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-family: var(--font-latin-display);
+    font-style: italic;
+    color: var(--accent-rust);
+    font-weight: 600;
+    font-size: var(--text-lg);
+}
+
+.styled-list {
+    counter-reset: list-counter;
+}
+
+.bullet-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 1.5rem;
+}
+
+.bullet-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.75;
+}
+
+.bullet-list li::before {
+    content: '◆';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--accent-rust);
+    font-size: 0.7em;
+    top: 0.6em;
+}
+
+/* ---------- 表格样式 ---------- */
+.report-table-wrap {
+    margin: 2.5rem 0;
+    overflow-x: auto;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+}
+
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+}
+
+.report-table thead {
+    background: var(--accent-blue-deep);
+    color: var(--paper);
+}
+
+.report-table thead th {
+    padding: 1rem 1.25rem;
+    text-align: left;
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-right: 1px solid rgba(244, 246, 250, 0.12);
+}
+
+.report-table thead th:last-child {
+    border-right: none;
+}
+
+.report-table tbody td {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--rule-soft);
+    border-right: 1px solid var(--rule-soft);
+    line-height: 1.7;
+    vertical-align: top;
+    color: var(--ink-soft);
+}
+
+.report-table tbody td:last-child {
+    border-right: none;
+}
+
+.report-table tbody tr:nth-child(even) {
+    background: var(--paper-warm);
+}
+
+.report-table tbody tr:hover {
+    background: var(--paper-cream);
+}
+
+.report-table tbody td strong {
+    color: var(--accent-blue-deep);
+}
+
+.report-table .check {
+    color: var(--accent-jade);
+    font-weight: 700;
+    font-size: var(--text-base);
+}
+
+.report-table .dash {
+    color: var(--rule);
+}
+
+/* ---------- 战略策略块 ---------- */
+.strategy-block {
+    background: var(--paper);
+    border-left: 4px solid var(--accent-blue-deep);
+    padding: 2rem 2.5rem;
+    margin: 2rem 0;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.strategy-block:hover {
+    background: var(--paper-warm);
+}
+
+.strategy-block.coral { border-left-color: var(--accent-coral); }
+.strategy-block.rust { border-left-color: var(--accent-terracotta); }
+.strategy-block.jade { border-left-color: var(--accent-jade); }
+.strategy-block.forest { border-left-color: var(--accent-forest); }
+.strategy-block.mustard { border-left-color: var(--accent-mustard); }
+.strategy-block.plum { border-left-color: var(--accent-plum); }
+
+.strategy-block-eyebrow {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-coral);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.strategy-block.rust .strategy-block-eyebrow { color: var(--accent-terracotta); }
+.strategy-block.jade .strategy-block-eyebrow { color: var(--accent-jade); }
+.strategy-block.forest .strategy-block-eyebrow { color: var(--accent-forest); }
+.strategy-block.mustard .strategy-block-eyebrow { color: var(--accent-mustard); }
+.strategy-block.plum .strategy-block-eyebrow { color: var(--accent-plum); }
+
+.strategy-block-title {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    color: var(--accent-blue-deep);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+.strategy-block-positioning {
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    color: var(--ink-soft);
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px dashed var(--rule);
+}
+
+/* ---------- 阶段时间轴 ---------- */
+.phases {
+    margin: 3rem 0;
+}
+
+.phase {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+}
+
+.phase:last-child {
+    border-bottom: none;
+}
+
+.phase-marker {
+    position: relative;
+}
+
+.phase-num {
+    font-family: var(--font-latin-display);
+    font-size: var(--text-5xl);
+    font-style: italic;
+    color: var(--accent-coral);
+    line-height: 1;
+    font-weight: 600;
+}
+
+.phase:nth-child(1) .phase-num { color: var(--accent-coral); }
+.phase:nth-child(2) .phase-num { color: var(--accent-mustard); }
+.phase:nth-child(3) .phase-num { color: var(--accent-forest); }
+
+.phase:nth-child(1) .phase-years { color: var(--accent-coral); }
+.phase:nth-child(2) .phase-years { color: var(--accent-mustard); }
+.phase:nth-child(3) .phase-years { color: var(--accent-forest); }
+
+.phase-label {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 0.5rem;
+}
+
+.phase-years {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    color: var(--accent-blue-deep);
+    margin-top: 0.5rem;
+    font-weight: 500;
+}
+
+.phase-title {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    color: var(--accent-blue-deep);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+/* ---------- 信息盒子 ---------- */
+.info-box {
+    background: var(--paper-warm);
+    padding: 1.5rem 2rem;
+    margin: 1.5rem 0;
+    border: 1px solid var(--rule);
+    border-left: 4px solid var(--accent-blue-mid);
+    position: relative;
+}
+
+.info-box.warning {
+    background: rgba(181, 107, 84, 0.05);
+    border-color: rgba(181, 107, 84, 0.25);
+    border-left-color: var(--accent-terracotta);
+}
+
+.info-box.info {
+    background: rgba(30, 58, 95, 0.04);
+    border-color: rgba(30, 58, 95, 0.2);
+    border-left-color: var(--accent-blue-mid);
+}
+
+.info-box.success {
+    background: rgba(74, 122, 94, 0.05);
+    border-color: rgba(74, 122, 94, 0.25);
+    border-left-color: var(--accent-forest);
+}
+
+.info-box.highlight {
+    background: rgba(200, 154, 61, 0.06);
+    border-color: rgba(200, 154, 61, 0.25);
+    border-left-color: var(--accent-mustard);
+}
+
+.info-box .info-label {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.info-box.warning .info-label {
+    color: var(--accent-terracotta);
+}
+
+.info-box.info .info-label {
+    color: var(--accent-blue-mid);
+}
+
+.info-box.success .info-label {
+    color: var(--accent-forest);
+}
+
+.info-box.highlight .info-label {
+    color: var(--accent-mustard);
+}
+
+/* ---------- 收尾 ---------- */
+.footer {
+    background: var(--accent-blue-night);
+    color: var(--paper);
+    padding: 4rem 3rem;
+    margin-top: 6rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 30%, rgba(91, 140, 181, 0.1) 0%, transparent 50%),
+        linear-gradient(rgba(244, 246, 250, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(244, 246, 250, 0.02) 1px, transparent 1px);
+    background-size: auto, 50px 50px, 50px 50px;
+    pointer-events: none;
+}
+
+.footer-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    position: relative;
+    z-index: 1;
+}
+
+.footer-text {
+    font-family: var(--font-serif);
+    font-size: var(--text-base);
+    line-height: 1.8;
+    color: rgba(244, 246, 250, 0.82);
+}
+
+.footer-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.footer-meta-item {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+}
+
+.footer-meta-label {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-rust-soft);
+    min-width: 100px;
+}
+
+.footer-meta-value {
+    font-family: var(--font-serif);
+    color: var(--paper);
+}
+
+.footer-divider {
+    grid-column: 1 / -1;
+    height: 1px;
+    background: rgba(244, 246, 250, 0.15);
+    margin: 1rem 0;
+}
+
+.footer-bottom {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(244, 246, 250, 0.5);
+}
+
+/* ---------- 附录卡片网格 ---------- */
+.appendix-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.appendix-card {
+    background: var(--paper-warm);
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--accent-blue-mid);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.appendix-card:nth-child(1) { border-top-color: var(--accent-coral); }
+.appendix-card:nth-child(2) { border-top-color: var(--accent-mustard); }
+.appendix-card:nth-child(3) { border-top-color: var(--accent-plum); }
+.appendix-card:nth-child(4) { border-top-color: var(--accent-jade); }
+.appendix-card:nth-child(5) { border-top-color: var(--accent-forest); }
+.appendix-card:nth-child(6) { border-top-color: var(--accent-terracotta); }
+
+.appendix-card:hover {
+    background: var(--paper-cream);
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(30, 58, 82, 0.06);
+}
+
+.appendix-num {
+    font-family: var(--font-latin-display);
+    font-style: italic;
+    color: var(--accent-coral);
+    font-weight: 600;
+    font-size: var(--text-sm);
+    letter-spacing: 0.1em;
+}
+
+.appendix-card:nth-child(1) .appendix-num { color: var(--accent-coral); }
+.appendix-card:nth-child(2) .appendix-num { color: var(--accent-mustard); }
+.appendix-card:nth-child(3) .appendix-num { color: var(--accent-plum); }
+.appendix-card:nth-child(4) .appendix-num { color: var(--accent-jade); }
+.appendix-card:nth-child(5) .appendix-num { color: var(--accent-forest); }
+.appendix-card:nth-child(6) .appendix-num { color: var(--accent-terracotta); }
+
+.appendix-title {
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--accent-blue-deep);
+    line-height: 1.4;
+}
+
+.appendix-info {
+    display: flex;
+    gap: 1rem;
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    color: var(--muted);
+    margin-top: 0.5rem;
+}
+
+/* ---------- 滚动指示器与渐入动画 ---------- */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* ---------- 响应式 ---------- */
+@media (max-width: 1024px) {
+    .cover {
+        grid-template-columns: 1fr;
+    }
+    .cover-left, .cover-right {
+        padding: 3rem 2rem;
+    }
+    .cover-left {
+        border-right: none;
+        border-bottom: 1px solid var(--rule);
+    }
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+    .content-side {
+        position: static;
+    }
+    .section-header {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .problems-grid {
+        grid-template-columns: 1fr;
+    }
+    .data-strip {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .data-strip .data-cell:nth-child(2) {
+        border-right: none;
+    }
+    .data-strip .data-cell:nth-child(1),
+    .data-strip .data-cell:nth-child(2) {
+        border-bottom: 1px solid rgba(244, 246, 250, 0.12);
+    }
+    .footer-inner {
+        grid-template-columns: 1fr;
+    }
+    .appendix-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .report {
+        padding: 0 1.25rem;
+    }
+    .section {
+        padding: 4rem 0;
+    }
+    .toc-bar-inner {
+        padding: 0 1.25rem;
+    }
+    .toc-nav {
+        display: none;
+    }
+    .cover-stats {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .data-strip {
+        grid-template-columns: 1fr;
+    }
+    .data-strip .data-cell {
+        border-right: none;
+        border-bottom: 1px solid rgba(244, 246, 250, 0.12);
+    }
+    .phase {
+        grid-template-columns: 1fr;
+    }
+    .exec-summary {
+        padding: 2rem 1.5rem;
+    }
+}
+
+/* ---------- 打印样式 ---------- */
+@media print {
+    body { background: white; }
+    body::before, body::after { display: none; }
+    .toc-bar { display: none; }
+    .section { page-break-inside: avoid; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ========================================================================
+     封面
+     ======================================================================== -->
+<header class="cover">
+    <div class="cover-left">
+        <div class="cover-meta">
+            <div class="doc-id">URBAN PLANNING REPORT &nbsp;·&nbsp; KWAI TSING DISTRICT</div>
+            <div>NEW TERRITORIES &nbsp;/&nbsp; HONG KONG SAR</div>
+            <div>FINAL DRAFT &nbsp;/&nbsp; 2026</div>
+        </div>
+
+        <div class="cover-title-block">
+            <div class="cover-eyebrow">城市规划方案 · 综合报告</div>
+            <h1 class="cover-title">
+                葵青区<br>
+                <span class="title-accent">适老生活</span>与<br>
+                <span class="title-accent">社区经济</span><br>
+                示范区
+            </h1>
+            <p class="cover-subtitle">
+                高建成度后工业新市镇的<br>
+                包容性更新方案与 2047 地契窗口策略
+            </p>
+        </div>
+
+        <div class="cover-footer">
+            <div class="divider"></div>
+            <div>覆盖范围 &nbsp;/&nbsp; 葵兴 · 葵联 · 葵盛东邨 · 上下大窝口等 20 个分区</div>
+            <div>研究方法 &nbsp;/&nbsp; 本地情境分析 + 6 项全球案例比较</div>
+            <div>规划时序 &nbsp;/&nbsp; 短期 1–3 年 · 中期 4–8 年 · 长期 9–15 年</div>
+        </div>
+    </div>
+
+    <div class="cover-right">
+        <div class="cover-graphic">
+            <!-- 抽象城市规划图形 -->
+            <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#e8a98e" stop-opacity="0.4"/>
+                        <stop offset="100%" stop-color="#e8a98e" stop-opacity="0"/>
+                    </radialGradient>
+                </defs>
+
+                <!-- 中心光晕 -->
+                <circle cx="250" cy="250" r="80" fill="url(#coreGlow)"/>
+
+                <!-- 同心圆基底 -->
+                <circle cx="250" cy="250" r="200" fill="none" stroke="rgba(244,246,250,0.08)" stroke-width="1"/>
+                <circle cx="250" cy="250" r="160" fill="none" stroke="rgba(244,246,250,0.12)" stroke-width="1"/>
+                <circle cx="250" cy="250" r="120" fill="none" stroke="rgba(244,246,250,0.18)" stroke-width="1"/>
+                <circle cx="250" cy="250" r="80" fill="none" stroke="rgba(244,246,250,0.28)" stroke-width="1"/>
+
+                <!-- 公屋区域 - 暖珊瑚色 -->
+                <g opacity="0.9">
+                    <rect x="80" y="100" width="60" height="80" fill="none" stroke="#e8a98e" stroke-width="1.5"/>
+                    <rect x="150" y="120" width="50" height="60" fill="none" stroke="#e8a98e" stroke-width="1.5"/>
+                    <rect x="90" y="200" width="70" height="50" fill="none" stroke="#e8a98e" stroke-width="1.5"/>
+                </g>
+
+                <!-- 工业港口区 - 青灰蓝 -->
+                <g opacity="0.85">
+                    <rect x="320" y="320" width="100" height="40" fill="none" stroke="#7ba8cf" stroke-width="1.5"/>
+                    <rect x="320" y="370" width="80" height="30" fill="none" stroke="#7ba8cf" stroke-width="1.5"/>
+                    <rect x="340" y="280" width="60" height="35" fill="none" stroke="#7ba8cf" stroke-width="1.5"/>
+                </g>
+
+                <!-- 中部GIC设施 - 芥末黄点缀 -->
+                <g opacity="0.7">
+                    <rect x="200" y="380" width="40" height="30" fill="none" stroke="#c89a3d" stroke-width="1.5"/>
+                </g>
+
+                <!-- 交通线 -->
+                <line x1="50" y1="300" x2="450" y2="200" stroke="rgba(244,246,250,0.3)" stroke-width="1" stroke-dasharray="4,4"/>
+                <line x1="100" y1="50" x2="400" y2="450" stroke="rgba(244,246,250,0.2)" stroke-width="1" stroke-dasharray="4,4"/>
+
+                <!-- 中心节点 - 暖珊瑚 -->
+                <circle cx="250" cy="250" r="6" fill="#e8a98e"/>
+                <circle cx="250" cy="250" r="14" fill="none" stroke="#e8a98e" stroke-width="1"/>
+                <circle cx="250" cy="250" r="24" fill="none" stroke="#e8a98e" stroke-width="0.5" opacity="0.6"/>
+
+                <!-- TOD节点 - 白色 -->
+                <circle cx="120" cy="150" r="4" fill="#f4f6fa"/>
+                <circle cx="380" cy="350" r="4" fill="#f4f6fa"/>
+                <circle cx="180" cy="380" r="4" fill="#f4f6fa"/>
+                <circle cx="380" cy="120" r="4" fill="#f4f6fa"/>
+
+                <!-- 标签 -->
+                <text x="250" y="285" text-anchor="middle" font-family="Cormorant Garamond" font-style="italic" fill="#e8a98e" font-size="14">TOD-R Core</text>
+                <text x="120" y="98" text-anchor="middle" font-family="Cormorant Garamond" fill="rgba(244,246,250,0.65)" font-size="10" letter-spacing="2">PUBLIC HOUSING</text>
+                <text x="380" y="425" text-anchor="middle" font-family="Cormorant Garamond" fill="rgba(244,246,250,0.65)" font-size="10" letter-spacing="2">INDUSTRIAL / PORT</text>
+                <text x="220" y="430" text-anchor="middle" font-family="Cormorant Garamond" fill="rgba(244,246,250,0.5)" font-size="9" letter-spacing="2">GIC</text>
+
+                <!-- 网格点 -->
+                <g fill="rgba(244,246,250,0.18)">
+                    <circle cx="100" cy="100" r="1.5"/>
+                    <circle cx="400" cy="100" r="1.5"/>
+                    <circle cx="100" cy="400" r="1.5"/>
+                    <circle cx="400" cy="400" r="1.5"/>
+                </g>
+            </svg>
+        </div>
+
+        <div class="cover-stats">
+            <div class="cover-stat">
+                <div class="stat-value">48.1</div>
+                <div class="stat-label">年龄中位数<br>YEARS</div>
+            </div>
+            <div class="cover-stat">
+                <div class="stat-value">22%</div>
+                <div class="stat-label">65岁以上<br>ELDERLY POP.</div>
+            </div>
+            <div class="cover-stat">
+                <div class="stat-value">31.5%</div>
+                <div class="stat-label">租金收入比<br>RENT-INCOME</div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- ========================================================================
+     导航栏
+     ======================================================================== -->
+<nav class="toc-bar">
+    <div class="toc-bar-inner">
+        <div class="toc-brand">Kwai Tsing · Plan 2047</div>
+        <div class="toc-nav">
+            <a href="#executive">摘要</a>
+            <a href="#background">背景</a>
+            <a href="#problems">核心问题</a>
+            <a href="#cases">案例</a>
+            <a href="#differences">差异分析</a>
+            <a href="#strategy">规划策略</a>
+            <a href="#risks">风险</a>
+            <a href="#outcomes">预期成果</a>
+            <a href="#actions">行动建议</a>
+            <a href="#appendix">附录</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ========================================================================
+     主体
+     ======================================================================== -->
+<div class="report">
+
+<!-- ========================================================================
+     一、执行摘要
+     ======================================================================== -->
+<section class="section" id="executive">
+    <div class="section-header">
+        <div class="section-num">
+            <span class="num-label">PART · ONE</span>
+            I
+        </div>
+        <h2 class="section-title">执行摘要</h2>
+    </div>
+
+    <div class="content-grid">
+        <aside class="content-side">
+            <div class="side-label">
+                香港第一代新市镇<br>
+                旧公屋 + 老工业港口<br>
+                高建成度 + 多重衰退
+            </div>
+        </aside>
+        <div class="content-main">
+            <p class="lead">
+                葵青区作为香港第一代新市镇的典型代表，正经历从"工业-公屋"卫星城向"老龄化-后工业"社区的深刻转型阵痛。
+            </p>
+
+            <div class="exec-summary">
+                <p>本报告针对香港葵青区葵兴、葵联、葵盛东邨及上下大窝口等 20 个分区面临的<strong>"高建成度下的多重衰退"</strong>困局，提出一套以"适老生活与社区经济示范区"为核心定位的综合性城市规划方案。区内建筑平均楼龄逾 40 年，地积比率仅 1.22，人口年龄中位数高达 48.1 岁，65 岁以上长者占 22%，住户月收入中位数仅 2.27 万港元，近六成居民居住于公营租住房屋。与此同时，工业、港口、仓储用地与高密度公屋犬牙交错，形成严重的土地用途冲突。</p>
+
+                <p>本方案透过对全球 6 个相关案例的深度分析——涵盖台湾都市更新容积奖励、墨尔本包容性区划、上海工业用地再开发、美国棕地转型、全球"原地养老"创新模式及老龄化劳动力政策等领域——提炼出可供葵青借鉴的<em>制度弹性、利益共享、社区捆绑开发及渐进式更新</em>等关键经验。</p>
+
+                <p>方案设定了三阶段实施路径（短期 1-3 年搭建框架与示范、中期 4-8 年规模化更新、长期 9-15 年系统重构），并建立完善的风险管控体系。至 <strong>2047 年地契节点</strong>的远景预期为：更新住宅单位约 15,000 个，新增本地就业岗位 3,500 个，区内就业比例升至 25%-30%，公共休憩用地面积增加 35%，租金收入比由 31.5% 降至 25% 左右。</p>
+
+                <p>这一方案的核心价值在于：在尊重既有产权与社会结构的前提下，通过精巧的制度设计实现空间正义与社区经济的协同生长，<strong>为香港乃至全球高密度老年旧区的包容性转型提供一套可复制的政策范本</strong>。</p>
+            </div>
+
+            <h4 class="minor-title">三大核心问题的系统回应</h4>
+
+            <div class="problems-grid">
+                <div class="problem-card">
+                    <div class="problem-num">01</div>
+                    <div class="problem-label">PROBLEM ONE</div>
+                    <div class="problem-title">公屋存量更新容积率博弈</div>
+                    <div class="problem-desc">通过划定"交通导向有机更新区"（TOD-R Zones），以容积率奖励换公共设施，实现公屋重建与交通优化的捆绑推进。</div>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-num">02</div>
+                    <div class="problem-label">PROBLEM TWO</div>
+                    <div class="problem-title">产权到期工业用地重整</div>
+                    <div class="problem-desc">以 2047 年地契窗口为契机，推动"就地换地"与"换地捆绑"机制，将私人工业仓储用地转型为混合社区并强制配置社区产业空间。</div>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-num">03</div>
+                    <div class="problem-label">PROBLEM THREE</div>
+                    <div class="problem-title">老龄化基层就业设施缺口</div>
+                    <div class="problem-desc">编织"全龄友好、功能复合"的社区微更新网络，将闲置工业楼宇与公屋底层空间活化为全龄生活馆，嵌入社区时间银行与微就业机会。</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========================================================================
+     二、项目背景
+     ======================================================================== -->
+<section class="section" id="background">
+    <div class="section-header">
+        <div class="section-num">
+            <span class="num-label">PART · TWO</span>
+            II
+        </div>
+        <h2 class="section-title">项目背景<br>与本地情境分析</h2>
+    </div>
+
+    <div class="content-grid">
+        <aside class="content-side">
+            <div class="side-label">
+                20 个分区 / 31.6 万人<br>
+                平均楼龄 40+ 年<br>
+                地积比率 1.22
+            </div>
+        </aside>
+        <div class="content-main">
+
+            <h3 class="subsection-title"><span class="sub-num">2.1</span>区域概况与空间特征</h3>
+
+            <p>本次研究涵盖葵青区葵兴、葵联、葵盛东邨、上大窝口、下大窝口等 20 个分区，总人口约 31.6 万（20 个分区合计），属于典型的旧工业新市镇。空间上呈现<strong>"高密度公屋与衰退型工业港口交织"</strong>的拼贴形态。</p>
+
+            <div class="data-strip">
+                <div class="data-cell">
+                    <div class="data-value">24.9<span class="unit">%</span></div>
+                    <div class="data-label">公共住宅<br>用地占比</div>
+                </div>
+                <div class="data-cell">
+                    <div class="data-value">19.6<span class="unit">%</span></div>
+                    <div class="data-label">道路交通<br>用地占比</div>
+                </div>
+                <div class="data-cell">
+                    <div class="data-value">~10<span class="unit">%</span></div>
+                    <div class="data-label">工业 / 港口 / 仓储<br>用地合计</div>
+                </div>
+                <div class="data-cell">
+                    <div class="data-value">4.1<span class="unit">%</span></div>
+                    <div class="data-label">私人住宅<br>用地占比</div>
+                </div>
+            </div>
+
+            <p><strong>用地结构失衡</strong>：公共住宅用地占比高达 24.9%，道路交通用地占 19.6%，林地占 11.4%，而工业用地占 5.5%、港口设施用地占 3.7%、仓储用地占 0.65%，合计近 10%。反观私人住宅用地仅占 4.1%，商业办公用地仅 1.9%，铁路用地更低至 0.37%，显示该区作为"卧城"的功能高度单一，且居住与生产功能严重冲突。</p>
+
+            <p><strong>建筑老化严重</strong>：区内建筑平均建成时间为 1982 年，楼龄超 40 年；建筑以中低层为主，平均高度仅 11.3 米，地积比率（Plot Ratio）平均仅 1.22，反映早期公屋社区的低密度、低效率开发特征。建筑功能以居住（平均 15 栋）和工业（平均 16 栋）为双核心，商业与办公极少，进一步印证产业与社区隔离的现实。</p>
+
+            <p><strong>地形与生态约束</strong>：区域多为山麓与填海交界地带，休闲用地占 7.7% 与林地占 11.4% 表明存在一定生态基底，但也限制了土地大规模拓展的可能。道路是区内主导骨架，而轨道交通支撑严重不足，这是居民高度依赖巴士和货车交通的根源。</p>
+
+            <h3 class="subsection-title"><span class="sub-num">2.2</span>人口与社会经济特征</h3>
+
+            <p>葵青区面临严峻的<em>"双重老化"挑战</em>——人口结构老龄化与建筑物理老化同步发生，加剧衰退螺旋。</p>
+
+            <h4 class="minor-title">人口结构深度老龄化</h4>
+            <p>性别比为 876（女性远多于男性），年龄中位数高达 48.1 岁，65 岁以上人口占 22%，已远超全港平均水平。近四成居民生于内地、澳门或台湾，华人占绝大比例。这一结构意味着抚养压力巨大，医疗照护需求旺盛，但劳动人口萎缩。</p>
+
+            <h4 class="minor-title">教育水平与劳动力素质偏低</h4>
+            <p>大学以上学历仅占 13%，能书写英文者不足六成，反映居民整体教育水平偏低，在知识经济时代就业竞争力弱。劳动参与率 56.1%，其中女性参与率仅 49.6%，远低于男性，显示大量女性因照护家庭而退出或无法进入劳动市场。</p>
+
+            <h4 class="minor-title">低收入的基层社区特征</h4>
+            <p>住户月收入中位数为 22,727 港元，个人收入中位数 16,003 港元，明显低于全港平均水平。工作人口以非技术工人（1,419 人）、服务销售人员（1,673 人）和辅助专业人员（1,260 人）为主，经理及专业人员比重微小，呈现典型的基层社区就业结构。近九成住户居住在公营租住房屋，私人住宅住户仅占 22%，自置无按揭物业比例极低，反映居民经济阶层高度单一，社会流动空间极为有限。</p>
+
+            <h4 class="minor-title">居住条件逼仄且负担沉重</h4>
+            <p>家庭住户居住面积中位数仅 36.75 平方米，租金与收入比高达 <strong>31.5%</strong>，远超国际公认的负担标准（≤30%），属于严重住房压力群体。就业地点高度依赖跨区（九龙和新界新市镇）或无固定工作地点，同区就业比例极低，每日长距离通勤进一步侵蚀生活品质与可支配收入。</p>
+
+            <h3 class="subsection-title"><span class="sub-num">2.3</span>土地权属与制度困境</h3>
+
+            <p>本区是香港土地制度多重矛盾的微观缩影，政府调配权与私人契约权的博弈构成更新的核心瓶颈。</p>
+
+            <p><strong>公屋用地的政府调控力</strong>：区内大量公共住宅用地和"政府、机构及社区"用地（GIC，占 7.5%）权属清晰，是政府可直接调动的资源。近期 OZP 图则修订显示，政府将部分休憩/社区用地改划为公营房屋，体现了以公屋供应为核心的政策优先序，但这一方式以牺牲社区设施为代价，长远难以持续。</p>
+
+            <p><strong>工业仓储用地的私人契约刚性强</strong>：占相当比重的工业、仓储（0.65%）和港口设施用地（3.7%）多为私人业权，尤其葵青货柜码头约 279 公顷土地面临 2047 年土地契约到期的历史性节点。根据"集体官契"背景和《收回土地条例》，政府欲收回此类用地需与分散的业权人进行漫长协商或启动强征程序，涉及复杂的补地价、换地及补偿安置谈判，不确定性极高。</p>
+
+            <div class="info-box info">
+                <div class="info-label">制度断层 · Institutional Cleavage</div>
+                <p style="margin-bottom:0; font-size: var(--text-sm);">这就形成了"更新快慢双轨"——政府主导的公屋扩建可以快速通过 OZP 改划强行推进，却牺牲社区设施；而占主体的工业港口用地重整则深陷于《收回土地条例》、2047 年地契谈判和补地价制度的漫长程序中，效率极其低下。</p>
+            </div>
+
+            <h3 class="subsection-title"><span class="sub-num">2.4</span>上位规划与政策背景</h3>
+
+            <p>《香港 2030+：跨越 2030 年的规划远景与策略》提出空间再平衡，目标将新界人口比例由 41% 提升至 55%，都会区则由 59% 降至 45%。这一宏观策略意味着葵青等旧都会边缘区需承载功能疏解与更新压力。面对最少 1,200 公顷的土地缺口，政府力推北部都会区及交椅洲填海，但短期内难以惠及本区。</p>
+
+            <p>北部都会区战略（2021 年）以"产业带动，基建先行"为主轴，规划新田科技城、港深创科园等创科核心，与葵青区的"低技能-公屋-旧工业"面貌形成巨大断层。这表明宏观政策的关注焦点已转向新界北的增量开发，忽视了对旧都会区的存量更新投入。2023-2024 年施政报告强调公营房屋供应提速，并试行"片区开发"等新模式，但对建成度极高的葵青区而言，存量挖潜与工业用地转型仍是主要方向，须依靠自身制度创新谋求出路。</p>
+
+            <h3 class="subsection-title"><span class="sub-num">2.5</span>情境总结 · 高建成度下的多重衰退</h3>
+
+            <div class="pullquote">
+                <span class="pullquote-mark">"</span>
+                <div class="pullquote-text">
+                    葵青区的核心矛盾是在空间、人口、制度三个层面<br>
+                    同步发生衰退的<em style="font-style:italic;color:var(--accent-rust)">叠加效应</em>。
+                </div>
+            </div>
+
+            <h4 class="minor-title">空间锁定</h4>
+            <p>超低容积率的旧公屋、零碎的旧工业厂房与受法律保护的港口私人契约地犬牙交错，形成"空间锁定"效应，使得任何大规模更新均举步维艰。即使公屋重建具有技术可行性，但原居民安置的庞大诉求与社区网络的深厚根基使得"推倒重来"几无可能。</p>
+
+            <h4 class="minor-title">人口断层</h4>
+            <p>极速老龄化与低教育水平的劳动力高度集中，与北部都会区所畅想的"国际创科新城"蓝图形成巨大断层，导致严重的职住错位和社会阶层固化。居民无力也没有意愿融入知识经济，而传统港口物流岗位正在萎缩，面临结构性失业危机。</p>
+
+            <h4 class="minor-title">制度割裂</h4>
+            <p>公屋用地的政府调配权与私人工业/港口用地的强契约权利并存，导致"更新快慢双轨"，无法形成统一的片区更新节奏。这一制度摩擦极大抬升了交易成本，使大多数工业用地转型项目在漫长的补地价谈判中停留在纸面。</p>
+
+            <p>未来的规划策略必须放弃<em>"大拆大建"</em>的幻想，转向精细化的有机更新和多规合一的综合治理。其战略方向不是成为第二个中环或科技园，而是应定位为都会区边缘的<strong>"适老生活与社区经济示范区"</strong>。关键在于，要利用 2047 年地契到期的历史窗口，将私人工业用地重整与公屋社区重建联动，通过创新的制度设计，在释放土地潜力的同时，强制捆绑建设适老公屋、基层医疗综合体和小型社区产业空间。</p>
+
+        </div>
+    </div>
+</section>
+
+<!-- ========================================================================
+     三、核心问题识别
+     ======================================================================== -->
+<section class="section" id="problems">
+    <div class="section-header">
+        <div class="section-num">
+            <span class="num-label">PART · THREE</span>
+            III
+        </div>
+        <h2 class="section-title">核心问题识别</h2>
+    </div>
+
+    <div class="content-grid">
+        <aside class="content-side">
+            <div class="side-label">
+                问题相互交织<br>
+                共同构成"多重衰退"<br>
+                关键病征
+            </div>
+        </aside>
+        <div class="content-main">
+            <p class="lead">
+                基于深入的情景分析，本方案识别出三个相互交织的核心规划问题。这三个问题并非孤立存在，而是共同构成葵青区"多重衰退"的关键病征。
+            </p>
+
+            <h3 class="subsection-title"><span class="sub-num">3.1</span>公屋存量更新容积率博弈</h3>
+
+            <div class="info-box">
+                <div class="info-label" style="color: var(--accent-blue-deep);">问题描述 · Issue Statement</div>
+                <p style="margin-bottom: 0; font-size: var(--text-sm);">本区建筑平均楼龄超 40 年，地积比率极低（1.22），土地价值严重折损，但现状居住人口密度已较高。上位规划要求大幅提升公屋供应，但极高建成度下，只能依靠 OZP 改划碎片化的政府休憩用地，以牺牲社区设施为代价。</p>
+            </div>
+
+            <p>核心矛盾在于：大规模重建虽有提升容积率、改善居住条件的潜力，但面临原住居民的安置巨大阻力（人口老龄化、收入低下且拥有正式租住权）；零散的扩建则陷入与社区必要公共空间争地的困境，不可持续。</p>
+
+            <h4 class="minor-title">制度根源</h4>
+            <p>公屋产权完全归政府所有，使得政府有技术能力通过 OZP 修订快速改划用地，但这种"快速解决"模式本质上是牺牲既有社区设施换取新增房屋单位，在老龄化、低收入的社区中直接导致生活品质下降。同时，公屋居民虽非私有产权人，但拥有正式的租住权（Tenure），且已形成深厚的社会网络和社区认同感，一旦因重建而被迫搬迁，这些非正式的社会资本将全部流失，居民抵制情有可原。这就形成了一种<em>"谁都无法承受整体重建代价"</em>的僵局。</p>
+
+            <h3 class="subsection-title"><span class="sub-num">3.2</span>产权到期工业用地重整</h3>
+
+            <div class="info-box">
+                <div class="info-label" style="color: var(--accent-blue-deep);">问题描述 · Issue Statement</div>
+                <p style="margin-bottom: 0; font-size: var(--text-sm);">工业、仓储、港口设施用地共占近 10%，经济活力持续下滑，与高密度居住区紧邻的冲突日益尖锐（噪音、粉尘、货车交通）。2047 年地契大限是土地重整的历史窗口，但业主、运营商基于现有利益与政府就补地价、换地条件的博弈极为激烈。</p>
+            </div>
+
+            <p>市场力量倾向于将土地转为高价值住宅或商业，但规划上需保留必要的产业空间以支撑基层就业（本区大量非技术和服务工人），避免彻底的"卧城化"。</p>
+
+            <h4 class="minor-title">制度根源</h4>
+            <p>香港土地批租制度下，私人业权人持有长期可续的土地使用权，具有强烈的资产增值预期。现有《收回土地条例》虽然赋予政府强制收地权力，但程序漫长、补偿争议大，且涉及复杂的补地价评估。此外，葵青工业地块多为"旧契地"，其原始用途记载属描述性而非规定性（1983 年 Melhado 案判决），这一历史判例虽在农地上催生了棕地问题，但在工业地块上反而赋予业主较大的用途弹性预期，使得"囤地待涨"具有了某种合法性。要打破这种博弈僵局，必须创造出比"纯市场交易"或"纯政府强制"更优的制度诱因。</p>
+
+            <h3 class="subsection-title"><span class="sub-num">3.3</span>老龄化基层就业设施缺口</h3>
+
+            <div class="info-box">
+                <div class="info-label" style="color: var(--accent-blue-deep);">问题描述 · Issue Statement</div>
+                <p style="margin-bottom: 0; font-size: var(--text-sm);">本区人口年龄中位数高达 48.1 岁，22% 为 65 岁以上长者，是典型的老龄化社区。然而，社区服务、医疗等 GIC 设施用地（仅 7.5%）普遍不足，且多数建筑因建成年代早，缺乏无障碍设计。</p>
+            </div>
+
+            <p>经济结构上，区内就业岗位严重不足，大量中低技能人口依赖物流、建造等体力劳动行业，随工业外迁及身体老化，将面临大范围的结构性失业与贫困固化。未来的城市更新若不能将<strong>"创造适老就业"</strong>与<strong>"增建医养设施"</strong>作为战略核心，单纯的物质空间改造只会进一步侵蚀脆弱的社会安全网。</p>
+
+            <h4 class="minor-title">特殊紧迫性</h4>
+            <p>本问题与前两个问题高度相关。公屋重建若不配套社区设施，新建高楼只解决"住"的问题，却无法为高龄居民提供"养"和"用"的空间；工业用地转型若只追求地价回报，则会进一步剥夺基层就业机会，使原有劳动人口被迫更远距离通勤或退出就业市场。因此，社区设施与就业空间必须在公屋重建和工业转型两大进程中作为<em>"强制性捆绑条件"</em>，而非可有可无的公益点缀。</p>
+
+        </div>
+    </div>
+</section>
+
+<!-- ========================================================================
+     四、全球案例研究
+     ======================================================================== -->
+<section class="section" id="cases">
+    <div class="section-header">
+        <div class="section-num">
+            <span class="num-label">PART · FOUR</span>
+            IV
+        </div>
+        <h2 class="section-title">全球案例研究</h2>
+    </div>
+
+    <div class="content-grid">
+        <aside class="content-side">
+            <div class="side-label">
+                6 个全球案例<br>
+                3 大问题领域<br>
+                可借鉴 + 须本地化
+            </div>
+        </aside>
+        <div class="content-main">
+            <p class="lead">
+                本部分对 6 个全球案例进行详细分析，归纳其与葵青区三大核心问题的关联及可供借鉴的关键要素。
+            </p>
+
+            <!-- ========== 4.1 公屋更新 ========== -->
+            <h3 class="subsection-title"><span class="sub-num">4.1</span>公屋存量更新容积率博弈</h3>
+
+            <!-- 案例一：台湾 -->
+            <div class="case-card">
+                <div class="case-header">
+                    <div class="case-meta">
+                        <span class="case-tag tag-coral">案例 01</span>
+                        <span class="case-tag tag-rust">问题 1</span>
+                        <span class="case-location">台湾 / 台北</span>
+                    </div>
+                    <div class="case-year">2024 – 2026</div>
+                </div>
+                <div class="case-body">
+                    <div class="case-title">
+                        台湾地区都市更新容积率奖励与危老重建条例修订
+                        <span class="case-title-en">Floor Area Ratio Incentives Reform — Lee and Li</span>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-label">背景 · Background</div>
+                        <div class="case-section-content">
+                            台湾面临建筑老化与地震安全双重威胁，但过去容积奖励仅适用于实施容积管制前"已完工"的合法建筑，大量拥有旧建照但在管制后才竣工的建筑物被排除在外，严重抑制所有权人参与重建意愿。同时小型基地出现"瘦长屋"（极小基地超高化）及商业冒充住宅以套取容积奖励等乱象。
+                        </div>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-label">解决方案 · Mechanism</div>
+                        <ol class="styled-list">
+                            <li><strong>立法扩大容积奖励适用主体</strong>：2024 年《都市更新条例》第 65 条修正，将适用对象从"管制前已完工"放宽为"管制前已取得建照"，覆盖全台约 8,216 栋六层以上合法建筑（约 27 万户）。</li>
+                            <li><strong>阶梯式容积奖励与用途管制</strong>：重建面积 500㎡ 以上且捐助社会住宅或福利设施者，额外给予基准容积最高 15% 的奖励；增订重建后建物至少 1/2 以上作为住宅使用。</li>
+                            <li><strong>旧宅延长寿命机制</strong>：对尚无立即重建需求的过旧建物，提供修缮补助与租税减免（地价税、房屋税减征 50%）。</li>
+                        </ol>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-label">实施成果 · Outcome</div>
+                        <div class="case-section-content">
+                            台北市都更申请量从 2023 年前的 120-190 件/年跳增至 2024 年的 274 件。截至 2026 年 1 月底，台北市政府核准之危老重建计划已达 1,057 件。住宅比例下限及小型基地奖励调降正在纠正过去畸形开发现象。
+                        </div>
+                    </div>
+
+                    <div class="case-insights">
+                        <div class="case-section-label">对葵青区的启示 · Implications for Kwai Tsing</div>
+                        <ul>
+                            <li><strong>容积奖励必须与公共目的严格绑定</strong>——可要求新增楼面的一定比例用于社区养老服务、交通接驳设施或社区产业空间。</li>
+                            <li><strong>分规模层级的奖励结构</strong>——按基地面积设定不同奖励倍数，防止碎片化小地块出现畸形开发。</li>
+                            <li><strong>旧楼延长寿命模式</strong>——对短期内无法启动重建的旧公屋，提供外墙修复、无障碍改造等补助，作为过渡性措施。</li>
+                        </ul>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-label">迁移须克服的差异 · Adaptation Challenges</div>
+                        <ul class="bullet-list">
+                            <li><strong>产权主体差异</strong>：台湾以私有产权为前提；葵青公屋产权属政府，必须通过房委会、地政总署多层程序。</li>
+                            <li><strong>市场基础差异</strong>：葵青楼价预期偏弱，同等奖励可能仍不足以吸引私人资本，需要政府以"最低收益担保"或直接注资参与。</li>
+                            <li><strong>法律接口缺失</strong>：香港目前未有针对公屋重建的容积率奖励专项条例，需修订《城市规划条例》或订立特殊的规划图则注释。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 案例二：墨尔本 -->
+            <div class="case-card">
+                <div class="case-header">
+                    <div class="case-meta">
+                        <span class="case-tag tag-ochre">案例 02</span>
+                        <span class="case-tag tag-rust">问题 1</span>
+                        <span class="case-tag tag-jade">问题 3</span>
+                        <span class="case-location">澳大利亚 / 墨尔本</span>
+                    </div>
+                    <div class="case-year">2019</div>
+                </div>
+                <div class="case-body">
+                    <div class="case-title">
+                        墨尔本经济适用房容量与需求分析
+                        <span class="case-title-en">Housing Capacity and Needs Analysis, City of Melbourne</span>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-label">背景 · Background</div>
+                        <div class="case-section-content">
+                            墨尔本面临长期经济适用房和社会住房供应短缺。2018 年街头露宿者 279 人，无家可归者 1,725 人，维多利亚州公共住房等待名单高达 8.2 万人。核心矛盾在于"目标空悬但缺乏实施工具"。
+                        </div>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-label">解决方案 · Mechanism</div>
+                        <ol class="styled-list">
+                            <li><strong>量化需求与容量作为决策基础</strong>：构建"自下而上"的需求测算方法，精确测算到 2036 年全市经济适用房需求缺口为 16,878–29,670 套。</li>
+                            <li><strong>从自愿走向强制的工具演进</strong>：对一定规模以上的私人开发项目强制配建 10%-20% 的经济适用房。成本效益分析证明，最高 10% 的强制配建比例不会冲击住房供应总量，且净社会效益成本比高达 3:1。</li>
+                            <li><strong>公共土地转换示范</strong>：市政府承诺将自有土地再开发中不低于 15% 的住宅单元作为经济适用房。</li>
+                        </ol>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-label">实施成果 · Outcome</div>
+                        <div class="case-section-content">
+                            截至 2019 年统计，全市在各类机制下已交付、获批或在审的经济适用房合计仅 229 套，远不及 1,721 套目标，暴露碎片化实践的局限性。但报告本身凝聚了"经济适用房是城市关键基础设施"的政治共识，推动了 2018 年《规划与环境法》修正案，为全市实施强制配建扫除了法律障碍。
+                        </div>
+                    </div>
+
+                    <div class="case-insights">
+                        <div class="case-section-label">对葵青区的启示 · Implications for Kwai Tsing</div>
+                        <ul>
+                            <li><strong>"证据先行"的政策方法</strong>——葵青区应完成全区的住房需求细分分析和工业用地转型潜力容量模拟，为后续规划决策提供客观数据支撑。</li>
+                            <li><strong>强制配建的经济可行性论证</strong>——10% 配建比例不会损害市场供应，对葵青设计工业转型地块的公私混合模式具有参考价值。</li>
+                            <li><strong>公共土地的先导角色</strong>——优先在政府可完全控制的公屋用地或 GIC 用地上试验捆绑更新模式。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== 4.2 工业用地重整 ========== -->
+            <h3 class="subsection-title"><span class="sub-num">4.2</span>产权到期工业用地重整</h3>
+
+            <!-- 案例三：上海 -->
+            <div class="case-card">
+                <div class="case-header">
+                    <div class="case-meta">
+                        <span class="case-tag tag-plum">案例 03</span>
+                        <span class="case-tag tag-rust">问题 2</span>
+                        <span class="case-location">中国 / 上海</span>
+                    </div>
+                    <div class="case-year">1990s – 2018</div>
+                </div>
+                <div class="case-body">
+                    <div class="case-title">
+                        上海工业用地再开发中的模糊产权与弹性利用
+                        <span class="case-title-en">Ambiguous Property Rights as a Double-Edged Sword</span>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-label">背景 · Background</div>
+                        <div class="case-section-content">
+                            中国从计划经济向市场经济转型过程中，城市工业用地在法律上归国家所有，但在实际操作中，土地的实际控制权长期掌握在国有企业（SOEs）手中，形成"法定国有产权与国企事实控制权"之间的错位。上海第十钢铁厂（占地 215,000㎡）的变迁是这一机制的典型样本。
+                        </div>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-label">解决方案 · Mechanism</div>
+                        <ol class="styled-list">
+                            <li><strong>三阶段弹性路径</strong>：2005 年以前——划拨土地、国企持有控制权、厂房闲置；2005-2014 年——通过非正式协议适应性再利用为公共文化空间；2014-2018 年——引入私人开发商转变为高端商业综合体。</li>
+                            <li><strong>主动维持制度模糊性</strong>：地方政府在不对产权进行彻底界定的前提下，允许事实上的土地用途和收益权再分配，用"事实性土地用途变更"绕过正式产权转让的高昂成本。</li>
+                        </ol>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-label">实施成果 · Outcome</div>
+                        <div class="case-section-content">
+                            成功将废弃钢铁厂从完全闲置转变为首期文化地标、终期高端商办综合体，创造了显著的土地租金收益。但代价同样沉重——原有的 6 个原始车间中仅 1 座得到保留，工业遗产被系统性压缩，公共利益与文化功能成为商业开发的过渡跳板。
+                        </div>
+                    </div>
+
+                    <div class="case-insights">
+                        <div class="case-section-label">对葵青区的启示 · Implications for Kwai Tsing</div>
+                        <ul>
+                            <li><strong>制度弹性的极限运用</strong>——可学习"过渡用途许可"模式，允许在工业地块尚未完成正式转型程序前，以临时规划许可的方式先行投入社区康乐、长者设施、共享工作室等低资本用途。</li>
+                            <li><strong>多主体协商的利益分配平台</strong>——由跨部门专责组搭建正式的"利益相关方协商平台"，将分散的业权人、房委会、社福机构、居民代表纳入其中。</li>
+                        </ul>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-label">迁移须克服的差异 · Adaptation Challenges</div>
+                        <ul class="bullet-list">
+                            <li><strong>产权清晰度的根本差异</strong>：香港私有产权高度清晰且受普通法严格保护，无法"主动制造模糊"。借鉴重点应落在"过渡期弹性使用"和"非标准化利益协商"这两个可分离的方法论。</li>
+                            <li><strong>政府主导力差异</strong>：香港每一步都需经过规划许可申请或图则修订程序，政府裁量空间受法律严格约束——这既是劣势也是优势。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 案例四：美国 -->
+            <div class="case-card">
+                <div class="case-header">
+                    <div class="case-meta">
+                        <span class="case-tag tag-jade">案例 04</span>
+                        <span class="case-tag tag-rust">问题 2</span>
+                        <span class="case-location">美国 / 费城 · 巴尔的摩</span>
+                    </div>
+                    <div class="case-year">2010s –</div>
+                </div>
+                <div class="case-body">
+                    <div class="case-title">
+                        美国工业地产转型再开发的多层金融与社区协议模式
+                        <span class="case-title-en">Transformational Redevelopment of Industrial Properties</span>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-label">背景 · Background</div>
+                        <div class="case-section-content">
+                            美国传统工业城市（费城、巴尔的摩、新奥尔良、伯利恒等）遗留了大量功能性陈旧的工业设施与棕地，面临严重环境污染、基础设施老化、社区经济衰退等困境。项目规模通常达百余英亩，需数十亿美元投资，且遭遇产权碎片化、环境修复风险高、政府授权不确定、资金组合复杂及社区抵制强烈等多重障碍。
+                        </div>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-label">解决方案 · Mechanism</div>
+                        <ol class="styled-list">
+                            <li><strong>资本层（Capital Stack）的多元金融工具组合</strong>：综合运用税收增量融资（TIF）、合格机会区（QOZ）激励、新市场税收抵免、联邦与州历史税收抵免、商业地产评估清洁能源（C-PACE）融资、免税与应税债券等，形成多层融资架构。巴尔的摩半岛项目成功发行了当时该市史上最大 TIF（6.6 亿美元）。</li>
+                            <li><strong>社区利益协议（CBA）的制度化</strong>：通过具有法律约束力的协议，将可负担住房配建、本地居民就业配额、MBE/WBE 参与比例、社区投资基金等条款列为项目前置条件。</li>
+                            <li><strong>公共土地转让与土地拼合</strong>：通过协商收购、公共土地转让、行使征用权乃至法拍和破产程序重组零散地块。</li>
+                        </ol>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-label">实施成果 · Outcome</div>
+                        <div class="case-section-content">
+                            四个标志性项目均成功将严重工业污染地块转化为区域经济增长引擎。费城 Bellwether District 将 1,300 英亩废弃炼油厂转变为东海岸最大可持续物流及生命科学园区，自启动以来已移除 99% 遗留石油产品，使费城整体碳排放下降约 16%。
+                        </div>
+                    </div>
+
+                    <div class="case-insights">
+                        <div class="case-section-label">对葵青区的启示 · Implications for Kwai Tsing</div>
+                        <ul>
+                            <li><strong>CBA 的强制捆绑思想</strong>——将本地就业配额、可负担长者居屋比例、社区产业空间配建、原区安置率等社会目标，通过规划许可附加条件、地契修订承诺书，甚至设立专项监察基金，使其具备类似 CBA 的硬约束效力。</li>
+                            <li><strong>多元公共金融工具的本地化启发</strong>——存在可与之功能对等的制度萌芽，如"大规模土地处置"模式、"分期缴付补地价"、"政府以基建出资冲抵地价"等创新。</li>
+                            <li><strong>环境修复责任的清晰界定</strong>——须进行系统性污染基线调查，将修复成本纳入项目总成本并通过地契条款或规划许可明确责任主体。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== 4.3 老龄化设施 ========== -->
+            <h3 class="subsection-title"><span class="sub-num">4.3</span>老龄化基层就业设施缺口</h3>
+
+            <!-- 案例五：原地养老 -->
+            <div class="case-card">
+                <div class="case-header">
+                    <div class="case-meta">
+                        <span class="case-tag tag-forest">案例 05</span>
+                        <span class="case-tag tag-jade">问题 3</span>
+                        <span class="case-location">美国 · 日本 · 英国</span>
+                    </div>
+                    <div class="case-year">2017 – 2020</div>
+                </div>
+                <div class="case-body">
+                    <div class="case-title">
+                        全球"原地养老"创新模式——社区生活实验室与代际共融
+                        <span class="case-title-en">Innovative Models of Aging in Place</span>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-label">背景 · Background</div>
+                        <div class="case-section-content">
+                            全球人口老龄化加深，多数老年人希望"原地养老"而非迁入专门机构。然而，存量住房的适老性严重不足，传统机构化照护成本高昂且与老人意愿相抵触，社会隔离与孤独问题突出。
+                        </div>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-label">解决方案 · Mechanism</div>
+                        <ol class="styled-list">
+                            <li><strong>社区嵌入式"生活实验室"</strong>：在真实居住环境中搭建创新孵化与测试平台，将老年人、护工、家庭成员、社区管理者、企业技术团队及研究人员整合进同一物理-社会空间。</li>
+                            <li><strong>社会创新与互助网络</strong>：时间银行（鼓励低龄老人通过时间储蓄方式为高龄老人提供陪伴、代购、小修小补等服务）+ 循环经济模式（适老化辅具、翻新家具、二手照护设备在社区内的共享与再利用）。</li>
+                            <li><strong>多代混合社区与在地互助网络</strong>：日本 UR 都市再生机构模式 + 美国 NORCs 与 Villages 网络。</li>
+                        </ol>
+                    </div>
+
+                    <div class="case-insights">
+                        <div class="case-section-label">对葵青区的启示 · Implications for Kwai Tsing</div>
+                        <ul>
+                            <li><strong>"生活实验室"思路的极度简化移植</strong>——采用"小型、可逆、短周期试错"的社区微更新方法。例如：选择一个公屋空置底层空间，先以极低成本布置成简易的社区客厅，开放试用三个月后再进行永久改造。</li>
+                            <li><strong>时间银行与社区守望站的结合</strong>——在每个公屋屋邨设立一所实体"社区守望站"，激活区内大量已退休或半退休、但仍具劳动能力的长者参与陪诊、陪聊、社区巡逻等轻体力服务。</li>
+                            <li><strong>多代共居与 NORCs 理念的公屋版</strong>——参照日本 UR 机构做法，定点配置 30% 以上的"多代共居住宅"，长者单位与年青家庭单位交错布局。</li>
+                        </ul>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-label">迁移须克服的差异 · Adaptation Challenges</div>
+                        <ul class="bullet-list">
+                            <li><strong>数字鸿沟严重</strong>：本地长者多数为基层劳工出身，数字素养较低，所有智慧养老设备必须保留人工求助按钮和上门服务选项。</li>
+                            <li><strong>社会资本薄弱</strong>：需要由专业的社工团队长时间陪伴和赋能，才能逐步建立信任并激发参与意愿。</li>
+                            <li><strong>缺乏灵活拨款渠道</strong>：需设立专门的"社区活化基金"，并放宽拨款的审计和使用限制。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 案例六：老龄化劳动力 -->
+            <div class="case-card">
+                <div class="case-header">
+                    <div class="case-meta">
+                        <span class="case-tag tag-terracotta">案例 06</span>
+                        <span class="case-tag tag-jade">问题 3</span>
+                        <span class="case-location">全球 / 怡保 / 纽约</span>
+                    </div>
+                    <div class="case-year">2013 · 2021–2022</div>
+                </div>
+                <div class="case-body">
+                    <div class="case-title">
+                        全球化老龄化劳动力与年龄友好城市政策
+                        <span class="case-title-en">An Aging Workforce: Opportunities and Obstacles</span>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-label">背景 · Background</div>
+                        <div class="case-section-content">
+                            全球 60 岁以上人口预计从 2012 年 8.1 亿增至 2050 年 20 亿。年龄歧视普遍存在，年长失业者待业时间为总体失业人口的两倍。马来西亚怡保 2021-2022 年对 1,061 名老年人的调查显示，住房领域感知差距高达 55.4%，交通为 50.7%。
+                        </div>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-label">解决方案 · Mechanism</div>
+                        <ol class="styled-list">
+                            <li><strong>立法反歧视与年龄友好城市原则</strong>：纽约市通过法律指南明确禁止招聘广告中的年龄限制；怡保对标 WHO 年龄友好城市 8 大领域框架，通过大规模问卷调查量化"感知缺口"。</li>
+                            <li><strong>培训与就业支持一体化模型</strong>：将消除年龄歧视、针对性技能培训、立法保障、社会支持等视为相互连通的要素，各环节必须联动。</li>
+                            <li><strong>终身学习账户与雇主激励机制</strong>：由政府、雇主和个人共同出资建立终身学习账户；对雇佣老年员工超出法定比例的企业给予社保缴费减免或税收抵扣。</li>
+                        </ol>
+                    </div>
+
+                    <div class="case-insights">
+                        <div class="case-section-label">对葵青区的启示 · Implications for Kwai Tsing</div>
+                        <ul>
+                            <li><strong>怡保评估方法的直接应用</strong>——每年进行一次"葵青区年龄友好度调查"，以长者最关心的具体设施满意度来倒逼各政府部门改善。</li>
+                            <li><strong>就业、培训与社区设施的"三点联动"</strong>——将三者结合在一栋建筑或一个街区内：底层是照护中心与长者日间活动空间，中层设基层技能培训室，上层是可负担长者居屋。</li>
+                            <li><strong>"适老就业"作为社区经济核心</strong>——发展社区内部微就业：陪诊员、社区保育员、手工坊导师、公共空间维护员。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== 4.4 关键成功要素 ========== -->
+            <h3 class="subsection-title"><span class="sub-num">4.4</span>关键成功要素总结</h3>
+
+            <div class="report-table-wrap">
+                <table class="report-table">
+                    <thead>
+                        <tr>
+                            <th>关键要素</th>
+                            <th>案例 1<br>台湾都更</th>
+                            <th>案例 2<br>墨尔本</th>
+                            <th>案例 3<br>上海工业</th>
+                            <th>案例 4<br>美国棕地</th>
+                            <th>案例 5<br>原地养老</th>
+                            <th>案例 6<br>老龄化就业</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>法定基础与顶层设计</strong></td>
+                            <td><span class="check">✓</span> 修法扩大奖励</td>
+                            <td><span class="check">✓</span> 立法定义</td>
+                            <td><span class="dash">—</span> 制度模糊性</td>
+                            <td><span class="check">✓</span> TIF/CBA</td>
+                            <td><span class="dash">—</span> 国际合作</td>
+                            <td><span class="check">✓</span> 友好城市</td>
+                        </tr>
+                        <tr>
+                            <td><strong>量化证据支撑政策</strong></td>
+                            <td><span class="check">✓</span> 建物统计</td>
+                            <td><span class="check">✓</span> 需求容量</td>
+                            <td><span class="dash">—</span></td>
+                            <td><span class="check">✓</span> 环境调查</td>
+                            <td><span class="check">✓</span> 用户参与</td>
+                            <td><span class="check">✓</span> 感知评估</td>
+                        </tr>
+                        <tr>
+                            <td><strong>公私利益捆绑机制</strong></td>
+                            <td><span class="check">✓</span> 容积奖励</td>
+                            <td><span class="check">✓</span> 强制配建</td>
+                            <td><span class="check">✓</span> 增值分配</td>
+                            <td><span class="check">✓</span> CBA强制</td>
+                            <td><span class="check">✓</span> 协同设计</td>
+                            <td><span class="check">✓</span> 雇主补贴</td>
+                        </tr>
+                        <tr>
+                            <td><strong>过渡弹性与渐进路径</strong></td>
+                            <td><span class="check">✓</span> 旧宅修补</td>
+                            <td><span class="check">✓</span> 自愿→强制</td>
+                            <td><span class="check">✓</span> 三阶段</td>
+                            <td><span class="check">✓</span> 公共先行</td>
+                            <td><span class="check">✓</span> 短周期</td>
+                            <td><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>社区参与和透明度</strong></td>
+                            <td>较弱</td>
+                            <td>议会协商</td>
+                            <td>缺失</td>
+                            <td><span class="check">✓</span> CBA</td>
+                            <td><span class="check">✓</span> 实验室</td>
+                            <td><span class="check">✓</span> 调查</td>
+                        </tr>
+                        <tr>
+                            <td><strong>多元金融工具支撑</strong></td>
+                            <td><span class="check">✓</span> 租税优惠</td>
+                            <td><span class="check">✓</span> 多级资金</td>
+                            <td><span class="dash">—</span></td>
+                            <td><span class="check">✓</span> 融资组合</td>
+                            <td><span class="check">✓</span> 影响投资</td>
+                            <td><span class="check">✓</span> 学习账户</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4 class="minor-title">对葵青区的关键启示</h4>
+            <ol class="styled-list">
+                <li><strong>法定效力是终极保障</strong>——任何公共政策目标，若仅停留在自愿承诺或没有法定约束力，将如墨尔本 2014 年目标一样"极不可能实现"。葵青应在修订 OZP 或订立专项条例时，将强制性公营房屋配比、社区产业空间配建、本地雇佣比例等社会目标写入法条。</li>
+                <li><strong>量化数据是说服工具</strong>——墨尔本的成本效益分析（10% 配建比例的 3:1 净社区收益）为政治决策提供了不可辩驳的合理性。葵青应尽快启动类似研究，对工业用地转型的不同配建比例进行经济建模与社会收益货币化。</li>
+                <li><strong>弹性与约束的平衡</strong>——台湾案例在扩大奖励的同时引入了住宅比例下限和小基地上限。葵青同样需要在放宽容积率的同时，通过地契条款或规划许可附加条件，严格锁定公共目标。</li>
+                <li><strong>社区信任先行</strong>——美国的 CBA、全球生活实验室和怡保的评比机制共同指向同一点：社区居民的信任和对进程的参与感，是降低实施阻力、减少法律诉讼的根本保障。</li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+<!-- ========================================================================
+     五、差异分析与适应性改造
+     ======================================================================== -->
+<section class="section" id="differences">
+    <div class="section-header">
+        <div class="section-num">
+            <span class="num-label">PART · FIVE</span>
+            V
+        </div>
+        <h2 class="section-title">差异分析<br>与适应性改造</h2>
+    </div>
+
+    <div class="content-grid">
+        <aside class="content-side">
+            <div class="side-label">
+                四维条件对比<br>
+                制度 · 经济<br>
+                技术 · 社会
+            </div>
+        </aside>
+        <div class="content-main">
+            <p class="lead">
+                本部分系统比较全球案例的实施条件与葵青区现实之间的关键差异，并针对性地提出本地化调整策略。
+            </p>
+
+            <h3 class="subsection-title"><span class="sub-num">5.1</span>前置条件对比分析</h3>
+
+            <div class="report-table-wrap">
+                <table class="report-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 15%;">条件维度</th>
+                            <th style="width: 30%;">全球案例典型特征</th>
+                            <th style="width: 30%;">葵青区现实状况</th>
+                            <th style="width: 25%;">差距评估</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>制度条件</strong></td>
+                            <td>台湾：明确容积奖励与危老重建法律框架；墨尔本：包容性区划法定授权（2018 年修正案）；美国：TIF、QOZ 等联邦/州立法；上海：地方政府高自由裁量权</td>
+                            <td>公屋重建缺乏容积奖励专项法源；图则修订可快速推动但牺牲社区设施；补地价机制抬高转型成本；城规会程序法定但缺乏灵活激励接口</td>
+                            <td><strong>差距大</strong>。须通过修订 OZP 注释或订立专项条例，建立容积奖励与公共设施捆绑的明确法律基础</td>
+                        </tr>
+                        <tr>
+                            <td><strong>经济条件</strong></td>
+                            <td>台湾核心区房地产利润高；墨尔本市场利润空间足够；美国有新兴产业驱动；全球案例依赖多元公共金融工具</td>
+                            <td>区内住户收入中位数仅 2.27 万港元；私人住宅用地仅 4.1%，市场增值预期弱；缺乏高端产业聚集潜力；高度依赖单一公屋财政</td>
+                            <td><strong>差距很大</strong>。市场动力严重不足，必须由政府/公营机构先导投入；社区经济内生且规模小，不追求高端产业</td>
+                        </tr>
+                        <tr>
+                            <td><strong>技术条件</strong></td>
+                            <td>各国已建立容积管制基准数据库；墨尔本完成需求与容量精确模拟；美国具大型棕地修复成熟技术；全球案例依托高数字素养人口</td>
+                            <td>楼龄 40 年以上，已有建筑图纸可能不全；未进行全区污染基线调查；区内长者数字鸿沟大；碎片化用地难以大规模基础设施整合</td>
+                            <td><strong>差距中等</strong>。须优先建立三维数字孪生和污染调查技术基础；所有技术方案保留人工备用选项</td>
+                        </tr>
+                        <tr>
+                            <td><strong>社会条件</strong></td>
+                            <td>台湾私有产权人具有重建意愿；澳大利亚有成熟的社区住房供应商；美国社区组织具高度谈判与监督能力；全球"生活实验室"依赖用户深度参与</td>
+                            <td>公屋居民无私有产权，参与更新决策的机制缺失；社区自组织力量薄弱；居民教育水平偏低、参与时间和意愿不足；长者对新技术和外来服务戒心较强</td>
+                            <td><strong>差距大</strong>。须大幅简化参与方式；由区议员和资深社工代替外部专家主导；利用公屋租住权作为换取原区安置的谈判筹码</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 class="subsection-title"><span class="sub-num">5.2</span>实施障碍识别</h3>
+
+            <p>基于前置条件对比，以下是本方案实施将面临的主要障碍，按严重程度排序：</p>
+
+            <div class="strategy-block rust">
+                <div class="strategy-block-eyebrow">障碍 一 · ECONOMIC</div>
+                <div class="strategy-block-title">补地价机制扼杀市场参与</div>
+                <p>工业业主在地契修订或用途变更时需缴纳的补地价，往往将预期利润大幅压缩至不可接受的低位。在葵青这样市场楼价预期偏弱的地区，补地价后已然微薄的利润空间再被进一步蚕食，使私人开发商完全失去参与动力。这可能导致规划蓝图获批后多年无人问津，土地继续沉睡或维持低效利用。</p>
+            </div>
+
+            <div class="strategy-block plum">
+                <div class="strategy-block-eyebrow">障碍 二 · SOCIAL</div>
+                <div class="strategy-block-title">公屋安置与社区断裂</div>
+                <p>公屋重建或工业用地转型涉及清拆时，香港的安置资格严格依据 1982 年寮屋登记和 1984/85 年居民登记等历史基准，大量长期实际居住但未登记在册的居民将不具备公屋安置资格。在葵青这样公屋聚居的社区，大规模的清拆行动可能造成大量受影响人口被迫无家可归或只能迁往更偏远地区，既瓦解原有社会网络，也酿成严重的社会冲突和舆论危机。</p>
+            </div>
+
+            <div class="strategy-block mustard">
+                <div class="strategy-block-eyebrow">障碍 三 · INSTITUTIONAL</div>
+                <div class="strategy-block-title">缺乏清晰的公私合作法律框架</div>
+                <p>容积率奖励以换取公共设施或公营房屋的操作，目前在香港缺乏像台湾"捐助公益设施换容积率"或墨尔本"规划得益换规划许可"那样的法定刚性接口。城规会虽可在审批 S.16 规划许可时施加附带条件，但其法律效力和确保长期履行的机制薄弱，容易在项目建设后被开发商以财务困难等理由申请修改或豁免，使公共目标落空。</p>
+            </div>
+
+            <div class="strategy-block jade">
+                <div class="strategy-block-eyebrow">障碍 四 · SOCIAL</div>
+                <div class="strategy-block-title">社区参与冷却与信任缺失</div>
+                <p>多次政府主导的社区咨询，若长期停留在"意见收集"层面而无实质性的反馈与落实，居民会逐渐将参与视为敷衍的形式主义，产生"参与疲劳"和深层的不信任。对于已经在社会阶层固化和资源匮乏中拼搏的葵青居民，任何新规划若不能迅速提供可见的福利改善，将很难获得真诚的配合。</p>
+            </div>
+
+            <h3 class="subsection-title"><span class="sub-num">5.3</span>本地化调整策略</h3>
+
+            <div class="strategy-block coral">
+                <div class="strategy-block-eyebrow">调整 一</div>
+                <div class="strategy-block-title">将"逐案谈判的补地价弹性"制度化</div>
+                <div class="strategy-block-positioning">回应障碍一，借鉴上海案例的"弹性协商"与墨尔本的"量化证据"</div>
+                <p>在工业地块转型中，放弃一刀切的补地价公式，建立<strong>"葵青工业地块转型弹性谈判机制"</strong>。由跨部门专责组根据每幅地块的特殊性——规模、污染程度、原业主配合度、规划贡献量（提供的公屋或社区设施比例）——个别裁定补地价减免、分期缴付或以基础建设成本冲抵的具体方案。为防止滥用，所有个案须经独立审计，并公开关键决策参数，确保公帑回收的合理透明。同时，以量化成本效益分析（10% 配建的 3:1 社区回报等）作为谈判的论据基础，说服公众和立法会接受阶段性的地价折扣是合理的"公共投资"而非"利益输送"。</p>
+            </div>
+
+            <div class="strategy-block forest">
+                <div class="strategy-block-eyebrow">调整 二</div>
+                <div class="strategy-block-title">创设"转型特别安置基金"与分层资格</div>
+                <div class="strategy-block-positioning">回应障碍二，借鉴美国 CBA 的社区投资条款与分层保障逻辑</div>
+                <p>针对 1982 年基准切割造成的大批无资格住户，在葵青区设立"转型特别安置基金"。基金来源有三：受影响项目的开发商或工业地主缴纳的一次性"转型社会补偿金"、政府拨备、以及项目增值后回购的资金。基金由独立信托形式管理，委托非政府机构审查个案，提供以下分层援助：</p>
+                <ul class="bullet-list">
+                    <li><strong>第一层</strong>（完全无资格的长期居住者）：过渡性居所租金补贴 18 个月，或一次性现金安置补助；</li>
+                    <li><strong>第二层</strong>（居于非住宅寮屋的从业者）：提供职业转换培训，并优先租用社区产业空间的券额；</li>
+                    <li><strong>第三层</strong>（原公屋具资格住户）：受法律保障的原区安置配额，不受基金处理。</li>
+                </ul>
+                <p style="margin-bottom: 0;">这种分层保障机制将安置责任从模糊的政治许诺转化为具有明确规则和法律约束力的社会契约，极大降低了清拆行动的社会风险。</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ========================================================================
+     六、规划策略
+     ======================================================================== -->
+<section class="section" id="strategy">
+    <div class="section-header">
+        <div class="section-num">
+            <span class="num-label">PART · SIX</span>
+            VI
+        </div>
+        <h2 class="section-title">规划策略<br>与实施路径</h2>
+    </div>
+
+    <div class="content-grid">
+        <aside class="content-side">
+            <div class="side-label">
+                三大策略 + 三阶段<br>
+                TOD-R Zones<br>
+                就地换地 + 微更新
+            </div>
+        </aside>
+        <div class="content-main">
+
+            <p class="lead">
+                方案围绕三大核心策略展开，分别对应已识别的三大核心问题，并以三阶段时序由易到难、由点到面推进。
+            </p>
+
+            <h3 class="subsection-title"><span class="sub-num">6.1</span>三大核心策略</h3>
+
+            <!-- 策略一 -->
+            <div class="strategy-block coral">
+                <div class="strategy-block-eyebrow">策略 一 · TOD-R ZONES</div>
+                <div class="strategy-block-title">交通导向有机更新区</div>
+                <div class="strategy-block-positioning">围绕铁路站点 500 米范围划定特别更新区，以容积率奖励换取交通基建升级与社区设施</div>
+                <p>以葵兴站为先导试点，将站点 500 米范围划定为"交通导向有机更新区"（TOD-R Zone）。该区内允许公屋重建项目获得容积率从 1.22 提升至 5–6 的奖励，但作为对价，开发主体必须捆绑提供：</p>
+                <ol class="styled-list">
+                    <li><strong>无障碍行人天桥系统</strong>——连接铁路站、屋邨核心、社区设施与商业街区，全程风雨连廊、防滑铺装、长者优先通道。</li>
+                    <li><strong>新建公共交通换乘中心</strong>——整合巴士、小巴、电召出行与未来的微米公交。</li>
+                    <li><strong>10% 楼面的社区产业空间</strong>——以低于市价租金提供给本地社会企业（照护、家政、便民服务）。</li>
+                    <li><strong>原区安置率不低于 70%</strong>——确保原公屋居民的社区网络得到最大限度保留。</li>
+                </ol>
+            </div>
+
+            <!-- 策略二 -->
+            <div class="strategy-block jade">
+                <div class="strategy-block-eyebrow">策略 二 · LAND RESHUFFLE</div>
+                <div class="strategy-block-title">就地换地与码头土地腾退</div>
+                <div class="strategy-block-positioning">以 2047 地契窗口为契机，对工业仓储与港口用地分类施策</div>
+
+                <h4 class="minor-title">就地换地（中小型工业地块）</h4>
+                <p>对葵青区分散的中小型工业、仓储地块（多数小于 5,000㎡），以业权人在该地块的原始投资为依据，鼓励通过"就地换地"机制：业权人交出原工业用途土地，获许在同一地块或相邻地块以混合用途（住宅 + 社区产业空间）方式重建，须接受以下强制性配比：</p>
+                <ul class="bullet-list">
+                    <li>公营/资助房屋 <strong>≥ 总楼面的 50%</strong>；</li>
+                    <li>可负担出租/出售单位 <strong>≥ 总楼面的 15%</strong>；</li>
+                    <li>私人住宅 <strong>≤ 总楼面的 35%</strong>；</li>
+                    <li>社区产业空间（CPS）<strong>≥ 总楼面的 10%</strong>——租期至少 15 年，期满续租具优先权。</li>
+                </ul>
+
+                <h4 class="minor-title">非就地换地（葵青货柜码头）</h4>
+                <p>葵青货柜码头约 279 公顷土地面临 2047 年地契到期。鉴于码头土地多为单一或少数大业权人所持，政府可运用<em>"非就地换地"</em>工具——营运商交出码头土地，获发另一接近新物流区的地块，或允许以现金补偿预缴其多年来未使用的潜在发展价值。腾出的滨水土地将规划为<strong>"适老海滨新社区"</strong>——公共住宅与可负担长者居屋比例强制设定为 ≥50%，私人住宅 ≤35%，余 15% 为商业与社区产业空间；同时植入连续的滨海长廊、感官花园和抗风适老的海滨活动场所。</p>
+
+                <h4 class="minor-title">公屋的联建代建与代际共居</h4>
+                <p>在重建旧式公屋屋邨时，由房委会牵头，与私人开发商以"联建模式"合作——房委会出地，开发商承担建造资金，建成后按协定比例分配单位（例如房委会取 70% 作公屋出租，开发商取 30% 作为私人住宅出售）。参照日本 UR 都市再生机构经验，在至少 30% 的重建屋邨内，故意规划并混合配置：长者小型单位与年青家庭单位，并在每层设置共享公共空间。</p>
+            </div>
+
+            <!-- 策略三 -->
+            <div class="strategy-block mustard">
+                <div class="strategy-block-eyebrow">策略 三 · MICRO-RENEWAL</div>
+                <div class="strategy-block-title">公共空间提升 · 编织全龄友好微更新网络</div>
+                <div class="strategy-block-positioning">放弃追求大型公园，将资源投放于离散微空间，支撑"在地养老、社区照顾和基层就业"三重功能复合</div>
+
+                <h4 class="minor-title">闲置空间激活——全龄生活馆与社区守望站</h4>
+                <p>由房委会和规划署共同清查区内所有空置的工业单位、公屋底层空置铺位、待开发政府土地等。透过"临时规划许可"（S.16）机制，快速获准 24 个月一续的临时社区用途。这些空间将被改造为"全龄生活馆"，标准配置包括：</p>
+                <ul class="bullet-list">
+                    <li>日间照护角落（专业护老者驻点，由 NGO 承接政府合约运营）；</li>
+                    <li>康复运动区及社区物理治疗室；</li>
+                    <li>共享厨房及代际用餐区；</li>
+                    <li>青年/长者共享工作室；</li>
+                    <li>时间银行及社区服务交换站；</li>
+                    <li>微创业/跳蚤市场（周末）。</li>
+                </ul>
+
+                <h4 class="minor-title">适老慢行网络与口袋公园系统</h4>
+                <p>沿长者日常高频路线（家中—街市—诊所—巴士站）建设连续<strong>"银发无障碍回廊"</strong>，配备防滑铺装、防眩光照明、休憩座椅（每隔 80 米一张）、醒目的字体导示。利用工业缓冲带、废弃斜坡、邻近天桥底的畸零土地，营造面积虽小但功能适老的口袋公园——可触摸的香草园、安全的石子足底按摩径、供轮椅靠近的升高花坛。</p>
+
+                <h4 class="minor-title">社区时间银行嵌入实体空间</h4>
+                <p>在全龄生活馆内特设"时间银行"柜台，由受训的退休居民担任义工值班员。鼓励的服务类型聚焦长者日常高频困境——陪诊、代取药物、买菜、简单烹饪、家居小维修、教用手机。参与者的积累时数可兑换为：免费使用生活馆设施、餐厅餐券、或最珍贵的——<em>未来自己有需要时的优先照护排位</em>。这本质上是将长者从被动的"服务接受者"转变为积极的"社区资产"。</p>
+            </div>
+
+            <h3 class="subsection-title"><span class="sub-num">6.2</span>实施路径与时序安排</h3>
+
+            <p>本方案的实施路径设计为三个阶段，由易到难、由点到面，确保每一阶段的成功能为下一阶段积累动能与信任。</p>
+
+            <div class="phases">
+                <!-- 阶段 1 -->
+                <div class="phase">
+                    <div class="phase-marker">
+                        <div class="phase-num">01</div>
+                        <div class="phase-label">PHASE ONE</div>
+                        <div class="phase-years">1 – 3 年</div>
+                    </div>
+                    <div>
+                        <h4 class="phase-title">搭框架、亮示范、聚共识</h4>
+                        <p>启动葵兴站 TOD-R 试点区图则修订；成立跨部门"葵青转型专责组"及"社区活化基金"；与 2-3 个中小型工业业主展开"就地换地"意向协商；活化两处工厦/公屋闲置空间为"全龄生活馆"投入运营；完成一段 500 米"银发无障碍回廊"示范段建设；启动首批 5 个社区守望站；完成首次"葵青年龄友好度"全区调查。</p>
+
+                        <div class="report-table-wrap" style="margin-top: 1rem;">
+                            <table class="report-table">
+                                <thead>
+                                    <tr>
+                                        <th>行动类别</th>
+                                        <th>关键指标</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>规划与制度</strong></td>
+                                        <td>TOD-R 图则修订完成并刊宪；指引文件获政务司级批准</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>示范项目—交通</strong></td>
+                                        <td>行人天桥首段完工；两条共享街道完成并投入使用</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>示范项目—住房</strong></td>
+                                        <td>签署至少一份"就地换地"意向书或框架协议</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>示范项目—公共空间</strong></td>
+                                        <td>两馆五站运营满一年，服务人次达设定基线</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>社会共识</strong></td>
+                                        <td>委员会召开首次全体会议；调查样本量 ≥ 2,000 有效份</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 阶段 2 -->
+                <div class="phase">
+                    <div class="phase-marker">
+                        <div class="phase-num">02</div>
+                        <div class="phase-label">PHASE TWO</div>
+                        <div class="phase-years">4 – 8 年</div>
+                    </div>
+                    <div>
+                        <h4 class="phase-title">规模化更新与用地重构</h4>
+                        <p>首个 TOD-R 综合发展区完成招标及动工；透过地契谈判启动 2-3 个大型工业仓储地块（总面积不少于 10 公顷）的转型；与某个主要码头营运商展开非就地换地谈判，出台港口用地重整蓝图；全龄生活馆网络从 2 处扩至 6 处；时间银行注册会员达到 5,000 人。</p>
+
+                        <div class="report-table-wrap" style="margin-top: 1rem;">
+                            <table class="report-table">
+                                <thead>
+                                    <tr>
+                                        <th>行动类别</th>
+                                        <th>关键突破点</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>TOD-R 综合发展</strong></td>
+                                        <td>公屋原地安置周转方案落实；私人开发商正式入场投资</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>工业地块批量转型</strong></td>
+                                        <td>率先实现至少 1,000 个公营及可负担单位交付</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>货运分离与交通升级</strong></td>
+                                        <td>货运扰民黑点投诉量下降 40%</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>适老网络织密</strong></td>
+                                        <td>年度服务时数超 10 万小时</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>社区经济成形</strong></td>
+                                        <td>本地照护就业培训累计 1,000 名居民</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 阶段 3 -->
+                <div class="phase">
+                    <div class="phase-marker">
+                        <div class="phase-num">03</div>
+                        <div class="phase-label">PHASE THREE</div>
+                        <div class="phase-years">9 – 15+ 年</div>
+                    </div>
+                    <div>
+                        <h4 class="phase-title">系统重构 · 迈入新常态</h4>
+                        <p>旧式公屋重建完成过半（达原定 50% 以上）；公私营房屋比例优化至约 60:40；区内就业比例升至 25%–30%，彻底改变"卧城"属性；港口部分主要功能已迁出，海滨长廊贯通开放；总结"葵青模式"——一套适用于高密度老区工业转混合社区的有机更新制度模板。</p>
+
+                        <div class="report-table-wrap" style="margin-top: 1rem;">
+                            <table class="report-table">
+                                <thead>
+                                    <tr>
+                                        <th>行动类别</th>
+                                        <th>长期目标</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>住房结构重大转变</strong></td>
+                                        <td>租金收入比从 31.5% 降至 25% 左右；人均居住面积达 45㎡</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>就业与交通根本性改善</strong></td>
+                                        <td>跨代就业与志愿网络成为常态</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>环境与社区终极调和</strong></td>
+                                        <td>社区互助经济实现自运维，无需长期政府拨款滋养</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>制度典范输出</strong></td>
+                                        <td>成为观塘、屯门、荃湾等同类地区更新的政策范本</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ========================================================================
+     七、风险评估
+     ======================================================================== -->
+<section class="section" id="risks">
+    <div class="section-header">
+        <div class="section-num">
+            <span class="num-label">PART · SEVEN</span>
+            VII
+        </div>
+        <h2 class="section-title">风险评估与应对</h2>
+    </div>
+
+    <div class="content-grid">
+        <aside class="content-side">
+            <div class="side-label">
+                经济 + 社会代价<br>
+                市场失灵预警<br>
+                四大管控机制
+            </div>
+        </aside>
+        <div class="content-main">
+
+            <h3 class="subsection-title"><span class="sub-num">7.1</span>潜在代价分析</h3>
+
+            <h4 class="minor-title">经济代价</h4>
+            <ul class="bullet-list">
+                <li><strong>补地价谈判僵持的沉没成本</strong>：与私人业主的逐案谈判若未能达成一致，前期大量规划研究与协商投入可能变成沉没成本，且地块继续长期空置。</li>
+                <li><strong>公共财政的长期担子</strong>：若市场投资信心不足，政府可能须在前期注入巨额公共资金（土地回收、污染修复、基建），且回收周期长达十年以上。</li>
+                <li><strong>小型业主利益受损争议</strong>：若换地或容积奖励条件主要对大业权人有利，零散小业主或原工业用地的租户（如修车厂、回收场）无力参与且被迫迁离。</li>
+            </ul>
+
+            <h4 class="minor-title">社会代价</h4>
+            <ul class="bullet-list">
+                <li><strong>绅士化与物价上涨压力</strong>：引入少量私人住宅和新商业，即使规模控制得当，也可能缓慢推高区内整体租金和物价，对依靠固定收入（综援、生果金）的长者造成隐性剥夺。</li>
+                <li><strong>过渡期社区网络的磨损</strong>：重建公屋即使承诺原区安置，居民少则两三年需在别处周转居住，原有邻里守望、互助网络面临断裂风险。</li>
+                <li><strong>地方历史记忆的消逝</strong>：港口、旧工厦的系列景观承载了葵青区劳工阶层的集体记忆，转型过程中若过度拆除，将加深居民的身份失落感。</li>
+            </ul>
+
+            <h3 class="subsection-title"><span class="sub-num">7.2</span>负面影响预警</h3>
+
+            <div class="info-box warning">
+                <div class="info-label">市场失灵与项目烂尾 · Market Failure Risk</div>
+                <p style="margin-bottom: 0; font-size: var(--text-sm);">美国巴尔的摩半岛案例中，因疫情后办公和零售需求骤降，项目发起人财务断裂被迫退出，银行接管未开发土地。葵青若在转型过程中遭遇下一次经济衰退或物业市场崩溃，依赖私人市场的"公私合作"模型可能面临同样失败。</p>
+            </div>
+
+            <div class="info-box warning">
+                <div class="info-label">安置不公引爆社会冲突 · Social Conflict Risk</div>
+                <p style="margin-bottom: 0; font-size: var(--text-sm);">受影响但无资格获传统公屋安置的住户，若"转型特别基金"处理失败——审查过严、拨款不足或个案遭遇不公——极易爆发街头抗议和占领行动，撼动整个方案的社会基础。</p>
+            </div>
+
+            <div class="info-box warning">
+                <div class="info-label">产业空间预设过时 · Obsolescence Risk</div>
+                <p style="margin-bottom: 0; font-size: var(--text-sm);">未来 15 年内，长照行业或社区经济可能出现技术替代（如 AI 辅助照护机器人降低人力需求），导致预设的"基层照护就业"市场收缩，社区产业空间可能空置或低效占用。</p>
+            </div>
+
+            <div class="info-box warning">
+                <div class="info-label">交通承载力误判 · Capacity Risk</div>
+                <p style="margin-bottom: 0; font-size: var(--text-sm);">大幅放开容积率后，若北环线南延或绿色交通走廊未能如期生效，区内新增的居住和就业人口将令不堪重负的道路交通进一步恶化，陷入比改造前更严重的拥堵。</p>
+            </div>
+
+            <h3 class="subsection-title"><span class="sub-num">7.3</span>风险管控措施</h3>
+
+            <div class="strategy-block rust">
+                <div class="strategy-block-eyebrow">机制 一 · CIRCUIT BREAKER</div>
+                <div class="strategy-block-title">定期复审与熔断机制</div>
+                <p style="margin-bottom: 0;">对 TOD-R 区内的容积率发放实行"分期授权"——首期只释放远景容积的 60%，待交通承载力中期评估结果达标后才发放余下 40%。若铁路建设明确延期，则自动触发地积比率上限的下调程序（熔断）。</p>
+            </div>
+
+            <div class="strategy-block forest">
+                <div class="strategy-block-eyebrow">机制 二 · TRUST &amp; AUDIT</div>
+                <div class="strategy-block-title">转型基金的"增信"与监督</div>
+                <p style="margin-bottom: 0;">"转型特别安置基金"由具信誉的国际非牟利组织或受托人托管，设立独立监察委员会（含受影响居民代表）。每批个案资助的发放均须经审计并定期向公众摘要汇报，增强透明度和公信力。</p>
+            </div>
+
+            <div class="strategy-block mustard">
+                <div class="strategy-block-eyebrow">机制 三 · EXIT GUARANTEE</div>
+                <div class="strategy-block-title">市场退出保障</div>
+                <p style="margin-bottom: 0;">在公私合作合约中加入"政府/公营机构的购回期权"，即当私人开发商因财务困难或其他任何原因无法继续履约时，政府有权按事前议定的公允价格购回其项目权益，并交由市建局或其他公营机构接手完成，避免出现如巴尔的摩那样的无人接手窘境。</p>
+            </div>
+
+            <div class="strategy-block plum">
+                <div class="strategy-block-eyebrow">机制 四 · MEMORY PRESERVATION</div>
+                <div class="strategy-block-title">渐进式记忆保育</div>
+                <p style="margin-bottom: 0;">在清拆关键工业或港口设施前，委托大学和社区组织开展口述历史记录、代表性建筑构件保留、原地设立历史信息解说牌等"软保育"。不需完整保留每一栋旧建筑，但必须将地方故事转化为新公共空间的叙事资源，抚平社区文化断裂的痛感。</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ========================================================================
+     八、预期成果与评估
+     ======================================================================== -->
+<section class="section" id="outcomes">
+    <div class="section-header">
+        <div class="section-num">
+            <span class="num-label">PART · EIGHT</span>
+            VIII
+        </div>
+        <h2 class="section-title">预期成果与评估</h2>
+    </div>
+
+    <div class="content-grid">
+        <aside class="content-side">
+            <div class="side-label">
+                至 2047 年远景<br>
+                定量 + 定性目标<br>
+                国际比较价值
+            </div>
+        </aside>
+        <div class="content-main">
+
+            <h3 class="subsection-title"><span class="sub-num">8.1</span>定量成果展望（至 2047 年）</h3>
+
+            <div class="report-table-wrap">
+                <table class="report-table">
+                    <thead>
+                        <tr>
+                            <th>指标类别</th>
+                            <th>指标项</th>
+                            <th>基准值（现状）</th>
+                            <th>目标值（2047）</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td rowspan="4"><strong>住房</strong></td><td>更新住宅单位总数</td><td>0</td><td>约 15,000 个（含公营 ≥10,000 个）</td></tr>
+                        <tr><td>人均居住面积</td><td>36.75㎡</td><td>≥ 45㎡</td></tr>
+                        <tr><td>公私营住宅比例</td><td>约 80:20</td><td>约 60:40</td></tr>
+                        <tr><td>租金收入比中位数</td><td>31.5%</td><td>≤ 25%</td></tr>
+                        <tr><td rowspan="3"><strong>就业与经济</strong></td><td>新增本地就业岗位</td><td>基准低</td><td>3,500 个</td></tr>
+                        <tr><td>区内就业比例</td><td>&lt; 20%</td><td>25% – 30%</td></tr>
+                        <tr><td>社区产业空间运营总面积</td><td>0</td><td>不少于 50,000㎡</td></tr>
+                        <tr><td rowspan="3"><strong>交通</strong></td><td>铁路站 500 米覆盖人口比例</td><td>&lt; 20%（估算）</td><td>≥ 40%</td></tr>
+                        <tr><td>货运噪音投诉量</td><td>高发</td><td>下降 60%</td></tr>
+                        <tr><td>慢行网络风雨连廊总长</td><td>极少</td><td>覆盖所有主要屋邨与设施间路径</td></tr>
+                        <tr><td rowspan="4"><strong>公共空间与社会</strong></td><td>公共休憩用地总面积增幅</td><td>—</td><td>+35%</td></tr>
+                        <tr><td>全龄生活馆/健康驿站数量</td><td>0</td><td>10 所以上</td></tr>
+                        <tr><td>时间银行注册会员</td><td>0</td><td>10,000 人</td></tr>
+                        <tr><td>年度社区服务交换时数</td><td>0</td><td>20 万小时以上</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 class="subsection-title"><span class="sub-num">8.2</span>定性成果展望</h3>
+
+            <h4 class="minor-title">居民福祉感显著回升</h4>
+            <p>长者能够在自己熟悉的社区中，安全、有尊严且不乏社交地安度晚年，而非被迫无奈地搬离或过早进入拥挤的安老院。基层妇女和提早退休者能通过照护经济和社区产业获得稳定的微收入和日常自尊，悲观、被剥夺感和社会戾气将缓慢消解。</p>
+
+            <h4 class="minor-title">社区韧性与互助网络成形</h4>
+            <p>代际互助、团体助教、"时间交换"成为社区默认的文化，邻里不再只是住在一起的陌生人。这种社会资本积累将在下一次经济或气候危机中成为抵御崩溃的<em>无形安全网</em>。</p>
+
+            <h4 class="minor-title">制度示范与治理自信</h4>
+            <p>葵青将证明，即便在香港最棘手老旧的后工业选区，精细的、人性化的规划也能够在不拆散社会的前提下，逐步实现空间重生和再分配正义。它为观塘、屯门、长沙湾等其他同类地区提供了宝贵先例，也为特区政府扭转"规划失能"的民粹批评提供了正面实例。</p>
+
+            <div class="pullquote">
+                <span class="pullquote-mark">"</span>
+                <div class="pullquote-text">
+                    香港的"葵青模式"将成为全球高密度老龄旧城的<br>
+                    <em style="font-style:italic;color:var(--accent-rust)">包容性更新</em>案例。
+                </div>
+            </div>
+
+            <h4 class="minor-title">国际比较价值</h4>
+            <p>作为有别于西方"市场主导+强力社区协商"或内地"行政强推+模糊产权"的第三条道路：一个以公正的地契谈判、有力的公屋安置保障、和制度化微增容共存空间的设计。</p>
+
+        </div>
+    </div>
+</section>
+
+<!-- ========================================================================
+     九、行动建议
+     ======================================================================== -->
+<section class="section" id="actions">
+    <div class="section-header">
+        <div class="section-num">
+            <span class="num-label">PART · NINE</span>
+            IX
+        </div>
+        <h2 class="section-title">实施建议<br>与下一步行动</h2>
+    </div>
+
+    <div class="content-grid">
+        <aside class="content-side">
+            <div class="side-label">
+                立即行动 0–6 月<br>
+                短期 6–12 月<br>
+                持续性对话平台
+            </div>
+        </aside>
+        <div class="content-main">
+
+            <div class="strategy-block coral">
+                <div class="strategy-block-eyebrow">行动 一 · IMMEDIATE — 0–6 个月</div>
+                <div class="strategy-block-title">成立"法定专责机构"并授权</div>
+                <p style="margin-bottom: 0;">促请行政长官委任政务司长或发展局局长挂帅，成立<strong>"葵青社区活化与更新局"</strong>（Kwai Tsing Community Activation &amp; Renewal Authority, <em>KTCARA</em>），直接向行政长官汇报。赋予该局跨部门协调权（涵盖规划、地政、房署、运输、社福、劳工等），并获授权管理"转型特别安置基金"和审批大型公私合作项目。这一强力的法定机构是克服各行政部门推诿的根本保障。</p>
+            </div>
+
+            <div class="strategy-block mustard">
+                <div class="strategy-block-eyebrow">行动 二 · IMMEDIATE — 6–12 个月</div>
+                <div class="strategy-block-title">推出首批三个"速效微更新行动"</div>
+                <ol class="styled-list">
+                    <li><strong>第一间全龄生活馆</strong>——于葵兴或葵联的一个空置公屋底层空间，由 KTCARA 拨款并委托社福机构，三个月内完成装修并投入运营，作为政策亮相的"福祉地标"。</li>
+                    <li><strong>银发回廊示范段</strong>——连接一至两个长者屋邨与巴士站、市场的 500 米风雨连廊及防滑路面改造，在一年内完成。</li>
+                    <li><strong>首次"葵青年龄友好调查"</strong>——以怡保案例为蓝本，由区议会和大专院校合作，一个季度内完成大样本定量评估。</li>
+                </ol>
+            </div>
+
+            <div class="strategy-block jade">
+                <div class="strategy-block-eyebrow">行动 三 · SHORT-TERM — 1–2 年</div>
+                <div class="strategy-block-title">启动法定图则修订与地契指引</div>
+                <ul class="bullet-list">
+                    <li>规划署就 TOD-R 综合发展区启动改划研究，优先处理葵兴站周边地块的 OZP 修订。</li>
+                    <li>地政总署制定并颁布《葵青区工业用地转型地契导读指南》，明确"就地换地"、"非就地换地"的框架条件和大致地价取向。</li>
+                    <li>发展局辅助草拟《葵青更新与社福捆绑条例》建议案，提交行政会议审议，为强制性公营房屋配建、社区产业空间及安置承诺提供稳固法源。</li>
+                </ul>
+            </div>
+
+            <div class="strategy-block forest">
+                <div class="strategy-block-eyebrow">行动 四 · MID-TERM — 18 个月起</div>
+                <div class="strategy-block-title">建立财政框架与寻找合作夥伴</div>
+                <ul class="bullet-list">
+                    <li>设立"葵青转型信托基金"，向财政司争取一笔不少于 <strong>60 亿港元</strong>的种子资金注入。</li>
+                    <li>公开竞标寻找具 ESG 意识及城市更新经验的香港或国际开发商、投资机构。</li>
+                    <li>与雇员再培训局和本地社福机构签订合作备忘录，提前启动数千人规模的社区照护、绿色营造和基层创业培训课程。</li>
+                </ul>
+            </div>
+
+            <div class="strategy-block plum">
+                <div class="strategy-block-eyebrow">行动 五 · ONGOING</div>
+                <div class="strategy-block-title">建立持续性的对话平台</div>
+                <p style="margin-bottom: 0;">保持"社区转型共识委员会"半年至少一次的全会，并设不同议题的工作小组（住房组、就业组、长者服务组），在各阶段随时吸纳居民反馈调整方案。将每年进行"年龄友好度调查"的结果及改进进度向社区公开，并连系部门 KPI 考核，使规划从一次性计划变成<em>常态化的共同治理机制</em>。</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ========================================================================
+     十、附录
+     ======================================================================== -->
+<section class="section" id="appendix">
+    <div class="section-header">
+        <div class="section-num">
+            <span class="num-label">PART · TEN</span>
+            X
+        </div>
+        <h2 class="section-title">附录 · 详细案例清单</h2>
+    </div>
+
+    <div class="content-grid">
+        <aside class="content-side">
+            <div class="side-label">
+                6 个国际案例<br>
+                全方位文献基础<br>
+                可深度参考
+            </div>
+        </aside>
+        <div class="content-main">
+
+            <p class="lead">
+                以下为本报告所引用的 6 个国际案例清单。每个案例均经过完整的来源审查、机制分析、成果评估与可借鉴性论证。
+            </p>
+
+            <div class="appendix-grid">
+                <div class="appendix-card">
+                    <div class="appendix-num">案例 01</div>
+                    <div class="appendix-title">聚焦容积率激励：台湾都市更新与危老重建条例修法</div>
+                    <div class="appendix-info">
+                        <span>台湾地区</span>
+                        <span>·</span>
+                        <span>2024–2026</span>
+                    </div>
+                    <div class="appendix-info">
+                        <span>来源：专业机构报告（理律法律事务所）</span>
+                    </div>
+                    <div class="appendix-info">
+                        <span>对应问题：问题 1（容积更新）</span>
+                    </div>
+                </div>
+
+                <div class="appendix-card">
+                    <div class="appendix-num">案例 02</div>
+                    <div class="appendix-title">墨尔本市经济适用房容量与需求分析</div>
+                    <div class="appendix-info">
+                        <span>澳大利亚 墨尔本</span>
+                        <span>·</span>
+                        <span>2019</span>
+                    </div>
+                    <div class="appendix-info">
+                        <span>来源：外国政府官方规划文件</span>
+                    </div>
+                    <div class="appendix-info">
+                        <span>对应问题：问题 1、3（住房配建与需求量化）</span>
+                    </div>
+                </div>
+
+                <div class="appendix-card">
+                    <div class="appendix-num">案例 03</div>
+                    <div class="appendix-title">上海工业用地再开发的模糊产权与制度弹性</div>
+                    <div class="appendix-info">
+                        <span>中国 上海</span>
+                        <span>·</span>
+                        <span>1990s–2018</span>
+                    </div>
+                    <div class="appendix-info">
+                        <span>来源：学术研究（Cities 期刊）</span>
+                    </div>
+                    <div class="appendix-info">
+                        <span>对应问题：问题 2（工业产权重组）</span>
+                    </div>
+                </div>
+
+                <div class="appendix-card">
+                    <div class="appendix-num">案例 04</div>
+                    <div class="appendix-title">美国工业地产转型再开发的法律与金融整合</div>
+                    <div class="appendix-info">
+                        <span>美国 费城/巴尔的摩</span>
+                        <span>·</span>
+                        <span>2010s</span>
+                    </div>
+                    <div class="appendix-info">
+                        <span>来源：专业机构（Ballard Spahr）</span>
+                    </div>
+                    <div class="appendix-info">
+                        <span>对应问题：问题 2（棕地修复、CBA）</span>
+                    </div>
+                </div>
+
+                <div class="appendix-card">
+                    <div class="appendix-num">案例 05</div>
+                    <div class="appendix-title">全球"原地养老"创新与代际共融社区实践</div>
+                    <div class="appendix-info">
+                        <span>美国 · 日本 · 英国</span>
+                        <span>·</span>
+                        <span>2017–2020</span>
+                    </div>
+                    <div class="appendix-info">
+                        <span>来源：学术研究（Taylor &amp; Francis）</span>
+                    </div>
+                    <div class="appendix-info">
+                        <span>对应问题：问题 3（适老微更新、时间银行）</span>
+                    </div>
+                </div>
+
+                <div class="appendix-card">
+                    <div class="appendix-num">案例 06</div>
+                    <div class="appendix-title">老龄化劳动力与年龄友好城市政策</div>
+                    <div class="appendix-info">
+                        <span>全球 / 怡保 / 纽约</span>
+                        <span>·</span>
+                        <span>2013 + 2021–22</span>
+                    </div>
+                    <div class="appendix-info">
+                        <span>来源：学术研究（Cadmus Journal）+ 调查数据</span>
+                    </div>
+                    <div class="appendix-info">
+                        <span>对应问题：问题 3（老年就业、评估、政策整合）</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+</div><!-- /.report -->
+
+<!-- ========================================================================
+     页脚
+     ======================================================================== -->
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-text">
+            <p>本报告基于对葵青区详细数据分析、本地情境研究以及 6 个国际案例的比较，为葵青区从后工业老旧公屋区向"适老生活与社区经济示范区"的转型提供了一套系统的行动指南。</p>
+            <p style="margin-bottom: 0;">报告强调精细的有机更新、制度创新与社会共识的渐进积累，为香港同类型社区的可持续发展提供可操作、可复制的范本。</p>
+        </div>
+
+        <div class="footer-meta">
+            <div class="footer-meta-item">
+                <span class="footer-meta-label">报告</span>
+                <span class="footer-meta-value">城市规划方案 · 综合报告</span>
+            </div>
+            <div class="footer-meta-item">
+                <span class="footer-meta-label">范围</span>
+                <span class="footer-meta-value">葵青区 20 个分区</span>
+            </div>
+            <div class="footer-meta-item">
+                <span class="footer-meta-label">时序</span>
+                <span class="footer-meta-value">2026 起 · 至 2047 远景</span>
+            </div>
+            <div class="footer-meta-item">
+                <span class="footer-meta-label">版本</span>
+                <span class="footer-meta-value">Final Draft</span>
+            </div>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-bottom">
+            Kwai Tsing Community Activation &amp; Renewal Plan &nbsp;·&nbsp; 2026
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

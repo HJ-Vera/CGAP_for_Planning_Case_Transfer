@@ -1,0 +1,3229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kwai Tsing District · Age-Friendly Living & Community Economy Demonstration Zone — Urban Planning Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ===== Inlined from styles.css ===== */
+/* ==========================================================================
+   葵青区规划方案报告 - 样式表
+   设计方向: 编辑性学术杂志 + 城市规划专业感
+   ========================================================================== */
+
+/* ---------- 字体导入 ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ---------- 设计令牌 ---------- */
+:root {
+    /* 色彩系统 - 冷银白纸面 + 深蓝主调 + 多彩辅助色 */
+    --ink: #0f1722;
+    --ink-soft: #1f2a3a;
+    --paper: #f4f6fa;
+    --paper-warm: #eaeef5;
+    --paper-cream: #dde3ed;
+    --rule: #b5bdcb;
+    --rule-soft: #d2d8e2;
+    --muted: #5a6677;
+
+    /* 主色 - 冷调深蓝家族 */
+    --accent-blue: #1e3a5f;
+    --accent-blue-deep: #0a1929;
+    --accent-blue-night: #061325;
+    --accent-blue-mid: #3a6896;
+    --accent-blue-soft: #7ba8cf;
+
+    /* 辅助色 - 多彩点缀（用于不同语义） */
+    --accent-coral: #d4896e;       /* 暖珊瑚 - 强调、引用 */
+    --accent-coral-soft: #e8a98e;
+    --accent-terracotta: #b56b54;  /* 陶土 - 警示、风险 */
+    --accent-mustard: #c89a3d;     /* 芥末黄 - 数据、突出 */
+    --accent-jade: #4a7c8c;        /* 青灰蓝 - 案例、信息 */
+    --accent-forest: #4a7a5e;      /* 林绿 - 成果、积极 */
+    --accent-plum: #7c4a6b;        /* 梅紫 - 制度、深度 */
+
+    /* 兼容旧变量名（保持其他位置不变） */
+    --accent-rust: var(--accent-coral);
+    --accent-rust-soft: var(--accent-coral-soft);
+    --accent-ochre: var(--accent-mustard);
+
+    /* 字体 */
+    --font-display: 'Noto Serif SC', 'Cormorant Garamond', Georgia, serif;
+    --font-serif: 'Noto Serif SC', Georgia, serif;
+    --font-sans: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+    --font-latin-display: 'Cormorant Garamond', Georgia, serif;
+
+    /* 排版尺度 */
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.25rem;
+    --text-2xl: 1.5rem;
+    --text-3xl: 1.875rem;
+    --text-4xl: 2.5rem;
+    --text-5xl: 3.5rem;
+    --text-display: 5.5rem;
+}
+
+/* ---------- 重置与基础 ---------- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-serif);
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.75;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+/* 纸张纹理背景 */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    background-image:
+        radial-gradient(circle at 20% 30%, rgba(91, 140, 181, 0.025) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(30, 58, 95, 0.025) 0%, transparent 50%);
+    opacity: 1;
+}
+
+/* 噪点纹理 */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.35;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' /%3E%3CfeColorMatrix values='0 0 0 0 0.2 0 0 0 0 0.25 0 0 0 0 0.3 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- 封面区域 ---------- */
+.cover {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    overflow: hidden;
+}
+
+.cover-left {
+    padding: 4rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    background: var(--paper-warm);
+    border-right: 1px solid var(--rule);
+    overflow: hidden;
+}
+
+/* 左侧细节 - 极淡的网格底纹 */
+.cover-left::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(30, 58, 95, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30, 58, 95, 0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+}
+
+.cover-left > * {
+    position: relative;
+    z-index: 1;
+}
+
+.cover-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.cover-meta .doc-id {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.cover-meta .doc-id::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--accent-coral);
+}
+
+.cover-title-block {
+    margin: 3rem 0;
+}
+
+.cover-eyebrow {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    color: var(--accent-coral);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.cover-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--accent-blue-deep);
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+}
+
+/* 重点：title-accent 也保持宋体，仅用颜色和粗细区分 */
+.cover-title .title-accent {
+    font-family: var(--font-display);
+    color: var(--accent-coral);
+    font-style: normal;
+    font-weight: 700;
+    position: relative;
+}
+
+.cover-subtitle {
+    font-family: var(--font-serif);
+    font-size: var(--text-xl);
+    color: var(--ink-soft);
+    line-height: 1.5;
+    font-weight: 400;
+    max-width: 90%;
+}
+
+.cover-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    color: var(--muted);
+    letter-spacing: 0.1em;
+}
+
+.cover-footer .divider {
+    width: 80px;
+    height: 1px;
+    background: var(--ink);
+    margin-bottom: 0.5rem;
+}
+
+/* 封面右侧 - 深蓝色 */
+.cover-right {
+    position: relative;
+    background: var(--accent-blue-night);
+    overflow: hidden;
+    color: var(--paper);
+    padding: 4rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.cover-right::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(244, 246, 250, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(244, 246, 250, 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+}
+
+.cover-right::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 30% 40%, rgba(91, 140, 181, 0.18) 0%, transparent 55%),
+        radial-gradient(circle at 80% 75%, rgba(212, 137, 110, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.cover-graphic {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cover-graphic svg {
+    width: 100%;
+    height: auto;
+    max-width: 500px;
+}
+
+.cover-stats {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(244, 246, 250, 0.2);
+}
+
+.cover-stat .stat-value {
+    font-family: var(--font-latin-display);
+    font-size: var(--text-3xl);
+    font-weight: 600;
+    color: var(--accent-rust-soft);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.cover-stat .stat-label {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    color: rgba(244, 246, 250, 0.65);
+    letter-spacing: 0.1em;
+    line-height: 1.4;
+}
+
+/* ---------- 主导航 ---------- */
+.toc-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(244, 246, 250, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+    padding: 1rem 0;
+}
+
+.toc-bar-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.toc-brand {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-shrink: 0;
+}
+
+.toc-brand::before {
+    content: '';
+    display: block;
+    width: 8px;
+    height: 8px;
+    background: var(--accent-rust);
+    border-radius: 50%;
+}
+
+.toc-nav {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.toc-nav a {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    color: var(--ink-soft);
+    text-decoration: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 2px;
+    transition: all 0.2s ease;
+    letter-spacing: 0.05em;
+}
+
+.toc-nav a:hover {
+    background: var(--accent-blue-deep);
+    color: var(--paper);
+}
+
+/* ---------- 主容器 ---------- */
+.report {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 3rem;
+}
+
+/* ---------- 章节 ---------- */
+.section {
+    padding: 6rem 0;
+    border-bottom: 1px solid var(--rule-soft);
+    position: relative;
+}
+
+.section:last-child {
+    border-bottom: none;
+}
+
+.section-header {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 3rem;
+    margin-bottom: 4rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid var(--ink);
+    align-items: end;
+}
+
+.section-num {
+    font-family: var(--font-latin-display);
+    font-size: var(--text-5xl);
+    font-weight: 500;
+    color: var(--accent-coral);
+    line-height: 1;
+    font-style: italic;
+}
+
+/* 每个section使用不同的强调色 */
+#executive .section-num { color: var(--accent-coral); }
+#background .section-num { color: var(--accent-blue-mid); }
+#problems .section-num { color: var(--accent-terracotta); }
+#cases .section-num { color: var(--accent-jade); }
+#differences .section-num { color: var(--accent-plum); }
+#strategy .section-num { color: var(--accent-forest); }
+#risks .section-num { color: var(--accent-terracotta); }
+#outcomes .section-num { color: var(--accent-mustard); }
+#actions .section-num { color: var(--accent-coral); }
+#appendix .section-num { color: var(--accent-jade); }
+
+.section-num .num-label {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+    font-style: normal;
+}
+
+.section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 700;
+    color: var(--accent-blue-deep);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+}
+
+/* ---------- 内容栅格 ---------- */
+.content-grid {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 3rem;
+}
+
+.content-side {
+    position: sticky;
+    top: 6rem;
+    align-self: start;
+}
+
+.side-label {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    line-height: 1.6;
+    border-left: 2px solid var(--accent-rust);
+    padding-left: 1rem;
+}
+
+.content-main {
+    max-width: 800px;
+}
+
+/* ---------- 文本样式 ---------- */
+.lead {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin-bottom: 2rem;
+    font-weight: 400;
+    border-left: 3px solid var(--accent-rust);
+    padding-left: 2rem;
+}
+
+p {
+    margin-bottom: 1.5rem;
+    font-size: var(--text-base);
+    line-height: 1.85;
+    color: var(--ink);
+}
+
+p strong {
+    font-weight: 700;
+    color: var(--accent-blue-deep);
+}
+
+p em {
+    font-style: italic;
+    color: var(--accent-rust);
+}
+
+h3.subsection-title {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    color: var(--ink);
+    margin: 3rem 0 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+}
+
+h3.subsection-title .sub-num {
+    font-family: var(--font-latin-display);
+    font-style: italic;
+    color: var(--accent-rust);
+    font-size: var(--text-xl);
+    font-weight: 500;
+}
+
+h4.minor-title {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--accent-blue-deep);
+    margin: 2rem 0 1rem;
+    letter-spacing: 0.02em;
+}
+
+h4.minor-title::before {
+    content: '§ ';
+    color: var(--accent-rust);
+    font-family: var(--font-latin-display);
+}
+
+/* ---------- 执行摘要特殊样式 ---------- */
+.exec-summary {
+    background: var(--paper-cream);
+    padding: 4rem 3rem;
+    margin: 3rem 0;
+    position: relative;
+    border-top: 4px solid var(--accent-blue-deep);
+}
+
+.exec-summary::before {
+    content: 'Executive Summary';
+    position: absolute;
+    top: -0.7rem;
+    left: 2rem;
+    background: var(--paper-cream);
+    padding: 0 1rem;
+    font-family: var(--font-latin-display);
+    font-style: italic;
+    color: var(--accent-blue-deep);
+    font-size: var(--text-base);
+    letter-spacing: 0.05em;
+}
+
+.exec-summary p {
+    font-family: var(--font-serif);
+    font-size: var(--text-base);
+    line-height: 1.85;
+}
+
+/* ---------- 三大问题卡片 ---------- */
+.problems-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin: 3rem 0;
+}
+
+.problem-card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 2rem;
+    position: relative;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.problem-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--accent-blue-mid);
+    transition: height 0.3s ease;
+}
+
+.problem-card:nth-child(1)::before { background: var(--accent-coral); }
+.problem-card:nth-child(2)::before { background: var(--accent-mustard); }
+.problem-card:nth-child(3)::before { background: var(--accent-jade); }
+
+.problem-card:hover {
+    border-color: var(--accent-blue-deep);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(30, 58, 82, 0.08);
+}
+
+.problem-card:hover::before {
+    height: 5px;
+}
+
+.problem-card .problem-num {
+    font-family: var(--font-latin-display);
+    font-style: italic;
+    font-size: var(--text-3xl);
+    line-height: 1;
+    margin-bottom: 1rem;
+}
+
+.problem-card:nth-child(1) .problem-num { color: var(--accent-coral); }
+.problem-card:nth-child(2) .problem-num { color: var(--accent-mustard); }
+.problem-card:nth-child(3) .problem-num { color: var(--accent-jade); }
+
+.problem-card .problem-label {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+}
+
+.problem-card .problem-title {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: var(--accent-blue-deep);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+.problem-card .problem-desc {
+    font-size: var(--text-sm);
+    line-height: 1.7;
+    color: var(--ink-soft);
+}
+
+/* ---------- 数据指标块 ---------- */
+.data-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin: 3rem 0;
+    background: var(--accent-blue-deep);
+    color: var(--paper);
+    padding: 0;
+    position: relative;
+}
+
+.data-strip::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at top left, rgba(91, 140, 181, 0.15) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.data-strip .data-cell {
+    padding: 2rem 1.5rem;
+    border-right: 1px solid rgba(244, 246, 250, 0.12);
+    position: relative;
+    z-index: 1;
+}
+
+.data-strip .data-cell:last-child {
+    border-right: none;
+}
+
+.data-value {
+    font-family: var(--font-latin-display);
+    font-size: var(--text-4xl);
+    font-weight: 600;
+    color: var(--accent-coral-soft);
+    line-height: 1;
+    margin-bottom: 0.75rem;
+}
+
+/* 数据条带 - 四个值的颜色循环 */
+.data-strip .data-cell:nth-child(1) .data-value { color: var(--accent-coral-soft); }
+.data-strip .data-cell:nth-child(2) .data-value { color: #e4c075; } /* 金黄 */
+.data-strip .data-cell:nth-child(3) .data-value { color: #88c8b4; } /* 薄荷 */
+.data-strip .data-cell:nth-child(4) .data-value { color: var(--accent-blue-soft); }
+
+.data-value .unit {
+    font-size: var(--text-lg);
+    color: rgba(244, 246, 250, 0.6);
+    margin-left: 0.25rem;
+}
+
+.data-label {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    color: rgba(244, 246, 250, 0.72);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1.4;
+}
+
+/* ---------- 引文块 ---------- */
+.pullquote {
+    margin: 3rem 0;
+    padding: 2rem 0;
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    text-align: center;
+}
+
+.pullquote-text {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--accent-blue-deep);
+    letter-spacing: -0.01em;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.pullquote-mark {
+    display: block;
+    font-family: var(--font-latin-display);
+    font-style: italic;
+    color: var(--accent-rust);
+    font-size: var(--text-4xl);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+/* ---------- 案例卡片 ---------- */
+.case-card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    margin-bottom: 2rem;
+    overflow: hidden;
+    transition: all 0.2s ease;
+}
+
+.case-card:hover {
+    box-shadow: 0 8px 24px rgba(30, 58, 82, 0.06);
+}
+
+.case-header {
+    background: var(--paper-warm);
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.case-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.case-tag {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    background: var(--accent-blue-deep);
+    color: var(--paper);
+    border-radius: 2px;
+    font-weight: 500;
+}
+
+.case-tag.tag-coral { background: var(--accent-coral); }
+.case-tag.tag-rust { background: var(--accent-coral); }
+.case-tag.tag-jade { background: var(--accent-jade); }
+.case-tag.tag-ochre { background: var(--accent-mustard); }
+.case-tag.tag-forest { background: var(--accent-forest); }
+.case-tag.tag-plum { background: var(--accent-plum); }
+.case-tag.tag-terracotta { background: var(--accent-terracotta); }
+
+.case-location {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    color: var(--muted);
+    letter-spacing: 0.1em;
+}
+
+.case-year {
+    font-family: var(--font-latin-display);
+    font-style: italic;
+    color: var(--accent-rust);
+    font-size: var(--text-lg);
+    font-weight: 500;
+}
+
+.case-body {
+    padding: 2rem;
+}
+
+.case-title {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+}
+
+.case-title-en {
+    display: block;
+    font-family: var(--font-latin-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: var(--text-base);
+    color: var(--muted);
+    margin-top: 0.25rem;
+    letter-spacing: 0.01em;
+}
+
+.case-section {
+    margin: 1.5rem 0;
+}
+
+.case-section-label {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-rust);
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.case-section-content {
+    font-size: var(--text-sm);
+    line-height: 1.8;
+    color: var(--ink-soft);
+}
+
+/* 案例的"对葵青区启示"特别块 */
+.case-insights {
+    background: var(--paper-cream);
+    padding: 1.5rem 2rem;
+    margin-top: 1.5rem;
+    border-left: 3px solid var(--accent-rust);
+}
+
+.case-insights .case-section-label {
+    color: var(--accent-blue-deep);
+}
+
+.case-insights ul {
+    list-style: none;
+    padding: 0;
+}
+
+.case-insights ul li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    font-size: var(--text-sm);
+    line-height: 1.7;
+    color: var(--ink-soft);
+}
+
+.case-insights ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent-rust);
+    font-family: var(--font-latin-display);
+    font-weight: 600;
+}
+
+/* ---------- 列表样式 ---------- */
+.styled-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+}
+
+.styled-list li {
+    position: relative;
+    padding-left: 2.5rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--rule-soft);
+    line-height: 1.75;
+}
+
+.styled-list li:last-child {
+    border-bottom: none;
+}
+
+.styled-list li::before {
+    content: counter(list-counter, decimal-leading-zero);
+    counter-increment: list-counter;
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-family: var(--font-latin-display);
+    font-style: italic;
+    color: var(--accent-rust);
+    font-weight: 600;
+    font-size: var(--text-lg);
+}
+
+.styled-list {
+    counter-reset: list-counter;
+}
+
+.bullet-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 1.5rem;
+}
+
+.bullet-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.75;
+}
+
+.bullet-list li::before {
+    content: '◆';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--accent-rust);
+    font-size: 0.7em;
+    top: 0.6em;
+}
+
+/* ---------- 表格样式 ---------- */
+.report-table-wrap {
+    margin: 2.5rem 0;
+    overflow-x: auto;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+}
+
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+}
+
+.report-table thead {
+    background: var(--accent-blue-deep);
+    color: var(--paper);
+}
+
+.report-table thead th {
+    padding: 1rem 1.25rem;
+    text-align: left;
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-right: 1px solid rgba(244, 246, 250, 0.12);
+}
+
+.report-table thead th:last-child {
+    border-right: none;
+}
+
+.report-table tbody td {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--rule-soft);
+    border-right: 1px solid var(--rule-soft);
+    line-height: 1.7;
+    vertical-align: top;
+    color: var(--ink-soft);
+}
+
+.report-table tbody td:last-child {
+    border-right: none;
+}
+
+.report-table tbody tr:nth-child(even) {
+    background: var(--paper-warm);
+}
+
+.report-table tbody tr:hover {
+    background: var(--paper-cream);
+}
+
+.report-table tbody td strong {
+    color: var(--accent-blue-deep);
+}
+
+.report-table .check {
+    color: var(--accent-jade);
+    font-weight: 700;
+    font-size: var(--text-base);
+}
+
+.report-table .dash {
+    color: var(--rule);
+}
+
+/* ---------- 战略策略块 ---------- */
+.strategy-block {
+    background: var(--paper);
+    border-left: 4px solid var(--accent-blue-deep);
+    padding: 2rem 2.5rem;
+    margin: 2rem 0;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.strategy-block:hover {
+    background: var(--paper-warm);
+}
+
+.strategy-block.coral { border-left-color: var(--accent-coral); }
+.strategy-block.rust { border-left-color: var(--accent-terracotta); }
+.strategy-block.jade { border-left-color: var(--accent-jade); }
+.strategy-block.forest { border-left-color: var(--accent-forest); }
+.strategy-block.mustard { border-left-color: var(--accent-mustard); }
+.strategy-block.plum { border-left-color: var(--accent-plum); }
+
+.strategy-block-eyebrow {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-coral);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.strategy-block.rust .strategy-block-eyebrow { color: var(--accent-terracotta); }
+.strategy-block.jade .strategy-block-eyebrow { color: var(--accent-jade); }
+.strategy-block.forest .strategy-block-eyebrow { color: var(--accent-forest); }
+.strategy-block.mustard .strategy-block-eyebrow { color: var(--accent-mustard); }
+.strategy-block.plum .strategy-block-eyebrow { color: var(--accent-plum); }
+
+.strategy-block-title {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    color: var(--accent-blue-deep);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+.strategy-block-positioning {
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    color: var(--ink-soft);
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px dashed var(--rule);
+}
+
+/* ---------- 阶段时间轴 ---------- */
+.phases {
+    margin: 3rem 0;
+}
+
+.phase {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+}
+
+.phase:last-child {
+    border-bottom: none;
+}
+
+.phase-marker {
+    position: relative;
+}
+
+.phase-num {
+    font-family: var(--font-latin-display);
+    font-size: var(--text-5xl);
+    font-style: italic;
+    color: var(--accent-coral);
+    line-height: 1;
+    font-weight: 600;
+}
+
+.phase:nth-child(1) .phase-num { color: var(--accent-coral); }
+.phase:nth-child(2) .phase-num { color: var(--accent-mustard); }
+.phase:nth-child(3) .phase-num { color: var(--accent-forest); }
+
+.phase:nth-child(1) .phase-years { color: var(--accent-coral); }
+.phase:nth-child(2) .phase-years { color: var(--accent-mustard); }
+.phase:nth-child(3) .phase-years { color: var(--accent-forest); }
+
+.phase-label {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 0.5rem;
+}
+
+.phase-years {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    color: var(--accent-blue-deep);
+    margin-top: 0.5rem;
+    font-weight: 500;
+}
+
+.phase-title {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    color: var(--accent-blue-deep);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+/* ---------- 信息盒子 ---------- */
+.info-box {
+    background: var(--paper-warm);
+    padding: 1.5rem 2rem;
+    margin: 1.5rem 0;
+    border: 1px solid var(--rule);
+    border-left: 4px solid var(--accent-blue-mid);
+    position: relative;
+}
+
+.info-box.warning {
+    background: rgba(181, 107, 84, 0.05);
+    border-color: rgba(181, 107, 84, 0.25);
+    border-left-color: var(--accent-terracotta);
+}
+
+.info-box.info {
+    background: rgba(30, 58, 95, 0.04);
+    border-color: rgba(30, 58, 95, 0.2);
+    border-left-color: var(--accent-blue-mid);
+}
+
+.info-box.success {
+    background: rgba(74, 122, 94, 0.05);
+    border-color: rgba(74, 122, 94, 0.25);
+    border-left-color: var(--accent-forest);
+}
+
+.info-box.highlight {
+    background: rgba(200, 154, 61, 0.06);
+    border-color: rgba(200, 154, 61, 0.25);
+    border-left-color: var(--accent-mustard);
+}
+
+.info-box .info-label {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.info-box.warning .info-label {
+    color: var(--accent-terracotta);
+}
+
+.info-box.info .info-label {
+    color: var(--accent-blue-mid);
+}
+
+.info-box.success .info-label {
+    color: var(--accent-forest);
+}
+
+.info-box.highlight .info-label {
+    color: var(--accent-mustard);
+}
+
+/* ---------- 收尾 ---------- */
+.footer {
+    background: var(--accent-blue-night);
+    color: var(--paper);
+    padding: 4rem 3rem;
+    margin-top: 6rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 30%, rgba(91, 140, 181, 0.1) 0%, transparent 50%),
+        linear-gradient(rgba(244, 246, 250, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(244, 246, 250, 0.02) 1px, transparent 1px);
+    background-size: auto, 50px 50px, 50px 50px;
+    pointer-events: none;
+}
+
+.footer-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    position: relative;
+    z-index: 1;
+}
+
+.footer-text {
+    font-family: var(--font-serif);
+    font-size: var(--text-base);
+    line-height: 1.8;
+    color: rgba(244, 246, 250, 0.82);
+}
+
+.footer-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.footer-meta-item {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+}
+
+.footer-meta-label {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-rust-soft);
+    min-width: 100px;
+}
+
+.footer-meta-value {
+    font-family: var(--font-serif);
+    color: var(--paper);
+}
+
+.footer-divider {
+    grid-column: 1 / -1;
+    height: 1px;
+    background: rgba(244, 246, 250, 0.15);
+    margin: 1rem 0;
+}
+
+.footer-bottom {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(244, 246, 250, 0.5);
+}
+
+/* ---------- 附录卡片网格 ---------- */
+.appendix-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.appendix-card {
+    background: var(--paper-warm);
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--accent-blue-mid);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.appendix-card:nth-child(1) { border-top-color: var(--accent-coral); }
+.appendix-card:nth-child(2) { border-top-color: var(--accent-mustard); }
+.appendix-card:nth-child(3) { border-top-color: var(--accent-plum); }
+.appendix-card:nth-child(4) { border-top-color: var(--accent-jade); }
+.appendix-card:nth-child(5) { border-top-color: var(--accent-forest); }
+.appendix-card:nth-child(6) { border-top-color: var(--accent-terracotta); }
+
+.appendix-card:hover {
+    background: var(--paper-cream);
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(30, 58, 82, 0.06);
+}
+
+.appendix-num {
+    font-family: var(--font-latin-display);
+    font-style: italic;
+    color: var(--accent-coral);
+    font-weight: 600;
+    font-size: var(--text-sm);
+    letter-spacing: 0.1em;
+}
+
+.appendix-card:nth-child(1) .appendix-num { color: var(--accent-coral); }
+.appendix-card:nth-child(2) .appendix-num { color: var(--accent-mustard); }
+.appendix-card:nth-child(3) .appendix-num { color: var(--accent-plum); }
+.appendix-card:nth-child(4) .appendix-num { color: var(--accent-jade); }
+.appendix-card:nth-child(5) .appendix-num { color: var(--accent-forest); }
+.appendix-card:nth-child(6) .appendix-num { color: var(--accent-terracotta); }
+
+.appendix-title {
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--accent-blue-deep);
+    line-height: 1.4;
+}
+
+.appendix-info {
+    display: flex;
+    gap: 1rem;
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    color: var(--muted);
+    margin-top: 0.5rem;
+}
+
+/* ---------- 滚动指示器与渐入动画 ---------- */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* ---------- 响应式 ---------- */
+@media (max-width: 1024px) {
+    .cover {
+        grid-template-columns: 1fr;
+    }
+    .cover-left, .cover-right {
+        padding: 3rem 2rem;
+    }
+    .cover-left {
+        border-right: none;
+        border-bottom: 1px solid var(--rule);
+    }
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+    .content-side {
+        position: static;
+    }
+    .section-header {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .problems-grid {
+        grid-template-columns: 1fr;
+    }
+    .data-strip {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .data-strip .data-cell:nth-child(2) {
+        border-right: none;
+    }
+    .data-strip .data-cell:nth-child(1),
+    .data-strip .data-cell:nth-child(2) {
+        border-bottom: 1px solid rgba(244, 246, 250, 0.12);
+    }
+    .footer-inner {
+        grid-template-columns: 1fr;
+    }
+    .appendix-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .report {
+        padding: 0 1.25rem;
+    }
+    .section {
+        padding: 4rem 0;
+    }
+    .toc-bar-inner {
+        padding: 0 1.25rem;
+    }
+    .toc-nav {
+        display: none;
+    }
+    .cover-stats {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .data-strip {
+        grid-template-columns: 1fr;
+    }
+    .data-strip .data-cell {
+        border-right: none;
+        border-bottom: 1px solid rgba(244, 246, 250, 0.12);
+    }
+    .phase {
+        grid-template-columns: 1fr;
+    }
+    .exec-summary {
+        padding: 2rem 1.5rem;
+    }
+}
+
+/* ---------- 打印样式 ---------- */
+@media print {
+    body { background: white; }
+    body::before, body::after { display: none; }
+    .toc-bar { display: none; }
+    .section { page-break-inside: avoid; }
+}
+
+
+/* ===== Inlined from styles-en.css ===== */
+/* ==========================================================================
+   English Version - Supplementary Styles
+   只对英文版需要的微调（字号、行高、字距）做覆盖，所有色彩与结构共用 styles.css
+   ========================================================================== */
+
+/* 英文标题字体 - 用 Cormorant Garamond 作为主标题字体（更具杂志感） */
+:root {
+    --font-display: 'Cormorant Garamond', 'Noto Serif SC', Georgia, serif;
+    --font-serif: 'Cormorant Garamond', 'Noto Serif SC', Georgia, serif;
+}
+
+/* 英文正文用 EB Garamond 阅读性更好 */
+body {
+    font-family: 'EB Garamond', 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.0625rem;
+    line-height: 1.7;
+}
+
+/* 封面大标题 - 英文需要精心调整字号让所有元素容纳在一屏 */
+.cover-title {
+    font-size: clamp(2rem, 3.8vw, 3.4rem);
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+    font-weight: 600;
+}
+
+.cover-title .title-accent {
+    font-weight: 600;
+}
+
+/* 英文副标题 */
+.cover-subtitle {
+    font-size: 1.125rem;
+    line-height: 1.4;
+    font-style: italic;
+    font-weight: 400;
+    max-width: 95%;
+}
+
+/* 封面 eyebrow 字号略小 */
+.cover-eyebrow {
+    font-size: 0.8125rem;
+}
+
+/* 封面元信息间距紧凑 */
+.cover-title-block {
+    margin: 2rem 0;
+}
+
+/* 章节标题 - 英文版用更细致的字号 */
+.section-title {
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    line-height: 1.1;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+}
+
+/* 副节标题 */
+h3.subsection-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+}
+
+/* 次级标题 */
+h4.minor-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    font-style: italic;
+}
+
+/* 段落 - 英文段落需要更舒展的行高 */
+p {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+}
+
+/* 引子段 */
+.lead {
+    font-size: 1.375rem;
+    line-height: 1.55;
+    font-style: italic;
+}
+
+/* 执行摘要 */
+.exec-summary p {
+    font-size: 1.0625rem;
+    line-height: 1.8;
+}
+
+.exec-summary::before {
+    font-style: italic;
+    font-weight: 500;
+}
+
+/* 大引文 */
+.pullquote-text {
+    font-size: 1.75rem;
+    line-height: 1.4;
+    font-weight: 500;
+    font-style: italic;
+    letter-spacing: -0.01em;
+}
+
+/* 问题卡片标题 */
+.problem-card .problem-title {
+    font-size: 1.1875rem;
+    line-height: 1.3;
+    font-weight: 600;
+}
+
+.problem-card .problem-desc {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+}
+
+/* 案例标题 */
+.case-title {
+    font-size: 1.375rem;
+    line-height: 1.3;
+    font-weight: 600;
+}
+
+.case-title-en {
+    font-size: 1rem;
+    font-style: italic;
+    font-weight: 400;
+}
+
+/* 策略块标题 */
+.strategy-block-title {
+    font-size: 1.5rem;
+    line-height: 1.25;
+    font-weight: 600;
+}
+
+.strategy-block-positioning {
+    font-style: italic;
+}
+
+/* 阶段标题 */
+.phase-title {
+    font-size: 1.625rem;
+    line-height: 1.25;
+    font-weight: 600;
+}
+
+/* 表格 - 英文需要稍大字号 */
+.report-table {
+    font-size: 0.9375rem;
+}
+
+.report-table tbody td {
+    line-height: 1.55;
+}
+
+.report-table thead th {
+    font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif;
+    letter-spacing: 0.08em;
+}
+
+/* 侧栏标签 */
+.side-label {
+    font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif;
+    line-height: 1.7;
+}
+
+/* 标签/小字使用 Inter */
+.cover-meta,
+.cover-eyebrow,
+.cover-footer,
+.toc-brand,
+.toc-nav,
+.case-tag,
+.case-location,
+.problem-label,
+.strategy-block-eyebrow,
+.phase-label,
+.case-section-label,
+.section-num .num-label,
+.info-box .info-label,
+.data-label,
+.stat-label,
+.appendix-info,
+.footer-meta-label,
+.footer-bottom {
+    font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif;
+}
+
+/* 数据值 */
+.data-value,
+.stat-value {
+    font-weight: 500;
+}
+
+/* 附录卡片标题 */
+.appendix-title {
+    font-size: 1.0625rem;
+    line-height: 1.35;
+    font-weight: 600;
+}
+
+/* 列表 */
+.styled-list li,
+.bullet-list li {
+    font-size: 1.0625rem;
+    line-height: 1.7;
+}
+
+/* sub-num */
+h3.subsection-title .sub-num {
+    font-weight: 500;
+}
+
+/* footer 文本 */
+.footer-text {
+    font-size: 1.0625rem;
+    line-height: 1.7;
+}
+
+</style>
+</head>
+<body>
+
+<!-- ========================================================================
+     COVER
+     ======================================================================== -->
+<header class="cover">
+    <div class="cover-left">
+        <div class="cover-meta">
+            <div class="doc-id">URBAN PLANNING REPORT &nbsp;·&nbsp; KWAI TSING DISTRICT</div>
+            <div>NEW TERRITORIES &nbsp;/&nbsp; HONG KONG SAR</div>
+            <div>FINAL DRAFT &nbsp;/&nbsp; 2026</div>
+        </div>
+
+        <div class="cover-title-block">
+            <div class="cover-eyebrow">Urban Planning Proposal &nbsp;·&nbsp; Comprehensive Report</div>
+            <h1 class="cover-title">
+                Kwai Tsing<br>
+                <span class="title-accent">Age-Friendly Living</span><br>
+                &amp; <span class="title-accent">Community Economy</span><br>
+                Demonstration Zone
+            </h1>
+            <p class="cover-subtitle">
+                An inclusive renewal framework for a built-out<br>
+                post-industrial new town &mdash; with a 2047 lease-window strategy
+            </p>
+        </div>
+
+        <div class="cover-footer">
+            <div class="divider"></div>
+            <div>SCOPE &nbsp;/&nbsp; 20 sub-districts incl. Kwai Hing, Kwai Luen, Kwai Shing East &amp; Tai Wo Hau</div>
+            <div>METHOD &nbsp;/&nbsp; Local contextual analysis &nbsp;+&nbsp; six global case studies</div>
+            <div>HORIZON &nbsp;/&nbsp; Short term 1&ndash;3 yr &nbsp;·&nbsp; Mid term 4&ndash;8 yr &nbsp;·&nbsp; Long term 9&ndash;15 yr</div>
+        </div>
+    </div>
+
+    <div class="cover-right">
+        <div class="cover-graphic">
+            <!-- Abstract urban planning diagram -->
+            <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#e8a98e" stop-opacity="0.4"/>
+                        <stop offset="100%" stop-color="#e8a98e" stop-opacity="0"/>
+                    </radialGradient>
+                </defs>
+
+                <circle cx="250" cy="250" r="80" fill="url(#coreGlow)"/>
+
+                <circle cx="250" cy="250" r="200" fill="none" stroke="rgba(244,246,250,0.08)" stroke-width="1"/>
+                <circle cx="250" cy="250" r="160" fill="none" stroke="rgba(244,246,250,0.12)" stroke-width="1"/>
+                <circle cx="250" cy="250" r="120" fill="none" stroke="rgba(244,246,250,0.18)" stroke-width="1"/>
+                <circle cx="250" cy="250" r="80" fill="none" stroke="rgba(244,246,250,0.28)" stroke-width="1"/>
+
+                <g opacity="0.9">
+                    <rect x="80" y="100" width="60" height="80" fill="none" stroke="#e8a98e" stroke-width="1.5"/>
+                    <rect x="150" y="120" width="50" height="60" fill="none" stroke="#e8a98e" stroke-width="1.5"/>
+                    <rect x="90" y="200" width="70" height="50" fill="none" stroke="#e8a98e" stroke-width="1.5"/>
+                </g>
+
+                <g opacity="0.85">
+                    <rect x="320" y="320" width="100" height="40" fill="none" stroke="#7ba8cf" stroke-width="1.5"/>
+                    <rect x="320" y="370" width="80" height="30" fill="none" stroke="#7ba8cf" stroke-width="1.5"/>
+                    <rect x="340" y="280" width="60" height="35" fill="none" stroke="#7ba8cf" stroke-width="1.5"/>
+                </g>
+
+                <g opacity="0.7">
+                    <rect x="200" y="380" width="40" height="30" fill="none" stroke="#c89a3d" stroke-width="1.5"/>
+                </g>
+
+                <line x1="50" y1="300" x2="450" y2="200" stroke="rgba(244,246,250,0.3)" stroke-width="1" stroke-dasharray="4,4"/>
+                <line x1="100" y1="50" x2="400" y2="450" stroke="rgba(244,246,250,0.2)" stroke-width="1" stroke-dasharray="4,4"/>
+
+                <circle cx="250" cy="250" r="6" fill="#e8a98e"/>
+                <circle cx="250" cy="250" r="14" fill="none" stroke="#e8a98e" stroke-width="1"/>
+                <circle cx="250" cy="250" r="24" fill="none" stroke="#e8a98e" stroke-width="0.5" opacity="0.6"/>
+
+                <circle cx="120" cy="150" r="4" fill="#f4f6fa"/>
+                <circle cx="380" cy="350" r="4" fill="#f4f6fa"/>
+                <circle cx="180" cy="380" r="4" fill="#f4f6fa"/>
+                <circle cx="380" cy="120" r="4" fill="#f4f6fa"/>
+
+                <text x="250" y="285" text-anchor="middle" font-family="Cormorant Garamond" font-style="italic" fill="#e8a98e" font-size="14">TOD-R Core</text>
+                <text x="120" y="98" text-anchor="middle" font-family="Cormorant Garamond" fill="rgba(244,246,250,0.65)" font-size="10" letter-spacing="2">PUBLIC HOUSING</text>
+                <text x="380" y="425" text-anchor="middle" font-family="Cormorant Garamond" fill="rgba(244,246,250,0.65)" font-size="10" letter-spacing="2">INDUSTRIAL / PORT</text>
+                <text x="220" y="430" text-anchor="middle" font-family="Cormorant Garamond" fill="rgba(244,246,250,0.5)" font-size="9" letter-spacing="2">GIC</text>
+
+                <g fill="rgba(244,246,250,0.18)">
+                    <circle cx="100" cy="100" r="1.5"/>
+                    <circle cx="400" cy="100" r="1.5"/>
+                    <circle cx="100" cy="400" r="1.5"/>
+                    <circle cx="400" cy="400" r="1.5"/>
+                </g>
+            </svg>
+        </div>
+
+        <div class="cover-stats">
+            <div class="cover-stat">
+                <div class="stat-value">48.1</div>
+                <div class="stat-label">Median age<br>YEARS</div>
+            </div>
+            <div class="cover-stat">
+                <div class="stat-value">22%</div>
+                <div class="stat-label">Aged 65+<br>ELDERLY POP.</div>
+            </div>
+            <div class="cover-stat">
+                <div class="stat-value">31.5%</div>
+                <div class="stat-label">Rent-to-income<br>RATIO</div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- ========================================================================
+     TOC BAR
+     ======================================================================== -->
+<nav class="toc-bar">
+    <div class="toc-bar-inner">
+        <div class="toc-brand">Kwai Tsing · Plan 2047</div>
+        <div class="toc-nav">
+            <a href="#executive">Summary</a>
+            <a href="#background">Context</a>
+            <a href="#problems">Problems</a>
+            <a href="#cases">Cases</a>
+            <a href="#differences">Adaptation</a>
+            <a href="#strategy">Strategy</a>
+            <a href="#risks">Risks</a>
+            <a href="#outcomes">Outcomes</a>
+            <a href="#actions">Actions</a>
+            <a href="#appendix">Appendix</a>
+        </div>
+    </div>
+</nav>
+
+<div class="report">
+
+<!-- ========================================================================
+     I. EXECUTIVE SUMMARY
+     ======================================================================== -->
+<section class="section" id="executive">
+    <div class="section-header">
+        <div class="section-num">
+            <span class="num-label">PART · ONE</span>
+            I
+        </div>
+        <h2 class="section-title">Executive Summary</h2>
+    </div>
+
+    <div class="content-grid">
+        <aside class="content-side">
+            <div class="side-label">
+                Hong Kong's first-generation new town<br>
+                Aged public housing + legacy industrial port<br>
+                Built-out fabric + compounding decline
+            </div>
+        </aside>
+        <div class="content-main">
+            <p class="lead">
+                As an archetypal first-generation new town in Hong Kong, Kwai Tsing is undergoing a profound and painful transition &mdash; from an "industrial-cum-public-housing" satellite city into an "ageing post-industrial" community.
+            </p>
+
+            <div class="exec-summary">
+                <p>This report addresses the predicament of <strong>"compounding decline within a built-out fabric"</strong> confronting 20 sub-districts of Kwai Tsing &mdash; including Kwai Hing, Kwai Luen, Kwai Shing East and Upper / Lower Tai Wo Hau &mdash; and proposes a comprehensive urban-planning framework anchored on the strategic positioning of an "Age-Friendly Living and Community Economy Demonstration Zone." The district's building stock is on average over 40 years old; its plot ratio stands at a mere 1.22; its median age has reached 48.1, with residents aged 65 and above accounting for 22 percent; median household income is just HK$22,727 per month; and nearly 60 percent of residents live in public rental housing. Industrial, port and warehousing land is densely interwoven with high-density public housing, producing acute conflicts of land use.</p>
+
+                <p>Drawing on in-depth analysis of six global case studies &mdash; spanning floor-area-ratio (FAR) incentives for urban renewal in Taiwan, inclusionary zoning in Melbourne, industrial-land redevelopment in Shanghai, brownfield transformation in the United States, global innovations in "aging in place," and labour-market policies for an ageing workforce &mdash; the report distils transferable lessons in <em>institutional flexibility, value-sharing, community-benefit bundling, and incremental renewal</em>.</p>
+
+                <p>A three-phase implementation pathway is set out: short-term (1&ndash;3 years) to establish the framework and pilots; mid-term (4&ndash;8 years) to scale up renewal; and long-term (9&ndash;15 years) for systemic restructuring &mdash; supported by a robust risk-management regime. Long-term targets at the <strong>2047 land-lease milestone</strong> include: approximately 15,000 renewed residential units; 3,500 new local jobs; an in-district employment share rising to 25&ndash;30 percent; a 35 percent increase in public open-space area; and a reduction in the rent-to-income ratio from 31.5 percent to around 25 percent.</p>
+
+                <p>The proposal's core value lies in its capacity to deliver spatial justice and community economic regeneration in concert &mdash; through finely calibrated institutional design that respects existing tenure rights and social fabric. It offers <strong>a replicable policy template for the inclusive transformation of high-density, ageing urban districts &mdash; in Hong Kong and beyond</strong>.</p>
+            </div>
+
+            <h4 class="minor-title">Systemic Responses to Three Core Problems</h4>
+
+            <div class="problems-grid">
+                <div class="problem-card">
+                    <div class="problem-num">01</div>
+                    <div class="problem-label">PROBLEM ONE</div>
+                    <div class="problem-title">FAR negotiation in public-housing stock renewal</div>
+                    <div class="problem-desc">By designating "Transit-Oriented Organic Renewal Zones" (TOD-R Zones), the proposal exchanges plot-ratio bonuses for public facilities, bundling public-housing reconstruction with transit upgrades.</div>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-num">02</div>
+                    <div class="problem-label">PROBLEM TWO</div>
+                    <div class="problem-title">Reshuffling of expiring industrial land</div>
+                    <div class="problem-desc">Leveraging the 2047 land-lease window, in-situ land exchange and bundled-relocation mechanisms convert private industrial and warehousing parcels into mixed-use neighbourhoods with mandatory community productive space.</div>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-num">03</div>
+                    <div class="problem-label">PROBLEM THREE</div>
+                    <div class="problem-title">Deficit of facilities for an ageing, low-skilled workforce</div>
+                    <div class="problem-desc">A network of all-ages, function-mixed micro-renewals weaves disused industrial floors and public-housing podiums into "all-ages living rooms," embedded with community time banks and micro-employment opportunities.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ========================================================================
+     II. PROJECT BACKGROUND
+     ======================================================================== -->
+<section class="section" id="background">
+    <div class="section-header">
+        <div class="section-num">
+            <span class="num-label">PART · TWO</span>
+            II
+        </div>
+        <h2 class="section-title">Project Background<br>&amp; Local Context</h2>
+    </div>
+
+    <div class="content-grid">
+        <aside class="content-side">
+            <div class="side-label">
+                20 sub-districts / 316k residents<br>
+                Average building age 40+ years<br>
+                Plot ratio 1.22
+            </div>
+        </aside>
+        <div class="content-main">
+
+            <h3 class="subsection-title"><span class="sub-num">2.1</span>Regional profile &amp; spatial characteristics</h3>
+
+            <p>The study area covers 20 sub-districts of Kwai Tsing &mdash; including Kwai Hing, Kwai Luen, Kwai Shing East, Upper Tai Wo Hau and Lower Tai Wo Hau &mdash; with a combined population of roughly 316,000. The district is a quintessential legacy industrial new town, spatially expressed as a <strong>collage of high-density public housing intermeshed with a declining industrial-port fabric</strong>.</p>
+
+            <div class="data-strip">
+                <div class="data-cell">
+                    <div class="data-value">24.9<span class="unit">%</span></div>
+                    <div class="data-label">Public housing<br>land share</div>
+                </div>
+                <div class="data-cell">
+                    <div class="data-value">19.6<span class="unit">%</span></div>
+                    <div class="data-label">Road &amp; transport<br>land share</div>
+                </div>
+                <div class="data-cell">
+                    <div class="data-value">~10<span class="unit">%</span></div>
+                    <div class="data-label">Industrial / port / warehouse<br>land combined</div>
+                </div>
+                <div class="data-cell">
+                    <div class="data-value">4.1<span class="unit">%</span></div>
+                    <div class="data-label">Private housing<br>land share</div>
+                </div>
+            </div>
+
+            <p><strong>Imbalanced land-use structure.</strong> Public-housing land occupies 24.9 percent of the area, roads and transport 19.6 percent, woodlands 11.4 percent, industrial use 5.5 percent, port facilities 3.7 percent and warehousing 0.65 percent &mdash; the latter three together approaching 10 percent. By contrast, private residential land accounts for just 4.1 percent, commercial and office uses only 1.9 percent, and railway uses a meagre 0.37 percent. The figures reveal the district's deeply monofunctional "dormitory town" character and the severe spatial conflict between residential and productive functions.</p>
+
+            <p><strong>Severe building obsolescence.</strong> The average year of construction is 1982, placing average building age well beyond 40 years. The stock is predominantly low- to mid-rise (averaging 11.3 m in height) with a mean plot ratio of just 1.22 &mdash; a hallmark of low-density, low-efficiency early-generation public-housing development. Functionally, buildings are dominated by residential (averaging 15 blocks) and industrial uses (16 blocks), with very limited commercial or office floor space &mdash; further evidence of the structural separation between production and community.</p>
+
+            <p><strong>Topographic and ecological constraints.</strong> The area lies along a foothill-reclamation interface. Recreational uses (7.7 percent) and woodlands (11.4 percent) provide an ecological base but also limit the scope for large-scale land expansion. Roads form the dominant connective spine, while rail-transit support is severely under-provided &mdash; the root cause of residents' heavy dependence on buses and lorries.</p>
+
+            <h3 class="subsection-title"><span class="sub-num">2.2</span>Demographic &amp; socio-economic profile</h3>
+
+            <p>Kwai Tsing faces an acute <em>"double-ageing" challenge</em> &mdash; demographic ageing and physical building obsolescence occurring in parallel, compounding the spiral of decline.</p>
+
+            <h4 class="minor-title">Deep demographic ageing</h4>
+            <p>The sex ratio stands at 876 (women significantly outnumber men). Median age is 48.1; the population aged 65 and above accounts for 22 percent, well above the Hong Kong average. Nearly 40 percent of residents were born in mainland China, Macao or Taiwan, and the overwhelming majority are ethnic Chinese. This structure implies high dependency pressure and elevated demand for medical and care services &mdash; while the working-age population continues to shrink.</p>
+
+            <h4 class="minor-title">Low educational attainment &amp; workforce skill levels</h4>
+            <p>Only 13 percent of residents hold a university degree or above, and fewer than 60 percent can write English &mdash; reflecting low overall educational attainment and weak competitiveness in the knowledge economy. The labour-force participation rate is 56.1 percent overall, but for women just 49.6 percent &mdash; far below men &mdash; indicating that many women have either withdrawn from or never entered the labour market due to family caregiving.</p>
+
+            <h4 class="minor-title">Low-income, grassroots community profile</h4>
+            <p>Median household income is HK$22,727 per month and median personal income HK$16,003 &mdash; both materially below the Hong Kong average. The working population is dominated by elementary occupations (1,419 persons), service and sales workers (1,673) and associate professionals (1,260), with managers and professionals constituting only a small share &mdash; a textbook grassroots employment structure. Close to 90 percent of households reside in public rental housing; only 22 percent live in private housing; the share of fully-owned, mortgage-free properties is extremely low. The district displays a strikingly homogeneous economic class composition with very limited room for social mobility.</p>
+
+            <h4 class="minor-title">Cramped living conditions &amp; heavy housing burdens</h4>
+            <p>Median household living area is just 36.75 m². The rent-to-income ratio reaches <strong>31.5 percent</strong> &mdash; well above the internationally accepted affordability benchmark of 30 percent &mdash; placing the district squarely within a severe housing-stress band. Employment is heavily reliant on cross-district commuting (to Kowloon or other New Territories new towns) or on irregular work without a fixed location; the share of in-district employment is extremely low. Long daily commutes further erode quality of life and disposable income.</p>
+
+            <h3 class="subsection-title"><span class="sub-num">2.3</span>Land tenure &amp; institutional constraints</h3>
+
+            <p>The district is a microcosm of the multiple tensions in Hong Kong's land regime &mdash; where the contest between governmental allocation power and private contractual rights forms the core bottleneck of renewal.</p>
+
+            <p><strong>Public housing &mdash; strong governmental control.</strong> A large share of public-housing land and "Government, Institution or Community" (GIC) land (7.5 percent) has clearly defined tenure and is directly mobilisable by the state. Recent revisions to Outline Zoning Plans (OZPs) reclassifying parts of open-space and community sites to public housing reflect a policy hierarchy that places housing supply foremost &mdash; but at the cost of community facilities, an approach that is not sustainable in the long run.</p>
+
+            <p><strong>Industrial &amp; port land &mdash; rigid private contracts.</strong> A significant proportion of industrial land, warehousing (0.65 percent) and port-facility land (3.7 percent) is held under private title, with the Kwai Tsing container terminal alone covering approximately 279 hectares of land facing the historic 2047 land-lease expiry. Under the "block Crown lease" regime and the Lands Resumption Ordinance, government attempts to recover such land require either drawn-out negotiations with dispersed lot-holders or the invocation of compulsory resumption procedures &mdash; entailing complex land-premium, in-situ exchange and compensation-and-rehousing negotiations, with high transactional uncertainty.</p>
+
+            <div class="info-box info">
+                <div class="info-label">Institutional Cleavage</div>
+                <p style="margin-bottom:0; font-size: var(--text-sm);">A "dual-speed renewal regime" thus emerges: government-led expansion of public housing can be pushed through swiftly via OZP rezoning &mdash; at the cost of community facilities &mdash; while the dominant industrial and port land remains mired in the protracted procedures of the Lands Resumption Ordinance, 2047 lease negotiations and land-premium assessment &mdash; an extremely inefficient track.</p>
+            </div>
+
+            <h3 class="subsection-title"><span class="sub-num">2.4</span>Higher-tier planning &amp; policy context</h3>
+
+            <p><em>Hong Kong 2030+: Towards a Planning Vision and Strategy Transcending 2030</em> calls for a spatial rebalancing &mdash; raising the New Territories' population share from 41 to 55 percent and lowering the Metropolitan Area's share from 59 to 45 percent. This macro-strategy implies that legacy metropolitan-fringe districts such as Kwai Tsing must absorb functional decentralisation and renewal pressures. Faced with a projected land shortfall of at least 1,200 hectares, the government is advancing the Northern Metropolis and Kau Yi Chau reclamation &mdash; but neither offers near-term relief to this district.</p>
+
+            <p>The 2021 Northern Metropolis strategy, themed "industry-led, infrastructure-first," focuses on innovation-and-technology cores including the San Tin Technopole and the Hong Kong&ndash;Shenzhen Innovation and Technology Park &mdash; producing a substantial gap with Kwai Tsing's "low-skilled, public-housing-dominated, legacy industrial" profile. The macro-policy gaze has shifted decisively to the New Territories North's greenfield expansion, leaving stock-renewal investment in older metropolitan districts comparatively under-attended. The 2023&ndash;2024 Policy Addresses emphasise an accelerated public-housing pipeline and pilot a "neighbourhood-development" approach; yet for a fully built-out district such as Kwai Tsing, stock-mobilisation and industrial-land conversion remain the principal avenues &mdash; pursued largely through home-grown institutional innovation.</p>
+
+            <h3 class="subsection-title"><span class="sub-num">2.5</span>Context summary &mdash; compounding decline within a built-out fabric</h3>
+
+            <div class="pullquote">
+                <span class="pullquote-mark">"</span>
+                <div class="pullquote-text">
+                    Kwai Tsing's core dilemma is the <em>compounding</em> of decline<br>
+                    across three concurrent dimensions:<br>
+                    spatial, demographic and institutional.
+                </div>
+            </div>
+
+            <h4 class="minor-title">Spatial lock-in</h4>
+            <p>Ultra-low-density legacy public housing, fragmented industrial premises and legally entrenched private port-land contracts interlock in a tessellation that produces a "spatial lock-in" effect &mdash; under which any large-scale renewal proves enormously difficult. Even where wholesale public-housing reconstruction is technically feasible, the sheer scale of resident-relocation demand and the depth of existing community networks make a tabula-rasa approach all but impossible.</p>
+
+            <h4 class="minor-title">Demographic discontinuity</h4>
+            <p>The dense concentration of rapidly ageing residents and a low-educational-attainment workforce stands in stark contrast to the Northern Metropolis's envisioned "international innovation-and-technology city" &mdash; producing severe job-housing mismatch and entrenched class stratification. Residents have neither the capacity nor the appetite to integrate into the knowledge economy, while traditional port-and-logistics employment is shrinking &mdash; raising the spectre of structural unemployment.</p>
+
+            <h4 class="minor-title">Institutional fragmentation</h4>
+            <p>The coexistence of governmental control over public-housing land and strong contractual rights over private industrial / port land produces a dual-speed renewal regime that prevents a unified district-wide rhythm. Such institutional friction inflates transaction costs &mdash; leaving most industrial-conversion projects stalled in protracted land-premium negotiations.</p>
+
+            <p>The future planning strategy must therefore abandon the <em>tabula-rasa</em> imagination and pivot toward fine-grained organic renewal and integrated multi-plan governance. Strategically, the district should not seek to become a second Central or another Science Park; rather, it should be positioned as a metropolitan-fringe <strong>"Age-Friendly Living and Community Economy Demonstration Zone."</strong> The key is to seize the historic window of the 2047 lease expiries to coordinate private-industrial land reshuffling with public-housing reconstruction &mdash; releasing land potential while bundling, by institutional design, the construction of age-friendly public housing, primary-care complexes and small-footprint community productive space.</p>
+
+        </div>
+    </div>
+</section>
+
+<!-- ========================================================================
+     III. CORE PROBLEMS
+     ======================================================================== -->
+<section class="section" id="problems">
+    <div class="section-header">
+        <div class="section-num">
+            <span class="num-label">PART · THREE</span>
+            III
+        </div>
+        <h2 class="section-title">Core Problem Identification</h2>
+    </div>
+
+    <div class="content-grid">
+        <aside class="content-side">
+            <div class="side-label">
+                Interlocking conditions<br>
+                Together forming the<br>
+                "compounding decline" pathology
+            </div>
+        </aside>
+        <div class="content-main">
+            <p class="lead">
+                Building on the contextual analysis, the proposal identifies three interlocking core planning problems. These are not isolated; together they constitute the principal pathology of Kwai Tsing's compounding decline.
+            </p>
+
+            <h3 class="subsection-title"><span class="sub-num">3.1</span>FAR negotiation in public-housing stock renewal</h3>
+
+            <div class="info-box">
+                <div class="info-label" style="color: var(--accent-blue-deep);">Issue Statement</div>
+                <p style="margin-bottom: 0; font-size: var(--text-sm);">The district's average building age exceeds 40 years; its plot ratio is just 1.22 &mdash; severely depreciating land value &mdash; while residential population density is already considerable. Higher-tier plans call for sharp increases in public-housing supply; yet within a fully built-out fabric this can only proceed via piecemeal OZP rezoning of small open-space sites, at the price of community-facility provision.</p>
+            </div>
+
+            <p>The core tension: while wholesale reconstruction holds the potential to raise plot ratios and improve living conditions, it faces formidable resistance from incumbent residents &mdash; who are ageing, low-income, and yet hold formal public-rental tenancy. Piecemeal expansion, by contrast, becomes mired in zero-sum competition with essential community open space &mdash; an unsustainable trajectory.</p>
+
+            <h4 class="minor-title">Institutional root</h4>
+            <p>Because public-housing land is wholly state-owned, government holds the technical capacity to deliver "quick fixes" through OZP rezoning &mdash; yet this acceleration model is, in essence, a trade-off in which existing community facilities are sacrificed for new housing units &mdash; directly degrading quality of life in an ageing, low-income community. At the same time, public-housing tenants &mdash; though not private owners &mdash; hold formal rental tenure (recognised entitlements), and have built up dense social networks and a strong sense of community identity. A wholesale relocation would dissolve this informal social capital, and resident resistance is fully justified. The result is a deadlock in which <em>no party can bear the cost of full reconstruction</em>.</p>
+
+            <h3 class="subsection-title"><span class="sub-num">3.2</span>Reshuffling of expiring industrial land</h3>
+
+            <div class="info-box">
+                <div class="info-label" style="color: var(--accent-blue-deep);">Issue Statement</div>
+                <p style="margin-bottom: 0; font-size: var(--text-sm);">Industrial, warehousing and port-facility uses together occupy close to 10 percent of land. Economic vitality continues to weaken, while the conflicts with adjacent high-density residential areas &mdash; noise, dust, lorry traffic &mdash; grow ever sharper. The 2047 lease window offers a historic opportunity for land reorganisation, yet the negotiations between owners, operators and government over land premium and exchange terms will be intensely contested.</p>
+            </div>
+
+            <p>Market forces tend to push such land toward high-value residential or commercial uses, while planning imperatives require the preservation of productive space sufficient to support grassroots employment (a large local pool of elementary and service workers) and to forestall complete "dormitorisation."</p>
+
+            <h4 class="minor-title">Institutional root</h4>
+            <p>Under Hong Kong's land-lease regime, private title-holders possess long, renewable tenure rights and strong asset-appreciation expectations. The existing Lands Resumption Ordinance, while empowering government with compulsory resumption, entails lengthy procedures, contentious compensation and complex land-premium assessment. Moreover, many Kwai Tsing industrial parcels are held under "old leases," whose original use specifications are descriptive rather than prescriptive (per the 1983 <em>Melhado</em> ruling) &mdash; a precedent that gave rise to the brownfield issue on agricultural land, but which, on industrial land, lends private title-holders broader use-flexibility expectations and a quasi-legitimate basis for "land-banking." Breaking this stalemate requires institutional incentives superior to either pure market transaction or pure governmental compulsion.</p>
+
+            <h3 class="subsection-title"><span class="sub-num">3.3</span>Deficit of facilities &amp; grassroots employment for an ageing population</h3>
+
+            <div class="info-box">
+                <div class="info-label" style="color: var(--accent-blue-deep);">Issue Statement</div>
+                <p style="margin-bottom: 0; font-size: var(--text-sm);">Median age in the district has reached 48.1, with 22 percent of residents aged 65 or above &mdash; a classic ageing community. Yet community services and medical GIC land (just 7.5 percent) are widely insufficient, and most buildings, given their construction era, lack barrier-free design.</p>
+            </div>
+
+            <p>Economically, in-district jobs are severely under-provided. Large numbers of mid-to-low-skill residents depend on physically demanding sectors such as logistics and construction; as industries relocate and bodies age, the cohort faces sweeping structural unemployment and entrenched poverty. If urban renewal fails to place <strong>"creating age-friendly employment"</strong> and <strong>"expanding medical and care facilities"</strong> at its strategic core, mere physical upgrading will only further erode the fragile social safety net.</p>
+
+            <h4 class="minor-title">Particular urgency</h4>
+            <p>This problem is tightly bound to the first two. Public-housing reconstruction without bundled community facilities solves only the "shelter" function, leaving older residents bereft of the "care" and "use" spaces they require; industrial-land conversion focused solely on land-value capture would further deprive the grassroots of employment, forcing existing workers into longer commutes or premature labour-market exit. Community facilities and productive space must therefore enter the public-housing-reconstruction and industrial-conversion processes as <em>mandatory bundled conditions</em>, not optional public-interest accessories.</p>
+
+        </div>
+    </div>
+</section>
+
+<!-- ========================================================================
+     IV. GLOBAL CASE STUDIES
+     ======================================================================== -->
+<section class="section" id="cases">
+    <div class="section-header">
+        <div class="section-num">
+            <span class="num-label">PART · FOUR</span>
+            IV
+        </div>
+        <h2 class="section-title">Global Case Studies</h2>
+    </div>
+
+    <div class="content-grid">
+        <aside class="content-side">
+            <div class="side-label">
+                Six global cases<br>
+                Three problem domains<br>
+                Transferable + locally adaptable
+            </div>
+        </aside>
+        <div class="content-main">
+            <p class="lead">
+                This part analyses six global cases in depth and distils elements relevant to the three core problems facing Kwai Tsing.
+            </p>
+
+            <!-- ========== 4.1 Public-housing renewal ========== -->
+            <h3 class="subsection-title"><span class="sub-num">4.1</span>FAR negotiation in public-housing stock renewal</h3>
+
+            <!-- Case 1: Taiwan -->
+            <div class="case-card">
+                <div class="case-header">
+                    <div class="case-meta">
+                        <span class="case-tag tag-coral">CASE 01</span>
+                        <span class="case-tag tag-rust">Problem 1</span>
+                        <span class="case-location">Taiwan / Taipei</span>
+                    </div>
+                    <div class="case-year">2024 &ndash; 2026</div>
+                </div>
+                <div class="case-body">
+                    <div class="case-title">
+                        FAR Incentives &amp; Reconstruction Reforms under Taiwan's Urban Renewal &amp; Dilapidated-Building Acts
+                        <span class="case-title-en">Floor Area Ratio Incentives Reform &mdash; Lee and Li Attorneys-at-Law</span>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-label">Background</div>
+                        <div class="case-section-content">
+                            Taiwan faces the dual threats of building obsolescence and seismic vulnerability, yet historic FAR incentives applied only to buildings "completed" before the imposition of floor-area-ratio controls &mdash; excluding a large stock of buildings that held earlier permits but were completed only after the controls came into force. This severely dampened owners' willingness to participate. The system also produced perverse outcomes: pencil-thin towers on tiny lots and commercial-as-residential applications gaming the incentive scheme.
+                        </div>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-label">Mechanism</div>
+                        <ol class="styled-list">
+                            <li><strong>Legislative expansion of eligibility for FAR bonuses.</strong> A 2024 amendment to Article 65 of the Urban Renewal Act expanded eligibility from "completed before controls" to "permit issued before controls," sweeping in some 8,216 lawful buildings island-wide of six stories or more (approximately 270,000 households).</li>
+                            <li><strong>Tiered FAR bonuses &amp; use controls.</strong> Sites of 500 m² or larger that contribute to social housing or welfare facilities now qualify for an additional FAR bonus of up to 15 percent of the base ratio; at least half of the reconstructed floor area must be residential.</li>
+                            <li><strong>Life-extension mechanism for aged stock.</strong> For buildings not immediately ready for reconstruction, refurbishment subsidies and a 50 percent reduction in land-value and house taxes are offered.</li>
+                        </ol>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-label">Outcome</div>
+                        <div class="case-section-content">
+                            Taipei's annual urban-renewal applications jumped from 120&ndash;190 per year before 2023 to 274 in 2024. By end-January 2026, the Taipei City Government had approved 1,057 dilapidated-building reconstruction plans. The residential-share floor and downward calibration of small-site bonuses have begun to correct earlier development distortions.
+                        </div>
+                    </div>
+
+                    <div class="case-insights">
+                        <div class="case-section-label">Implications for Kwai Tsing</div>
+                        <ul>
+                            <li><strong>FAR bonuses must be tightly bound to public purposes</strong> &mdash; a stipulated share of new floor area should be dedicated to elderly-care services, transit-interchange infrastructure or community productive space.</li>
+                            <li><strong>Tiered bonus structures by site scale</strong> &mdash; set differentiated bonus multipliers by lot size, to prevent distorted slim-tower development on fragmented small parcels.</li>
+                            <li><strong>The life-extension model for aged buildings</strong> &mdash; for aged public-housing stock not yet ripe for reconstruction, provide subsidies for façade renewal and barrier-free retrofits as transitional measures.</li>
+                        </ul>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-label">Adaptation Challenges</div>
+                        <ul class="bullet-list">
+                            <li><strong>Tenure differences.</strong> Taiwan's scheme presupposes private ownership; Kwai Tsing public-housing land belongs to government and must be routed through multiple layers &mdash; the Housing Authority, Lands Department and so on.</li>
+                            <li><strong>Market-base differences.</strong> Kwai Tsing's property-price expectations are relatively weak; equivalent bonuses may still fail to attract private capital, calling for governmental "minimum-yield guarantees" or direct equity participation.</li>
+                            <li><strong>Legal interface absent.</strong> Hong Kong currently lacks any dedicated FAR-bonus ordinance for public-housing reconstruction; amendments to the Town Planning Ordinance or special OZP notes would be required.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Case 2: Melbourne -->
+            <div class="case-card">
+                <div class="case-header">
+                    <div class="case-meta">
+                        <span class="case-tag tag-ochre">CASE 02</span>
+                        <span class="case-tag tag-rust">Problem 1</span>
+                        <span class="case-tag tag-jade">Problem 3</span>
+                        <span class="case-location">Australia / Melbourne</span>
+                    </div>
+                    <div class="case-year">2019</div>
+                </div>
+                <div class="case-body">
+                    <div class="case-title">
+                        Affordable Housing Capacity &amp; Needs Analysis, City of Melbourne
+                        <span class="case-title-en">Housing Capacity and Needs Analysis, City of Melbourne</span>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-label">Background</div>
+                        <div class="case-section-content">
+                            Melbourne faces a long-standing shortage of affordable and social housing. In 2018, 279 individuals were sleeping rough on city streets, 1,725 were homeless, and the Victorian public-housing waitlist had reached 82,000. The core tension lay in "targets without delivery instruments."
+                        </div>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-label">Mechanism</div>
+                        <ol class="styled-list">
+                            <li><strong>Quantified needs and capacity as decision basis.</strong> A "bottom-up" demand-modelling approach precisely projected an affordable-housing gap of 16,878&ndash;29,670 dwellings by 2036.</li>
+                            <li><strong>Evolution from voluntary to mandatory tools.</strong> Private developments above a defined scale must include 10&ndash;20 percent affordable housing. Cost-benefit analysis confirmed that a 10 percent mandatory inclusion would not undermine aggregate housing supply, with net social benefit-cost ratios as high as 3:1.</li>
+                            <li><strong>Public-land conversion as exemplar.</strong> The City committed that at least 15 percent of residential units on its own land redeveloped should be affordable.</li>
+                        </ol>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-label">Outcome</div>
+                        <div class="case-section-content">
+                            As at 2019, only 229 affordable homes had been delivered, approved or under review across all mechanisms &mdash; far short of the 1,721-unit target &mdash; exposing the limits of fragmented implementation. Yet the report itself crystallised the political consensus that "affordable housing is critical urban infrastructure," paving the way for the 2018 Planning and Environment Act amendment, which removed legal obstacles to city-wide mandatory inclusion.
+                        </div>
+                    </div>
+
+                    <div class="case-insights">
+                        <div class="case-section-label">Implications for Kwai Tsing</div>
+                        <ul>
+                            <li><strong>An "evidence-first" policy method.</strong> Kwai Tsing should commission a district-wide segmented housing-needs analysis and an industrial-conversion-potential capacity model, to supply objective data for downstream planning decisions.</li>
+                            <li><strong>Demonstrate the economic feasibility of mandatory inclusion.</strong> The finding that 10 percent inclusion does not damage market supply is directly relevant when designing public-private mixed models for converted industrial parcels.</li>
+                            <li><strong>The leading role of public land.</strong> Pilot bundled-renewal models first on land that government fully controls &mdash; public-housing sites or GIC parcels.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== 4.2 Industrial-land reshuffling ========== -->
+            <h3 class="subsection-title"><span class="sub-num">4.2</span>Reshuffling of expiring industrial land</h3>
+
+            <!-- Case 3: Shanghai -->
+            <div class="case-card">
+                <div class="case-header">
+                    <div class="case-meta">
+                        <span class="case-tag tag-plum">CASE 03</span>
+                        <span class="case-tag tag-rust">Problem 2</span>
+                        <span class="case-location">China / Shanghai</span>
+                    </div>
+                    <div class="case-year">1990s &ndash; 2018</div>
+                </div>
+                <div class="case-body">
+                    <div class="case-title">
+                        Ambiguous Property Rights &amp; Flexible Use in Shanghai's Industrial-Land Redevelopment
+                        <span class="case-title-en">Ambiguous Property Rights as a Double-Edged Sword</span>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-label">Background</div>
+                        <div class="case-section-content">
+                            In China's transition from planned to market economy, urban industrial land remained legally state-owned, while in practice operational control rested with state-owned enterprises (SOEs) &mdash; producing a persistent misalignment between "statutory state ownership" and "de-facto SOE control." The transformation of Shanghai No. 10 Steel Works (215,000 m²) is an exemplary case.
+                        </div>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-label">Mechanism</div>
+                        <ol class="styled-list">
+                            <li><strong>A three-stage flexible pathway.</strong> Pre-2005: allocated land, SOE-controlled, plant idle. 2005&ndash;2014: informal-agreement-driven adaptive reuse as a public-cultural venue. 2014&ndash;2018: introduction of private developers and conversion into a high-end commercial complex.</li>
+                            <li><strong>Active maintenance of institutional ambiguity.</strong> Without definitively delineating tenure, local government permitted de-facto reallocation of land use and revenue rights &mdash; using "factual use change" to bypass the high cost of formal tenure transfer.</li>
+                        </ol>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-label">Outcome</div>
+                        <div class="case-section-content">
+                            The site progressed from total idleness to a first-stage cultural landmark and ultimately a high-end commercial-office complex, generating substantial land rents. The cost was steep, however &mdash; of six original workshops only one was preserved, and industrial heritage was systematically compressed. Public-interest and cultural functions served largely as a stepping-stone for commercial development.
+                        </div>
+                    </div>
+
+                    <div class="case-insights">
+                        <div class="case-section-label">Implications for Kwai Tsing</div>
+                        <ul>
+                            <li><strong>Stretching institutional flexibility.</strong> Adopt a "transitional-use permission" model, allowing low-capital community uses &mdash; recreation, elderly facilities, shared workshops &mdash; to enter industrial parcels before formal conversion is complete, via temporary planning permissions.</li>
+                            <li><strong>A multi-party benefit-sharing platform.</strong> An inter-departmental task force should establish a formal "stakeholder negotiation platform" incorporating dispersed title-holders, the Housing Authority, social-welfare organisations and resident representatives.</li>
+                        </ul>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-label">Adaptation Challenges</div>
+                        <ul class="bullet-list">
+                            <li><strong>Fundamental differences in tenure clarity.</strong> Hong Kong's private title is highly defined and strictly protected under common law; "ambiguity by design" is not available. The transferable lessons lie in "transitional-use flexibility" and "non-standardised benefit-negotiation"&mdash;methodological extractions only.</li>
+                            <li><strong>Differences in governmental discretion.</strong> Every step in Hong Kong requires planning permission applications or OZP amendments. Governmental discretion is bounded by law &mdash; both a constraint and a strength.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Case 4: USA -->
+            <div class="case-card">
+                <div class="case-header">
+                    <div class="case-meta">
+                        <span class="case-tag tag-jade">CASE 04</span>
+                        <span class="case-tag tag-rust">Problem 2</span>
+                        <span class="case-location">USA / Philadelphia &amp; Baltimore</span>
+                    </div>
+                    <div class="case-year">2010s &ndash;</div>
+                </div>
+                <div class="case-body">
+                    <div class="case-title">
+                        Multi-Layered Finance &amp; Community Agreements in U.S. Industrial-Property Redevelopment
+                        <span class="case-title-en">Transformational Redevelopment of Industrial Properties</span>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-label">Background</div>
+                        <div class="case-section-content">
+                            Legacy U.S. industrial cities &mdash; Philadelphia, Baltimore, New Orleans, Bethlehem &mdash; inherit large stocks of functionally obsolete industrial facilities and brownfields, beset by environmental contamination, infrastructure obsolescence and community economic decline. Projects typically span hundreds of acres, require billions in investment, and must overcome fragmented tenure, high environmental-remediation risk, uncertain public authorisations, complex capital stacks and intense community opposition.
+                        </div>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-label">Mechanism</div>
+                        <ol class="styled-list">
+                            <li><strong>A diversified capital-stack architecture.</strong> Tax Increment Financing (TIF), Qualified Opportunity Zone (QOZ) incentives, New Markets Tax Credits, federal and state Historic Tax Credits, Commercial Property Assessed Clean Energy (C-PACE) financing, and tax-exempt and taxable bonds are combined in multi-layered funding stacks. Baltimore Peninsula notably issued a TIF of US$660 million &mdash; the largest in the city's history at the time.</li>
+                            <li><strong>Institutionalised Community Benefits Agreements (CBAs).</strong> Legally binding agreements set affordable-housing allocations, local-hire quotas, MBE/WBE participation rates and community-investment funds as preconditions for project advancement.</li>
+                            <li><strong>Public-land transfer and assemblage.</strong> Negotiated acquisitions, public-land conveyances, eminent-domain exercises, and even tax-foreclosure and bankruptcy reorganisations are used to consolidate fragmented sites.</li>
+                        </ol>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-label">Outcome</div>
+                        <div class="case-section-content">
+                            All four flagship projects successfully transformed heavily contaminated industrial sites into regional economic-growth engines. Philadelphia's Bellwether District has converted 1,300 acres of decommissioned refinery into the East Coast's largest sustainable logistics and life-sciences park; since project commencement, 99 percent of residual petroleum products have been removed, and citywide carbon emissions have fallen by approximately 16 percent.
+                        </div>
+                    </div>
+
+                    <div class="case-insights">
+                        <div class="case-section-label">Implications for Kwai Tsing</div>
+                        <ul>
+                            <li><strong>Mandatory bundling in the spirit of CBAs.</strong> Embed local-hire quotas, affordable senior-housing shares, community-productive-space provisions and in-district relocation rates as planning-permission conditions or lease-modification undertakings &mdash; with a dedicated monitoring fund &mdash; to give them hard CBA-like enforceability.</li>
+                            <li><strong>Local analogues for the U.S. capital-stack toolkit.</strong> Functional equivalents already exist &mdash; "large-scale land disposal" models, "instalment land-premium payments," and "premium-credit for government-funded infrastructure" innovations.</li>
+                            <li><strong>Clear delineation of remediation responsibility.</strong> Systematic contamination-baseline surveys must be undertaken; remediation costs should be folded into project totals, with responsibility allocated through lease provisions or planning conditions.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== 4.3 Ageing facilities ========== -->
+            <h3 class="subsection-title"><span class="sub-num">4.3</span>Deficit of facilities &amp; grassroots employment for an ageing population</h3>
+
+            <!-- Case 5: Aging in Place -->
+            <div class="case-card">
+                <div class="case-header">
+                    <div class="case-meta">
+                        <span class="case-tag tag-forest">CASE 05</span>
+                        <span class="case-tag tag-jade">Problem 3</span>
+                        <span class="case-location">USA · Japan · UK</span>
+                    </div>
+                    <div class="case-year">2017 &ndash; 2020</div>
+                </div>
+                <div class="case-body">
+                    <div class="case-title">
+                        Global Innovations in "Aging in Place" &mdash; Community Living Labs &amp; Intergenerational Integration
+                        <span class="case-title-en">Innovative Models of Aging in Place</span>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-label">Background</div>
+                        <div class="case-section-content">
+                            With global ageing intensifying, most older adults wish to "age in place" rather than enter dedicated institutions. Yet existing housing stocks are severely under-adapted for older users; traditional institutional care is costly and runs against resident preferences; and social isolation and loneliness are pronounced.
+                        </div>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-label">Mechanism</div>
+                        <ol class="styled-list">
+                            <li><strong>Community-embedded "Living Labs."</strong> Innovation-incubation and testing platforms built within real residential environments, integrating older adults, caregivers, family members, neighbourhood managers, corporate technology teams and researchers into the same physical-and-social space.</li>
+                            <li><strong>Social-innovation &amp; mutual-aid networks.</strong> Time banks &mdash; encouraging younger seniors to bank time providing companionship, errand-running and minor repairs to older seniors &mdash; coupled with circular-economy patterns of shared and reused mobility aids, refurbished furniture and second-hand care equipment.</li>
+                            <li><strong>Multi-generational mixed communities.</strong> Japan's UR (Urban Renaissance) housing model, alongside U.S. Naturally Occurring Retirement Communities (NORCs) and Villages networks.</li>
+                        </ol>
+                    </div>
+
+                    <div class="case-insights">
+                        <div class="case-section-label">Implications for Kwai Tsing</div>
+                        <ul>
+                            <li><strong>A radically simplified transfer of the "Living Lab" logic.</strong> Adopt "small, reversible, short-cycle" community micro-renewal methods. For example, convert a vacant public-housing podium space into a simple community living room at minimal cost, open for a three-month trial before permanent redesign.</li>
+                            <li><strong>Combining time banks with "community watch stations."</strong> Establish a physical "community watch station" in every public-housing estate, activating the considerable number of retired or semi-retired residents who remain physically able to provide light-effort services &mdash; medical accompaniment, companionship, neighbourhood patrols.</li>
+                            <li><strong>A public-housing variant of multi-generational living and NORCs.</strong> Following the UR model, designate at least 30 percent of reconstructed estates as multi-generational mixed housing, interleaving small senior units with younger-family units.</li>
+                        </ul>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-label">Adaptation Challenges</div>
+                        <ul class="bullet-list">
+                            <li><strong>Severe digital divide.</strong> Local seniors are largely from grassroots labour backgrounds with low digital literacy; all smart-care devices must retain manual-help buttons and home-visit options.</li>
+                            <li><strong>Weak social capital.</strong> Sustained professional social-work accompaniment and capacity-building is required to build trust and ignite participation.</li>
+                            <li><strong>Lack of flexible funding channels.</strong> A dedicated "Community Activation Fund" should be created, with audit and disbursement constraints loosened.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Case 6: Aging Workforce -->
+            <div class="case-card">
+                <div class="case-header">
+                    <div class="case-meta">
+                        <span class="case-tag tag-terracotta">CASE 06</span>
+                        <span class="case-tag tag-jade">Problem 3</span>
+                        <span class="case-location">Global / Ipoh / New York</span>
+                    </div>
+                    <div class="case-year">2013 · 2021&ndash;2022</div>
+                </div>
+                <div class="case-body">
+                    <div class="case-title">
+                        The Ageing Workforce &amp; Age-Friendly City Policies
+                        <span class="case-title-en">An Aging Workforce: Opportunities and Obstacles</span>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-label">Background</div>
+                        <div class="case-section-content">
+                            The global population aged 60 and above is projected to rise from 810 million in 2012 to 2 billion by 2050. Age discrimination is widespread; older unemployed persons remain jobless for twice as long as the general unemployed. A 2021&ndash;2022 survey of 1,061 older adults in Ipoh, Malaysia revealed a 55.4 percent perception gap in housing and 50.7 percent in transport.
+                        </div>
+                    </div>
+
+                    <div class="case-section">
+                        <div class="case-section-label">Mechanism</div>
+                        <ol class="styled-list">
+                            <li><strong>Anti-discrimination legislation and age-friendly city principles.</strong> New York City issued legal guidance explicitly banning age-based limits in recruitment advertising; Ipoh applied the WHO's eight-domain Age-Friendly City framework, conducting large-sample surveys to quantify "perception gaps."</li>
+                            <li><strong>Integrated training-and-employment-support models.</strong> Eliminating age discrimination, targeted skills training, legislative protection and social support are treated as interconnected components &mdash; all of which must operate in concert.</li>
+                            <li><strong>Lifelong-learning accounts and employer incentives.</strong> Joint contributions by government, employers and individuals establish lifelong-learning accounts; employers exceeding statutory thresholds for hiring older workers receive social-insurance contribution reductions or tax credits.</li>
+                        </ol>
+                    </div>
+
+                    <div class="case-insights">
+                        <div class="case-section-label">Implications for Kwai Tsing</div>
+                        <ul>
+                            <li><strong>Direct application of the Ipoh assessment method.</strong> Conduct an annual "Kwai Tsing Age-Friendliness Survey," driving departmental performance improvement through residents' satisfaction with specific facilities.</li>
+                            <li><strong>"Triple-point linkage" of employment, training and community facilities.</strong> Co-locate the three within a single building or neighbourhood &mdash; care centre and senior daytime activity space on the ground floor, grassroots-skills training rooms in the middle, and affordable senior-housing units above.</li>
+                            <li><strong>"Age-friendly employment" as a core of the community economy.</strong> Develop in-community micro-employment &mdash; medical-escort companions, community child-minders, craft-workshop instructors, public-space maintenance workers.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== 4.4 Critical success factors ========== -->
+            <h3 class="subsection-title"><span class="sub-num">4.4</span>Critical success factors &mdash; synthesis</h3>
+
+            <div class="report-table-wrap">
+                <table class="report-table">
+                    <thead>
+                        <tr>
+                            <th>Key element</th>
+                            <th>Case 1<br>Taiwan</th>
+                            <th>Case 2<br>Melbourne</th>
+                            <th>Case 3<br>Shanghai</th>
+                            <th>Case 4<br>U.S. Brownfields</th>
+                            <th>Case 5<br>Aging in Place</th>
+                            <th>Case 6<br>Aging Workforce</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Statutory basis &amp; top-level design</strong></td>
+                            <td><span class="check">✓</span> Amended legislation</td>
+                            <td><span class="check">✓</span> Statutory definition</td>
+                            <td><span class="dash">—</span> Institutional ambiguity</td>
+                            <td><span class="check">✓</span> TIF / CBA</td>
+                            <td><span class="dash">—</span> International cooperation</td>
+                            <td><span class="check">✓</span> Age-Friendly City</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Quantified evidence supporting policy</strong></td>
+                            <td><span class="check">✓</span> Building statistics</td>
+                            <td><span class="check">✓</span> Needs &amp; capacity</td>
+                            <td><span class="dash">—</span></td>
+                            <td><span class="check">✓</span> Environmental survey</td>
+                            <td><span class="check">✓</span> User co-design</td>
+                            <td><span class="check">✓</span> Perception assessment</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Public-private benefit bundling</strong></td>
+                            <td><span class="check">✓</span> FAR bonus</td>
+                            <td><span class="check">✓</span> Mandatory inclusion</td>
+                            <td><span class="check">✓</span> Value-capture sharing</td>
+                            <td><span class="check">✓</span> CBA enforcement</td>
+                            <td><span class="check">✓</span> Co-design</td>
+                            <td><span class="check">✓</span> Employer subsidies</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Transitional flexibility &amp; gradual pathway</strong></td>
+                            <td><span class="check">✓</span> Stock retrofit</td>
+                            <td><span class="check">✓</span> Voluntary → mandatory</td>
+                            <td><span class="check">✓</span> Three-stage</td>
+                            <td><span class="check">✓</span> Public-land first</td>
+                            <td><span class="check">✓</span> Short cycles</td>
+                            <td><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Community participation &amp; transparency</strong></td>
+                            <td>Weaker</td>
+                            <td>Council consultation</td>
+                            <td>Limited</td>
+                            <td><span class="check">✓</span> CBA</td>
+                            <td><span class="check">✓</span> Living Labs</td>
+                            <td><span class="check">✓</span> Surveys</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Diversified financial instruments</strong></td>
+                            <td><span class="check">✓</span> Tax breaks</td>
+                            <td><span class="check">✓</span> Multi-tier finance</td>
+                            <td><span class="dash">—</span></td>
+                            <td><span class="check">✓</span> Finance stack</td>
+                            <td><span class="check">✓</span> Impact investment</td>
+                            <td><span class="check">✓</span> Learning accounts</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4 class="minor-title">Key takeaways for Kwai Tsing</h4>
+            <ol class="styled-list">
+                <li><strong>Statutory force is the ultimate guarantor.</strong> Any public-policy objective that remains a voluntary commitment without statutory binding force will, like Melbourne's 2014 targets, be "extremely unlikely to be achieved." Kwai Tsing should encode mandatory public-housing ratios, community-productive-space requirements and local-hire quotas into law &mdash; via OZP amendments or a dedicated ordinance.</li>
+                <li><strong>Quantitative data are the instrument of persuasion.</strong> Melbourne's 3:1 net-community-benefit cost-benefit analysis offered an unassailable rationale for political decision-making. Kwai Tsing should commission analogous studies &mdash; economic-and-social-benefit monetisation across different mandatory-inclusion ratios for industrial-conversion sites.</li>
+                <li><strong>Flexibility and constraint in balance.</strong> Taiwan's reforms simultaneously expanded incentives and introduced residential-share floors and small-site bonus ceilings. Kwai Tsing must likewise pair FAR liberalisation with strict locking of public-purpose outcomes &mdash; through lease provisions or planning conditions.</li>
+                <li><strong>Community trust must be cultivated first.</strong> U.S. CBAs, global Living Labs and Ipoh's assessment regime converge on a single insight: resident trust and participatory ownership are the fundamental safeguards against implementation friction and legal challenge.</li>
+            </ol>
+
+        </div>
+    </div>
+</section>
+
+<!-- ========================================================================
+     V. DIFFERENCES &amp; LOCALISATION
+     ======================================================================== -->
+<section class="section" id="differences">
+    <div class="section-header">
+        <div class="section-num">
+            <span class="num-label">PART · FIVE</span>
+            V
+        </div>
+        <h2 class="section-title">Differences Analysis<br>&amp; Adaptive Localisation</h2>
+    </div>
+
+    <div class="content-grid">
+        <aside class="content-side">
+            <div class="side-label">
+                Four-dimension comparison<br>
+                Institutional · Economic<br>
+                Technical · Social
+            </div>
+        </aside>
+        <div class="content-main">
+            <p class="lead">
+                This part systematically compares the prerequisites underpinning the global cases with Kwai Tsing's realities, and offers targeted adaptive strategies.
+            </p>
+
+            <h3 class="subsection-title"><span class="sub-num">5.1</span>Comparison of preconditions</h3>
+
+            <div class="report-table-wrap">
+                <table class="report-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 15%;">Dimension</th>
+                            <th style="width: 30%;">Typical features of global cases</th>
+                            <th style="width: 30%;">Kwai Tsing's current state</th>
+                            <th style="width: 25%;">Gap assessment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Institutional</strong></td>
+                            <td>Taiwan: clear FAR-incentive and reconstruction legal framework; Melbourne: statutory authorisation for inclusionary zoning (2018 amendment); U.S.: TIF, QOZ and other federal/state laws; Shanghai: high local-government discretion</td>
+                            <td>No dedicated FAR-incentive legislation for public housing; OZP amendments can be expedited but at the cost of community facilities; land-premium regime drives up conversion costs; TPB procedures are statutory but lack flexible-incentive interfaces</td>
+                            <td><strong>Large gap.</strong> A clear legal basis for FAR-bonus-and-public-facility bundling must be established via OZP-note amendments or a dedicated ordinance</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Economic</strong></td>
+                            <td>Taiwan: high core-area real-estate margins; Melbourne: adequate market margins; U.S.: emerging-industry drivers; cases broadly rely on diversified public financial instruments</td>
+                            <td>District median household income only HK$22,727; private-housing land share just 4.1 percent and weak value-uplift expectations; no high-end industry agglomeration potential; high dependence on single-source public-housing funding</td>
+                            <td><strong>Very large gap.</strong> Market drive is severely insufficient; the public sector must lead with upfront investment; the community economy is endogenous and small-scale; high-end industries are not the aim</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Technical</strong></td>
+                            <td>Mature FAR-control baseline databases; Melbourne: precise needs-and-capacity modelling; U.S.: mature large-scale brownfield-remediation technologies; cases rely on high-digital-literacy populations</td>
+                            <td>40+ year buildings, with as-built drawings potentially incomplete; no district-wide contamination baseline survey conducted; local seniors face a substantial digital divide; fragmented parcels are difficult to consolidate for large infrastructure</td>
+                            <td><strong>Medium gap.</strong> Priority should be placed on building a 3D digital-twin foundation and contamination surveys; all technical solutions must retain manual fall-backs</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Social</strong></td>
+                            <td>Taiwan: private title-holders have reconstruction motivation; Australia: mature community-housing providers; U.S.: community organisations skilled in negotiation and monitoring; "Living Labs" rely on deep user participation</td>
+                            <td>Public-housing residents hold no private title and lack participatory channels in renewal decision-making; community self-organisation is weak; lower educational attainment limits available time and motivation; seniors are wary of new technology and outside services</td>
+                            <td><strong>Large gap.</strong> Participation methods must be radically simplified; District Council members and senior social workers should lead in lieu of external experts; public-housing tenure can serve as leverage for in-district relocation negotiation</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 class="subsection-title"><span class="sub-num">5.2</span>Implementation barriers</h3>
+
+            <p>Building on the precondition comparison, the principal barriers to implementation, in order of severity, are:</p>
+
+            <div class="strategy-block rust">
+                <div class="strategy-block-eyebrow">BARRIER 1 · ECONOMIC</div>
+                <div class="strategy-block-title">Land-premium regime suppresses market participation</div>
+                <p>The land premium owners must pay upon lease modification or change of use frequently compresses anticipated profits to an unacceptable level. In a district like Kwai Tsing with already-weak property-price expectations, slim post-premium margins are further eroded &mdash; leaving private developers with little incentive to engage. The likely outcome is that planning blueprints, even when approved, lie dormant for years while the land continues to sleep or operates at low intensity.</p>
+            </div>
+
+            <div class="strategy-block plum">
+                <div class="strategy-block-eyebrow">BARRIER 2 · SOCIAL</div>
+                <div class="strategy-block-title">Rehousing eligibility &amp; community rupture</div>
+                <p>When public-housing reconstruction or industrial-conversion projects entail clearance, Hong Kong rehousing eligibility is tied strictly to the 1982 squatter survey and the 1984/85 residency survey. A large pool of long-term de-facto residents not recorded on the historical rolls would, under that regime, be denied public-housing rehousing. In a public-housing-dense district like Kwai Tsing, large-scale clearance could leave many affected residents homeless or forced to remote areas &mdash; dissolving the original social fabric and triggering severe social conflict and public outcry.</p>
+            </div>
+
+            <div class="strategy-block mustard">
+                <div class="strategy-block-eyebrow">BARRIER 3 · INSTITUTIONAL</div>
+                <div class="strategy-block-title">Absence of a clear public-private legal framework</div>
+                <p>Trading FAR bonuses for public facilities or affordable housing currently has no rigid statutory interface in Hong Kong &mdash; nothing comparable to Taiwan's "facility-for-bonus" mechanism or Melbourne's "planning-gain-for-permission" model. The Town Planning Board can attach conditions to s.16 planning permissions, but their legal force and long-term enforcement remain weak; conditions may be modified or waived post-construction on financial-hardship grounds, defeating their public-purpose intent.</p>
+            </div>
+
+            <div class="strategy-block jade">
+                <div class="strategy-block-eyebrow">BARRIER 4 · SOCIAL</div>
+                <div class="strategy-block-title">Participation fatigue &amp; trust deficit</div>
+                <p>Where successive government-led consultations linger at the "views-collection" level without substantive feedback or follow-through, residents increasingly view participation as procedural window-dressing &mdash; breeding "participation fatigue" and deep mistrust. For Kwai Tsing residents, already wrestling with class stratification and resource scarcity, any new plan that fails to deliver visible welfare improvements quickly will struggle to earn genuine cooperation.</p>
+            </div>
+
+            <h3 class="subsection-title"><span class="sub-num">5.3</span>Adaptive localisation strategies</h3>
+
+            <div class="strategy-block coral">
+                <div class="strategy-block-eyebrow">ADAPTATION 1</div>
+                <div class="strategy-block-title">Institutionalise case-by-case land-premium flexibility</div>
+                <div class="strategy-block-positioning">Addresses Barrier 1, drawing on Shanghai's "flexible negotiation" and Melbourne's "quantified evidence"</div>
+                <p>In industrial-parcel conversions, abandon the one-size-fits-all premium formula and establish a <strong>"Kwai Tsing Industrial Conversion Flexible Negotiation Mechanism."</strong> An inter-departmental task force would adjudicate, on a parcel-by-parcel basis, individualised arrangements for premium reduction, instalment payment or infrastructure-cost offset &mdash; calibrated to each site's specifics: scale, contamination level, owner cooperativeness and planning-contribution quantum (proportion of public housing or community facilities provided). To prevent abuse, all individual decisions are subject to independent audit and key decision parameters are publicly disclosed, securing reasonable and transparent public-revenue recovery. Quantitative cost-benefit analyses (such as the 3:1 community-return on 10 percent inclusion) provide the evidentiary basis for negotiation &mdash; persuading the public and the Legislative Council that staged premium discounts represent legitimate "public investment," not "interest transfer."</p>
+            </div>
+
+            <div class="strategy-block forest">
+                <div class="strategy-block-eyebrow">ADAPTATION 2</div>
+                <div class="strategy-block-title">Create a "Transition Special Rehousing Fund" with tiered eligibility</div>
+                <div class="strategy-block-positioning">Addresses Barrier 2, drawing on U.S. CBA community-investment clauses and tiered safeguarding logic</div>
+                <p>To address the large population displaced by the 1982 baseline cut-off, establish a "Transition Special Rehousing Fund" for Kwai Tsing. The fund would draw on three sources: a one-off "transition social-compensation contribution" levied on affected developers or industrial landowners; government appropriations; and value-uplift buyback proceeds from completed projects. Held in independent trust and administered by an NGO to assess individual cases, the fund would provide tiered assistance as follows:</p>
+                <ul class="bullet-list">
+                    <li><strong>Tier 1</strong> (long-term residents wholly ineligible for traditional rehousing): 18 months of transitional-housing rent subsidy or a one-off cash relocation grant;</li>
+                    <li><strong>Tier 2</strong> (those operating from non-residential squatter premises): vocational-transition training and priority vouchers for community-productive-space tenancy;</li>
+                    <li><strong>Tier 3</strong> (eligible public-housing tenants): legally guaranteed in-district rehousing quotas, outside the scope of the Fund.</li>
+                </ul>
+                <p style="margin-bottom: 0;">This tiered safeguarding architecture transforms rehousing responsibility from vague political promise into a rule-bound, legally enforceable social contract &mdash; substantially reducing the social risk of clearance operations.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ========================================================================
+     VI. STRATEGY &amp; IMPLEMENTATION
+     ======================================================================== -->
+<section class="section" id="strategy">
+    <div class="section-header">
+        <div class="section-num">
+            <span class="num-label">PART · SIX</span>
+            VI
+        </div>
+        <h2 class="section-title">Planning Strategy<br>&amp; Implementation Pathway</h2>
+    </div>
+
+    <div class="content-grid">
+        <aside class="content-side">
+            <div class="side-label">
+                Three strategies + three phases<br>
+                TOD-R Zones<br>
+                In-situ exchange + micro-renewal
+            </div>
+        </aside>
+        <div class="content-main">
+
+            <p class="lead">
+                The proposal organises around three core strategies &mdash; each responding to one of the identified core problems &mdash; rolled out over a three-phase sequence that progresses from easy to difficult, and from pilot to system.
+            </p>
+
+            <h3 class="subsection-title"><span class="sub-num">6.1</span>Three core strategies</h3>
+
+            <!-- Strategy 1 -->
+            <div class="strategy-block coral">
+                <div class="strategy-block-eyebrow">STRATEGY 1 · TOD-R ZONES</div>
+                <div class="strategy-block-title">Transit-Oriented Organic Renewal Zones</div>
+                <div class="strategy-block-positioning">Designate special renewal zones within a 500 m radius of rail stations, trading FAR bonuses for transit-infrastructure upgrades and community facilities</div>
+                <p>With Kwai Hing Station as the pilot, the area within a 500 m radius is designated a "Transit-Oriented Organic Renewal Zone" (TOD-R Zone). Within the zone, public-housing reconstruction projects may receive an FAR bonus lifting the plot ratio from 1.22 to 5&ndash;6. In exchange, the developer must bundle the following:</p>
+                <ol class="styled-list">
+                    <li><strong>Barrier-free pedestrian skywalk system</strong> &mdash; connecting rail stations, estate cores, community facilities and commercial precincts, with continuous rain-and-shine canopies, non-slip pavements and priority routes for older users.</li>
+                    <li><strong>New public-transport interchange</strong> &mdash; integrating buses, minibuses, taxi-hail services and future micro-mobility options.</li>
+                    <li><strong>10 percent of floor area as community productive space</strong> &mdash; leased at below-market rates to local social enterprises (care, domestic services, convenience trades).</li>
+                    <li><strong>In-district relocation rate of at least 70 percent</strong> &mdash; preserving, to the maximum extent, the social networks of incumbent public-housing tenants.</li>
+                </ol>
+            </div>
+
+            <!-- Strategy 2 -->
+            <div class="strategy-block jade">
+                <div class="strategy-block-eyebrow">STRATEGY 2 · LAND RESHUFFLE</div>
+                <div class="strategy-block-title">In-situ land exchange &amp; terminal-land release</div>
+                <div class="strategy-block-positioning">Leverage the 2047 lease window; differentiate strategies between industrial / warehousing parcels and port land</div>
+
+                <h4 class="minor-title">In-situ exchange &mdash; small and medium industrial parcels</h4>
+                <p>For Kwai Tsing's dispersed small-to-medium industrial and warehousing parcels (typically below 5,000 m²), use the title-holder's original investment in the parcel as the basis for an "in-situ exchange" mechanism: the owner surrenders the original industrial-use land in return for permission to redevelop the same or an adjacent parcel for mixed use (residential + community productive space), subject to the following mandatory proportions:</p>
+                <ul class="bullet-list">
+                    <li>Public and subsidised housing <strong>≥ 50 percent of total floor area</strong>;</li>
+                    <li>Affordable rental / for-sale units <strong>≥ 15 percent</strong>;</li>
+                    <li>Private housing <strong>≤ 35 percent</strong>;</li>
+                    <li>Community Productive Space (CPS) <strong>≥ 10 percent</strong> &mdash; with a minimum 15-year tenancy and priority renewal rights at expiry.</li>
+                </ul>
+
+                <h4 class="minor-title">Non-in-situ exchange &mdash; the Kwai Tsing container terminal</h4>
+                <p>The Kwai Tsing container terminal, covering approximately 279 hectares, faces 2047 lease expiry. Given that terminal land is largely held by a single or small number of large title-holders, government may deploy a <em>"non-in-situ exchange"</em> instrument &mdash; operators surrender the terminal land in return for an alternative parcel near a new logistics zone, or cash compensation pre-paying their unrealised long-term development value. The released waterfront land would be planned as an <strong>"Age-Friendly Waterfront Community"</strong> &mdash; mandatory public-housing and affordable senior-housing share ≥50 percent, private housing ≤35 percent, the remaining 15 percent for commercial and community productive space &mdash; embedded with a continuous waterfront promenade, sensory gardens and wind-sheltered, age-friendly coastal activity spaces.</p>
+
+                <h4 class="minor-title">Joint-development &amp; multi-generational living in public housing</h4>
+                <p>When reconstructing older estates, the Housing Authority would lead "joint development" partnerships with private developers &mdash; the Authority supplies the land while the developer funds construction; on completion, units are apportioned by agreed ratio (for example, 70 percent to the Authority for public rental, 30 percent to the developer for private sale). Drawing on Japan's UR experience, at least 30 percent of reconstructed estates would deliberately mix and locate small senior units alongside younger-family units, with shared communal space on each floor.</p>
+            </div>
+
+            <!-- Strategy 3 -->
+            <div class="strategy-block mustard">
+                <div class="strategy-block-eyebrow">STRATEGY 3 · MICRO-RENEWAL</div>
+                <div class="strategy-block-title">Public-space uplift &mdash; weaving an all-ages micro-renewal network</div>
+                <div class="strategy-block-positioning">Abandon the pursuit of large parks; instead invest resources in discrete micro-spaces supporting the triple functions of in-place ageing, community care, and grassroots employment</div>
+
+                <h4 class="minor-title">Activating disused spaces &mdash; All-Ages Living Rooms &amp; Community Watch Stations</h4>
+                <p>The Housing Authority and the Planning Department jointly inventory all vacant industrial units, vacant public-housing podium shops and undeveloped government land in the district. Using the "Temporary Planning Permission" mechanism (s.16), 24-month renewable temporary community uses are rapidly approved. These spaces are converted into <strong>"All-Ages Living Rooms,"</strong> with a standard configuration including:</p>
+                <ul class="bullet-list">
+                    <li>Day-care corner (professional caregivers stationed; operated by NGOs under government contracts);</li>
+                    <li>Rehabilitation-exercise area and community physiotherapy room;</li>
+                    <li>Shared kitchen and intergenerational dining space;</li>
+                    <li>Youth / senior shared workshop;</li>
+                    <li>Time bank and community-service exchange counter;</li>
+                    <li>Micro-enterprise / flea market (weekends).</li>
+                </ul>
+
+                <h4 class="minor-title">Age-friendly slow-mobility network &amp; pocket-park system</h4>
+                <p>Along seniors' high-frequency daily paths (home &ndash; market &ndash; clinic &ndash; bus stop), construct continuous <strong>"Silver Barrier-Free Corridors"</strong> &mdash; with non-slip pavements, glare-controlled lighting, rest-seats every 80 m, and high-contrast signage. Leverage industrial buffer zones, abandoned slopes, and leftover land adjacent to flyover undercrofts to create small but age-appropriate pocket parks &mdash; touchable herb gardens, safe gravel reflexology paths, raised planters accessible by wheelchair.</p>
+
+                <h4 class="minor-title">Embedding the community time bank in physical space</h4>
+                <p>Within each All-Ages Living Room, install a dedicated time-bank counter, staffed by trained retired-resident volunteers. The service mix focuses on seniors' high-frequency everyday needs &mdash; medical-escort companionship, medication pick-up, grocery shopping, simple cooking, minor household repairs, smartphone tutoring. Accumulated hours are redeemable for: free use of Living Room facilities, dining vouchers, or, most preciously, <em>priority care placement when one's own need arises</em>. This logic transforms older residents from passive "service recipients" into active "community assets."</p>
+            </div>
+
+            <h3 class="subsection-title"><span class="sub-num">6.2</span>Implementation pathway &amp; timeline</h3>
+
+            <p>The implementation pathway proceeds in three phases &mdash; from easy to difficult, from pilot to system &mdash; with each phase's successes building momentum and trust for the next.</p>
+
+            <div class="phases">
+                <!-- Phase 1 -->
+                <div class="phase">
+                    <div class="phase-marker">
+                        <div class="phase-num">01</div>
+                        <div class="phase-label">PHASE ONE</div>
+                        <div class="phase-years">1 &ndash; 3 years</div>
+                    </div>
+                    <div>
+                        <h4 class="phase-title">Build the framework, deliver demonstrations, forge consensus</h4>
+                        <p>Initiate OZP amendment for the Kwai Hing Station TOD-R pilot zone; establish the cross-departmental "Kwai Tsing Transition Task Force" and "Community Activation Fund"; open in-situ-exchange consultation with two to three small/medium industrial title-holders; activate two disused industrial / public-housing spaces as operational All-Ages Living Rooms; complete a 500 m demonstration segment of the Silver Barrier-Free Corridor; launch the first five Community Watch Stations; conduct the inaugural district-wide "Kwai Tsing Age-Friendliness Survey."</p>
+
+                        <div class="report-table-wrap" style="margin-top: 1rem;">
+                            <table class="report-table">
+                                <thead>
+                                    <tr>
+                                        <th>Action area</th>
+                                        <th>Key indicators</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Planning &amp; institutions</strong></td>
+                                        <td>TOD-R OZP amendment completed and gazetted; guidance documents approved at Chief Secretary level</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Pilot &mdash; transport</strong></td>
+                                        <td>First skywalk segment completed; two shared streets completed and in use</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Pilot &mdash; housing</strong></td>
+                                        <td>At least one signed "in-situ exchange" letter of intent or framework agreement</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Pilot &mdash; public space</strong></td>
+                                        <td>Two Living Rooms and five Watch Stations operational for one year, with service uptake meeting baseline targets</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Social consensus</strong></td>
+                                        <td>Inaugural plenary of Community Transition Consensus Committee convened; survey sample size ≥ 2,000 valid responses</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 2 -->
+                <div class="phase">
+                    <div class="phase-marker">
+                        <div class="phase-num">02</div>
+                        <div class="phase-label">PHASE TWO</div>
+                        <div class="phase-years">4 &ndash; 8 years</div>
+                    </div>
+                    <div>
+                        <h4 class="phase-title">Scaled-up renewal &amp; land-use reconfiguration</h4>
+                        <p>First TOD-R Comprehensive Development Area tendered and breaks ground; through lease negotiations, two to three large industrial / warehousing parcels (totalling at least 10 hectares) enter conversion; non-in-situ-exchange negotiations begin with a major terminal operator; a port-land reorganisation master plan is released; the All-Ages Living Room network expands from 2 to 6; time-bank registered members reach 5,000.</p>
+
+                        <div class="report-table-wrap" style="margin-top: 1rem;">
+                            <table class="report-table">
+                                <thead>
+                                    <tr>
+                                        <th>Action area</th>
+                                        <th>Key milestones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>TOD-R comprehensive development</strong></td>
+                                        <td>In-situ rehousing interim arrangements operational; private developers formally enter the project</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Industrial-parcel scale conversion</strong></td>
+                                        <td>At least 1,000 public / affordable units delivered</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Freight separation &amp; transport upgrade</strong></td>
+                                        <td>Freight-noise complaints down 40 percent</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Age-friendly network densification</strong></td>
+                                        <td>Annual service hours exceed 100,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Community economy takes shape</strong></td>
+                                        <td>Cumulative 1,000 residents trained in local-care employment</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 3 -->
+                <div class="phase">
+                    <div class="phase-marker">
+                        <div class="phase-num">03</div>
+                        <div class="phase-label">PHASE THREE</div>
+                        <div class="phase-years">9 &ndash; 15+ years</div>
+                    </div>
+                    <div>
+                        <h4 class="phase-title">Systemic restructuring &mdash; into the new normal</h4>
+                        <p>More than half of older public-housing estates have been reconstructed (≥ 50 percent of the original plan); the public-to-private housing ratio optimised to approximately 60:40; in-district employment share rises to 25&ndash;30 percent, fundamentally shedding the "dormitory town" identity; major terminal functions relocated, with the waterfront promenade fully open; the "Kwai Tsing Model" is consolidated &mdash; an institutional template applicable to organic-renewal of high-density legacy districts in transition from industrial to mixed-use community.</p>
+
+                        <div class="report-table-wrap" style="margin-top: 1rem;">
+                            <table class="report-table">
+                                <thead>
+                                    <tr>
+                                        <th>Action area</th>
+                                        <th>Long-term targets</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Housing structure transformed</strong></td>
+                                        <td>Rent-to-income ratio drops from 31.5% to ~25%; per-capita living area reaches 45 m²</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Employment &amp; transport fundamentally improved</strong></td>
+                                        <td>Intergenerational employment and volunteering networks become the norm</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Environment &amp; community reconciled</strong></td>
+                                        <td>Community mutual-aid economy operates self-sustainingly, without ongoing public subsidy</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Institutional export</strong></td>
+                                        <td>Becomes a policy template for analogous districts &mdash; Kwun Tong, Tuen Mun, Tsuen Wan</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ========================================================================
+     VII. RISK ASSESSMENT
+     ======================================================================== -->
+<section class="section" id="risks">
+    <div class="section-header">
+        <div class="section-num">
+            <span class="num-label">PART · SEVEN</span>
+            VII
+        </div>
+        <h2 class="section-title">Risk Assessment &amp; Mitigation</h2>
+    </div>
+
+    <div class="content-grid">
+        <aside class="content-side">
+            <div class="side-label">
+                Economic + social costs<br>
+                Market-failure alerts<br>
+                Four control mechanisms
+            </div>
+        </aside>
+        <div class="content-main">
+
+            <h3 class="subsection-title"><span class="sub-num">7.1</span>Potential costs</h3>
+
+            <h4 class="minor-title">Economic costs</h4>
+            <ul class="bullet-list">
+                <li><strong>Sunk costs in stalled premium negotiations.</strong> If parcel-by-parcel negotiations with private owners fail to reach agreement, the substantial upfront investment in planning research and consultation may become sunk cost &mdash; while the parcel remains vacant.</li>
+                <li><strong>Long-term public-finance burden.</strong> Where market-investor confidence is weak, government may need to inject massive public funds at the front end (land resumption, contamination remediation, infrastructure), with payback horizons extending beyond a decade.</li>
+                <li><strong>Loss of interest among small owners.</strong> If exchange or bonus terms favour large title-holders, smaller owners and tenants on the original land &mdash; auto-repair shops, recyclers &mdash; may lack capacity to participate and be forcibly displaced.</li>
+            </ul>
+
+            <h4 class="minor-title">Social costs</h4>
+            <ul class="bullet-list">
+                <li><strong>Gentrification &amp; price-uplift pressure.</strong> Introducing a modest share of private housing and new commerce, even if carefully calibrated, may slowly drive up overall rents and prices &mdash; producing implicit deprivation for fixed-income seniors (CSSA, Old Age Allowance).</li>
+                <li><strong>Erosion of community networks during transition.</strong> Public-housing reconstruction, even with in-district relocation commitments, requires two-to-three years of off-site stay; original neighbourhood-watch and mutual-aid networks risk fracture.</li>
+                <li><strong>Loss of place-based historical memory.</strong> The terminal and aged industrial landscape carry the collective memory of Kwai Tsing's labour communities. Excessive demolition would deepen residents' sense of identity loss.</li>
+            </ul>
+
+            <h3 class="subsection-title"><span class="sub-num">7.2</span>Negative-impact alerts</h3>
+
+            <div class="info-box warning">
+                <div class="info-label">Market Failure &amp; Project Collapse Risk</div>
+                <p style="margin-bottom: 0; font-size: var(--text-sm);">In the U.S. Baltimore Peninsula case, when post-pandemic office and retail demand collapsed, the project sponsor's finances broke down and the project was forced out, with banks taking over undeveloped land. If Kwai Tsing encounters the next economic downturn or property-market correction during the transition, market-dependent public-private partnership models could fail in the same way.</p>
+            </div>
+
+            <div class="info-box warning">
+                <div class="info-label">Rehousing Inequity Triggering Social Conflict</div>
+                <p style="margin-bottom: 0; font-size: var(--text-sm);">If the "Transition Special Fund" fails &mdash; through overly strict screening, inadequate funding, or unfair case decisions &mdash; affected residents lacking traditional rehousing eligibility could quickly mount street protests and occupations, undermining the social foundation of the entire proposal.</p>
+            </div>
+
+            <div class="info-box warning">
+                <div class="info-label">Obsolescence of Productive-Space Assumptions</div>
+                <p style="margin-bottom: 0; font-size: var(--text-sm);">Over the coming 15 years, long-term care or community economy may face technological substitution (e.g. AI-assisted care robots reducing labour demand), shrinking the projected "grassroots care employment" market &mdash; potentially leaving pre-allocated community productive space vacant or under-utilised.</p>
+            </div>
+
+            <div class="info-box warning">
+                <div class="info-label">Transport Capacity Misjudgement</div>
+                <p style="margin-bottom: 0; font-size: var(--text-sm);">If FAR is substantially relaxed but the Northern Link southern extension or green-transport corridor fails to materialise on schedule, the additional residential and employment population may overload already-strained road networks &mdash; producing worse congestion than before renewal began.</p>
+            </div>
+
+            <h3 class="subsection-title"><span class="sub-num">7.3</span>Risk management measures</h3>
+
+            <div class="strategy-block rust">
+                <div class="strategy-block-eyebrow">MECHANISM 1 · CIRCUIT BREAKER</div>
+                <div class="strategy-block-title">Periodic review &amp; circuit-breaker</div>
+                <p style="margin-bottom: 0;">FAR releases within TOD-R Zones proceed under "staged authorisation" &mdash; only 60 percent of the long-term ratio is released in the first phase; the remaining 40 percent is released only after mid-term transport-capacity assessments meet thresholds. If rail-network construction is officially delayed, an automatic downward revision of the plot-ratio cap is triggered (the "circuit breaker").</p>
+            </div>
+
+            <div class="strategy-block forest">
+                <div class="strategy-block-eyebrow">MECHANISM 2 · TRUST &amp; AUDIT</div>
+                <div class="strategy-block-title">Trust-enhancement &amp; oversight of the transition fund</div>
+                <p style="margin-bottom: 0;">The "Transition Special Rehousing Fund" is held by a reputable international not-for-profit organisation or trustee, overseen by an independent monitoring committee (including affected-resident representatives). Each batch of grants is audited and periodically reported in summary to the public &mdash; reinforcing transparency and credibility.</p>
+            </div>
+
+            <div class="strategy-block mustard">
+                <div class="strategy-block-eyebrow">MECHANISM 3 · EXIT GUARANTEE</div>
+                <div class="strategy-block-title">Market-exit guarantee</div>
+                <p style="margin-bottom: 0;">PPP contracts include a "government / public-body buy-back option": should a private developer be unable to perform &mdash; due to financial distress or any other reason &mdash; the government may repurchase the project interest at a pre-agreed fair price and hand it over to the URA or another public body for completion. This prevents Baltimore-style "no-one-to-take-over" outcomes.</p>
+            </div>
+
+            <div class="strategy-block plum">
+                <div class="strategy-block-eyebrow">MECHANISM 4 · MEMORY PRESERVATION</div>
+                <div class="strategy-block-title">Gradual memory conservation</div>
+                <p style="margin-bottom: 0;">Before demolition of significant industrial or port facilities, commission universities and community organisations to conduct oral-history recording, retention of representative architectural components, and on-site interpretive panels &mdash; an approach of "soft conservation." Not every aged building need be wholly preserved; but local stories must be translated into narrative resources within new public spaces &mdash; soothing the pain of cultural rupture.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ========================================================================
+     VIII. EXPECTED OUTCOMES
+     ======================================================================== -->
+<section class="section" id="outcomes">
+    <div class="section-header">
+        <div class="section-num">
+            <span class="num-label">PART · EIGHT</span>
+            VIII
+        </div>
+        <h2 class="section-title">Expected Outcomes &amp; Evaluation</h2>
+    </div>
+
+    <div class="content-grid">
+        <aside class="content-side">
+            <div class="side-label">
+                2047 long-term vision<br>
+                Quantitative + qualitative targets<br>
+                International comparative value
+            </div>
+        </aside>
+        <div class="content-main">
+
+            <h3 class="subsection-title"><span class="sub-num">8.1</span>Quantitative outcomes by 2047</h3>
+
+            <div class="report-table-wrap">
+                <table class="report-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Indicator</th>
+                            <th>Baseline (current)</th>
+                            <th>Target (2047)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td rowspan="4"><strong>Housing</strong></td><td>Total renewed residential units</td><td>0</td><td>~15,000 (incl. public ≥10,000)</td></tr>
+                        <tr><td>Per-capita living area</td><td>36.75 m²</td><td>≥ 45 m²</td></tr>
+                        <tr><td>Public-to-private housing ratio</td><td>~80:20</td><td>~60:40</td></tr>
+                        <tr><td>Median rent-to-income ratio</td><td>31.5%</td><td>≤ 25%</td></tr>
+                        <tr><td rowspan="3"><strong>Employment &amp; economy</strong></td><td>New local jobs</td><td>Low base</td><td>3,500</td></tr>
+                        <tr><td>In-district employment share</td><td>&lt; 20%</td><td>25% &ndash; 30%</td></tr>
+                        <tr><td>Operational community productive space</td><td>0</td><td>≥ 50,000 m²</td></tr>
+                        <tr><td rowspan="3"><strong>Transport</strong></td><td>Population within 500 m of rail station</td><td>&lt; 20% (est.)</td><td>≥ 40%</td></tr>
+                        <tr><td>Freight-noise complaints</td><td>Frequent</td><td>Down 60%</td></tr>
+                        <tr><td>Slow-mobility weather-protected corridor length</td><td>Minimal</td><td>Covers all major estate-to-facility routes</td></tr>
+                        <tr><td rowspan="4"><strong>Public space &amp; social</strong></td><td>Public open-space area uplift</td><td>—</td><td>+35%</td></tr>
+                        <tr><td>All-Ages Living Rooms / Health Hubs</td><td>0</td><td>10 or more</td></tr>
+                        <tr><td>Time-bank registered members</td><td>0</td><td>10,000</td></tr>
+                        <tr><td>Annual community-service exchange hours</td><td>0</td><td>≥ 200,000</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 class="subsection-title"><span class="sub-num">8.2</span>Qualitative outcomes</h3>
+
+            <h4 class="minor-title">Marked improvement in residents' wellbeing</h4>
+            <p>Older residents will age safely, with dignity and active social engagement, within the communities they know &mdash; rather than reluctantly relocating or entering crowded care homes prematurely. Grassroots women and the semi-retired will gain stable micro-incomes and daily self-respect through the care economy and community-productive sectors &mdash; gradually dissolving pessimism, deprivation and social tension.</p>
+
+            <h4 class="minor-title">Emergence of community resilience &amp; mutual-aid networks</h4>
+            <p>Intergenerational mutual aid, peer tutoring and "time exchange" become the default community culture; neighbours cease to be strangers under one roof. This accumulation of social capital will form an <em>invisible safety net</em> against the next economic or climate crisis.</p>
+
+            <h4 class="minor-title">Institutional demonstration &amp; governance confidence</h4>
+            <p>Kwai Tsing will prove that even in Hong Kong's most challenging post-industrial constituency, fine-grained, humane planning can &mdash; without dissolving society &mdash; deliver spatial renewal and redistributive justice. It supplies precedent for Kwun Tong, Tuen Mun, Cheung Sha Wan and other analogous districts, and offers the SAR Government a positive counter-narrative to the populist critique of "planning failure."</p>
+
+            <div class="pullquote">
+                <span class="pullquote-mark">"</span>
+                <div class="pullquote-text">
+                    Hong Kong's "Kwai Tsing Model" will stand among the world's<br>
+                    leading <em>inclusive-renewal</em> cases for high-density ageing legacy cities.
+                </div>
+            </div>
+
+            <h4 class="minor-title">International comparative value</h4>
+            <p>A third way distinct from the Western "market-led + powerful community negotiation" model and the Mainland "administrative push + ambiguous tenure" model: rooted in fair lease negotiation, robust public-housing safeguards, and the institutional design of micro-scale, coexisting incremental capacity.</p>
+
+        </div>
+    </div>
+</section>
+
+<!-- ========================================================================
+     IX. ACTION RECOMMENDATIONS
+     ======================================================================== -->
+<section class="section" id="actions">
+    <div class="section-header">
+        <div class="section-num">
+            <span class="num-label">PART · NINE</span>
+            IX
+        </div>
+        <h2 class="section-title">Implementation Recommendations<br>&amp; Next Steps</h2>
+    </div>
+
+    <div class="content-grid">
+        <aside class="content-side">
+            <div class="side-label">
+                Immediate 0–6 mo<br>
+                Short-term 6–12 mo<br>
+                Continuous dialogue platform
+            </div>
+        </aside>
+        <div class="content-main">
+
+            <div class="strategy-block coral">
+                <div class="strategy-block-eyebrow">ACTION 1 · IMMEDIATE — 0–6 months</div>
+                <div class="strategy-block-title">Establish a statutory dedicated authority with full mandate</div>
+                <p style="margin-bottom: 0;">Urge the Chief Executive to appoint the Chief Secretary for Administration or Secretary for Development to lead the establishment of the <strong>"Kwai Tsing Community Activation &amp; Renewal Authority" (KTCARA)</strong>, reporting directly to the Chief Executive. The Authority would carry cross-departmental coordination authority (covering planning, lands, housing, transport, social welfare and labour) and be empowered to administer the "Transition Special Rehousing Fund" and to approve large public-private partnership projects. This high-authority statutory body is the fundamental safeguard against inter-departmental buck-passing.</p>
+            </div>
+
+            <div class="strategy-block mustard">
+                <div class="strategy-block-eyebrow">ACTION 2 · IMMEDIATE — 6–12 months</div>
+                <div class="strategy-block-title">Launch the first three "quick-win micro-renewal" actions</div>
+                <ol class="styled-list">
+                    <li><strong>The first All-Ages Living Room.</strong> In a vacant public-housing podium space in Kwai Hing or Kwai Luen, KTCARA funds and contracts a social-welfare organisation to complete fit-out within three months and commence operations &mdash; serving as the policy's flagship "wellbeing landmark."</li>
+                    <li><strong>Silver Corridor demonstration segment.</strong> A 500 m weather-protected walkway with non-slip pavements connecting one or two senior estates to the bus stops and market, completed within one year.</li>
+                    <li><strong>Inaugural "Kwai Tsing Age-Friendliness Survey."</strong> Modelled on the Ipoh case, jointly conducted by the District Council and tertiary institutions, with a large-sample quantitative assessment completed within a quarter.</li>
+                </ol>
+            </div>
+
+            <div class="strategy-block jade">
+                <div class="strategy-block-eyebrow">ACTION 3 · SHORT-TERM — 1–2 years</div>
+                <div class="strategy-block-title">Initiate statutory plan revisions &amp; lease guidelines</div>
+                <ul class="bullet-list">
+                    <li>The Planning Department launches a rezoning study for the TOD-R Comprehensive Development Area, prioritising OZP revision around Kwai Hing Station.</li>
+                    <li>The Lands Department formulates and publishes the "Kwai Tsing Industrial-Land Conversion Lease Reading Guide," setting out framework conditions and indicative premium ranges for "in-situ" and "non-in-situ" exchanges.</li>
+                    <li>The Development Bureau drafts the "Kwai Tsing Renewal-Social-Welfare Bundling Ordinance" Bill for Executive Council consideration &mdash; supplying a stable legal basis for mandatory public-housing inclusion, community productive-space provision, and rehousing commitments.</li>
+                </ul>
+            </div>
+
+            <div class="strategy-block forest">
+                <div class="strategy-block-eyebrow">ACTION 4 · MID-TERM — from 18 months</div>
+                <div class="strategy-block-title">Build the financial architecture &amp; secure partners</div>
+                <ul class="bullet-list">
+                    <li>Establish the "Kwai Tsing Transition Trust Fund" and seek a seed injection of at least <strong>HK$6 billion</strong> from the Financial Secretary.</li>
+                    <li>Publicly tender for ESG-aligned Hong Kong or international developers and investment institutions with urban-renewal experience.</li>
+                    <li>Sign MOUs with the Employees Retraining Board and local social-welfare organisations to launch thousand-plus-person training programmes in community care, green construction and grassroots entrepreneurship.</li>
+                </ul>
+            </div>
+
+            <div class="strategy-block plum">
+                <div class="strategy-block-eyebrow">ACTION 5 · ONGOING</div>
+                <div class="strategy-block-title">Sustain a continuous dialogue platform</div>
+                <p style="margin-bottom: 0;">Maintain a semi-annual plenary of the "Community Transition Consensus Committee" with topic-based working groups (housing, employment, senior services), absorbing resident feedback to fine-tune the proposal at every stage. Make the annual "age-friendliness survey" results and improvement progress publicly available, and tie them to departmental KPIs &mdash; transforming the planning effort from a one-off project into <em>a routine practice of shared governance</em>.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ========================================================================
+     X. APPENDIX
+     ======================================================================== -->
+<section class="section" id="appendix">
+    <div class="section-header">
+        <div class="section-num">
+            <span class="num-label">PART · TEN</span>
+            X
+        </div>
+        <h2 class="section-title">Appendix · Detailed Case Inventory</h2>
+    </div>
+
+    <div class="content-grid">
+        <aside class="content-side">
+            <div class="side-label">
+                Six international cases<br>
+                Comprehensive bibliography<br>
+                For deep reference
+            </div>
+        </aside>
+        <div class="content-main">
+
+            <p class="lead">
+                The six international cases cited in this report are listed below. Each has been fully source-reviewed, mechanism-analysed, outcome-assessed and transferability-argued.
+            </p>
+
+            <div class="appendix-grid">
+                <div class="appendix-card">
+                    <div class="appendix-num">CASE 01</div>
+                    <div class="appendix-title">FAR Incentives in Focus &mdash; Taiwan's Urban Renewal &amp; Dilapidated-Building Reform</div>
+                    <div class="appendix-info">
+                        <span>Taiwan</span>
+                        <span>·</span>
+                        <span>2024–2026</span>
+                    </div>
+                    <div class="appendix-info">
+                        <span>Source: Professional report (Lee and Li Attorneys-at-Law)</span>
+                    </div>
+                    <div class="appendix-info">
+                        <span>Addresses: Problem 1 (FAR renewal)</span>
+                    </div>
+                </div>
+
+                <div class="appendix-card">
+                    <div class="appendix-num">CASE 02</div>
+                    <div class="appendix-title">City of Melbourne Affordable Housing Capacity &amp; Needs Analysis</div>
+                    <div class="appendix-info">
+                        <span>Australia, Melbourne</span>
+                        <span>·</span>
+                        <span>2019</span>
+                    </div>
+                    <div class="appendix-info">
+                        <span>Source: Government planning document</span>
+                    </div>
+                    <div class="appendix-info">
+                        <span>Addresses: Problems 1 &amp; 3 (inclusion &amp; needs quantification)</span>
+                    </div>
+                </div>
+
+                <div class="appendix-card">
+                    <div class="appendix-num">CASE 03</div>
+                    <div class="appendix-title">Shanghai &mdash; Ambiguous Property Rights &amp; Institutional Flexibility in Industrial Redevelopment</div>
+                    <div class="appendix-info">
+                        <span>China, Shanghai</span>
+                        <span>·</span>
+                        <span>1990s–2018</span>
+                    </div>
+                    <div class="appendix-info">
+                        <span>Source: Academic research (Cities journal)</span>
+                    </div>
+                    <div class="appendix-info">
+                        <span>Addresses: Problem 2 (industrial-tenure reshuffle)</span>
+                    </div>
+                </div>
+
+                <div class="appendix-card">
+                    <div class="appendix-num">CASE 04</div>
+                    <div class="appendix-title">U.S. Industrial-Property Redevelopment &mdash; Legal &amp; Financial Integration</div>
+                    <div class="appendix-info">
+                        <span>USA, Philadelphia / Baltimore</span>
+                        <span>·</span>
+                        <span>2010s</span>
+                    </div>
+                    <div class="appendix-info">
+                        <span>Source: Professional firm (Ballard Spahr)</span>
+                    </div>
+                    <div class="appendix-info">
+                        <span>Addresses: Problem 2 (brownfield remediation, CBAs)</span>
+                    </div>
+                </div>
+
+                <div class="appendix-card">
+                    <div class="appendix-num">CASE 05</div>
+                    <div class="appendix-title">Global "Aging in Place" Innovations &amp; Intergenerational Community Practice</div>
+                    <div class="appendix-info">
+                        <span>USA · Japan · UK</span>
+                        <span>·</span>
+                        <span>2017–2020</span>
+                    </div>
+                    <div class="appendix-info">
+                        <span>Source: Academic research (Taylor &amp; Francis)</span>
+                    </div>
+                    <div class="appendix-info">
+                        <span>Addresses: Problem 3 (age-friendly micro-renewal, time banks)</span>
+                    </div>
+                </div>
+
+                <div class="appendix-card">
+                    <div class="appendix-num">CASE 06</div>
+                    <div class="appendix-title">The Ageing Workforce &amp; Age-Friendly City Policies</div>
+                    <div class="appendix-info">
+                        <span>Global / Ipoh / New York</span>
+                        <span>·</span>
+                        <span>2013 + 2021–22</span>
+                    </div>
+                    <div class="appendix-info">
+                        <span>Source: Academic research (Cadmus Journal) + survey data</span>
+                    </div>
+                    <div class="appendix-info">
+                        <span>Addresses: Problem 3 (senior employment, evaluation, policy integration)</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+</div><!-- /.report -->
+
+<!-- ========================================================================
+     FOOTER
+     ======================================================================== -->
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-text">
+            <p>This report, grounded in detailed analysis of Kwai Tsing's local data, contextual research, and the comparison of six international cases, offers a systemic action guide for the district's transition &mdash; from a post-industrial legacy public-housing area into an "Age-Friendly Living and Community Economy Demonstration Zone."</p>
+            <p style="margin-bottom: 0;">The proposal emphasises fine-grained organic renewal, institutional innovation, and the incremental accumulation of social consensus &mdash; offering an actionable and replicable template for the sustainable development of analogous communities in Hong Kong.</p>
+        </div>
+
+        <div class="footer-meta">
+            <div class="footer-meta-item">
+                <span class="footer-meta-label">Report</span>
+                <span class="footer-meta-value">Urban Planning Proposal · Comprehensive Report</span>
+            </div>
+            <div class="footer-meta-item">
+                <span class="footer-meta-label">Scope</span>
+                <span class="footer-meta-value">20 sub-districts, Kwai Tsing</span>
+            </div>
+            <div class="footer-meta-item">
+                <span class="footer-meta-label">Horizon</span>
+                <span class="footer-meta-value">From 2026 · 2047 long-term vision</span>
+            </div>
+            <div class="footer-meta-item">
+                <span class="footer-meta-label">Version</span>
+                <span class="footer-meta-value">Final Draft</span>
+            </div>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-bottom">
+            Kwai Tsing Community Activation &amp; Renewal Plan &nbsp;·&nbsp; 2026
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
