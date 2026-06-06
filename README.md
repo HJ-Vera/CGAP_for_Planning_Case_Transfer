@@ -149,7 +149,7 @@ CGAP 将城市规划案例迁移拆解为多个显式推理阶段，通过中间
 支撑推理过程的核心算法与工具：
 
 - **Hybrid Retrieval**（`tools/retrieval.py` + `tools/HybridRetriever.py`）：BM25 关键词匹配 + Sentence-BERT 语义相似度，通过 Reciprocal Rank Fusion 融合排序，支持中英文分词。
-- **Deep Research**（`tools/deep_research.py`）：Gap-Driven Tree Search 算法，自动提取案例的 7 个结构化字段（城市 / 时间 / 问题 / 方案 / 成效 / 前提 / 局限），迭代搜索补全缺失信息。
+- **Deep Research**（`tools/deep_research.py`）：Gap-Driven Iterative Search 算法，自动提取案例的 7 个结构化字段（城市 / 时间 / 问题 / 方案 / 成效 / 前提 / 局限），迭代搜索补全缺失信息。
 - **Data Analysis**（`tools/data_loader.py` + `tools/data_analysis.py`）：数据加载与统计分析，聚类分析、PCA 降维、地图可视化。
 - **Prompt Management**（`prompts/`）：所有 Prompt 模板从代码中解耦为独立文本文件，支持变量注入，按推理阶段和工具分目录组织。
 
